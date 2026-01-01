@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverHawk — Trading Suite</title>
+  <meta name="description" content="A clean, locked-preset decision + targets suite for TradingView. Built for clarity, discipline, and execution." />
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:#0B1020;
+      --muted:#A6B0D6;
+      --text:#EAF0FF;
+      --line:rgba(255,255,255,.10);
+      --glow:rgba(120,120,255,.22);
+      --accent:#7C5CFF;
+      --accent2:#00E5FF;
+      --good:#3DFFB3;
+      --warn:#FFD36E;
+      --bad:#FF5C7A;
+      --radius:18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.45);
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(124,92,255,.25), transparent 55%),
+        radial-gradient(900px 500px at 85% 12%, rgba(0,229,255,.18), transparent 55%),
+        radial-gradient(1000px 700px at 50% 85%, rgba(61,255,179,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .nav{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,10,18,.88), rgba(7,10,18,.55));
+      border-bottom:1px solid var(--line);
+    }
+    .navin{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .dot{
+      width:12px;height:12px;border-radius:999px;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 0 6px rgba(124,92,255,.12);
+    }
+    .navlinks{display:flex;gap:16px;align-items:center}
+    .navlinks a{color:var(--muted);font-weight:600;font-size:14px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:11px 14px;border-radius:12px;border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-weight:800;font-size:14px;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px);background: rgba(255,255,255,.06);border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      border: 1px solid rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.30), rgba(0,229,255,.14));
+      box-shadow: 0 25px 80px var(--glow);
+    }
+
+    .hero{padding:62px 0 26px}
+    .heroGrid{display:grid;grid-template-columns: 1.15fr .85fr;gap:22px;align-items:stretch}
+    @media (max-width: 920px){.heroGrid{grid-template-columns: 1fr}}
+    .pill{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);font-weight:700;font-size:13px;
+      width:fit-content;
+    }
+    .pill b{color:var(--text)}
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 4.5vw, 54px);
+      line-height:1.02;
+      letter-spacing:-.6px;
+    }
+    .sub{color:var(--muted);font-size:16px;max-width:58ch;margin:0 0 18px}
+    .ctaRow{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 8px}
+    .mini{color:var(--muted);font-size:13px;margin-top:10px}
+    .mini span{padding:0 10px;opacity:.6}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(11,16,32,.72);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroCard{padding:18px}
+    .heroCard h3{margin:6px 0 10px;font-size:16px;color:var(--muted);font-weight:800}
+    .statGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .stat{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      padding:12px;
+    }
+    .stat .k{font-size:12px;color:var(--muted);font-weight:800}
+    .stat .v{margin-top:6px;font-size:18px;font-weight:900}
+    .stat .t{margin-top:4px;font-size:12px;color:var(--muted)}
+    .list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+    .li{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px;border-radius:14px;border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .ic{
+      width:26px;height:26px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      flex:0 0 auto;
+      font-weight:900;font-size:13px;
+    }
+
+    .section{padding:44px 0}
+    .secHead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:16px}
+    .secHead h2{margin:0;font-size:26px;letter-spacing:-.3px}
+    .secHead p{margin:0;color:var(--muted);max-width:60ch}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width: 980px){.grid3{grid-template-columns:1fr}}
+    .feature{padding:16px}
+    .feature h4{margin:10px 0 6px;font-size:16px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    .steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 980px){.steps{grid-template-columns:1fr}}
+    .step{padding:16px}
+    .step .n{font-weight:900;color:var(--muted);font-size:12px;letter-spacing:.3px}
+    .step h4{margin:6px 0 6px}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+
+    .pricing{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:stretch}
+    @media (max-width: 980px){.pricing{grid-template-columns:1fr}}
+    .priceBox{padding:18px}
+    .price{
+      display:flex;align-items:flex-end;gap:10px;margin:10px 0 6px
+    }
+    .price .big{font-size:34px;font-weight:950;letter-spacing:-.3px}
+    .price .small{color:var(--muted);font-weight:800}
+    .bul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+    .bul li{color:var(--muted);font-weight:650}
+    .bul b{color:var(--text)}
+    .faq{display:grid;gap:12px}
+    details{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 14px;
+    }
+    summary{cursor:pointer;font-weight:900}
+    details p{margin:10px 0 0;color:var(--muted);font-weight:650}
+
+    .footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted)}
+    .footerRow{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .note{font-size:12px;max-width:80ch}
+    .badgeRow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .badge{
+      padding:7px 10px;border-radius:999px;border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size:12px;font-weight:800;color:var(--muted);
+    }
+    .topspace{scroll-margin-top:80px}
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="wrap navin">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>SilverHawk</div>
+      </div>
+      <div class="navlinks">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn primary" id="buyTop" href="#pricing">Get Access</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap heroGrid">
+      <div>
+        <div class="pill">Locked Presets • <b>Decision + Targets</b> • TradingView</div>
+        <h1>Clean entries, disciplined targets, and zero over-tweaking.</h1>
+        <p class="sub">
+          SH AI x10 is a locked-preset indicator built to reduce noise: regime filter, two engines, and automatic target lines.
+          Built for execution — not endless settings.
+        </p>
+        <div class="ctaRow">
+          <a class="btn primary" href="#pricing" id="buyCta">Get Access</a>
+          <a class="btn" href="#features">See features</a>
+        </div>
+        <div class="mini">
+          Works best on preset symbols & locked timeframes <span>•</span> Built for 1H / 30M / 15M style execution
+        </div>
+      </div>
+
+      <div class="card heroCard">
+        <h3>What you get</h3>
+        <ul class="list">
+          <li class="li"><div class="ic">✓</div><div><b>Locked symbol presets</b> to keep results consistent.</div></li>
+          <li class="li"><div class="ic">✓</div><div><b>Regime gate</b>: HTF trend alignment + ADX + volatility + compression.</div></li>
+          <li class="li"><div class="ic">✓</div><div><b>Targets & SL</b> auto-projected as lines (TP1/TP2/TP3).</div></li>
+          <li class="li"><div class="ic">✓</div><div><b>Why label</b> shows the reason + filter status for the entry.</div></li>
+        </ul>
+
+        <div class="statGrid">
+          <div class="stat">
+            <div class="k">Focus</div>
+            <div class="v">Clarity</div>
+            <div class="t">Fewer trades, better context</div>
+          </div>
+          <div class="stat">
+            <div class="k">Design</div>
+            <div class="v">Locked</div>
+            <div class="t">No “curve-fit” settings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section topspace" id="features">
+    <div class="wrap">
+      <div class="secHead">
+        <div>
+          <h2>Features</h2>
+          <p>Built around one idea: remove decision fatigue and force discipline.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card feature">
+          <div class="ic">A</div>
+          <h4>Mode A — Pullback continuation</h4>
+          <p>Trend-following pullbacks into dynamic bands with squeeze release confirmation.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="ic">B</div>
+          <h4>Mode B — Flip confirm (lite)</h4>
+          <p>Sweep → displacement → BOS confirmation to catch real direction changes.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="ic">R</div>
+          <h4>Regime Filter</h4>
+          <p>HTF alignment + ADX + volatility window + anti-compression gate to avoid dead ranges.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="ic">T</div>
+          <h4>Targets & Stop</h4>
+          <p>Auto projects SL + TP1/TP2/TP3 using structure + ATR logic. No manual guessing.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="ic">W</div>
+          <h4>WHY label</h4>
+          <p>Shows the key checks (HTF, ADX, Volatility, Compression, Regime OK) so you know why it fired.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="ic">P</div>
+          <h4>Panel stats</h4>
+          <p>Compact performance snapshot (trades, win rate, avg R, max drawdown in R).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section topspace" id="how">
+    <div class="wrap">
+      <div class="secHead">
+        <div>
+          <h2>How it works</h2>
+          <p>Simple flow. No “indicator salad”.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="card step">
+          <div class="n">STEP 1</div>
+          <h4>Choose a supported symbol + locked timeframe</h4>
+          <p>The script only activates on the preset list to keep behavior consistent.</p>
+        </div>
+
+        <div class="card step">
+          <div class="n">STEP 2</div>
+          <h4>Regime gate filters the trash</h4>
+          <p>Only trades when HTF direction aligns and market conditions are acceptable.</p>
+        </div>
+
+        <div class="card step">
+          <div class="n">STEP 3</div>
+          <h4>Signal fires (Mode A or B)</h4>
+          <p>Mode B takes priority when both exist. No double-direction conflicts.</p>
+        </div>
+
+        <div class="card step">
+          <div class="n">STEP 4</div>
+          <h4>Targets + SL are drawn automatically</h4>
+          <p>Lines extend right so your execution is structured immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section topspace" id="pricing">
+    <div class="wrap">
+      <div class="secHead">
+        <div>
+          <h2>Pricing</h2>
+          <p>Connect this section to Lemon Squeezy checkout links.</p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="card priceBox">
+          <div class="pill">Recommended</div>
+          <h3 style="margin:10px 0 0">Lifetime Access</h3>
+          <div class="price">
+            <div class="big">$—</div>
+            <div class="small">one time</div>
+          </div>
+          <ul class="bul">
+            <li>✔ Locked presets (no curve-fitting)</li>
+            <li>✔ Targets + SL lines (TP1/TP2/TP3)</li>
+            <li>✔ WHY label + regime status</li>
+            <li>✔ Updates included</li>
+          </ul>
+          <div class="ctaRow" style="margin-top:16px">
+            <a class="btn primary" id="buyNow" href="https://example.com" target="_blank" rel="noopener">Buy on Lemon Squeezy</a>
+            <a class="btn" href="#faq">Read FAQ</a>
+          </div>
+          <div class="mini">Replace the button link with your Lemon Squeezy checkout URL.</div>
+        </div>
+
+        <div class="card priceBox">
+          <h3 style="margin:0">What you should NOT expect</h3>
+          <ul class="bul" style="margin-top:12px">
+            <li>✖ “100% win rate” marketing</li>
+            <li>✖ endless settings to tweak</li>
+            <li>✖ signals in dead ranges</li>
+          </ul>
+          <div style="margin-top:14px;color:var(--muted);font-size:14px">
+            This product is built for traders who want structure and repeatable execution — not dopamine.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section topspace" id="faq">
+    <div class="wrap">
+      <div class="secHead">
+        <div>
+          <h2>FAQ</h2>
+          <p>Keep it blunt and clear. It reduces refunds.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details class="card" open>
+          <summary>Does it repaint?</summary>
+          <p>Use “confirmed-bar mode” ON for safer behavior. Signals and management should act on confirmed bars.</p>
+        </details>
+
+        <details class="card">
+          <summary>Why locked presets?</summary>
+          <p>Because most users sabotage results by over-optimizing. Locked presets keep behavior stable across traders.</p>
+        </details>
+
+        <details class="card">
+          <summary>How do I get access after paying?</summary>
+          <p>Lemon Squeezy delivers the purchase and you grant TradingView access (invite-only script) or deliver a key/workflow you choose.</p>
+        </details>
+
+        <details class="card">
+          <summary>Can I use it on any market/timeframe?</summary>
+          <p>No. It’s intentionally restricted. If you want “works everywhere,” you’ll get weaker signal quality.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footerRow">
+      <div class="badgeRow">
+        <div class="badge">TradingView</div>
+        <div class="badge">Locked Presets</div>
+        <div class="badge">Decision + Targets</div>
+      </div>
+      <div class="note">
+        Risk disclaimer: Trading involves risk. This page is informational and not financial advice.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // OPTIONAL: replace with your Lemon Squeezy checkout link once you have it.
+    // document.getElementById("buyNow").href = "https://your-lemonsqueezy-checkout-link";
+  </script>
+</body>
+</html>
