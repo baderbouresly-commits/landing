@@ -59,8 +59,6 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
-
-    /* LOGO */
     .logo{
       width:50px; height:50px; border-radius:14px;
       background: rgba(255,255,255,.08);
@@ -78,7 +76,6 @@
       padding:0;
       background: transparent;
     }
-
     .brandName{
       font-weight:900;
       letter-spacing:.2px;
@@ -151,9 +148,7 @@
       text-align:center;
     }
 
-    .hero{
-      padding:70px 0 56px;
-    }
+    .hero{ padding:70px 0 56px; }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
       background: var(--card);
@@ -371,7 +366,7 @@
       content:"";
       position:absolute;
       top:0; bottom:0;
-      width:90px;
+      width:120px;
       pointer-events:none;
       z-index:2;
     }
@@ -390,6 +385,7 @@
       gap:14px;
       padding: 8px 10px;
       animation: scrollX 34s linear infinite;
+      will-change: transform;
     }
     .marquee:hover .track{ animation-play-state: paused; }
 
@@ -397,7 +393,6 @@
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-
     @media (prefers-reduced-motion: reduce){
       .track{ animation:none; }
     }
@@ -425,17 +420,41 @@
       gap:10px;
       min-width:0;
     }
+
+    /* ✅ AVATAR FIX: REAL "IMAGE" ALWAYS SHOWS (inline SVG), with fallback initial */
     .avatar{
-  width:38px; height:38px;
-  border-radius:999px;
-  background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(74,215,255,.18));
-  border:1px solid rgba(255,255,255,.14);
-  display:grid; place-items:center;
-  font-weight:950;
-  color: rgba(234,240,255,.95);
-  flex:0 0 auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+      width:38px; height:38px;
+      border-radius: 999px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 10px 18px rgba(0,0,0,.22);
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
     }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .avatar .initial{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-weight:950;
+      color: rgba(234,240,255,.95);
+      font-size:14px;
+      text-shadow: 0 2px 8px rgba(0,0,0,.35);
+      pointer-events:none;
+      opacity:0; /* hidden when image loads */
+    }
+    .avatar.isFallback .initial{ opacity:1; }
+    .avatar.isFallback img{ opacity:0; }
+
     .whoText{ min-width:0; }
     .name{
       font-weight:900;
@@ -497,12 +516,6 @@
       color: rgba(234,240,255,.55);
       font-size:12px;
     }
-
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.06);
-      margin:18px 0;
-    }
   </style>
 </head>
 
@@ -512,7 +525,6 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
-            <!-- repo root: logo.png -->
             <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
@@ -533,7 +545,7 @@
     </div>
   </header>
 
-  <!-- HERO (ChartPrime-style: clean + centered) -->
+  <!-- HERO -->
   <section class="hero" id="top">
     <div class="wrap">
       <div class="heroCard">
@@ -563,7 +575,7 @@
     </div>
   </section>
 
-  <!-- SOCIAL PROOF (best placement: right after hero, before suites) -->
+  <!-- SOCIAL PROOF -->
   <section id="proof">
     <div class="wrap">
       <div class="sectionHead">
@@ -577,13 +589,13 @@
       <div class="proofCard">
         <div class="proofInner">
           <div class="marquee" aria-label="User testimonials">
-            <!-- Track contains TWO identical sets so -50% loops perfectly -->
             <div class="track" id="track">
+
               <!-- SET A -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">A</div>
+                    <div class="avatar" data-name="A. Rahman"><img alt="A. Rahman" /><span class="initial">A</span></div>
                     <div class="whoText">
                       <div class="name">A. Rahman</div>
                       <div class="role">Swing Trader</div>
@@ -598,7 +610,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">M</div>
+                    <div class="avatar" data-name="M. Alenezi"><img alt="M. Alenezi" /><span class="initial">M</span></div>
                     <div class="whoText">
                       <div class="name">M. Alenezi</div>
                       <div class="role">Futures Day Trader</div>
@@ -613,7 +625,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">S</div>
+                    <div class="avatar" data-name="S. Carter"><img alt="S. Carter" /><span class="initial">S</span></div>
                     <div class="whoText">
                       <div class="name">S. Carter</div>
                       <div class="role">Forex Trader</div>
@@ -628,7 +640,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">K</div>
+                    <div class="avatar" data-name="K. Thomas"><img alt="K. Thomas" /><span class="initial">K</span></div>
                     <div class="whoText">
                       <div class="name">K. Thomas</div>
                       <div class="role">Prop Challenge</div>
@@ -643,7 +655,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">J</div>
+                    <div class="avatar" data-name="J. Almutairi"><img alt="J. Almutairi" /><span class="initial">J</span></div>
                     <div class="whoText">
                       <div class="name">J. Almutairi</div>
                       <div class="role">Options Trader</div>
@@ -658,7 +670,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">R</div>
+                    <div class="avatar" data-name="R. Singh"><img alt="R. Singh" /><span class="initial">R</span></div>
                     <div class="whoText">
                       <div class="name">R. Singh</div>
                       <div class="role">Crypto Trader</div>
@@ -673,7 +685,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">N</div>
+                    <div class="avatar" data-name="N. Brooks"><img alt="N. Brooks" /><span class="initial">N</span></div>
                     <div class="whoText">
                       <div class="name">N. Brooks</div>
                       <div class="role">Beginner → Consistent</div>
@@ -688,7 +700,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">H</div>
+                    <div class="avatar" data-name="H. Alhajeri"><img alt="H. Alhajeri" /><span class="initial">H</span></div>
                     <div class="whoText">
                       <div class="name">H. Alhajeri</div>
                       <div class="role">Scalper (15m/5m)</div>
@@ -704,7 +716,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">A</div>
+                    <div class="avatar" data-name="A. Rahman"><img alt="A. Rahman" /><span class="initial">A</span></div>
                     <div class="whoText">
                       <div class="name">A. Rahman</div>
                       <div class="role">Swing Trader</div>
@@ -719,7 +731,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">M</div>
+                    <div class="avatar" data-name="M. Alenezi"><img alt="M. Alenezi" /><span class="initial">M</span></div>
                     <div class="whoText">
                       <div class="name">M. Alenezi</div>
                       <div class="role">Futures Day Trader</div>
@@ -734,7 +746,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">S</div>
+                    <div class="avatar" data-name="S. Carter"><img alt="S. Carter" /><span class="initial">S</span></div>
                     <div class="whoText">
                       <div class="name">S. Carter</div>
                       <div class="role">Forex Trader</div>
@@ -749,7 +761,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">K</div>
+                    <div class="avatar" data-name="K. Thomas"><img alt="K. Thomas" /><span class="initial">K</span></div>
                     <div class="whoText">
                       <div class="name">K. Thomas</div>
                       <div class="role">Prop Challenge</div>
@@ -764,7 +776,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">J</div>
+                    <div class="avatar" data-name="J. Almutairi"><img alt="J. Almutairi" /><span class="initial">J</span></div>
                     <div class="whoText">
                       <div class="name">J. Almutairi</div>
                       <div class="role">Options Trader</div>
@@ -779,7 +791,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">R</div>
+                    <div class="avatar" data-name="R. Singh"><img alt="R. Singh" /><span class="initial">R</span></div>
                     <div class="whoText">
                       <div class="name">R. Singh</div>
                       <div class="role">Crypto Trader</div>
@@ -794,7 +806,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">N</div>
+                    <div class="avatar" data-name="N. Brooks"><img alt="N. Brooks" /><span class="initial">N</span></div>
                     <div class="whoText">
                       <div class="name">N. Brooks</div>
                       <div class="role">Beginner → Consistent</div>
@@ -809,7 +821,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar">H</div>
+                    <div class="avatar" data-name="H. Alhajeri"><img alt="H. Alhajeri" /><span class="initial">H</span></div>
                     <div class="whoText">
                       <div class="name">H. Alhajeri</div>
                       <div class="role">Scalper (15m/5m)</div>
@@ -820,12 +832,11 @@
                 <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
                 <div class="tTag">Quality > Quantity</div>
               </article>
+
             </div>
           </div>
 
-          <p class="mutedSmall" style="margin-top:10px;">
-            Hover to pause the scroll.
-          </p>
+          <p class="mutedSmall" style="margin-top:10px;">Hover to pause the scroll.</p>
         </div>
       </div>
     </div>
@@ -852,9 +863,7 @@
             </div>
 
             <div class="cardTitle">Breakouts Suite (Free)</div>
-            <p class="cardDesc">
-              Clean range breaks + momentum continuation. Built to reduce chop and random entries.
-            </p>
+            <p class="cardDesc">Clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -868,10 +877,7 @@
             </div>
 
             <details>
-              <summary>
-                See suite rules
-                <span class="caret">▾</span>
-              </summary>
+              <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
                 <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
@@ -896,9 +902,7 @@
             </div>
 
             <div class="cardTitle">Liquidity Lines Suite (Free)</div>
-            <p class="cardDesc">
-              Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.
-            </p>
+            <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.</p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -912,10 +916,7 @@
             </div>
 
             <details>
-              <summary>
-                See suite rules
-                <span class="caret">▾</span>
-              </summary>
+              <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li><b>Filter:</b> confirm context (trend/HTF bias) before hunting sweeps.</li>
                 <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
@@ -942,9 +943,7 @@
             </div>
 
             <div class="cardTitle">Pro Suite — Prime MTF</div>
-            <p class="cardDesc">
-              Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.
-            </p>
+            <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -958,10 +957,7 @@
             </div>
 
             <details>
-              <summary>
-                Who Pro is for (and not for)
-                <span class="caret">▾</span>
-              </summary>
+              <summary>Who Pro is for (and not for) <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li><b>For:</b> traders who want cleaner selection + confirmation (not more signals).</li>
                 <li><b>For:</b> anyone using HTF/LTF alignment and wanting repeatable structure rules.</li>
@@ -1001,10 +997,7 @@
             </div>
 
             <details>
-              <summary>
-                When Elite is worth it
-                <span class="caret">▾</span>
-              </summary>
+              <summary>When Elite is worth it <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li>You already have entries, but struggle with <b>selection</b> and <b>consistency</b>.</li>
                 <li>You want a decision checkpoint before pulling the trigger.</li>
@@ -1082,12 +1075,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Replace with your Lemon Squeezy checkout URLs
-    const LINKS = {
-      freeBreakouts: "#",
-      freeLiquidity: "#",
-      pro: "#",
-      elite: "#",
-    };
+    const LINKS = { freeBreakouts:"#", freeLiquidity:"#", pro:"#", elite:"#", };
 
     const byId = (id) => document.getElementById(id);
     const safeSet = (id, url) => { const el = byId(id); if(el) el.href = url; };
@@ -1097,9 +1085,67 @@
     safeSet("buyPro", LINKS.pro);
     safeSet("buyElite", LINKS.elite);
 
-    // If you later want hero "Get Access" to go directly to Pro, change these:
-    // safeSet("ctaPrimary", LINKS.pro);
-    // safeSet("ctaTop", LINKS.pro);
+    // ✅ Avatar "images" that always work (no external files):
+    // Creates a unique inline-SVG portrait per user name and sets it as <img src="data:...">
+    const hash = (s) => {
+      let h = 2166136261;
+      for (let i=0;i<s.length;i++){
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return (h >>> 0);
+    };
+
+    const hexFrom = (n) => n.toString(16).padStart(6,"0").slice(0,6);
+
+    const avatarSvgDataUrl = (name, initial) => {
+      const h = hash(name || initial || "S");
+      const c1 = "#" + hexFrom((h      ) % 0xFFFFFF);
+      const c2 = "#" + hexFrom((h*2654435761) % 0xFFFFFF);
+      const c3 = "#0b1024";
+      const letter = (initial || (name||"S").trim().charAt(0) || "S").toUpperCase();
+
+      const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${c1}" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="${c2}" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="${c3}" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="r" cx="30%" cy="25%" r="70%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.6" />
+    </filter>
+  </defs>
+  <rect width="80" height="80" fill="url(#g)"/>
+  <circle cx="26" cy="18" r="28" fill="url(#r)"/>
+  <path d="M-5,68 C12,52 26,46 40,46 C54,46 68,52 85,68 L85,85 L-5,85 Z" fill="#000" opacity="0.12" filter="url(#soft)"/>
+  <circle cx="40" cy="34" r="14" fill="#000" opacity="0.12"/>
+  <path d="M18,70 C22,56 32,50 40,50 C48,50 58,56 62,70" fill="#000" opacity="0.12"/>
+  <text x="40" y="48" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="26" font-weight="900" fill="#EAF0FF">${letter}</text>
+</svg>`.trim();
+
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    };
+
+    document.querySelectorAll(".avatar").forEach(av => {
+      const name = av.getAttribute("data-name") || "";
+      const initialEl = av.querySelector(".initial");
+      const img = av.querySelector("img");
+      const initial = (initialEl?.textContent || name.trim().charAt(0) || "S").toUpperCase();
+
+      if (img) {
+        img.src = avatarSvgDataUrl(name, initial);
+        img.onload = () => av.classList.remove("isFallback");
+        img.onerror = () => av.classList.add("isFallback");
+      } else {
+        av.classList.add("isFallback");
+      }
+    });
   </script>
 </body>
 </html>
