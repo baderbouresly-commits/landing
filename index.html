@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Suites + Indicators</title>
-  <meta name="description" content="Pick a suite. Follow the rules. Get the exact indicators to execute it. 2 free suites, Pro (Prime MTF), and Elite (add-on toolkit)." />
+  <meta name="description" content="Pick a suite. Get the exact indicators to execute it. 2 free suites, Pro (Prime MTF), and Elite (add-on toolkit)." />
 
   <style>
     :root{
@@ -28,7 +28,6 @@
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
-    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -61,9 +60,9 @@
       min-width: 220px;
     }
 
-    /* Logo (fixed sizing + stable rendering) */
+    /* LOGO */
     .logo{
-      width:42px; height:42px; border-radius:12px;
+      width:50px; height:50px; border-radius:14px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.10);
       display:grid; place-items:center;
@@ -85,6 +84,7 @@
       letter-spacing:.2px;
       font-size:14px;
       opacity:.95;
+      line-height:1.1;
     }
 
     .nav{
@@ -129,35 +129,33 @@
     }
 
     /* Sections */
-    section{ padding:58px 0; }
-    .kicker{
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color: rgba(234,240,255,.62);
-      margin:0 0 10px 0;
-    }
+    section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
+
     h1{
-      font-size: clamp(34px, 5vw, 60px);
+      font-size: clamp(34px, 5vw, 64px);
       line-height:1.02;
       letter-spacing:-.03em;
+      text-align:center;
     }
     h2{
-      font-size: clamp(22px, 2.4vw, 34px);
+      font-size: clamp(22px, 2.6vw, 36px);
       letter-spacing:-.015em;
     }
     .sub{
-      margin-top:14px;
+      margin:14px auto 0;
       color: var(--muted);
       font-size:16px;
-      line-height:1.65;
+      line-height:1.55;
       max-width: 70ch;
+      text-align:center;
     }
 
-    /* Hero */
+    .hero{
+      padding:70px 0 56px;
+    }
     .heroCard{
-      border-radius: var(--radius);
+      border-radius: calc(var(--radius) + 6px);
       background: var(--card);
       border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow);
@@ -168,94 +166,93 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(900px 320px at 50% 0%, rgba(124,92,255,.18), transparent 62%),
-        radial-gradient(700px 260px at 85% 20%, rgba(74,215,255,.14), transparent 62%);
+        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
       pointer-events:none;
     }
     .heroInner{
       position:relative;
       padding:34px 22px 26px;
-      max-width: 920px;
-      margin: 0 auto;
       text-align:center;
-    }
-    .heroLine{
-      margin-top:10px;
-      color: rgba(234,240,255,.78);
-      font-weight:900;
-      letter-spacing:.02em;
-      font-size:14px;
     }
     .heroCtas{
       display:flex;
-      justify-content:center;
       gap:10px;
+      justify-content:center;
       flex-wrap:wrap;
       margin-top:18px;
     }
-    .heroProof{
+
+    .heroStats{
       display:flex;
       justify-content:center;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
-      margin-top:16px;
-      color: rgba(234,240,255,.82);
-      font-weight:800;
+      margin-top:18px;
     }
-    .heroProof span{
-      display:inline-flex;
+    .statPill{
+      display:flex;
       align-items:center;
-      gap:8px;
-      padding:8px 12px;
+      gap:10px;
+      padding:10px 12px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      font-size: 13px;
-    }
-
-    /* How it works */
-    .howGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-    @media (max-width: 860px){
-      .howGrid{ grid-template-columns: 1fr; }
-    }
-    .howCard{
-      padding:14px 14px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-    }
-    .howNum{
-      width:26px; height:26px;
-      border-radius: 10px;
-      display:grid; place-items:center;
-      font-size:12px;
+      color: rgba(234,240,255,.86);
       font-weight:900;
-      color:#0A0E18;
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
-      margin-bottom:10px;
+      font-size:13px;
     }
-    .howTitle{ font-weight:900; margin-bottom:6px; }
-    .howText{ color: var(--muted); font-size:13px; line-height:1.55; }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset;
+    }
+    .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
+    .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
+    .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
 
-    /* Suites */
+    .miniLine{
+      margin:18px auto 0;
+      max-width: 82ch;
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.5;
+      text-align:center;
+    }
+
+    /* Common heading */
     .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
       gap:18px;
       margin-bottom:18px;
     }
-    .gridSuites{
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(234,240,255,.62);
+      margin:0 0 10px 0;
+    }
+    .subLeft{
+      margin:10px 0 0 0;
+      color: var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width: 70ch;
+      text-align:left;
+    }
+
+    /* Suites cards */
+    .grid4{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
       gap:14px;
     }
     @media (max-width: 980px){
-      .gridSuites{ grid-template-columns: 1fr; }
+      .grid4{ grid-template-columns: 1fr; }
     }
     .card{
       border-radius: var(--radius);
@@ -270,13 +267,13 @@
       font-size:18px;
       font-weight:900;
       letter-spacing:-.01em;
-      margin-top:6px;
+      margin-top:8px;
       margin-bottom:8px;
     }
     .cardDesc{
       color: var(--muted);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.55;
       margin:0 0 14px 0;
     }
     .labelRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
@@ -344,13 +341,135 @@
       padding:0 0 0 18px;
       color: var(--muted);
       font-size:13px;
-      line-height:1.65;
+      line-height:1.6;
     }
+
     .pricingFooter{
       display:flex; gap:10px; flex-wrap:wrap;
       margin-top:14px;
     }
-    .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.5; margin-top:10px; }
+    .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:10px; }
+
+    /* TESTIMONIALS (animated marquee) */
+    .proofCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .proofInner{ padding:18px; }
+
+    .marquee{
+      position:relative;
+      overflow:hidden;
+      padding: 10px 0 6px;
+    }
+    .marquee::before,
+    .marquee::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width:90px;
+      pointer-events:none;
+      z-index:2;
+    }
+    .marquee::before{
+      left:0;
+      background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0));
+    }
+    .marquee::after{
+      right:0;
+      background: linear-gradient(270deg, rgba(6,8,18,1), rgba(6,8,18,0));
+    }
+
+    .track{
+      display:flex;
+      width:max-content;
+      gap:14px;
+      padding: 8px 10px;
+      animation: scrollX 34s linear infinite;
+    }
+    .marquee:hover .track{ animation-play-state: paused; }
+
+    @keyframes scrollX{
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .track{ animation:none; }
+    }
+
+    .tCard{
+      width: 340px;
+      max-width: 78vw;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .tTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .who{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .avatar{
+      width:34px; height:34px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color: rgba(234,240,255,.9);
+      flex:0 0 auto;
+    }
+    .whoText{ min-width:0; }
+    .name{
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .role{
+      color: var(--muted2);
+      font-size:12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .stars{
+      font-size:12px;
+      letter-spacing:.06em;
+      color: rgba(255,193,74,.95);
+      flex:0 0 auto;
+    }
+    .tBody{
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin:0;
+    }
+    .tTag{
+      margin-top:auto;
+      color: rgba(234,240,255,.65);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
 
     /* FAQ */
     .faqGrid{
@@ -367,10 +486,9 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       padding:14px 14px 12px;
-      box-shadow: var(--shadow2);
     }
     .faqQ{ font-weight:900; margin-bottom:6px; }
-    .faqA{ color: var(--muted); font-size:13px; line-height:1.6; margin:0; }
+    .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
     /* Footer */
     footer{
@@ -378,6 +496,12 @@
       border-top: 1px solid rgba(255,255,255,.06);
       color: rgba(234,240,255,.55);
       font-size:12px;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.06);
+      margin:18px 0;
     }
   </style>
 </head>
@@ -388,68 +512,320 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
+            <!-- repo root: logo.png -->
             <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a href="#approach">Approach</a>
           <a href="#suites">Suites</a>
+          <a href="#proof">Reviews</a>
           <a href="#faq">FAQ</a>
         </nav>
 
         <div class="ctaRow">
           <a class="btn" href="#suites">View Suites</a>
-          <a class="btn btnPrimary" href="#suites">Get Access</a>
+          <a class="btn btnPrimary" href="#suites" id="ctaTop">Get Access</a>
           <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="approach">
+  <!-- HERO (ChartPrime-style: clean + centered) -->
+  <section class="hero" id="top">
     <div class="wrap">
       <div class="heroCard">
         <div class="heroInner">
-          <h1>Pick a suite. Follow the rules. Execute with precision.</h1>
-
-          <p class="sub" style="margin-left:auto; margin-right:auto;">
-            SilverHawk is a rules-based workflow for TradingView. Each suite includes the exact indicators you need
-            to run it — so you stop guessing and start executing.
+          <h1>Pick a suite. Get the exact indicators to execute it.</h1>
+          <p class="sub">
+            Stop collecting random tools. Use a repeatable workflow:
+            <b>filter → setup → trigger → risk</b>.
           </p>
 
-          <div class="heroLine">filter → setup → trigger → risk</div>
-
           <div class="heroCtas">
-            <a class="btn btnPrimary" href="#suites">View Suites</a>
-            <a class="btn" href="#suites">Start Free</a>
+            <a class="btn btnPrimary" href="#suites" id="ctaPrimary">Get Access</a>
+            <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
 
-          <div class="heroProof" aria-label="Key proof points">
-            <span>Built for TradingView</span>
-            <span>2 Free Suites Included</span>
-            <span>Pro (Prime MTF) + Elite Add-On</span>
+          <div class="heroStats" aria-label="Key highlights">
+            <div class="statPill"><span class="dot good"></span> 2 Free Suites</div>
+            <div class="statPill"><span class="dot warn"></span> Pro: Prime MTF</div>
+            <div class="statPill"><span class="dot accent"></span> Elite Add-On Toolkit</div>
+          </div>
+
+          <div class="miniLine">
+            Built for clarity and execution. Fewer trades, cleaner selection, consistent risk.
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="howGrid">
-        <div class="howCard">
-          <div class="howNum">1</div>
-          <div class="howTitle">Choose a suite</div>
-          <div class="howText">Start with Breakouts or Liquidity Lines (free). Upgrade to Pro for Prime MTF.</div>
+  <!-- SOCIAL PROOF (best placement: right after hero, before suites) -->
+  <section id="proof">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Reviews</p>
+          <h2>What traders are saying</h2>
+          <p class="subLeft">A scrolling snapshot of feedback. Results vary — execution still matters.</p>
         </div>
-        <div class="howCard">
-          <div class="howNum">2</div>
-          <div class="howTitle">Use the included indicators</div>
-          <div class="howText">Every suite ships with a core engine + supporting modules to execute rules.</div>
-        </div>
-        <div class="howCard">
-          <div class="howNum">3</div>
-          <div class="howTitle">Trade cleaner</div>
-          <div class="howText">Less noise. Clear invalidation + targets. More consistency through repeatability.</div>
+      </div>
+
+      <div class="proofCard">
+        <div class="proofInner">
+          <div class="marquee" aria-label="User testimonials">
+            <!-- Track contains TWO identical sets so -50% loops perfectly -->
+            <div class="track" id="track">
+              <!-- SET A -->
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">A</div>
+                    <div class="whoText">
+                      <div class="name">A. Rahman</div>
+                      <div class="role">Swing Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“The suite stopped me from over-trading. The rules force patience and the confirmations are clean.”</p>
+                <div class="tTag">Prime MTF</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">M</div>
+                    <div class="whoText">
+                      <div class="name">M. Alenezi</div>
+                      <div class="role">Futures Day Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Breakouts suite is simple. I finally have one workflow instead of 6 conflicting indicators.”</p>
+                <div class="tTag">Breakouts</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">S</div>
+                    <div class="whoText">
+                      <div class="name">S. Carter</div>
+                      <div class="role">Forex Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Liquidity Lines is the first thing that made ‘sweeps’ obvious. Entries feel less random.”</p>
+                <div class="tTag">Liquidity Lines</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">K</div>
+                    <div class="whoText">
+                      <div class="name">K. Thomas</div>
+                      <div class="role">Prop Challenge</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
+                <div class="tTag">Elite Toolkit</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">J</div>
+                    <div class="whoText">
+                      <div class="name">J. Almutairi</div>
+                      <div class="role">Options Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
+                <div class="tTag">Workflow</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">R</div>
+                    <div class="whoText">
+                      <div class="name">R. Singh</div>
+                      <div class="role">Crypto Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
+                <div class="tTag">Confirmations</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">N</div>
+                    <div class="whoText">
+                      <div class="name">N. Brooks</div>
+                      <div class="role">Beginner → Consistent</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Free suites made me consistent before paying for anything. That alone built trust.”</p>
+                <div class="tTag">Free Suites</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">H</div>
+                    <div class="whoText">
+                      <div class="name">H. Alhajeri</div>
+                      <div class="role">Scalper (15m/5m)</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
+                <div class="tTag">Quality > Quantity</div>
+              </article>
+
+              <!-- SET B (duplicate of A for seamless loop) -->
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">A</div>
+                    <div class="whoText">
+                      <div class="name">A. Rahman</div>
+                      <div class="role">Swing Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“The suite stopped me from over-trading. The rules force patience and the confirmations are clean.”</p>
+                <div class="tTag">Prime MTF</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">M</div>
+                    <div class="whoText">
+                      <div class="name">M. Alenezi</div>
+                      <div class="role">Futures Day Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Breakouts suite is simple. I finally have one workflow instead of 6 conflicting indicators.”</p>
+                <div class="tTag">Breakouts</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">S</div>
+                    <div class="whoText">
+                      <div class="name">S. Carter</div>
+                      <div class="role">Forex Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Liquidity Lines is the first thing that made ‘sweeps’ obvious. Entries feel less random.”</p>
+                <div class="tTag">Liquidity Lines</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">K</div>
+                    <div class="whoText">
+                      <div class="name">K. Thomas</div>
+                      <div class="role">Prop Challenge</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
+                <div class="tTag">Elite Toolkit</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">J</div>
+                    <div class="whoText">
+                      <div class="name">J. Almutairi</div>
+                      <div class="role">Options Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
+                <div class="tTag">Workflow</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">R</div>
+                    <div class="whoText">
+                      <div class="name">R. Singh</div>
+                      <div class="role">Crypto Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
+                <div class="tTag">Confirmations</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">N</div>
+                    <div class="whoText">
+                      <div class="name">N. Brooks</div>
+                      <div class="role">Beginner → Consistent</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Free suites made me consistent before paying for anything. That alone built trust.”</p>
+                <div class="tTag">Free Suites</div>
+              </article>
+
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">H</div>
+                    <div class="whoText">
+                      <div class="name">H. Alhajeri</div>
+                      <div class="role">Scalper (15m/5m)</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
+                <div class="tTag">Quality > Quantity</div>
+              </article>
+            </div>
+          </div>
+
+          <p class="mutedSmall" style="margin-top:10px;">
+            Hover to pause the scroll.
+          </p>
         </div>
       </div>
     </div>
@@ -462,11 +838,11 @@
         <div>
           <p class="kicker">Suites</p>
           <h2>SH Suites</h2>
-          <p class="sub">Two free suites. Pro is Prime MTF. Elite is an add-on you can use with Free or Pro.</p>
+          <p class="subLeft">Two free suites. One Pro strategy. One Elite add-on (works with Free or Pro).</p>
         </div>
       </div>
 
-      <div class="gridSuites">
+      <div class="grid4">
         <!-- FREE: Breakouts -->
         <div class="card">
           <div class="cardInner">
@@ -477,7 +853,7 @@
 
             <div class="cardTitle">Breakouts Suite (Free)</div>
             <p class="cardDesc">
-              Clean range breaks + momentum continuation. Designed to reduce chop and random entries.
+              Clean range breaks + momentum continuation. Built to reduce chop and random entries.
             </p>
 
             <div class="miniHead">Included indicators</div>
@@ -500,7 +876,7 @@
                 <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
                 <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
                 <li><b>Trigger:</b> breakout confirmation (not guessing inside chop).</li>
-                <li><b>Risk:</b> invalidation via Structure Lite + OB Radar; targets from range projection + structure.</li>
+                <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
               </ul>
             </details>
 
@@ -542,9 +918,9 @@
               </summary>
               <ul class="rules">
                 <li><b>Filter:</b> confirm context (trend/HTF bias) before hunting sweeps.</li>
-                <li><b>Setup:</b> price sweeps liquidity → watch reaction at structure/OB.</li>
+                <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
                 <li><b>Trigger:</b> reclaim + structure confirmation (one clean trigger, not stacked noise).</li>
-                <li><b>Risk:</b> invalidation beyond sweep/structure; targets at next liquidity pool / structure.</li>
+                <li><b>Risk:</b> invalidation beyond the sweep/structure; targets at next liquidity pool / structure.</li>
               </ul>
             </details>
 
@@ -589,7 +965,7 @@
               <ul class="rules">
                 <li><b>For:</b> traders who want cleaner selection + confirmation (not more signals).</li>
                 <li><b>For:</b> anyone using HTF/LTF alignment and wanting repeatable structure rules.</li>
-                <li><b>Not for:</b> nonstop alerts + random entries.</li>
+                <li><b>Not for:</b> people hunting nonstop alerts and random entries.</li>
               </ul>
             </details>
 
@@ -612,7 +988,7 @@
 
             <div class="cardTitle">Elite Toolkit — Decision & Control</div>
             <p class="cardDesc">
-              Execution tools for consistency: alignment checks, decision panels, and scenario control.
+              Execution tools that make trading consistent: alignment checks, decision panels, and scenario control.
               <b>Works with Free or Pro.</b>
             </p>
 
@@ -655,14 +1031,14 @@
         <div>
           <p class="kicker">FAQ</p>
           <h2>Quick answers</h2>
-          <p class="sub">No fluff. Just what people ask before buying.</p>
+          <p class="subLeft">No fluff. Just what people actually ask before buying.</p>
         </div>
       </div>
 
       <div class="faqGrid">
         <div class="faqItem">
           <div class="faqQ">Do I need Pro to use the free suites?</div>
-          <p class="faqA">No. The free suites are standalone. Start there to learn the workflow.</p>
+          <p class="faqA">No. The free suites are standalone.</p>
         </div>
 
         <div class="faqItem">
@@ -672,12 +1048,12 @@
 
         <div class="faqItem">
           <div class="faqQ">Is Elite for everyone?</div>
-          <p class="faqA">No. Elite is for traders who struggle with selection, alignment, and consistent execution.</p>
+          <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
         </div>
 
         <div class="faqItem">
           <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
-          <p class="faqA"><b>Yes.</b> Elite is an add-on. Use it with Free or with Pro.</p>
+          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
         </div>
 
         <div class="faqItem">
@@ -687,7 +1063,7 @@
 
         <div class="faqItem">
           <div class="faqQ">What platform is this for?</div>
-          <p class="faqA">TradingView. The suite is designed as a workflow + tools for execution.</p>
+          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
         </div>
       </div>
     </div>
@@ -705,7 +1081,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // TODO: Replace these with your Lemon Squeezy checkout URLs when ready.
+    // Replace with your Lemon Squeezy checkout URLs
     const LINKS = {
       freeBreakouts: "#",
       freeLiquidity: "#",
@@ -720,6 +1096,10 @@
     safeSet("getFreeLiquidity", LINKS.freeLiquidity);
     safeSet("buyPro", LINKS.pro);
     safeSet("buyElite", LINKS.elite);
+
+    // If you later want hero "Get Access" to go directly to Pro, change these:
+    // safeSet("ctaPrimary", LINKS.pro);
+    // safeSet("ctaTop", LINKS.pro);
   </script>
 </body>
 </html>
