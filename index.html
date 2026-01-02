@@ -6,26 +6,42 @@
   <title>SilverHawk Suite — Playbooks + Indicators</title>
   <meta name="description" content="Pick a playbook. The suite gives you the exact indicators to execute it. Core (free), Pro (Prime MTF), Elite (add-on execution toolkit)." />
 
-  <style>.logo{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.10);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  box-shadow: var(--shadow2);
-}
+  <style>
+    :root{
+      --bg0:#060812;
+      --bg1:#081028;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.10);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.58);
+      --accent:#7C5CFF;
+      --accent2:#4AD7FF;
+      --good:#2FE4A7;
+      --warn:#FFC14A;
+      --radius: 18px;
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1120px;
+    }
 
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  padding:2px;         /* was 3px */
-  background: transparent;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
+        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
 
     /* Header */
     .topbar{
@@ -43,15 +59,11 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
-
-    /* ✅ LOGO FIX (Option A): clean square mark */
     .logo{
-      width:28px; height:28px;
-      border-radius:9px;
-      padding:6px;
-      background: rgba(255,255,255,.06);
+      width:34px; height:34px; border-radius:10px;
+      background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.10);
-      display:flex; align-items:center; justify-content:center;
+      display:grid; place-items:center;
       overflow:hidden;
       box-shadow: var(--shadow2);
     }
@@ -59,10 +71,9 @@
       width:100%; height:100%;
       object-fit:contain;
       display:block;
-      padding:0;
+      padding:3px;
       background: transparent;
     }
-
     .brandName{
       font-weight:800;
       letter-spacing:.2px;
@@ -378,8 +389,8 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
-            <!-- ✅ logo file should be a square mark (Option A): name it 'logo-mark.png' -->
-            <img src="logo-mark.png" alt="SilverHawk logo" />
+            <!-- Put your uploaded logo here: repo root file must be named 'logo.png' -->
+            <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
