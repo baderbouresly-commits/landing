@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Playbooks + Indicators</title>
-  <meta name="description" content="Pick a playbook. The suite gives you the exact indicators to execute it. Core (free), Pro (Prime MTF), Elite (add-on execution toolkit)." />
+  <meta name="description" content="Pick a suite. Get the exact indicators to execute it. 2 free suites, Pro (Prime MTF), and Elite (add-on toolkit)." />
 
   <style>
     :root{
@@ -59,21 +59,27 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
+
+    /* LOGO (fixed sizing + stable rendering) */
     .logo{
-      width:34px; height:34px; border-radius:10px;
+      width:42px; height:42px; border-radius:12px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.10);
       display:grid; place-items:center;
       overflow:hidden;
       box-shadow: var(--shadow2);
+      flex: 0 0 auto;
     }
     .logo img{
-      width:100%; height:100%;
+      width:100%;
+      height:100%;
       object-fit:contain;
       display:block;
-      padding:3px;
+      padding:0;            /* IMPORTANT: padding makes “empty logo” look smaller */
       background: transparent;
+      image-rendering: auto;
     }
+
     .brandName{
       font-weight:800;
       letter-spacing:.2px;
@@ -226,13 +232,13 @@
     .stepText{ color: var(--muted); font-size:13px; line-height:1.45; }
 
     /* Cards */
-    .grid3{
+    .grid4{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap:14px;
     }
-    @media (max-width: 1020px){
-      .grid3{ grid-template-columns: 1fr; }
+    @media (max-width: 980px){
+      .grid4{ grid-template-columns: 1fr; }
     }
     .card{
       border-radius: var(--radius);
@@ -325,23 +331,6 @@
       line-height:1.6;
     }
 
-    /* Pricing layout */
-    .pricingGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    @media (max-width: 980px){
-      .pricingGrid{ grid-template-columns: 1fr; }
-    }
-    .pricingCard{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .pricingInner{ padding:18px; }
     .pricingFooter{
       display:flex; gap:10px; flex-wrap:wrap;
       margin-top:14px;
@@ -389,7 +378,6 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
-            <!-- Put your uploaded logo here: repo root file must be named 'logo.png' -->
             <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
@@ -397,14 +385,13 @@
 
         <nav class="nav" aria-label="Primary">
           <a href="#approach">Approach</a>
-          <a href="#playbooks">Playbooks</a>
-          <a href="#packages">Packages</a>
+          <a href="#suites">Suites</a>
           <a href="#faq">FAQ</a>
         </nav>
 
         <div class="ctaRow">
-          <a class="btn" href="#playbooks">View Playbooks</a>
-          <a class="btn btnPrimary" href="#packages">Get Access</a>
+          <a class="btn" href="#suites">View Suites</a>
+          <a class="btn btnPrimary" href="#suites">Get Access</a>
           <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
@@ -418,19 +405,19 @@
         <div class="panel">
           <div class="panelInner">
             <p class="kicker">SilverHawk Approach</p>
-            <h1>Pick the playbook. The suite gives you the exact indicators to execute it.</h1>
+            <h1>Pick a suite. Get the exact indicators to execute it.</h1>
             <p class="sub">
               You’re not buying random indicators. You’re buying a repeatable workflow:
               <b>filter → setup → trigger → risk</b>.
             </p>
 
             <div class="ctaRow" style="margin-top:16px; flex-wrap:wrap;">
-              <a class="btn btnPrimary" id="ctaFree" href="#packages">Start Free (Core)</a>
-              <a class="btn" id="ctaPro" href="#packages">Get Pro (Prime MTF)</a>
+              <a class="btn btnPrimary" href="#suites">Start Free</a>
+              <a class="btn" href="#suites">Compare Suites</a>
             </div>
 
             <div class="chips">
-              <span class="chip chipFree">2 Free Playbooks</span>
+              <span class="chip chipFree">2 Free Suites</span>
               <span class="chip chipPaid">1 Pro Strategy</span>
               <span class="chip chipAccent">Elite Add-On</span>
             </div>
@@ -438,17 +425,17 @@
             <div class="steps">
               <div class="step">
                 <div class="stepNum">1</div>
-                <div class="stepTitle">Choose a Playbook</div>
-                <div class="stepText">Breakouts, Liquidity Lines (free), or Prime MTF (Pro).</div>
+                <div class="stepTitle">Choose a Suite</div>
+                <div class="stepText">Breakouts (free), Liquidity Lines (free), Prime MTF (Pro), or Elite add-on.</div>
               </div>
               <div class="step">
                 <div class="stepNum">2</div>
                 <div class="stepTitle">Use the Included Indicators</div>
-                <div class="stepText">Each playbook includes a “strategy engine” + supporting modules.</div>
+                <div class="stepText">Each suite comes with a core engine + supporting modules.</div>
               </div>
               <div class="step">
                 <div class="stepNum">3</div>
-                <div class="stepTitle">Follow Rules + Risk</div>
+                <div class="stepTitle">Execute Rules + Risk</div>
                 <div class="stepText">Clear invalidation + targets. Less noise, more consistency.</div>
               </div>
             </div>
@@ -457,33 +444,33 @@
 
         <div class="panel">
           <div class="panelInner">
-            <p class="kicker">What you're selling</p>
-            <h2>Strategies first — but yes, you’re also selling indicators.</h2>
+            <p class="kicker">What you're selling (clearly)</p>
+            <h2>Strategies first — the indicators are the toolkit.</h2>
             <p class="sub" style="max-width:unset;">
-              The <b>playbook</b> is the product. The <b>indicators</b> are the toolkit that executes it.
+              The <b>suite</b> is the strategy + rules. The <b>indicators</b> are what execute it.
             </p>
 
             <div class="divider"></div>
 
             <div style="display:grid; gap:10px;">
               <div style="color:var(--muted); font-size:13px; line-height:1.55;">
-                <b style="color:var(--text);">Core Suite (Free):</b> Breakouts + Liquidity Lines playbooks, same core modules.
+                <b style="color:var(--text);">2 Free Suites:</b> Breakouts + Liquidity Lines. Learn the workflow and avoid randomness.
               </div>
               <div style="color:var(--muted); font-size:13px; line-height:1.55;">
-                <b style="color:var(--text);">Pro Suite (Paid):</b> Prime MTF playbook with higher-tier confirmation tools.
+                <b style="color:var(--text);">Pro Suite:</b> Prime MTF strategy with higher-tier confirmation tools.
               </div>
               <div style="color:var(--muted); font-size:13px; line-height:1.55;">
-                <b style="color:var(--text);">Elite Toolkit (Add-On):</b> decision + control tools for consistent execution.
+                <b style="color:var(--text);">Elite Toolkit (Add-On):</b> decision + control tools for consistent execution. Works with Free or Pro.
               </div>
             </div>
 
             <div class="ctaRow" style="margin-top:16px; flex-wrap:wrap;">
-              <a class="btn btnPrimary" href="#playbooks">Pick a playbook</a>
-              <a class="btn" href="#packages">Compare packages</a>
+              <a class="btn btnPrimary" href="#suites">View Suites</a>
+              <a class="btn" href="#faq">Questions?</a>
             </div>
 
             <p class="mutedSmall">
-              Keep it simple: choose a playbook → use the included set → execute rules.
+              If you’re new: start Free. If you already trade MTF: go Pro. If execution is your weakness: add Elite.
             </p>
           </div>
         </div>
@@ -491,41 +478,36 @@
     </div>
   </section>
 
-  <!-- PLAYBOOKS -->
-  <section id="playbooks">
+  <!-- SUITES -->
+  <section id="suites">
     <div class="wrap">
       <div class="sectionHead">
         <div>
-          <p class="kicker">Playbooks</p>
-          <h2>Start with a playbook</h2>
-          <p class="sub">Pick one. We show what it is and what’s included — without forcing long reading.</p>
+          <p class="kicker">Suites</p>
+          <h2>SH Suites</h2>
+          <p class="sub">
+            Two free suites. One Pro strategy. One Elite add-on (works with Free or Pro).
+          </p>
         </div>
       </div>
 
-      <div class="grid3">
-        <!-- Breakouts -->
+      <div class="grid4">
+        <!-- FREE: Breakouts -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
               <span class="pill free">FREE</span>
-              <span class="pill">Core Suite</span>
+              <span class="pill">Breakouts Suite</span>
             </div>
 
-            <div class="cardTitle">Breakouts Playbook</div>
+            <div class="cardTitle">Breakouts Suite (Free)</div>
             <p class="cardDesc">
-              For clean range breaks + momentum continuation. Built to reduce chop and random entries.
+              Clean range breaks + momentum continuation. Built to reduce chop and random entries.
             </p>
 
-            <div class="miniHead">Strategy engine</div>
+            <div class="miniHead">Included indicators</div>
             <div class="tagRow">
               <span class="tag">SH Breakouts</span>
-              <span class="tag">Range definition</span>
-              <span class="tag">Compression filter</span>
-              <span class="tag">Break confirmation</span>
-            </div>
-
-            <div class="miniHead">Core modules</div>
-            <div class="tagRow">
               <span class="tag">SH Trend</span>
               <span class="tag">SH HA Duo</span>
               <span class="tag">SH Range Box</span>
@@ -536,47 +518,40 @@
 
             <details>
               <summary>
-                See playbook rules
+                See suite rules
                 <span class="caret">▾</span>
               </summary>
               <ul class="rules">
                 <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
                 <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
-                <li><b>Trigger:</b> breakout confirmation (not “guessing” inside chop).</li>
+                <li><b>Trigger:</b> breakout confirmation (not guessing inside chop).</li>
                 <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
               </ul>
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="#packages">Get Core Free</a>
-              <a class="btn" href="#packages">Compare</a>
+              <a class="btn btnPrimary" id="getFreeBreakouts" href="#">Get Free</a>
+              <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
         </div>
 
-        <!-- Liquidity Lines -->
+        <!-- FREE: Liquidity Lines -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
               <span class="pill free">FREE</span>
-              <span class="pill">Core Suite</span>
+              <span class="pill">Liquidity Lines Suite</span>
             </div>
 
-            <div class="cardTitle">Liquidity Lines Playbook</div>
+            <div class="cardTitle">Liquidity Lines Suite (Free)</div>
             <p class="cardDesc">
-              For sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing “support/resistance”.
+              Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.
             </p>
 
-            <div class="miniHead">Strategy engine</div>
+            <div class="miniHead">Included indicators</div>
             <div class="tagRow">
               <span class="tag">SH Liquidity Lines</span>
-              <span class="tag">Liquidity mapping</span>
-              <span class="tag">Sweep detection</span>
-              <span class="tag">Reclaim logic</span>
-            </div>
-
-            <div class="miniHead">Core modules</div>
-            <div class="tagRow">
               <span class="tag">SH Trend</span>
               <span class="tag">SH HA Duo</span>
               <span class="tag">SH Range Box</span>
@@ -587,7 +562,7 @@
 
             <details>
               <summary>
-                See playbook rules
+                See suite rules
                 <span class="caret">▾</span>
               </summary>
               <ul class="rules">
@@ -599,22 +574,23 @@
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="#packages">Get Core Free</a>
-              <a class="btn" href="#packages">Compare</a>
+              <a class="btn btnPrimary" id="getFreeLiquidity" href="#">Get Free</a>
+              <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
         </div>
 
-        <!-- Prime MTF -->
+        <!-- PAID: Pro -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
               <span class="pill paid">PAID</span>
               <span class="pill">Pro Suite</span>
               <span class="pill">Prime MTF</span>
+              <span class="pill price">$24.90 / mo</span>
             </div>
 
-            <div class="cardTitle">Prime MTF Playbook</div>
+            <div class="cardTitle">Pro Suite — Prime MTF</div>
             <p class="cardDesc">
               Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.
             </p>
@@ -636,88 +612,25 @@
                 <span class="caret">▾</span>
               </summary>
               <ul class="rules">
-                <li><b>For:</b> traders who already have discipline and want cleaner selection + confirmation.</li>
-                <li><b>For:</b> anyone using HTF/LTF alignment and wants repeatable structure rules.</li>
-                <li><b>Not for:</b> “more signals” hunters. Pro is about quality, not quantity.</li>
+                <li><b>For:</b> traders who want cleaner selection + confirmation (not more signals).</li>
+                <li><b>For:</b> anyone using HTF/LTF alignment and wanting repeatable structure rules.</li>
+                <li><b>Not for:</b> people hunting nonstop alerts and random entries.</li>
               </ul>
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="#packages">Get Pro</a>
-              <a class="btn" href="#faq">Questions?</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES / PRICING -->
-  <section id="packages">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <p class="kicker">Packages</p>
-          <h2>SH Packages</h2>
-          <p class="sub">
-            Core is free. Pro is the Prime MTF strategy. Elite is an add-on you can use with Core <b>or</b> Pro.
-          </p>
-        </div>
-      </div>
-
-      <div class="pricingGrid">
-        <!-- Pro -->
-        <div class="pricingCard">
-          <div class="pricingInner">
-            <div class="labelRow">
-              <span class="pill paid">PAID</span>
-              <span class="pill">SilverHawk Pro Suite</span>
-              <span class="pill">Prime MTF Strategy</span>
-              <span class="pill price">$24.90 / mo</span>
-            </div>
-
-            <div class="cardTitle">Pro Suite — Prime MTF</div>
-            <p class="cardDesc">
-              For traders who want multi-timeframe structure + confirmation stacking without overfitting.
-            </p>
-
-            <div class="miniHead">Included indicators</div>
-            <div class="tagRow">
-              <span class="tag">SH Prime MTF</span>
-              <span class="tag">SH CISD + DBOS Pro</span>
-              <span class="tag">SH VOL OM MTF</span>
-              <span class="tag">SH VRO Pro</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-            </div>
-
-            <details>
-              <summary>
-                What you’re paying for
-                <span class="caret">▾</span>
-              </summary>
-              <ul class="rules">
-                <li>Cleaner trade selection via MTF alignment.</li>
-                <li>Confirmation tools that reduce “false starts”.</li>
-                <li>Less randomness, more repeatability.</li>
-              </ul>
-            </details>
-
-            <div class="pricingFooter">
-              <a class="btn btnPrimary" id="buyPro" href="#"
-                 >Get Pro</a>
+              <a class="btn btnPrimary" id="buyPro" href="#">Get Pro</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
         </div>
 
-        <!-- Elite Add-on -->
-        <div class="pricingCard">
-          <div class="pricingInner">
+        <!-- PAID: Elite Add-on -->
+        <div class="card">
+          <div class="cardInner">
             <div class="labelRow">
               <span class="pill paid">PAID</span>
-              <span class="pill">SilverHawk Elite Toolkit</span>
+              <span class="pill">Elite Toolkit</span>
               <span class="pill">Add-On</span>
               <span class="pill price">$29.90 / mo</span>
             </div>
@@ -725,7 +638,7 @@
             <div class="cardTitle">Elite Toolkit — Decision & Control</div>
             <p class="cardDesc">
               Execution tools that make trading consistent: alignment checks, decision panels, and scenario control.
-              <b>Works with Core or Pro.</b>
+              <b>Works with Free or Pro.</b>
             </p>
 
             <div class="miniHead">Included indicators</div>
@@ -743,63 +656,18 @@
               </summary>
               <ul class="rules">
                 <li>You already have entries, but struggle with <b>selection</b> and <b>consistency</b>.</li>
-                <li>You want a “decision checkpoint” before pulling the trigger.</li>
+                <li>You want a decision checkpoint before pulling the trigger.</li>
                 <li>You want fewer trades — but better ones.</li>
               </ul>
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" id="buyElite" href="#"
-                 >Get Elite</a>
+              <a class="btn btnPrimary" id="buyElite" href="#">Get Elite</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
+
+            <p class="mutedSmall">Add-on means you can run it alongside the free suites or alongside Pro.</p>
           </div>
-        </div>
-      </div>
-
-      <div style="margin-top:14px;" class="pricingCard">
-        <div class="pricingInner">
-          <div class="labelRow">
-            <span class="pill free">FREE</span>
-            <span class="pill">SilverHawk Core Suite</span>
-            <span class="pill">2 Playbooks</span>
-          </div>
-
-          <div class="cardTitle">Core Suite (Free) — Breakouts + Liquidity Lines</div>
-          <p class="cardDesc">
-            Everything needed to execute the two free playbooks — no fluff. Start here to learn the workflow.
-          </p>
-
-          <div class="miniHead">Breakouts strategy includes</div>
-          <div class="tagRow">
-            <span class="tag">SH Breakouts</span>
-            <span class="tag">SH Trend</span>
-            <span class="tag">SH HA Duo</span>
-            <span class="tag">SH Range Box</span>
-            <span class="tag">SH PatternScan</span>
-            <span class="tag">SH OB Radar</span>
-            <span class="tag">SH Structure Lite</span>
-          </div>
-
-          <div class="miniHead">Liquidity Lines strategy includes</div>
-          <div class="tagRow">
-            <span class="tag">SH Liquidity Lines</span>
-            <span class="tag">SH Trend</span>
-            <span class="tag">SH HA Duo</span>
-            <span class="tag">SH Range Box</span>
-            <span class="tag">SH PatternScan</span>
-            <span class="tag">SH OB Radar</span>
-            <span class="tag">SH Structure Lite</span>
-          </div>
-
-          <div class="pricingFooter">
-            <a class="btn btnPrimary" id="getFree" href="#">Get Core Free</a>
-            <a class="btn" href="#playbooks">View playbooks</a>
-          </div>
-
-          <p class="mutedSmall">
-            Note: Pro and Elite are optional. Core is standalone.
-          </p>
         </div>
       </div>
     </div>
@@ -819,12 +687,12 @@
       <div class="faqGrid">
         <div class="faqItem">
           <div class="faqQ">Do I need Pro to use the free suites?</div>
-          <p class="faqA">No. Core Suite is standalone. Start there to learn the workflow and build consistency.</p>
+          <p class="faqA">No. The free suites are standalone.</p>
         </div>
 
         <div class="faqItem">
           <div class="faqQ">What am I paying for in Pro?</div>
-          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not “more signals”.</p>
+          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
         </div>
 
         <div class="faqItem">
@@ -833,8 +701,8 @@
         </div>
 
         <div class="faqItem">
-          <div class="faqQ">Can Elite be used with Core or Pro?</div>
-          <p class="faqA"><b>Yes.</b> Elite is an add-on. Use it alongside Core or alongside Pro. No bundle required.</p>
+          <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
+          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
         </div>
 
         <div class="faqItem">
@@ -863,23 +731,20 @@
     // Update year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // TODO: Replace these 3 links with your Lemon Squeezy checkout URLs when ready.
+    // TODO: Replace these with your Lemon Squeezy checkout URLs when ready.
     const LINKS = {
-      free: "#",   // e.g. "https://your-lemonsqueezy-free-checkout"
-      pro:  "#",   // e.g. "https://your-lemonsqueezy-pro-checkout"
-      elite:"#",   // e.g. "https://your-lemonsqueezy-elite-checkout"
+      freeBreakouts: "#",
+      freeLiquidity: "#",
+      pro: "#",
+      elite: "#",
     };
 
-    // Wire buttons
     const byId = (id) => document.getElementById(id);
     const safeSet = (id, url) => { const el = byId(id); if(el) el.href = url; };
 
-    safeSet("getFree", LINKS.free);
-    safeSet("ctaFree", LINKS.free);
-
+    safeSet("getFreeBreakouts", LINKS.freeBreakouts);
+    safeSet("getFreeLiquidity", LINKS.freeLiquidity);
     safeSet("buyPro", LINKS.pro);
-    safeSet("ctaPro", LINKS.pro);
-
     safeSet("buyElite", LINKS.elite);
   </script>
 </body>
