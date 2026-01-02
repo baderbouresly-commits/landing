@@ -1,223 +1,781 @@
-<section id="playbooks" class="section">
-  <div class="container">
-    <div class="sectionHead">
-      <span class="kicker">PLAYBOOKS</span>
-      <h2>Strategies first. Indicators are just tools.</h2>
-      <p class="muted">
-        Don’t shop for indicators. Pick a playbook. Follow the rules. The suite gives you the exact tools needed for that playbook.
-      </p>
-    </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverHawk Trading Suite — Strategies First</title>
+  <meta name="description" content="Stop shopping indicators. Pick a playbook. Follow rules. Get the exact tools for that strategy." />
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --card:#0E1530;
+      --card2:#0B132B;
+      --text:#EAF0FF;
+      --muted:#AEB8D6;
+      --line:rgba(255,255,255,.10);
+      --glow:rgba(120,140,255,.18);
+      --brand:#8B5CF6;
+      --brand2:#22D3EE;
+      --good:#22C55E;
+      --warn:#F59E0B;
+      --bad:#EF4444;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
 
-    <div class="cardsGrid">
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 12% -10%, rgba(139,92,246,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 8%, rgba(34,211,238,.22), transparent 60%),
+        radial-gradient(900px 900px at 50% 120%, rgba(120,140,255,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
 
-      <!-- CORE: BREAKOUTS -->
-      <article class="card">
-        <div class="cardTop">
-          <div class="badgeRow">
-            <span class="pill free">FREE</span>
-            <span class="pill dim">Core Suite</span>
-          </div>
-          <h3>Breakouts Playbook</h3>
-          <p class="muted">For clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+
+    /* Top */
+    .topbar{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(7,10,18,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .mark{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow:0 12px 35px rgba(139,92,246,.25);
+    }
+    .nav{
+      display:flex; gap:18px; align-items:center;
+      color:var(--muted); font-weight:600; font-size:14px;
+    }
+    .nav a{opacity:.9; text-decoration:none}
+    .nav a:hover{opacity:1; color:var(--text)}
+    .ctaRow{display:flex; gap:10px; align-items:center}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      transition:.18s ease;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.22)}
+    .btn.primary{
+      background:linear-gradient(135deg,var(--brand),rgba(34,211,238,.9));
+      border-color:transparent;
+      color:#0B1020;
+      box-shadow:0 18px 40px rgba(139,92,246,.20);
+    }
+    .btn.primary:hover{box-shadow:0 22px 55px rgba(139,92,246,.28)}
+    .btn.small{padding:8px 10px;border-radius:12px;font-size:13px}
+
+    /* Hero */
+    .hero{padding:52px 0 26px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:999px;
+      font-weight:700;
+      color:var(--muted);
+      width:max-content;
+    }
+    .pill .dot{
+      width:9px;height:9px;border-radius:99px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow:0 0 0 6px rgba(139,92,246,.12);
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:46px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.55;
+      max-width:58ch;
+    }
+
+    .heroCard{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .heroCard .inner{padding:18px}
+    .statGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+    }
+    .stat .k{font-weight:900;font-size:18px}
+    .stat .t{color:var(--muted);font-weight:700;font-size:12px;margin-top:4px}
+
+    /* Sections */
+    .section{padding:30px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px; margin-bottom:14px;
+    }
+    .kicker{
+      font-size:12px; letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(234,240,255,.65);
+      font-weight:900;
+    }
+    h2{
+      margin:6px 0 0;
+      font-size:28px;
+      letter-spacing:-.3px;
+    }
+    .muted{color:var(--muted);line-height:1.55}
+
+    /* Cards */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column:span 6;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:
+        radial-gradient(600px 220px at 40% 0%, var(--glow), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:0 12px 45px rgba(0,0,0,.35);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .pad{padding:18px}
+    .badges{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+      font-size:12px;
+      color:rgba(234,240,255,.9);
+    }
+    .badge.free{border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.10)}
+    .badge.paid{border-color:rgba(139,92,246,.42); background:rgba(139,92,246,.12)}
+    .badge.tool{border-color:rgba(34,211,238,.35); background:rgba(34,211,238,.10)}
+    .badge.dim{color:rgba(234,240,255,.75)}
+    .card h3{margin:12px 0 6px; font-size:20px; letter-spacing:-.2px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+    .split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .block{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      border-radius:16px;
+      padding:12px;
+    }
+    .block .label{font-weight:900;font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(234,240,255,.72)}
+    .block .value{font-weight:900;margin-top:6px}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{
+      font-size:12px;
+      font-weight:800;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:rgba(234,240,255,.88);
+    }
+
+    .actions{
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      padding:14px 18px 18px;
+      border-top:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+    }
+
+    /* Accordion */
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      padding:12px 12px;
+      list-style:none;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      font-weight:900;
+      color:rgba(234,240,255,.92);
+    }
+    summary::-webkit-details-marker{display:none}
+    .chev{
+      width:28px;height:28px;border-radius:10px;
+      border:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.18);
+      flex:0 0 auto;
+      font-size:14px;
+      color:rgba(234,240,255,.75);
+      transition:.15s ease;
+    }
+    details[open] .chev{transform:rotate(180deg)}
+    .rules{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+      color:rgba(234,240,255,.88);
+      line-height:1.6;
+    }
+    .rules ol{margin:0; padding-left:18px}
+    .rules li{margin:8px 0}
+    .rules .hint{color:var(--muted); font-weight:700; font-size:13px}
+
+    /* Strategy map */
+    .map{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .map .pad{padding:18px}
+    .mapGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .step{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      border-radius:16px;
+      padding:12px;
+    }
+    .step .n{
+      font-weight:1000;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(234,240,255,.72);
+    }
+    .step .t{margin-top:6px;font-weight:900}
+    .step .d{margin-top:6px;color:var(--muted);line-height:1.55;font-weight:650;font-size:13px}
+
+    /* Footer */
+    .footer{
+      padding:24px 0 46px;
+      border-top:1px solid var(--line);
+      color:rgba(234,240,255,.70);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+      h1{font-size:38px}
+      .card{grid-column:span 12}
+      .mapGrid{grid-template-columns:1fr}
+      .nav{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="row">
+        <div class="logo">
+          <div class="mark"></div>
+          <div>SilverHawk Suite</div>
         </div>
-
-        <div class="stack">
-          <div class="stackBlock">
-            <div class="stackTitle">Strategy Engine</div>
-            <div class="stackItem strong">SH Breakouts</div>
-          </div>
-
-          <div class="stackBlock">
-            <div class="stackTitle">Core Modules (included)</div>
-            <ul class="stackList">
-              <li>SH Trend</li>
-              <li>SH HA Duo</li>
-              <li>SH Range Box</li>
-              <li>SH PatternScan</li>
-              <li>SH OB Radar</li>
-              <li>SH Structure Lite</li>
-            </ul>
-          </div>
+        <div class="nav">
+          <a href="#playbooks">Playbooks</a>
+          <a href="#toolkits">Suites</a>
+          <a href="#faq">FAQ</a>
         </div>
-
-        <div class="cardActions">
-          <a class="btn primary" href="#pricing">Get Core Suite Free</a>
-          <button class="btn ghost" data-toggle="pb1">See playbook rules</button>
-        </div>
-
-        <div class="accordion" id="pb1">
-          <div class="rule">
-            <span class="ruleN">1</span>
-            <div>
-              <div class="ruleT">Direction</div>
-              <div class="muted">Trade only with the trend filter (Trend + HA Duo alignment).</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">2</span>
-            <div>
-              <div class="ruleT">Setup</div>
-              <div class="muted">Wait for a defined range box and compression → breakout confirmation.</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">3</span>
-            <div>
-              <div class="ruleT">Execution & Risk</div>
-              <div class="muted">Structure Lite + OB Radar provide invalidation zones; targets come from range projection + structure.</div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- CORE: LIQUIDITY LINES -->
-      <article class="card">
-        <div class="cardTop">
-          <div class="badgeRow">
-            <span class="pill free">FREE</span>
-            <span class="pill dim">Core Suite</span>
-          </div>
-          <h3>Liquidity Lines Playbook</h3>
-          <p class="muted">For liquidity sweeps + reclaim moves. Designed to catch reversals with confirmation, not guessing.</p>
-        </div>
-
-        <div class="stack">
-          <div class="stackBlock">
-            <div class="stackTitle">Strategy Engine</div>
-            <div class="stackItem strong">SH Liquidity Lines</div>
-          </div>
-
-          <div class="stackBlock">
-            <div class="stackTitle">Core Modules (included)</div>
-            <ul class="stackList">
-              <li>SH Trend</li>
-              <li>SH HA Duo</li>
-              <li>SH Range Box</li>
-              <li>SH PatternScan</li>
-              <li>SH OB Radar</li>
-              <li>SH Structure Lite</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cardActions">
-          <a class="btn primary" href="#pricing">Get Core Suite Free</a>
-          <button class="btn ghost" data-toggle="pb2">See playbook rules</button>
-        </div>
-
-        <div class="accordion" id="pb2">
-          <div class="rule">
-            <span class="ruleN">1</span>
-            <div>
-              <div class="ruleT">Liquidity Map</div>
-              <div class="muted">Identify external + internal liquidity lines and only react at the levels.</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">2</span>
-            <div>
-              <div class="ruleT">Confirmation</div>
-              <div class="muted">Sweep + reclaim, then confirm using Trend/HA Duo + Structure shift.</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">3</span>
-            <div>
-              <div class="ruleT">Targets</div>
-              <div class="muted">Next liquidity pool + structure objectives; OB Radar highlights reaction zones.</div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- PRO: PRIME MTF -->
-      <article class="card featured">
-        <div class="cardTop">
-          <div class="badgeRow">
-            <span class="pill paid">PAID</span>
-            <span class="pill dim">Pro Suite</span>
-          </div>
-          <h3>Prime MTF Playbook</h3>
-          <p class="muted">For traders who want HTF bias + LTF execution with strict filters and confluence scoring.</p>
-        </div>
-
-        <div class="stack">
-          <div class="stackBlock">
-            <div class="stackTitle">Strategy Engines</div>
-            <ul class="stackList">
-              <li class="strong">SH Prime MTF</li>
-              <li>SH CISD + DBOS Pro</li>
-              <li>SH VOL OM MTF</li>
-              <li>SH VRO Pro</li>
-            </ul>
-          </div>
-
-          <div class="stackBlock">
-            <div class="stackTitle">Execution Modules (included)</div>
-            <ul class="stackList">
-              <li>SH HA Duo</li>
-              <li>SH Range Box</li>
-              <li>SH PatternScan</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cardActions">
-          <a class="btn primary" href="#pricing">Upgrade to Pro</a>
-          <button class="btn ghost" data-toggle="pb3">See playbook rules</button>
-        </div>
-
-        <div class="accordion" id="pb3">
-          <div class="rule">
-            <span class="ruleN">1</span>
-            <div>
-              <div class="ruleT">HTF Bias</div>
-              <div class="muted">Only trade in the HTF direction (Prime MTF + alignment filters).</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">2</span>
-            <div>
-              <div class="ruleT">Trigger</div>
-              <div class="muted">CISD/DBOS confirms the shift; volume/volatility modules validate intent.</div>
-            </div>
-          </div>
-          <div class="rule">
-            <span class="ruleN">3</span>
-            <div>
-              <div class="ruleT">Quality Control</div>
-              <div class="muted">If the filters disagree, no trade. The goal is fewer trades, higher quality.</div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- ELITE TOOLKIT -->
-    <div class="addon">
-      <div class="addonLeft">
-        <span class="kicker">ADD-ON TOOLKIT</span>
-        <h3>Elite Toolkit = better execution, not more signals.</h3>
-        <p class="muted">
-          This is the overlay layer that helps you say “yes/no” faster, align HTF/LTF, and manage targets logically.
-        </p>
-        <div class="addonActions">
-          <a class="btn primary" href="#pricing">Add Elite Toolkit</a>
-          <a class="btn ghost" href="#faq">See what it changes</a>
+        <div class="ctaRow">
+          <a class="btn" href="#playbooks">View Playbooks</a>
+          <a class="btn primary" id="buyNow" href="#toolkits">Get Access</a>
         </div>
       </div>
-
-      <div class="addonRight">
-        <div class="stackTitle">Included</div>
-        <ul class="stackList">
-          <li class="strong">SH Decision Panel</li>
-          <li>SH HTF Align Pro</li>
-          <li>SH Scenario Matrix</li>
-          <li>SH Flip 4</li>
-        </ul>
-      </div>
     </div>
-
   </div>
-</section>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div>
+          <div class="pill"><span class="dot"></span> Strategies first. Indicators are just tools.</div>
+          <h1>Stop shopping indicators. Pick a playbook.</h1>
+          <p class="sub">
+            Most traders waste months comparing tools. That’s backwards.
+            A good strategy defines what you need: trend filter, trigger, invalidation, targets.
+            SilverHawk is built as <b>playbooks</b> — each one includes the exact indicators required to execute it.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+            <a class="btn primary" href="#playbooks">See the Strategies</a>
+            <a class="btn" href="#toolkits">What’s in each Suite</a>
+          </div>
+        </div>
+
+        <div class="heroCard">
+          <div class="inner">
+            <div class="kicker">What you get</div>
+            <h2 style="margin-top:8px;">A complete execution system</h2>
+            <p class="muted" style="margin-top:8px;">
+              Not “one magic indicator”. A repeatable workflow: filters → setup → trigger → risk → targets.
+            </p>
+            <div class="statGrid">
+              <div class="stat">
+                <div class="k">Playbooks</div>
+                <div class="t">Strategy-led trading plans</div>
+              </div>
+              <div class="stat">
+                <div class="k">Suites</div>
+                <div class="t">Core (Free) → Pro → Elite</div>
+              </div>
+              <div class="stat">
+                <div class="k">No noise</div>
+                <div class="t">Rules first, charts second</div>
+              </div>
+              <div class="stat">
+                <div class="k">Execution</div>
+                <div class="t">Targets + invalidation guidance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- PLAYBOOKS -->
+  <section id="playbooks" class="section">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker">Playbooks</div>
+          <h2>Strategies first. Indicators are just tools.</h2>
+          <div class="muted">
+            Don’t shop indicators. Pick a playbook. Follow the rules. The suite gives you the tools needed for that playbook.
+          </div>
+        </div>
+      </div>
+
+      <div class="map">
+        <div class="pad">
+          <div class="kicker">How to think about it</div>
+          <h2 style="margin-top:6px;">A strategy is 4 parts</h2>
+          <div class="mapGrid">
+            <div class="step">
+              <div class="n">1) Filter</div>
+              <div class="t">Direction + conditions</div>
+              <div class="d">You only take setups that match the environment (trend/HTF alignment/volatility).</div>
+            </div>
+            <div class="step">
+              <div class="n">2) Setup</div>
+              <div class="t">Where the trade forms</div>
+              <div class="d">Range, pullback, liquidity sweep, order-block response — the “shape” before the trigger.</div>
+            </div>
+            <div class="step">
+              <div class="n">3) Trigger</div>
+              <div class="t">What confirms entry</div>
+              <div class="d">Breakout confirmation or liquidity reclaim + BOS — one clear signal, not 5 conflicting ones.</div>
+            </div>
+            <div class="step">
+              <div class="n">4) Risk</div>
+              <div class="t">Invalidation + targets</div>
+              <div class="d">Where you’re wrong, and where you take profit (structure + projection).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="grid">
+
+        <!-- CORE: BREAKOUTS -->
+        <article class="card">
+          <div class="pad">
+            <div class="badges">
+              <span class="badge free">FREE</span>
+              <span class="badge dim">Core Suite</span>
+            </div>
+            <h3>Breakouts Playbook</h3>
+            <p>For clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
+
+            <div class="split">
+              <div class="block">
+                <div class="label">Strategy Engine</div>
+                <div class="value">SH Breakouts</div>
+                <div class="chips">
+                  <span class="chip">Range definition</span>
+                  <span class="chip">Compression filter</span>
+                  <span class="chip">Break confirmation</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <div class="label">Core Modules</div>
+                <div class="chips">
+                  <span class="chip">SH Trend</span>
+                  <span class="chip">SH HA Duo</span>
+                  <span class="chip">SH Range Box</span>
+                  <span class="chip">SH PatternScan</span>
+                  <span class="chip">SH OB Radar</span>
+                  <span class="chip">SH Structure Lite</span>
+                </div>
+              </div>
+
+              <details>
+                <summary>
+                  See playbook rules
+                  <span class="chev">⌄</span>
+                </summary>
+                <div class="rules">
+                  <ol>
+                    <li><b>Direction</b><div class="hint">Trade only with the filter (SH Trend + HA Duo alignment).</div></li>
+                    <li><b>Setup</b><div class="hint">Wait for a defined Range Box + compression → breakout confirmation.</div></li>
+                    <li><b>Execution & Risk</b><div class="hint">Use Structure Lite + OB Radar for invalidation zones. Targets come from range projection + structure.</div></li>
+                  </ol>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#toolkits">Get Core Suite Free</a>
+            <a class="btn" href="#toolkits">Compare Suites</a>
+          </div>
+        </article>
+
+        <!-- CORE: LIQUIDITY LINES -->
+        <article class="card">
+          <div class="pad">
+            <div class="badges">
+              <span class="badge free">FREE</span>
+              <span class="badge dim">Core Suite</span>
+            </div>
+            <h3>Liquidity Lines Playbook</h3>
+            <p>For sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing “support/resistance”.</p>
+
+            <div class="split">
+              <div class="block">
+                <div class="label">Strategy Engine</div>
+                <div class="value">SH Liquidity Lines</div>
+                <div class="chips">
+                  <span class="chip">Liquidity mapping</span>
+                  <span class="chip">Sweep detection</span>
+                  <span class="chip">Reclaim logic</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <div class="label">Core Modules</div>
+                <div class="chips">
+                  <span class="chip">SH Trend</span>
+                  <span class="chip">SH HA Duo</span>
+                  <span class="chip">SH Range Box</span>
+                  <span class="chip">SH PatternScan</span>
+                  <span class="chip">SH OB Radar</span>
+                  <span class="chip">SH Structure Lite</span>
+                </div>
+              </div>
+
+              <details>
+                <summary>
+                  See playbook rules
+                  <span class="chev">⌄</span>
+                </summary>
+                <div class="rules">
+                  <ol>
+                    <li><b>Direction</b><div class="hint">Only trade in the direction of the trend filter (Trend + HA Duo).</div></li>
+                    <li><b>Setup</b><div class="hint">Price sweeps a liquidity line and reclaims with strength (no “slow drift” entries).</div></li>
+                    <li><b>Execution & Risk</b><div class="hint">Invalidation is below/above reclaimed liquidity. Targets come from next liquidity pool + structure.</div></li>
+                  </ol>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#toolkits">Get Core Suite Free</a>
+            <a class="btn" href="#toolkits">Compare Suites</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUITES (what’s inside) -->
+  <section id="toolkits" class="section">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker">Suites</div>
+          <h2>Pick the playbook. Then pick the suite.</h2>
+          <div class="muted">You’re not buying “more indicators”. You’re buying higher-tier execution tools for specific playbooks.</div>
+        </div>
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="pad">
+            <div class="badges">
+              <span class="badge free">FREE</span>
+              <span class="badge dim">SilverHawk Core Suite</span>
+            </div>
+            <h3>Core Suite (2 Playbooks)</h3>
+            <p>Everything needed to execute Breakouts or Liquidity Lines — no fluff.</p>
+
+            <div class="split">
+              <div class="block">
+                <div class="label">Breakouts Strategy</div>
+                <div class="chips">
+                  <span class="chip">SH Breakouts</span>
+                  <span class="chip">SH Trend</span>
+                  <span class="chip">SH HA Duo</span>
+                  <span class="chip">SH Range Box</span>
+                  <span class="chip">SH PatternScan</span>
+                  <span class="chip">SH OB Radar</span>
+                  <span class="chip">SH Structure Lite</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <div class="label">Liquidity Lines Strategy</div>
+                <div class="chips">
+                  <span class="chip">SH Liquidity Lines</span>
+                  <span class="chip">SH Trend</span>
+                  <span class="chip">SH HA Duo</span>
+                  <span class="chip">SH Range Box</span>
+                  <span class="chip">SH PatternScan</span>
+                  <span class="chip">SH OB Radar</span>
+                  <span class="chip">SH Structure Lite</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#playbooks">Start with Core</a>
+            <a class="btn" href="#faq">FAQ</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="pad">
+            <div class="badges">
+              <span class="badge paid">PAID</span>
+              <span class="badge dim">SilverHawk Pro Suite</span>
+              <span class="badge dim">Prime MTF Strategy</span>
+            </div>
+            <h3>Pro Suite — Prime MTF Strategy</h3>
+            <p>For traders who want multi-timeframe structure + confirmation stacking without overfitting.</p>
+
+            <div class="split">
+              <div class="block">
+                <div class="label">Included indicators</div>
+                <div class="chips">
+                  <span class="chip">SH Prime MTF</span>
+                  <span class="chip">SH CISD + DBOS Pro</span>
+                  <span class="chip">SH VOL OM MTF</span>
+                  <span class="chip">SH VRO Pro</span>
+                  <span class="chip">SH HA Duo</span>
+                  <span class="chip">SH Range Box</span>
+                  <span class="chip">SH PatternScan</span>
+                </div>
+              </div>
+
+              <details>
+                <summary>
+                  What this suite is for (not for)
+                  <span class="chev">⌄</span>
+                </summary>
+                <div class="rules">
+                  <ol>
+                    <li><b>For</b><div class="hint">Structured MTF trading: HTF bias → LTF execution with confirmation.</div></li>
+                    <li><b>Not for</b><div class="hint">Random scalping, “signal collecting”, or trading every candle.</div></li>
+                  </ol>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#" onclick="alert('Replace this button link with your LemonSqueezy checkout URL.'); return false;">Get Pro Suite</a>
+            <a class="btn" href="#faq">Questions?</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="pad">
+            <div class="badges">
+              <span class="badge paid">PAID</span>
+              <span class="badge dim">SilverHawk Elite Toolkit</span>
+              <span class="badge tool">Execution Tools</span>
+            </div>
+            <h3>Elite Toolkit — Decision & Control</h3>
+            <p>Tools that make execution consistent: alignment, decision panels, scenario mapping, flip confirmation.</p>
+
+            <div class="split">
+              <div class="block">
+                <div class="label">Included indicators</div>
+                <div class="chips">
+                  <span class="chip">SH Decision Panel</span>
+                  <span class="chip">SH HTF Align Pro</span>
+                  <span class="chip">SH Scenario Matrix</span>
+                  <span class="chip">SH Flip 4</span>
+                </div>
+              </div>
+
+              <details>
+                <summary>
+                  Who should buy Elite?
+                  <span class="chev">⌄</span>
+                </summary>
+                <div class="rules">
+                  <ol>
+                    <li><b>If you already have entries</b><div class="hint">Elite improves confirmation + decision quality.</div></li>
+                    <li><b>If you struggle with discipline</b><div class="hint">Panels + scenario mapping reduce impulsive trades.</div></li>
+                    <li><b>If you want one-screen clarity</b><div class="hint">HTF/LTF alignment + “why” shown fast.</div></li>
+                  </ol>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#" onclick="alert('Replace this button link with your LemonSqueezy checkout URL.'); return false;">Get Elite Toolkit</a>
+            <a class="btn" href="#playbooks">Back to Playbooks</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>Short answers. No marketing fluff.</h2>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" style="grid-column:span 12;">
+          <div class="pad">
+            <details open>
+              <summary>Do I need Pro/Elite to be profitable? <span class="chev">⌄</span></summary>
+              <div class="rules">
+                No. Core is designed to work. Pro/Elite exist for traders who want tighter confirmation, MTF structure, and better execution control.
+              </div>
+            </details>
+            <div style="height:10px"></div>
+            <details>
+              <summary>Why are you pushing “strategies first”? <span class="chev">⌄</span></summary>
+              <div class="rules">
+                Because choosing indicators first creates contradiction. A strategy defines what to measure. Then you use the minimum tools to execute it.
+              </div>
+            </details>
+            <div style="height:10px"></div>
+            <details>
+              <summary>Can I use Core on any market/timeframe? <span class="chev">⌄</span></summary>
+              <div class="rules">
+                You can, but don’t. Pick one market + one timeframe and master the playbook rules. Consistency beats “more charts”.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="map">
+        <div class="pad">
+          <div class="kicker">Final note</div>
+          <h2 style="margin-top:6px;">Your edge is the rules, not the tool.</h2>
+          <p class="muted" style="margin-top:8px;">
+            If you want, next step is: we add a clean “Pricing” row and connect every CTA button to your LemonSqueezy checkout link.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <a class="btn primary" href="#toolkits">Choose a Suite</a>
+            <a class="btn" href="#playbooks">Review Playbooks</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div><b>SilverHawk</b> — Strategies first.</div>
+        <div style="color:rgba(234,240,255,.65)">Risk disclaimer: Trading involves risk. This is not financial advice.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Replace this when you have your LemonSqueezy checkout URL
+    // document.getElementById("buyNow").href = "https://your-lemonsqueezy-checkout-link";
+  </script>
+</body>
+</html>
