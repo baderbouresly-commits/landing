@@ -59,6 +59,8 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
+
+    /* LOGO (repo root: logo.png) */
     .logo{
       width:50px; height:50px; border-radius:14px;
       background: rgba(255,255,255,.08);
@@ -75,7 +77,9 @@
       display:block;
       padding:0;
       background: transparent;
+      image-rendering:auto;
     }
+
     .brandName{
       font-weight:900;
       letter-spacing:.2px;
@@ -119,7 +123,7 @@
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
 
     .mobileOnly{ display:none; }
-    @media (max-width: 860px){
+    @media (max-width: 900px){
       .nav{ display:none; }
       .mobileOnly{ display:inline-flex; }
       .brand{ min-width:auto; }
@@ -148,7 +152,10 @@
       text-align:center;
     }
 
-    .hero{ padding:70px 0 56px; }
+    /* HERO */
+    .hero{
+      padding:70px 0 56px;
+    }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
       background: var(--card);
@@ -236,7 +243,7 @@
       color: var(--muted);
       font-size:15px;
       line-height:1.55;
-      max-width: 70ch;
+      max-width: 72ch;
       text-align:left;
     }
 
@@ -366,7 +373,7 @@
       content:"";
       position:absolute;
       top:0; bottom:0;
-      width:120px;
+      width:90px;
       pointer-events:none;
       z-index:2;
     }
@@ -385,7 +392,6 @@
       gap:14px;
       padding: 8px 10px;
       animation: scrollX 34s linear infinite;
-      will-change: transform;
     }
     .marquee:hover .track{ animation-play-state: paused; }
 
@@ -421,39 +427,45 @@
       min-width:0;
     }
 
-    /* ✅ AVATAR FIX: REAL "IMAGE" ALWAYS SHOWS (inline SVG), with fallback initial */
+    /* Avatar (corrected: more “photo-like”, less flat) */
     .avatar{
-      width:38px; height:38px;
+      width:34px; height:34px;
       border-radius: 999px;
-      overflow:hidden;
-      position:relative;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 10px 18px rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:
+        0 8px 18px rgba(0,0,0,.35),
+        inset 0 0 0 2px rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color: rgba(234,240,255,.92);
       flex:0 0 auto;
-      display:grid;
-      place-items:center;
+      background:
+        radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.28), transparent 55%),
+        radial-gradient(18px 16px at 70% 75%, rgba(0,0,0,.25), transparent 55%),
+        linear-gradient(135deg, rgba(124,92,255,.35), rgba(74,215,255,.18)),
+        rgba(255,255,255,.06);
     }
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+
+    /* Slight variations so it doesn’t look like clones */
+    .avatar.v1{ background:
+        radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.28), transparent 55%),
+        radial-gradient(18px 16px at 70% 75%, rgba(0,0,0,.25), transparent 55%),
+        linear-gradient(135deg, rgba(124,92,255,.35), rgba(74,215,255,.18)),
+        rgba(255,255,255,.06);
     }
-    .avatar .initial{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      font-weight:950;
-      color: rgba(234,240,255,.95);
-      font-size:14px;
-      text-shadow: 0 2px 8px rgba(0,0,0,.35);
-      pointer-events:none;
-      opacity:0; /* hidden when image loads */
+    .avatar.v2{ background:
+        radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.28), transparent 55%),
+        radial-gradient(18px 16px at 70% 75%, rgba(0,0,0,.25), transparent 55%),
+        linear-gradient(135deg, rgba(47,228,167,.25), rgba(124,92,255,.20)),
+        rgba(255,255,255,.06);
     }
-    .avatar.isFallback .initial{ opacity:1; }
-    .avatar.isFallback img{ opacity:0; }
+    .avatar.v3{ background:
+        radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.28), transparent 55%),
+        radial-gradient(18px 16px at 70% 75%, rgba(0,0,0,.25), transparent 55%),
+        linear-gradient(135deg, rgba(255,193,74,.24), rgba(124,92,255,.22)),
+        rgba(255,255,255,.06);
+    }
 
     .whoText{ min-width:0; }
     .name{
@@ -488,6 +500,228 @@
       font-size:11px;
       letter-spacing:.10em;
       text-transform:uppercase;
+    }
+
+    /* PRICING (ChartPrime-style: toggle + 2–3 paid cards) */
+    .pricingShell{
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .pricingShell::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(900px 320px at 25% 0%, rgba(124,92,255,.14), transparent 60%),
+        radial-gradient(760px 320px at 92% 10%, rgba(74,215,255,.12), transparent 62%);
+      pointer-events:none;
+    }
+    .pricingInner{ position:relative; padding:18px; }
+
+    .pricingTopRow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .toggle{
+      display:inline-flex;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:4px;
+      gap:4px;
+    }
+    .toggleBtn{
+      border:0;
+      background: transparent;
+      color: rgba(234,240,255,.75);
+      font-weight:900;
+      font-size:13px;
+      padding:10px 14px;
+      border-radius: 999px;
+      cursor:pointer;
+      transition: background .12s ease, color .12s ease, transform .12s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .toggleBtn:hover{ transform: translateY(-1px); }
+    .toggleBtn[aria-pressed="true"]{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.45));
+      color:#070A14;
+    }
+
+    .saveBadge{
+      font-size:11px;
+      font-weight:900;
+      padding:6px 9px;
+      border-radius: 999px;
+      border:1px solid rgba(47,228,167,.25);
+      background: rgba(47,228,167,.08);
+      color: rgba(47,228,167,.95);
+      letter-spacing:.02em;
+    }
+
+    .freeStrip{
+      margin-top:14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .freeStripLeft{ min-width: 240px; }
+    .freeTitle{
+      font-weight:950;
+      letter-spacing:-.01em;
+      margin:0;
+    }
+    .freeDesc{
+      margin:6px 0 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      max-width: 72ch;
+    }
+
+    .pricingGrid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .pricingGrid{ grid-template-columns: 1fr; }
+    }
+
+    .pCard{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .pCard.recommended{
+      border-color: rgba(124,92,255,.28);
+      box-shadow:
+        0 12px 36px rgba(0,0,0,.32),
+        0 0 0 1px rgba(124,92,255,.12);
+    }
+
+    .pInner{ padding:18px; }
+
+    .pHeadRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .pName{
+      font-weight:950;
+      letter-spacing:-.01em;
+      font-size:18px;
+      margin:0;
+    }
+    .pMeta{
+      margin:6px 0 0 0;
+      color: rgba(234,240,255,.70);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+
+    .recBadge{
+      font-size:11px;
+      font-weight:950;
+      padding:6px 9px;
+      border-radius: 999px;
+      border:1px solid rgba(124,92,255,.28);
+      background: rgba(124,92,255,.10);
+      color: rgba(196,186,255,.95);
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+
+    .priceRow{
+      margin-top:14px;
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .price{
+      font-weight:980;
+      font-size:44px;
+      letter-spacing:-.02em;
+      line-height:1;
+    }
+    .per{
+      color: var(--muted);
+      font-size:14px;
+      font-weight:800;
+      padding-bottom:4px;
+    }
+    .billed{
+      width:100%;
+      margin-top:6px;
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .pDesc{
+      margin:12px 0 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .pList{
+      margin:14px 0 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .pList li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color: rgba(234,240,255,.78);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .check{
+      width:18px; height:18px;
+      border-radius: 999px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(47,228,167,.22);
+      background: rgba(47,228,167,.08);
+      color: rgba(47,228,167,.95);
+      font-weight:950;
+      margin-top:1px;
+    }
+
+    .pCtas{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
     /* FAQ */
@@ -533,12 +767,13 @@
         <nav class="nav" aria-label="Primary">
           <a href="#suites">Suites</a>
           <a href="#proof">Reviews</a>
+          <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
 
         <div class="ctaRow">
           <a class="btn" href="#suites">View Suites</a>
-          <a class="btn btnPrimary" href="#suites" id="ctaTop">Get Access</a>
+          <a class="btn btnPrimary" href="#pricing" id="ctaTop">Get Access</a>
           <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
@@ -557,7 +792,7 @@
           </p>
 
           <div class="heroCtas">
-            <a class="btn btnPrimary" href="#suites" id="ctaPrimary">Get Access</a>
+            <a class="btn btnPrimary" href="#pricing" id="ctaPrimary">Get Access</a>
             <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
 
@@ -575,7 +810,7 @@
     </div>
   </section>
 
-  <!-- SOCIAL PROOF -->
+  <!-- REVIEWS -->
   <section id="proof">
     <div class="wrap">
       <div class="sectionHead">
@@ -589,58 +824,12 @@
       <div class="proofCard">
         <div class="proofInner">
           <div class="marquee" aria-label="User testimonials">
-            <div class="track" id="track">
-
+            <div class="track">
               <!-- SET A -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="A. Rahman"><img alt="A. Rahman" /><span class="initial">A</span></div>
-                    <div class="whoText">
-                      <div class="name">A. Rahman</div>
-                      <div class="role">Swing Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“The suite stopped me from over-trading. The rules force patience and the confirmations are clean.”</p>
-                <div class="tTag">Prime MTF</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar" data-name="M. Alenezi"><img alt="M. Alenezi" /><span class="initial">M</span></div>
-                    <div class="whoText">
-                      <div class="name">M. Alenezi</div>
-                      <div class="role">Futures Day Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“Breakouts suite is simple. I finally have one workflow instead of 6 conflicting indicators.”</p>
-                <div class="tTag">Breakouts</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar" data-name="S. Carter"><img alt="S. Carter" /><span class="initial">S</span></div>
-                    <div class="whoText">
-                      <div class="name">S. Carter</div>
-                      <div class="role">Forex Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“Liquidity Lines is the first thing that made ‘sweeps’ obvious. Entries feel less random.”</p>
-                <div class="tTag">Liquidity Lines</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar" data-name="K. Thomas"><img alt="K. Thomas" /><span class="initial">K</span></div>
+                    <div class="avatar v1">K</div>
                     <div class="whoText">
                       <div class="name">K. Thomas</div>
                       <div class="role">Prop Challenge</div>
@@ -655,7 +844,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="J. Almutairi"><img alt="J. Almutairi" /><span class="initial">J</span></div>
+                    <div class="avatar v2">J</div>
                     <div class="whoText">
                       <div class="name">J. Almutairi</div>
                       <div class="role">Options Trader</div>
@@ -670,7 +859,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="R. Singh"><img alt="R. Singh" /><span class="initial">R</span></div>
+                    <div class="avatar v3">R</div>
                     <div class="whoText">
                       <div class="name">R. Singh</div>
                       <div class="role">Crypto Trader</div>
@@ -685,38 +874,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="N. Brooks"><img alt="N. Brooks" /><span class="initial">N</span></div>
-                    <div class="whoText">
-                      <div class="name">N. Brooks</div>
-                      <div class="role">Beginner → Consistent</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“Free suites made me consistent before paying for anything. That alone built trust.”</p>
-                <div class="tTag">Free Suites</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar" data-name="H. Alhajeri"><img alt="H. Alhajeri" /><span class="initial">H</span></div>
-                    <div class="whoText">
-                      <div class="name">H. Alhajeri</div>
-                      <div class="role">Scalper (15m/5m)</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
-                <div class="tTag">Quality > Quantity</div>
-              </article>
-
-              <!-- SET B (duplicate of A for seamless loop) -->
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar" data-name="A. Rahman"><img alt="A. Rahman" /><span class="initial">A</span></div>
+                    <div class="avatar v1">A</div>
                     <div class="whoText">
                       <div class="name">A. Rahman</div>
                       <div class="role">Swing Trader</div>
@@ -731,7 +889,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="M. Alenezi"><img alt="M. Alenezi" /><span class="initial">M</span></div>
+                    <div class="avatar v2">M</div>
                     <div class="whoText">
                       <div class="name">M. Alenezi</div>
                       <div class="role">Futures Day Trader</div>
@@ -746,7 +904,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="S. Carter"><img alt="S. Carter" /><span class="initial">S</span></div>
+                    <div class="avatar v3">S</div>
                     <div class="whoText">
                       <div class="name">S. Carter</div>
                       <div class="role">Forex Trader</div>
@@ -758,10 +916,11 @@
                 <div class="tTag">Liquidity Lines</div>
               </article>
 
+              <!-- SET B (duplicate for seamless loop) -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="K. Thomas"><img alt="K. Thomas" /><span class="initial">K</span></div>
+                    <div class="avatar v1">K</div>
                     <div class="whoText">
                       <div class="name">K. Thomas</div>
                       <div class="role">Prop Challenge</div>
@@ -776,7 +935,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="J. Almutairi"><img alt="J. Almutairi" /><span class="initial">J</span></div>
+                    <div class="avatar v2">J</div>
                     <div class="whoText">
                       <div class="name">J. Almutairi</div>
                       <div class="role">Options Trader</div>
@@ -791,7 +950,7 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="R. Singh"><img alt="R. Singh" /><span class="initial">R</span></div>
+                    <div class="avatar v3">R</div>
                     <div class="whoText">
                       <div class="name">R. Singh</div>
                       <div class="role">Crypto Trader</div>
@@ -806,33 +965,47 @@
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="N. Brooks"><img alt="N. Brooks" /><span class="initial">N</span></div>
+                    <div class="avatar v1">A</div>
                     <div class="whoText">
-                      <div class="name">N. Brooks</div>
-                      <div class="role">Beginner → Consistent</div>
+                      <div class="name">A. Rahman</div>
+                      <div class="role">Swing Trader</div>
                     </div>
                   </div>
                   <div class="stars">★★★★★</div>
                 </div>
-                <p class="tBody">“Free suites made me consistent before paying for anything. That alone built trust.”</p>
-                <div class="tTag">Free Suites</div>
+                <p class="tBody">“The suite stopped me from over-trading. The rules force patience and the confirmations are clean.”</p>
+                <div class="tTag">Prime MTF</div>
               </article>
 
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
-                    <div class="avatar" data-name="H. Alhajeri"><img alt="H. Alhajeri" /><span class="initial">H</span></div>
+                    <div class="avatar v2">M</div>
                     <div class="whoText">
-                      <div class="name">H. Alhajeri</div>
-                      <div class="role">Scalper (15m/5m)</div>
+                      <div class="name">M. Alenezi</div>
+                      <div class="role">Futures Day Trader</div>
                     </div>
                   </div>
                   <div class="stars">★★★★★</div>
                 </div>
-                <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
-                <div class="tTag">Quality > Quantity</div>
+                <p class="tBody">“Breakouts suite is simple. I finally have one workflow instead of 6 conflicting indicators.”</p>
+                <div class="tTag">Breakouts</div>
               </article>
 
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar v3">S</div>
+                    <div class="whoText">
+                      <div class="name">S. Carter</div>
+                      <div class="role">Forex Trader</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Liquidity Lines is the first thing that made ‘sweeps’ obvious. Entries feel less random.”</p>
+                <div class="tTag">Liquidity Lines</div>
+              </article>
             </div>
           </div>
 
@@ -863,7 +1036,9 @@
             </div>
 
             <div class="cardTitle">Breakouts Suite (Free)</div>
-            <p class="cardDesc">Clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
+            <p class="cardDesc">
+              Clean range breaks + momentum continuation. Built to reduce chop and random entries.
+            </p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -877,7 +1052,10 @@
             </div>
 
             <details>
-              <summary>See suite rules <span class="caret">▾</span></summary>
+              <summary>
+                See suite rules
+                <span class="caret">▾</span>
+              </summary>
               <ul class="rules">
                 <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
                 <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
@@ -888,7 +1066,7 @@
 
             <div class="pricingFooter">
               <a class="btn btnPrimary" id="getFreeBreakouts" href="#">Get Free</a>
-              <a class="btn" href="#faq">Questions?</a>
+              <a class="btn" href="#pricing">See Pricing</a>
             </div>
           </div>
         </div>
@@ -902,7 +1080,9 @@
             </div>
 
             <div class="cardTitle">Liquidity Lines Suite (Free)</div>
-            <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.</p>
+            <p class="cardDesc">
+              Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.
+            </p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -916,7 +1096,10 @@
             </div>
 
             <details>
-              <summary>See suite rules <span class="caret">▾</span></summary>
+              <summary>
+                See suite rules
+                <span class="caret">▾</span>
+              </summary>
               <ul class="rules">
                 <li><b>Filter:</b> confirm context (trend/HTF bias) before hunting sweeps.</li>
                 <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
@@ -927,23 +1110,24 @@
 
             <div class="pricingFooter">
               <a class="btn btnPrimary" id="getFreeLiquidity" href="#">Get Free</a>
-              <a class="btn" href="#faq">Questions?</a>
+              <a class="btn" href="#pricing">See Pricing</a>
             </div>
           </div>
         </div>
 
-        <!-- PAID: Pro -->
+        <!-- PRO (shown here for context; pricing happens in Pricing section) -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
               <span class="pill paid">PAID</span>
               <span class="pill">Pro Suite</span>
               <span class="pill">Prime MTF</span>
-              <span class="pill price">$24.90 / mo</span>
             </div>
 
             <div class="cardTitle">Pro Suite — Prime MTF</div>
-            <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
+            <p class="cardDesc">
+              Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.
+            </p>
 
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
@@ -957,7 +1141,10 @@
             </div>
 
             <details>
-              <summary>Who Pro is for (and not for) <span class="caret">▾</span></summary>
+              <summary>
+                Who Pro is for (and not for)
+                <span class="caret">▾</span>
+              </summary>
               <ul class="rules">
                 <li><b>For:</b> traders who want cleaner selection + confirmation (not more signals).</li>
                 <li><b>For:</b> anyone using HTF/LTF alignment and wanting repeatable structure rules.</li>
@@ -966,20 +1153,19 @@
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" id="buyPro" href="#">Get Pro</a>
+              <a class="btn btnPrimary" href="#pricing">View Pricing</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
         </div>
 
-        <!-- PAID: Elite Add-on -->
+        <!-- ELITE (shown here for context; pricing happens in Pricing section) -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
               <span class="pill paid">PAID</span>
               <span class="pill">Elite Toolkit</span>
               <span class="pill">Add-On</span>
-              <span class="pill price">$29.90 / mo</span>
             </div>
 
             <div class="cardTitle">Elite Toolkit — Decision & Control</div>
@@ -997,7 +1183,10 @@
             </div>
 
             <details>
-              <summary>When Elite is worth it <span class="caret">▾</span></summary>
+              <summary>
+                When Elite is worth it
+                <span class="caret">▾</span>
+              </summary>
               <ul class="rules">
                 <li>You already have entries, but struggle with <b>selection</b> and <b>consistency</b>.</li>
                 <li>You want a decision checkpoint before pulling the trigger.</li>
@@ -1006,12 +1195,159 @@
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" id="buyElite" href="#">Get Elite</a>
+              <a class="btn btnPrimary" href="#pricing">View Pricing</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
 
             <p class="mutedSmall">Add-on means you can run it alongside the free suites or alongside Pro.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (toggle + 3 cards: Pro / Elite / Bundle recommended) -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Pricing</p>
+          <h2>Simple pricing. No math.</h2>
+          <p class="subLeft">Choose monthly or yearly. Yearly is discounted and keeps you consistent.</p>
+        </div>
+      </div>
+
+      <div class="pricingShell">
+        <div class="pricingInner">
+          <div class="pricingTopRow">
+            <div style="min-width: 260px;">
+              <div style="font-weight:950; letter-spacing:-.01em;">Paid Access</div>
+              <div class="mutedSmall" style="margin-top:6px;">Pro is the strategy. Elite is the execution control. Bundle is best value.</div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span class="saveBadge" id="saveBadge">Yearly saves 2 months</span>
+
+              <div class="toggle" role="group" aria-label="Billing toggle">
+                <button class="toggleBtn" id="billMonthly" aria-pressed="true" type="button">Monthly</button>
+                <button class="toggleBtn" id="billYearly" aria-pressed="false" type="button">Yearly</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Free strip (NOT a competing pricing card) -->
+          <div class="freeStrip" aria-label="Free access">
+            <div class="freeStripLeft">
+              <p class="freeTitle">Start Free: Breakouts + Liquidity Lines</p>
+              <p class="freeDesc">Get the workflow first. When you want MTF structure and higher-tier confirmation, upgrade to Pro. If execution is your weakness, add Elite.</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="#suites">See Free Suites</a>
+              <a class="btn btnPrimary" href="#pricingCards">Choose Plan</a>
+            </div>
+          </div>
+
+          <div class="pricingGrid" id="pricingCards">
+            <!-- PRO -->
+            <div class="pCard">
+              <div class="pInner">
+                <div class="pHeadRow">
+                  <div>
+                    <p class="pName">Pro</p>
+                    <p class="pMeta">Prime MTF Strategy</p>
+                  </div>
+                </div>
+
+                <div class="priceRow">
+                  <div class="price" data-price="pro">$24.90</div>
+                  <div class="per" data-per="pro">/mo</div>
+                  <div class="billed" data-billed="pro">Billed monthly. Cancel anytime.</div>
+                </div>
+
+                <p class="pDesc">For traders who want higher-quality trades using MTF structure and confirmations.</p>
+
+                <ul class="pList">
+                  <li><span class="check">✓</span> Prime MTF engine + confirmation tools</li>
+                  <li><span class="check">✓</span> Cleaner selection (fewer, better setups)</li>
+                  <li><span class="check">✓</span> Rules-first workflow (not random alerts)</li>
+                </ul>
+
+                <div class="pCtas">
+                  <a class="btn btnPrimary" id="buyPro" href="#">Get Pro</a>
+                  <a class="btn" href="#faq">Questions?</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- ELITE -->
+            <div class="pCard">
+              <div class="pInner">
+                <div class="pHeadRow">
+                  <div>
+                    <p class="pName">Elite</p>
+                    <p class="pMeta">Add-On Toolkit</p>
+                  </div>
+                </div>
+
+                <div class="priceRow">
+                  <div class="price" data-price="elite">$29.90</div>
+                  <div class="per" data-per="elite">/mo</div>
+                  <div class="billed" data-billed="elite">Works with Free or Pro.</div>
+                </div>
+
+                <p class="pDesc">For traders who already have entries but struggle with discipline and decision-making.</p>
+
+                <ul class="pList">
+                  <li><span class="check">✓</span> Decision Panel + alignment checks</li>
+                  <li><span class="check">✓</span> Scenario control tools for consistency</li>
+                  <li><span class="check">✓</span> “Checkpoint” before you click</li>
+                </ul>
+
+                <div class="pCtas">
+                  <a class="btn btnPrimary" id="buyElite" href="#">Get Elite</a>
+                  <a class="btn" href="#faq">Questions?</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- BUNDLE (RECOMMENDED) -->
+            <div class="pCard recommended">
+              <div class="pInner">
+                <div class="pHeadRow">
+                  <div>
+                    <p class="pName">Pro + Elite</p>
+                    <p class="pMeta">Bundle</p>
+                  </div>
+                  <div class="recBadge">Recommended</div>
+                </div>
+
+                <div class="priceRow">
+                  <div class="price" data-price="bundle">$44.90</div>
+                  <div class="per" data-per="bundle">/mo</div>
+                  <div class="billed" data-billed="bundle">Best value: strategy + execution control.</div>
+                </div>
+
+                <p class="pDesc">The full system: MTF strategy + execution control so you trade fewer, better, and more consistently.</p>
+
+                <ul class="pList">
+                  <li><span class="check">✓</span> Everything in Pro</li>
+                  <li><span class="check">✓</span> Everything in Elite</li>
+                  <li><span class="check">✓</span> Discount vs buying separately</li>
+                </ul>
+
+                <div class="pCtas">
+                  <a class="btn btnPrimary" id="buyBundle" href="#">Get Bundle</a>
+                  <a class="btn" href="#faq">Questions?</a>
+                </div>
+
+                <p class="mutedSmall">If you’re serious about consistency, this is the cleanest choice.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mutedSmall" style="margin-top:12px;">
+            Notes: Prices shown exclude any platform taxes/fees. Trading involves risk. Nothing here is financial advice.
+          </p>
         </div>
       </div>
     </div>
@@ -1072,80 +1408,75 @@
   </footer>
 
   <script>
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Replace with your Lemon Squeezy checkout URLs
-    const LINKS = { freeBreakouts:"#", freeLiquidity:"#", pro:"#", elite:"#", };
+    const LINKS = {
+      freeBreakouts: "#",
+      freeLiquidity: "#",
+      pro: "#",
+      elite: "#",
+      bundle: "#",
+    };
 
-    const byId = (id) => document.getElementById(id);
-    const safeSet = (id, url) => { const el = byId(id); if(el) el.href = url; };
+    const safeSet = (id, url) => {
+      const el = document.getElementById(id);
+      if (el) el.href = url;
+    };
 
     safeSet("getFreeBreakouts", LINKS.freeBreakouts);
     safeSet("getFreeLiquidity", LINKS.freeLiquidity);
     safeSet("buyPro", LINKS.pro);
     safeSet("buyElite", LINKS.elite);
+    safeSet("buyBundle", LINKS.bundle);
 
-    // ✅ Avatar "images" that always work (no external files):
-    // Creates a unique inline-SVG portrait per user name and sets it as <img src="data:...">
-    const hash = (s) => {
-      let h = 2166136261;
-      for (let i=0;i<s.length;i++){
-        h ^= s.charCodeAt(i);
-        h = Math.imul(h, 16777619);
-      }
-      return (h >>> 0);
+    // Pricing toggle logic (Monthly / Yearly)
+    // Yearly = 2 months free (pay 10 months)
+    const PRICES = {
+      pro:    { monthly: 24.90, yearly: 24.90 * 10 },
+      elite:  { monthly: 29.90, yearly: 29.90 * 10 },
+      bundle: { monthly: 44.90, yearly: 44.90 * 10 },
     };
 
-    const hexFrom = (n) => n.toString(16).padStart(6,"0").slice(0,6);
+    const fmt = (n) => "$" + n.toFixed(2);
 
-    const avatarSvgDataUrl = (name, initial) => {
-      const h = hash(name || initial || "S");
-      const c1 = "#" + hexFrom((h      ) % 0xFFFFFF);
-      const c2 = "#" + hexFrom((h*2654435761) % 0xFFFFFF);
-      const c3 = "#0b1024";
-      const letter = (initial || (name||"S").trim().charAt(0) || "S").toUpperCase();
+    const billMonthly = document.getElementById("billMonthly");
+    const billYearly  = document.getElementById("billYearly");
 
-      const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="${c1}" stop-opacity="0.95"/>
-      <stop offset="0.55" stop-color="${c2}" stop-opacity="0.55"/>
-      <stop offset="1" stop-color="${c3}" stop-opacity="1"/>
-    </linearGradient>
-    <radialGradient id="r" cx="30%" cy="25%" r="70%">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="0.6" />
-    </filter>
-  </defs>
-  <rect width="80" height="80" fill="url(#g)"/>
-  <circle cx="26" cy="18" r="28" fill="url(#r)"/>
-  <path d="M-5,68 C12,52 26,46 40,46 C54,46 68,52 85,68 L85,85 L-5,85 Z" fill="#000" opacity="0.12" filter="url(#soft)"/>
-  <circle cx="40" cy="34" r="14" fill="#000" opacity="0.12"/>
-  <path d="M18,70 C22,56 32,50 40,50 C48,50 58,56 62,70" fill="#000" opacity="0.12"/>
-  <text x="40" y="48" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="26" font-weight="900" fill="#EAF0FF">${letter}</text>
-</svg>`.trim();
+    function setBilling(mode){
+      const isYearly = mode === "yearly";
+      billMonthly.setAttribute("aria-pressed", String(!isYearly));
+      billYearly.setAttribute("aria-pressed", String(isYearly));
 
-      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-    };
+      ["pro","elite","bundle"].forEach((k) => {
+        const priceEl = document.querySelector(`[data-price="${k}"]`);
+        const perEl   = document.querySelector(`[data-per="${k}"]`);
+        const billedEl= document.querySelector(`[data-billed="${k}"]`);
 
-    document.querySelectorAll(".avatar").forEach(av => {
-      const name = av.getAttribute("data-name") || "";
-      const initialEl = av.querySelector(".initial");
-      const img = av.querySelector("img");
-      const initial = (initialEl?.textContent || name.trim().charAt(0) || "S").toUpperCase();
+        if (!priceEl || !perEl || !billedEl) return;
 
-      if (img) {
-        img.src = avatarSvgDataUrl(name, initial);
-        img.onload = () => av.classList.remove("isFallback");
-        img.onerror = () => av.classList.add("isFallback");
-      } else {
-        av.classList.add("isFallback");
-      }
-    });
+        if (isYearly){
+          priceEl.textContent = fmt(PRICES[k].yearly);
+          perEl.textContent = "/yr";
+          if (k === "pro") billedEl.textContent = "Billed yearly. 2 months free. Cancel anytime.";
+          if (k === "elite") billedEl.textContent = "Billed yearly. Works with Free or Pro.";
+          if (k === "bundle") billedEl.textContent = "Billed yearly. Best value: strategy + execution control.";
+        } else {
+          priceEl.textContent = fmt(PRICES[k].monthly);
+          perEl.textContent = "/mo";
+          if (k === "pro") billedEl.textContent = "Billed monthly. Cancel anytime.";
+          if (k === "elite") billedEl.textContent = "Works with Free or Pro.";
+          if (k === "bundle") billedEl.textContent = "Best value: strategy + execution control.";
+        }
+      });
+    }
+
+    billMonthly.addEventListener("click", () => setBilling("monthly"));
+    billYearly.addEventListener("click", () => setBilling("yearly"));
+
+    // Default
+    setBilling("monthly");
   </script>
 </body>
 </html>
