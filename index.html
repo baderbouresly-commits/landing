@@ -59,11 +59,15 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
+
+    /* ✅ LOGO FIX (Option A): clean square mark */
     .logo{
-      width:34px; height:34px; border-radius:10px;
-      background: rgba(255,255,255,.08);
+      width:28px; height:28px;
+      border-radius:9px;
+      padding:6px;
+      background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center;
+      display:flex; align-items:center; justify-content:center;
       overflow:hidden;
       box-shadow: var(--shadow2);
     }
@@ -71,9 +75,10 @@
       width:100%; height:100%;
       object-fit:contain;
       display:block;
-      padding:3px;
+      padding:0;
       background: transparent;
     }
+
     .brandName{
       font-weight:800;
       letter-spacing:.2px;
@@ -389,8 +394,8 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
-            <!-- Put your uploaded logo here: repo root file must be named 'logo.png' -->
-            <img src="logo.png" alt="SilverHawk logo" />
+            <!-- ✅ logo file should be a square mark (Option A): name it 'logo-mark.png' -->
+            <img src="logo-mark.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
