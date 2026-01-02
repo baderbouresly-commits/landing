@@ -3,125 +3,171 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SilverHawk Suite</title>
-  <meta name="description" content="Strategies first. A suite of indicators packaged as clear playbooks. Start free, upgrade when you need higher-tier execution tools." />
+  <title>SilverHawk Suite — Playbooks + Indicators</title>
+  <meta name="description" content="Pick a playbook. The suite gives you the exact indicators to execute it. Core (free), Pro (Prime MTF), Elite (add-on execution toolkit)." />
 
   <style>
     :root{
-      --bg0:#070A12;
-      --bg1:#0B1020;
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.08);
-      --stroke:rgba(255,255,255,.10);
-      --stroke2:rgba(255,255,255,.14);
+      --bg0:#060812;
+      --bg1:#081028;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.10);
       --text:#EAF0FF;
-      --muted:rgba(234,240,255,.70);
-      --muted2:rgba(234,240,255,.55);
+      --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.58);
       --accent:#7C5CFF;
-      --accent2:#42C4FF;
-      --good:#4DE1A6;
-      --warn:#FFB84D;
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --accent2:#4AD7FF;
+      --good:#2FE4A7;
+      --warn:#FFC14A;
       --radius: 18px;
-      --radius2: 26px;
-      --max: 1160px;
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1120px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
       background:
-        radial-gradient(1100px 600px at 18% 10%, rgba(124,92,255,.24), transparent 55%),
-        radial-gradient(900px 500px at 82% 18%, rgba(66,196,255,.18), transparent 60%),
-        radial-gradient(900px 700px at 70% 85%, rgba(77,225,166,.12), transparent 60%),
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
+        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    a{color:inherit}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .section{padding:70px 0}
-    .divider{height:1px; background:rgba(255,255,255,.08); margin:22px 0}
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
 
-    /* Top nav */
+    /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,10,18,.85), rgba(7,10,18,.55));
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(6,8,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .nav{
+    .topbarInner{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
-      gap:16px;
+      gap:14px;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700;
-      letter-spacing:.2px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
     }
     .logo{
-      width:34px; height:34px; border-radius:12px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.55), transparent 60%),
-        linear-gradient(135deg, rgba(124,92,255,1), rgba(66,196,255,1));
-      box-shadow: 0 10px 30px rgba(124,92,255,.22);
-      border: 1px solid rgba(255,255,255,.15);
+      width:34px; height:34px; border-radius:10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
     }
-    .navLinks{
+    .logo img{
+      width:100%; height:100%;
+      object-fit:contain;
+      display:block;
+      padding:3px;
+      background: transparent;
+    }
+    .brandName{
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:14px;
+      opacity:.95;
+    }
+
+    .nav{
       display:flex; align-items:center; gap:18px;
-      color:var(--muted);
-      font-weight:600;
+      color: var(--muted);
       font-size:14px;
     }
-    .navLinks a{ text-decoration:none; opacity:.92 }
-    .navLinks a:hover{ opacity:1; color:var(--text) }
-    .navCtas{display:flex; align-items:center; gap:10px}
+    .nav a{ padding:8px 10px; border-radius:10px; }
+    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
-    /* Buttons */
+    .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:11px 14px;
-      border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color:var(--text);
-      text-decoration:none;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 999px;
       font-weight:700;
       font-size:14px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       white-space:nowrap;
-      box-shadow: 0 10px 28px rgba(0,0,0,.22);
-      transition: transform .15s ease, border-color .15s ease, background .15s ease, opacity .15s ease;
     }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.20); background: rgba(255,255,255,.07) }
-    .btn.primary{
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
       border-color: rgba(124,92,255,.55);
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(66,196,255,.72));
-      box-shadow: 0 16px 42px rgba(124,92,255,.22);
+      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+      color:#070A14;
     }
-    .btn.primary:hover{ border-color: rgba(255,255,255,.28) }
-    .btn.ghost{
-      background: transparent;
-      border-color: rgba(255,255,255,.14);
-      box-shadow:none;
+    .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+
+    .mobileOnly{ display:none; }
+    @media (max-width: 860px){
+      .nav{ display:none; }
+      .mobileOnly{ display:inline-flex; }
+      .brand{ min-width:auto; }
     }
 
-    /* Hero */
-    .hero{
-      padding:56px 0 40px;
+    /* Sections */
+    section{ padding:58px 0; }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
     }
-    .heroGrid{
-      display:grid; grid-template-columns: 1.25fr .75fr; gap:18px;
-      align-items:stretch;
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(234,240,255,.62);
+      margin:0 0 10px 0;
     }
+    h1,h2,h3{ margin:0; }
+    h1{
+      font-size: clamp(30px, 4vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    h2{
+      font-size: clamp(22px, 2.4vw, 34px);
+      letter-spacing:-.015em;
+    }
+    .sub{
+      margin-top:12px;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.55;
+      max-width: 62ch;
+    }
+
+    .panelGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      margin-top:20px;
+    }
+    @media (max-width: 920px){
+      .panelGrid{ grid-template-columns: 1fr; }
+    }
+
     .panel{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
@@ -130,301 +176,280 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(500px 220px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
-        radial-gradient(420px 240px at 80% 20%, rgba(66,196,255,.16), transparent 60%),
-        radial-gradient(520px 280px at 70% 90%, rgba(77,225,166,.10), transparent 60%);
+        radial-gradient(700px 220px at 20% 0%, rgba(124,92,255,.16), transparent 60%),
+        radial-gradient(600px 220px at 95% 10%, rgba(74,215,255,.14), transparent 60%);
       pointer-events:none;
     }
-    .panelInner{ position:relative; padding:28px }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      color:var(--muted);
-      font-weight:800;
-      letter-spacing:.22em;
-      font-size:12px;
-      text-transform:uppercase;
-    }
-    .kdot{
-      width:9px; height:9px; border-radius:50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(124,92,255,.18);
-    }
-    h1{
-      margin:12px 0 10px;
-      font-size:42px;
-      line-height:1.05;
-      letter-spacing:-.02em;
-    }
-    .lead{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.5;
-      max-width:56ch;
-    }
-    .heroCtas{
-      display:flex; gap:10px; align-items:center;
-      margin-top:18px;
-      flex-wrap:wrap;
-    }
-    .stepsRow{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      margin-top:18px;
-    }
-    .step{
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      padding:14px 14px 12px;
-    }
-    .stepNum{
-      width:28px; height:28px; border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:900;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      margin-bottom:10px;
-    }
-    .stepTitle{font-weight:900; margin:0 0 6px; font-size:14px}
-    .stepText{margin:0; color:var(--muted2); font-size:13px; line-height:1.45}
+    .panelInner{ position:relative; padding:22px; }
 
-    .rightCardTitle{
-      margin:0 0 10px;
-      font-size:16px;
-      font-weight:900;
-      letter-spacing:-.01em;
-    }
-    .miniList{margin:0; padding-left:18px; color:var(--muted); line-height:1.6; font-size:14px}
-    .note{
-      margin-top:14px;
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.45;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:12px;
-    }
-
-    /* Packages section */
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:18px;
-      margin-bottom:16px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size:28px;
-      letter-spacing:-.02em;
-      line-height:1.15;
-    }
-    .sectionHead p{margin:10px 0 0; color:var(--muted); line-height:1.5}
-    .rightHint{
-      color:var(--muted2);
-      font-size:13px;
-      max-width:38ch;
-      text-align:right;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:14px;
-    }
-
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      box-shadow: 0 14px 46px rgba(0,0,0,.30);
-      padding:18px;
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(380px 220px at 20% 10%, rgba(124,92,255,.14), transparent 60%),
-        radial-gradient(360px 220px at 80% 18%, rgba(66,196,255,.10), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .card > *{ position:relative }
-
-    .badgeRow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px}
-    .pill{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.02em;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
-    }
-    .pill.free{ border-color: rgba(77,225,166,.35); color: rgba(77,225,166,1); background: rgba(77,225,166,.10) }
-    .pill.paid{ border-color: rgba(124,92,255,.35); color: rgba(178,164,255,1); background: rgba(124,92,255,.10) }
-    .pill.dim{ color: var(--muted); background: rgba(255,255,255,.05) }
-
-    .card h3{
-      margin:0 0 8px;
-      font-size:20px;
-      letter-spacing:-.01em;
-      line-height:1.2;
-    }
-    .cardDesc{margin:0 0 14px; color:var(--muted); line-height:1.5; font-size:14px}
-
-    .label{
-      margin:12px 0 8px;
-      color: var(--muted2);
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-    }
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
     .chip{
-      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px;
       padding:7px 10px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      color: var(--muted);
-      font-weight:800;
-      font-size:12px;
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.82);
+      font-weight:700;
     }
-    .chip.strong{
-      color: var(--text);
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-    }
+    .chipFree{ border-color: rgba(47,228,167,.25); color: rgba(47,228,167,.95); background: rgba(47,228,167,.06); }
+    .chipPaid{ border-color: rgba(255,193,74,.25); color: rgba(255,193,74,.95); background: rgba(255,193,74,.06); }
+    .chipAccent{ border-color: rgba(124,92,255,.35); color: rgba(196,186,255,.95); background: rgba(124,92,255,.10); }
 
-    details{
-      margin-top:12px;
+    /* Steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    @media (max-width: 860px){
+      .steps{ grid-template-columns: 1fr; }
+    }
+    .step{
+      padding:14px 14px 12px;
       border-radius: 14px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
+      background: rgba(255,255,255,.04);
+    }
+    .stepNum{
+      width:26px; height:26px;
+      border-radius: 10px;
+      display:grid; place-items:center;
+      font-size:12px;
+      font-weight:900;
+      color:#0A0E18;
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
+      margin-bottom:10px;
+    }
+    .stepTitle{ font-weight:900; margin-bottom:6px; }
+    .stepText{ color: var(--muted); font-size:13px; line-height:1.45; }
+
+    /* Cards */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 1020px){
+      .grid3{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
       overflow:hidden;
+      position:relative;
+    }
+    .cardInner{ padding:18px; }
+    .cardTitle{
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:-.01em;
+      margin-top:6px;
+      margin-bottom:8px;
+    }
+    .cardDesc{
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin:0 0 14px 0;
+    }
+    .labelRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .pill{
+      font-size:11px;
+      padding:6px 9px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:900;
+      letter-spacing:.02em;
+      color: rgba(234,240,255,.78);
+    }
+    .pill.free{ color: rgba(47,228,167,.95); border-color: rgba(47,228,167,.25); background: rgba(47,228,167,.06); }
+    .pill.paid{ color: rgba(255,193,74,.95); border-color: rgba(255,193,74,.25); background: rgba(255,193,74,.06); }
+    .pill.price{ color: rgba(234,240,255,.88); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.07); }
+
+    .miniHead{
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: rgba(234,240,255,.55);
+      margin:14px 0 10px;
+    }
+    .tagRow{ display:flex; flex-wrap:wrap; gap:8px; }
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,240,255,.84);
+      font-weight:800;
+    }
+
+    /* Accordions */
+    details{
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px;
+      padding-top:12px;
     }
     summary{
-      cursor:pointer;
       list-style:none;
-      padding:12px 12px;
-      font-weight:900;
-      color: var(--text);
+      cursor:pointer;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      font-weight:900;
+      color: rgba(234,240,255,.92);
+      user-select:none;
     }
-    summary::-webkit-details-marker{display:none}
-    summary .sumHint{color:var(--muted2); font-weight:800; font-size:12px}
-    .detailsBody{padding:0 12px 12px; color:var(--muted); font-size:13px; line-height:1.55}
-    .bullets{margin:0; padding-left:18px}
-    .bullets li{margin:6px 0}
+    summary::-webkit-details-marker{ display:none; }
+    .caret{
+      width:28px; height:28px;
+      border-radius: 10px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      display:grid; place-items:center;
+      transition: transform .14s ease;
+      flex: 0 0 auto;
+    }
+    details[open] .caret{ transform: rotate(180deg); }
+    .rules{
+      margin:10px 0 0 0;
+      padding:0 0 0 18px;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
 
-    .ctaRow{
-      display:flex; gap:10px; align-items:center; justify-content:flex-start;
-      margin-top:14px;
-      flex-wrap:wrap;
+    /* Pricing layout */
+    .pricingGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
     }
+    @media (max-width: 980px){
+      .pricingGrid{ grid-template-columns: 1fr; }
+    }
+    .pricingCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .pricingInner{ padding:18px; }
+    .pricingFooter{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:8px; }
 
     /* FAQ */
     .faqGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:16px;
+    }
+    @media (max-width: 920px){
+      .faqGrid{ grid-template-columns: 1fr; }
     }
     .faqItem{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      padding:16px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:14px 14px 12px;
     }
-    .faqQ{font-weight:900; margin:0 0 8px}
-    .faqA{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
+    .faqQ{ font-weight:900; margin-bottom:6px; }
+    .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
     /* Footer */
     footer{
-      padding:26px 0 40px;
-      color: var(--muted2);
+      padding:34px 0 44px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(234,240,255,.55);
       font-size:12px;
-      line-height:1.55;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.10);
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr}
-      .stepsRow{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .faqGrid{grid-template-columns:1fr}
-      h1{font-size:36px}
-      .rightHint{text-align:left}
-      .navLinks{display:none}
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.06);
+      margin:18px 0;
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div class="nav">
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbarInner">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>SilverHawk Suite</div>
+          <div class="logo" title="SilverHawk">
+            <!-- Put your uploaded logo here: repo root file must be named 'logo.png' -->
+            <img src="logo.png" alt="SilverHawk logo" />
+          </div>
+          <div class="brandName">SilverHawk Suite</div>
         </div>
 
-        <div class="navLinks" aria-label="Primary">
+        <nav class="nav" aria-label="Primary">
+          <a href="#approach">Approach</a>
+          <a href="#playbooks">Playbooks</a>
           <a href="#packages">Packages</a>
           <a href="#faq">FAQ</a>
-        </div>
+        </nav>
 
-        <div class="navCtas">
-          <a class="btn ghost" href="#packages">View Packages</a>
-          <a class="btn primary" id="navGetAccess" href="#">Get Access</a>
+        <div class="ctaRow">
+          <a class="btn" href="#playbooks">View Playbooks</a>
+          <a class="btn btnPrimary" href="#packages">Get Access</a>
+          <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="heroGrid">
+  <!-- HERO / APPROACH -->
+  <section id="approach">
+    <div class="wrap">
+      <div class="panelGrid">
         <div class="panel">
           <div class="panelInner">
-            <div class="kicker"><span class="kdot"></span> SILVERHAWK APPROACH</div>
-            <h1>Pick a suite. Get a playbook + the exact indicators to execute it.</h1>
-            <p class="lead">
+            <p class="kicker">SilverHawk Approach</p>
+            <h1>Pick the playbook. The suite gives you the exact indicators to execute it.</h1>
+            <p class="sub">
               You’re not buying random indicators. You’re buying a repeatable workflow:
               <b>filter → setup → trigger → risk</b>.
             </p>
 
-            <div class="heroCtas">
-              <a class="btn primary" href="#packages">Start Free</a>
-              <a class="btn" href="#packages">See Pro & Elite</a>
+            <div class="ctaRow" style="margin-top:16px; flex-wrap:wrap;">
+              <a class="btn btnPrimary" id="ctaFree" href="#packages">Start Free (Core)</a>
+              <a class="btn" id="ctaPro" href="#packages">Get Pro (Prime MTF)</a>
             </div>
 
-            <div class="stepsRow" aria-label="How it works">
+            <div class="chips">
+              <span class="chip chipFree">2 Free Playbooks</span>
+              <span class="chip chipPaid">1 Pro Strategy</span>
+              <span class="chip chipAccent">Elite Add-On</span>
+            </div>
+
+            <div class="steps">
               <div class="step">
                 <div class="stepNum">1</div>
-                <p class="stepTitle">Choose a suite</p>
-                <p class="stepText">Start with a free suite. Upgrade only if you need MTF + execution tools.</p>
+                <div class="stepTitle">Choose a Playbook</div>
+                <div class="stepText">Breakouts, Liquidity Lines (free), or Prime MTF (Pro).</div>
               </div>
               <div class="step">
                 <div class="stepNum">2</div>
-                <p class="stepTitle">Use what’s included</p>
-                <p class="stepText">Each suite comes with a “strategy engine” + supporting modules.</p>
+                <div class="stepTitle">Use the Included Indicators</div>
+                <div class="stepText">Each playbook includes a “strategy engine” + supporting modules.</div>
               </div>
               <div class="step">
                 <div class="stepNum">3</div>
-                <p class="stepTitle">Trade the rules</p>
-                <p class="stepText">Clear entries + invalidation + targets. Less noise, more clarity.</p>
+                <div class="stepTitle">Follow Rules + Risk</div>
+                <div class="stepText">Clear invalidation + targets. Less noise, more consistency.</div>
               </div>
             </div>
           </div>
@@ -432,15 +457,33 @@
 
         <div class="panel">
           <div class="panelInner">
-            <p class="rightCardTitle">What you’re selling (simple)</p>
-            <ul class="miniList">
-              <li><b>Free:</b> 2 focused suites to learn the workflow.</li>
-              <li><b>Pro:</b> Prime MTF strategy suite for higher-quality confirmations.</li>
-              <li><b>Elite:</b> Decision & control toolkit for consistent execution.</li>
-            </ul>
-            <p class="note">
-              The strategy is the product. The indicators are the toolkit that executes it.
-              If you try to “collect indicators,” you’ll stay confused.
+            <p class="kicker">What you're selling</p>
+            <h2>Strategies first — but yes, you’re also selling indicators.</h2>
+            <p class="sub" style="max-width:unset;">
+              The <b>playbook</b> is the product. The <b>indicators</b> are the toolkit that executes it.
+            </p>
+
+            <div class="divider"></div>
+
+            <div style="display:grid; gap:10px;">
+              <div style="color:var(--muted); font-size:13px; line-height:1.55;">
+                <b style="color:var(--text);">Core Suite (Free):</b> Breakouts + Liquidity Lines playbooks, same core modules.
+              </div>
+              <div style="color:var(--muted); font-size:13px; line-height:1.55;">
+                <b style="color:var(--text);">Pro Suite (Paid):</b> Prime MTF playbook with higher-tier confirmation tools.
+              </div>
+              <div style="color:var(--muted); font-size:13px; line-height:1.55;">
+                <b style="color:var(--text);">Elite Toolkit (Add-On):</b> decision + control tools for consistent execution.
+              </div>
+            </div>
+
+            <div class="ctaRow" style="margin-top:16px; flex-wrap:wrap;">
+              <a class="btn btnPrimary" href="#playbooks">Pick a playbook</a>
+              <a class="btn" href="#packages">Compare packages</a>
+            </div>
+
+            <p class="mutedSmall">
+              Keep it simple: choose a playbook → use the included set → execute rules.
             </p>
           </div>
         </div>
@@ -448,267 +491,396 @@
     </div>
   </section>
 
-  <!-- PACKAGES -->
-  <section id="packages" class="section">
-    <div class="container">
+  <!-- PLAYBOOKS -->
+  <section id="playbooks">
+    <div class="wrap">
       <div class="sectionHead">
         <div>
-          <p class="kicker"><span class="kdot"></span> PACKAGES</p>
-          <h2>Four clear options</h2>
-          <p>Two free suites → then Pro → then Elite (if you want execution control).</p>
-        </div>
-        <div class="rightHint">
-          If you’re new: start with either Free suite. If you want MTF confirmations: Pro.
-          If you want decision control: Elite.
+          <p class="kicker">Playbooks</p>
+          <h2>Start with a playbook</h2>
+          <p class="sub">Pick one. We show what it is and what’s included — without forcing long reading.</p>
         </div>
       </div>
 
-      <div class="grid">
-        <!-- FREE: Breakouts -->
-        <article class="card">
-          <div class="badgeRow">
-            <span class="pill free">FREE</span>
-            <span class="pill dim">SilverHawk Core Suite</span>
-            <span class="pill dim">Breakouts Strategy</span>
-          </div>
-          <h3>Core Suite — Breakouts</h3>
-          <p class="cardDesc">For clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
-
-          <div class="label">Strategy engine</div>
-          <div class="chips">
-            <span class="chip strong">SH Breakouts</span>
-          </div>
-
-          <div class="label">Included indicators</div>
-          <div class="chips">
-            <span class="chip">SH Trend</span>
-            <span class="chip">SH HA Duo</span>
-            <span class="chip">SH Range Box</span>
-            <span class="chip">SH PatternScan</span>
-            <span class="chip">SH OB Radar</span>
-            <span class="chip">SH Structure Lite</span>
-          </div>
-
-          <details>
-            <summary>
-              Playbook rules
-              <span class="sumHint">filter → setup → trigger → risk</span>
-            </summary>
-            <div class="detailsBody">
-              <ul class="bullets">
-                <li><b>Filter:</b> trade with SH Trend + HA Duo alignment.</li>
-                <li><b>Setup:</b> range box + compression → wait for clean structure.</li>
-                <li><b>Trigger:</b> breakout confirmation (not early guessing).</li>
-                <li><b>Risk:</b> invalidation from structure/OB; targets from range projection + structure.</li>
-              </ul>
+      <div class="grid3">
+        <!-- Breakouts -->
+        <div class="card">
+          <div class="cardInner">
+            <div class="labelRow">
+              <span class="pill free">FREE</span>
+              <span class="pill">Core Suite</span>
             </div>
-          </details>
 
-          <div class="ctaRow">
-            <a class="btn primary" id="ctaFreeBreakouts" href="#">Get Free</a>
-            <a class="btn" href="#faq">Questions?</a>
-          </div>
-        </article>
+            <div class="cardTitle">Breakouts Playbook</div>
+            <p class="cardDesc">
+              For clean range breaks + momentum continuation. Built to reduce chop and random entries.
+            </p>
 
-        <!-- FREE: Liquidity Lines -->
-        <article class="card">
-          <div class="badgeRow">
-            <span class="pill free">FREE</span>
-            <span class="pill dim">SilverHawk Core Suite</span>
-            <span class="pill dim">Liquidity Lines Strategy</span>
-          </div>
-          <h3>Core Suite — Liquidity Lines</h3>
-          <p class="cardDesc">For sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.</p>
-
-          <div class="label">Strategy engine</div>
-          <div class="chips">
-            <span class="chip strong">SH Liquidity Lines</span>
-          </div>
-
-          <div class="label">Included indicators</div>
-          <div class="chips">
-            <span class="chip">SH Trend</span>
-            <span class="chip">SH HA Duo</span>
-            <span class="chip">SH Range Box</span>
-            <span class="chip">SH PatternScan</span>
-            <span class="chip">SH OB Radar</span>
-            <span class="chip">SH Structure Lite</span>
-          </div>
-
-          <details>
-            <summary>
-              Playbook rules
-              <span class="sumHint">filter → setup → trigger → risk</span>
-            </summary>
-            <div class="detailsBody">
-              <ul class="bullets">
-                <li><b>Filter:</b> only take setups with trend/HTF environment.</li>
-                <li><b>Setup:</b> liquidity pool forms + sweep into level/zone.</li>
-                <li><b>Trigger:</b> reclaim confirmation (close back through level + structure shift).</li>
-                <li><b>Risk:</b> invalidation beyond sweep; targets at next liquidity/structure objectives.</li>
-              </ul>
+            <div class="miniHead">Strategy engine</div>
+            <div class="tagRow">
+              <span class="tag">SH Breakouts</span>
+              <span class="tag">Range definition</span>
+              <span class="tag">Compression filter</span>
+              <span class="tag">Break confirmation</span>
             </div>
-          </details>
 
-          <div class="ctaRow">
-            <a class="btn primary" id="ctaFreeLiquidity" href="#">Get Free</a>
-            <a class="btn" href="#faq">Questions?</a>
-          </div>
-        </article>
-
-        <!-- PRO -->
-        <article class="card">
-          <div class="badgeRow">
-            <span class="pill paid">PAID</span>
-            <span class="pill dim">SilverHawk Pro Suite</span>
-            <span class="pill dim">Prime MTF Strategy</span>
-            <span class="pill dim">$24.90 / mo</span>
-          </div>
-          <h3>Pro Suite — Prime MTF</h3>
-          <p class="cardDesc">For traders who want multi-timeframe structure + confirmation stacking without overfitting.</p>
-
-          <div class="label">Included indicators</div>
-          <div class="chips">
-            <span class="chip strong">SH Prime MTF</span>
-            <span class="chip">SH CISD + DBOS Pro</span>
-            <span class="chip">SH VOL OM MTF</span>
-            <span class="chip">SH VRO Pro</span>
-            <span class="chip">SH HA Duo</span>
-            <span class="chip">SH Range Box</span>
-            <span class="chip">SH PatternScan</span>
-          </div>
-
-          <details>
-            <summary>Who Pro is for <span class="sumHint">and not for</span></summary>
-            <div class="detailsBody">
-              <ul class="bullets">
-                <li><b>For:</b> fewer trades, higher quality, HTF alignment, cleaner confirmations.</li>
-                <li><b>Not for:</b> signal-hunting, forcing trades, scalping every candle.</li>
-              </ul>
+            <div class="miniHead">Core modules</div>
+            <div class="tagRow">
+              <span class="tag">SH Trend</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+              <span class="tag">SH OB Radar</span>
+              <span class="tag">SH Structure Lite</span>
             </div>
-          </details>
 
-          <div class="ctaRow">
-            <a class="btn primary" id="ctaPro" href="#">Get Pro</a>
-            <a class="btn" href="#faq">Questions?</a>
-          </div>
-        </article>
-
-        <!-- ELITE -->
-        <article class="card">
-          <div class="badgeRow">
-            <span class="pill paid">PAID</span>
-            <span class="pill dim">SilverHawk Elite Toolkit</span>
-            <span class="pill dim">Execution Tools</span>
-            <span class="pill dim">$49.90 / mo</span>
-          </div>
-          <h3>Elite Toolkit — Decision & Control</h3>
-          <p class="cardDesc">Tools that make execution consistent: alignment, decision panels, scenario control.</p>
-
-          <div class="label">Included indicators</div>
-          <div class="chips">
-            <span class="chip strong">SH Decision Panel</span>
-            <span class="chip">SH HTF Align Pro</span>
-            <span class="chip">SH Scenario Matrix</span>
-            <span class="chip">SH Flip 4</span>
-          </div>
-
-          <details>
-            <summary>When Elite is worth it <span class="sumHint">(real criteria)</span></summary>
-            <div class="detailsBody">
-              <ul class="bullets">
-                <li>If you already know entries but you’re inconsistent.</li>
-                <li>If you want a “control room” that forces alignment + clarity.</li>
-                <li>If you keep losing from bad selection, not bad setups.</li>
+            <details>
+              <summary>
+                See playbook rules
+                <span class="caret">▾</span>
+              </summary>
+              <ul class="rules">
+                <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
+                <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
+                <li><b>Trigger:</b> breakout confirmation (not “guessing” inside chop).</li>
+                <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
               </ul>
-            </div>
-          </details>
+            </details>
 
-          <div class="ctaRow">
-            <a class="btn primary" id="ctaElite" href="#">Get Elite</a>
-            <a class="btn" href="#faq">Questions?</a>
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" href="#packages">Get Core Free</a>
+              <a class="btn" href="#packages">Compare</a>
+            </div>
           </div>
-        </article>
+        </div>
+
+        <!-- Liquidity Lines -->
+        <div class="card">
+          <div class="cardInner">
+            <div class="labelRow">
+              <span class="pill free">FREE</span>
+              <span class="pill">Core Suite</span>
+            </div>
+
+            <div class="cardTitle">Liquidity Lines Playbook</div>
+            <p class="cardDesc">
+              For sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing “support/resistance”.
+            </p>
+
+            <div class="miniHead">Strategy engine</div>
+            <div class="tagRow">
+              <span class="tag">SH Liquidity Lines</span>
+              <span class="tag">Liquidity mapping</span>
+              <span class="tag">Sweep detection</span>
+              <span class="tag">Reclaim logic</span>
+            </div>
+
+            <div class="miniHead">Core modules</div>
+            <div class="tagRow">
+              <span class="tag">SH Trend</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+              <span class="tag">SH OB Radar</span>
+              <span class="tag">SH Structure Lite</span>
+            </div>
+
+            <details>
+              <summary>
+                See playbook rules
+                <span class="caret">▾</span>
+              </summary>
+              <ul class="rules">
+                <li><b>Filter:</b> confirm context (trend/HTF bias) before hunting sweeps.</li>
+                <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
+                <li><b>Trigger:</b> reclaim + structure confirmation (one clean trigger, not stacked noise).</li>
+                <li><b>Risk:</b> invalidation beyond the sweep/structure; targets at next liquidity pool / structure.</li>
+              </ul>
+            </details>
+
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" href="#packages">Get Core Free</a>
+              <a class="btn" href="#packages">Compare</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prime MTF -->
+        <div class="card">
+          <div class="cardInner">
+            <div class="labelRow">
+              <span class="pill paid">PAID</span>
+              <span class="pill">Pro Suite</span>
+              <span class="pill">Prime MTF</span>
+            </div>
+
+            <div class="cardTitle">Prime MTF Playbook</div>
+            <p class="cardDesc">
+              Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.
+            </p>
+
+            <div class="miniHead">Included indicators</div>
+            <div class="tagRow">
+              <span class="tag">SH Prime MTF</span>
+              <span class="tag">SH CISD + DBOS Pro</span>
+              <span class="tag">SH VOL OM MTF</span>
+              <span class="tag">SH VRO Pro</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+            </div>
+
+            <details>
+              <summary>
+                Who Pro is for (and not for)
+                <span class="caret">▾</span>
+              </summary>
+              <ul class="rules">
+                <li><b>For:</b> traders who already have discipline and want cleaner selection + confirmation.</li>
+                <li><b>For:</b> anyone using HTF/LTF alignment and wants repeatable structure rules.</li>
+                <li><b>Not for:</b> “more signals” hunters. Pro is about quality, not quantity.</li>
+              </ul>
+            </details>
+
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" href="#packages">Get Pro</a>
+              <a class="btn" href="#faq">Questions?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES / PRICING -->
+  <section id="packages">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Packages</p>
+          <h2>Clear packages (no bundling needed)</h2>
+          <p class="sub">
+            Core is free. Pro is the Prime MTF strategy. Elite is an add-on you can use with Core <b>or</b> Pro.
+          </p>
+        </div>
       </div>
 
-      <div class="divider"></div>
-      <p style="margin:0; color:var(--muted2); font-size:13px; line-height:1.55;">
-        Pricing note: $24.90/mo for Pro is reasonable. $49.90/mo for Elite is high unless you show strong proof (demos + results + clear “what it replaces”).
-        If you want easier conversions: keep Elite as an add-on or offer a Pro+Elite bundle.
-      </p>
+      <div class="pricingGrid">
+        <!-- Pro -->
+        <div class="pricingCard">
+          <div class="pricingInner">
+            <div class="labelRow">
+              <span class="pill paid">PAID</span>
+              <span class="pill">SilverHawk Pro Suite</span>
+              <span class="pill">Prime MTF Strategy</span>
+              <span class="pill price">$24.90 / mo</span>
+            </div>
+
+            <div class="cardTitle">Pro Suite — Prime MTF</div>
+            <p class="cardDesc">
+              For traders who want multi-timeframe structure + confirmation stacking without overfitting.
+            </p>
+
+            <div class="miniHead">Included indicators</div>
+            <div class="tagRow">
+              <span class="tag">SH Prime MTF</span>
+              <span class="tag">SH CISD + DBOS Pro</span>
+              <span class="tag">SH VOL OM MTF</span>
+              <span class="tag">SH VRO Pro</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+            </div>
+
+            <details>
+              <summary>
+                What you’re paying for
+                <span class="caret">▾</span>
+              </summary>
+              <ul class="rules">
+                <li>Cleaner trade selection via MTF alignment.</li>
+                <li>Confirmation tools that reduce “false starts”.</li>
+                <li>Less randomness, more repeatability.</li>
+              </ul>
+            </details>
+
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" id="buyPro" href="#"
+                 >Get Pro</a>
+              <a class="btn" href="#faq">Questions?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elite Add-on -->
+        <div class="pricingCard">
+          <div class="pricingInner">
+            <div class="labelRow">
+              <span class="pill paid">PAID</span>
+              <span class="pill">SilverHawk Elite Toolkit</span>
+              <span class="pill">Add-On</span>
+              <span class="pill price">$29.90 / mo</span>
+            </div>
+
+            <div class="cardTitle">Elite Toolkit — Decision & Control</div>
+            <p class="cardDesc">
+              Execution tools that make trading consistent: alignment checks, decision panels, and scenario control.
+              <b>Works with Core or Pro.</b>
+            </p>
+
+            <div class="miniHead">Included indicators</div>
+            <div class="tagRow">
+              <span class="tag">SH Decision Panel</span>
+              <span class="tag">SH HTF Align Pro</span>
+              <span class="tag">SH Scenario Matrix</span>
+              <span class="tag">SH Flip 4</span>
+            </div>
+
+            <details>
+              <summary>
+                When Elite is worth it
+                <span class="caret">▾</span>
+              </summary>
+              <ul class="rules">
+                <li>You already have entries, but struggle with <b>selection</b> and <b>consistency</b>.</li>
+                <li>You want a “decision checkpoint” before pulling the trigger.</li>
+                <li>You want fewer trades — but better ones.</li>
+              </ul>
+            </details>
+
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" id="buyElite" href="#"
+                 >Get Elite</a>
+              <a class="btn" href="#faq">Questions?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;" class="pricingCard">
+        <div class="pricingInner">
+          <div class="labelRow">
+            <span class="pill free">FREE</span>
+            <span class="pill">SilverHawk Core Suite</span>
+            <span class="pill">2 Playbooks</span>
+          </div>
+
+          <div class="cardTitle">Core Suite (Free) — Breakouts + Liquidity Lines</div>
+          <p class="cardDesc">
+            Everything needed to execute the two free playbooks — no fluff. Start here to learn the workflow.
+          </p>
+
+          <div class="miniHead">Breakouts strategy includes</div>
+          <div class="tagRow">
+            <span class="tag">SH Breakouts</span>
+            <span class="tag">SH Trend</span>
+            <span class="tag">SH HA Duo</span>
+            <span class="tag">SH Range Box</span>
+            <span class="tag">SH PatternScan</span>
+            <span class="tag">SH OB Radar</span>
+            <span class="tag">SH Structure Lite</span>
+          </div>
+
+          <div class="miniHead">Liquidity Lines strategy includes</div>
+          <div class="tagRow">
+            <span class="tag">SH Liquidity Lines</span>
+            <span class="tag">SH Trend</span>
+            <span class="tag">SH HA Duo</span>
+            <span class="tag">SH Range Box</span>
+            <span class="tag">SH PatternScan</span>
+            <span class="tag">SH OB Radar</span>
+            <span class="tag">SH Structure Lite</span>
+          </div>
+
+          <div class="pricingFooter">
+            <a class="btn btnPrimary" id="getFree" href="#">Get Core Free</a>
+            <a class="btn" href="#playbooks">View playbooks</a>
+          </div>
+
+          <p class="mutedSmall">
+            Note: Pro and Elite are optional. Core is standalone.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
+  <section id="faq">
+    <div class="wrap">
       <div class="sectionHead">
         <div>
-          <p class="kicker"><span class="kdot"></span> FAQ</p>
+          <p class="kicker">FAQ</p>
           <h2>Quick answers</h2>
-          <p>No fluff. Just what people actually ask before buying.</p>
+          <p class="sub">No fluff. Just what people actually ask before buying.</p>
         </div>
-        <div class="rightHint">If a question is missing, add it here and the page stays clean.</div>
       </div>
 
       <div class="faqGrid">
         <div class="faqItem">
-          <p class="faqQ">Do I need Pro to use the free suites?</p>
-          <p class="faqA">No. The Core suites are standalone. Start there to learn the workflow and build consistency.</p>
+          <div class="faqQ">Do I need Pro to use the free suites?</div>
+          <p class="faqA">No. Core Suite is standalone. Start there to learn the workflow and build consistency.</p>
         </div>
+
         <div class="faqItem">
-          <p class="faqQ">What am I actually paying for in Pro?</p>
-          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
+          <div class="faqQ">What am I paying for in Pro?</div>
+          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not “more signals”.</p>
         </div>
+
         <div class="faqItem">
-          <p class="faqQ">Is Elite for everyone?</p>
+          <div class="faqQ">Is Elite for everyone?</div>
           <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
         </div>
+
         <div class="faqItem">
-          <p class="faqQ">Can I cancel anytime?</p>
-          <p class="faqA">Yes (set this based on Lemon Squeezy plan settings). Monthly should be cancel-anytime.</p>
+          <div class="faqQ">Can Elite be used with Core or Pro?</div>
+          <p class="faqA"><b>Yes.</b> Elite is an add-on. Use it alongside Core or alongside Pro. No bundle required.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can I cancel anytime?</div>
+          <p class="faqA">Yes (set this in your Lemon Squeezy subscription settings). Monthly should be cancel-anytime.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What platform is this for?</div>
+          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <div style="display:flex; gap:14px; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;">
-        <div>
-          <b>Risk Disclaimer:</b> Trading involves risk. Nothing here is financial advice. Use proper risk management.
-        </div>
-        <div style="opacity:.9">
-          © <span id="year"></span> SilverHawk Suite
-        </div>
+    <div class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
+        <div>© <span id="year"></span> SilverHawk Suite</div>
       </div>
     </div>
   </footer>
 
   <script>
-    // ==== 1) Put your Lemon Squeezy checkout links here ====
-    // Replace these with your real checkout URLs.
-    const LINKS = {
-      access:   "#", // top-right "Get Access" (you can route to pricing page or your best offer)
-      free:     "#", // if free is a waitlist or $0 checkout, put it here
-      pro:      "#", // Pro $24.90/mo checkout
-      elite:    "#"  // Elite $49.90/mo checkout
-    };
-
-    // ==== 2) Wire buttons ====
-    const setHref = (id, url) => {
-      const el = document.getElementById(id);
-      if (el && url) el.href = url;
-    };
-
-    setHref("navGetAccess", LINKS.access);
-    setHref("ctaFreeBreakouts", LINKS.free);
-    setHref("ctaFreeLiquidity", LINKS.free);
-    setHref("ctaPro", LINKS.pro);
-    setHref("ctaElite", LINKS.elite);
-
-    // ==== 3) Small utilities ====
+    // Update year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // TODO: Replace these 3 links with your Lemon Squeezy checkout URLs when ready.
+    const LINKS = {
+      free: "#",   // e.g. "https://your-lemonsqueezy-free-checkout"
+      pro:  "#",   // e.g. "https://your-lemonsqueezy-pro-checkout"
+      elite:"#",   // e.g. "https://your-lemonsqueezy-elite-checkout"
+    };
+
+    // Wire buttons
+    const byId = (id) => document.getElementById(id);
+    const safeSet = (id, url) => { const el = byId(id); if(el) el.href = url; };
+
+    safeSet("getFree", LINKS.free);
+    safeSet("ctaFree", LINKS.free);
+
+    safeSet("buyPro", LINKS.pro);
+    safeSet("ctaPro", LINKS.pro);
+
+    safeSet("buyElite", LINKS.elite);
   </script>
 </body>
 </html>
