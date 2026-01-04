@@ -395,12 +395,87 @@
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
-    /* Footer */
+    /* Footer (simple, clean) */
     footer{
-      padding:34px 0 44px;
+      padding:36px 0 28px;
       border-top: 1px solid rgba(255,255,255,.06);
-      color: rgba(234,240,255,.55);
+      color: rgba(234,240,255,.60);
       font-size:12px;
+    }
+    .footTop{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .footTop{ grid-template-columns: 1fr; }
+    }
+    .footBrand{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .footLogo{
+      width:44px; height:44px; border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .footName{
+      font-weight:950;
+      color: rgba(234,240,255,.92);
+      font-size:13px;
+      margin:0;
+      line-height:1.25;
+    }
+    .footTag{
+      margin:6px 0 0 0;
+      color: rgba(234,240,255,.60);
+      line-height:1.55;
+      max-width: 46ch;
+    }
+    .footColTitle{
+      font-weight:950;
+      color: rgba(234,240,255,.86);
+      margin:0 0 10px 0;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .footLinks{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .footLinks a{
+      color: rgba(234,240,255,.70);
+      padding:2px 0;
+      width:fit-content;
+      border-radius:8px;
+    }
+    .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
+    .footCard{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:12px 12px 10px;
+    }
+    .footCard p{ margin:0; color: rgba(234,240,255,.68); line-height:1.6; }
+    .footDivider{
+      margin:18px 0 14px;
+      height:1px;
+      background: rgba(255,255,255,.06);
+    }
+    .footBottom{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color: rgba(234,240,255,.55);
     }
   </style>
 </head>
@@ -411,7 +486,6 @@
       <div class="topbarInner">
         <div class="brand">
           <div class="logo" title="SilverHawk">
-            <!-- repo root: logo.png -->
             <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
@@ -419,7 +493,6 @@
 
         <nav class="nav" aria-label="Primary">
           <a href="index.html#suites">Suites</a>
-          <!-- Use your actual file name here. If your file is trade-alerts.html, keep this exactly. -->
           <a class="active" href="trade-alerts.html">Trade Alerts</a>
           <a href="index.html#proof">Reviews</a>
           <a href="index.html#pricing">Pricing</a>
@@ -566,7 +639,7 @@
           <ul class="bullets" style="margin-top:14px;">
             <li class="bItem"><span class="check">✓</span><span>Alerts only when conditions are clean</span></li>
             <li class="bItem"><span class="check">✓</span><span>Context + trigger + invalidation (no vague posts)</span></li>
-            <li class="bItem"><span class="check">✓</span><span>Consistency > dopamine</span></li>
+            <li class="bItem"><span class="check">✓</span><span>Consistency &gt; dopamine</span></li>
           </ul>
 
           <div class="actions">
@@ -640,9 +713,42 @@
     </div>
   </section>
 
+  <!-- UPDATED FOOTER -->
   <footer>
     <div class="wrap">
-      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div class="footTop">
+        <div class="footBrand">
+          <div class="footLogo" aria-hidden="true">
+            <img src="logo.png" alt="" />
+          </div>
+          <div>
+            <p class="footName">SilverHawk Suite</p>
+            <p class="footTag">Suites + Trade Alerts for structured execution. Fewer trades. Cleaner selection. Consistent risk.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Links</div>
+          <div class="footLinks">
+            <a href="index.html#suites">Suites</a>
+            <a href="trade-alerts.html">Trade Alerts</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="index.html#faq">FAQ</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Contact</div>
+          <div class="footCard">
+            <p><b>Support:</b> <span class="mono">support@silverhawksuite.com</span></p>
+            <p style="margin-top:6px;">Add this sender to contacts/safe senders to avoid missing alerts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footDivider"></div>
+
+      <div class="footBottom">
         <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
         <div>© <span id="year"></span> SilverHawk Suite</div>
       </div>
