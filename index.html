@@ -40,6 +40,7 @@
     }
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
+
     /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
@@ -118,6 +119,7 @@
       .mobileOnly{ display:inline-flex; }
       .brand{ min-width:auto; }
     }
+
     /* Sections */
     section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
@@ -221,6 +223,7 @@
       max-width: 80ch;
       text-align:left;
     }
+
     /* Suites cards */
     .grid4{
       display:grid;
@@ -397,11 +400,125 @@
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
+    /* FOOTER (UPDATED: same as trade-alerts) */
     footer{
-      padding:34px 0 44px;
+      position:relative;
+      padding:40px 0 28px;
       border-top: 1px solid rgba(255,255,255,.06);
-      color: rgba(234,240,255,.55);
+      color: rgba(234,240,255,.60);
       font-size:12px;
+
+      background:
+        radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
+        radial-gradient(900px 520px at 88% 10%, rgba(74,215,255,.10), transparent 64%),
+        linear-gradient(180deg, rgba(6,8,18,.00), rgba(6,8,18,.28));
+    }
+    .footTop{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .footTop{ grid-template-columns: 1fr; }
+    }
+    .footBrand{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .footLogo{
+      width:44px; height:44px; border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .footName{
+      font-weight:950;
+      color: rgba(234,240,255,.92);
+      font-size:13px;
+      margin:0;
+      line-height:1.25;
+    }
+    .footTag{
+      margin:6px 0 0 0;
+      color: rgba(234,240,255,.60);
+      line-height:1.55;
+      max-width: 46ch;
+    }
+    .footColTitle{
+      font-weight:950;
+      color: rgba(234,240,255,.86);
+      margin:0 0 10px 0;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .footLinks{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .footLinks a{
+      color: rgba(234,240,255,.70);
+      padding:2px 0;
+      width:fit-content;
+      border-radius:8px;
+    }
+    .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
+
+    .socialRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .iconBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.82);
+      font-weight:850;
+      font-size:13px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .iconBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      color: rgba(234,240,255,.92);
+    }
+    .icon{
+      width:18px; height:18px;
+      display:inline-grid;
+      place-items:center;
+      color: rgba(234,240,255,.80);
+    }
+    .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
+
+    .footHint{
+      margin:10px 0 0 0;
+      color: rgba(234,240,255,.60);
+      line-height:1.55;
+    }
+
+    .footDivider{
+      margin:18px 0 14px;
+      height:1px;
+      background: rgba(255,255,255,.06);
+    }
+    .footBottom{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color: rgba(234,240,255,.55);
     }
 
     /* Social proof toast */
@@ -453,7 +570,7 @@
         </div>
         <nav class="nav" aria-label="Primary">
           <a href="#suites">Suites</a>
-<a href="trade-alerts.html">Trade Alerts</a>
+          <a href="trade-alerts.html">Trade Alerts</a>
           <a href="#proof">Reviews</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -855,9 +972,67 @@
     </div>
   </section>
 
+  <!-- UPDATED FOOTER (same as Trade Alerts) -->
   <footer>
     <div class="wrap">
-      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div class="footTop">
+        <div class="footBrand">
+          <div class="footLogo" aria-hidden="true">
+            <img src="logo.png" alt="" />
+          </div>
+          <div>
+            <p class="footName">SilverHawk Suite</p>
+            <p class="footTag">Suites + Trade Alerts for structured execution. Fewer trades. Cleaner selection. Consistent risk.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Links</div>
+          <div class="footLinks">
+            <a href="#suites">Suites</a>
+            <a href="trade-alerts.html">Trade Alerts</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Social / Support</div>
+
+          <div class="socialRow">
+            <!-- Instagram: replace with your real handle -->
+            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Instagram
+            </a>
+
+            <!-- Email: opens compose with support prefilled -->
+            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Email Support
+            </a>
+          </div>
+
+          <p class="footHint">
+            Whitelist: <span class="mono">support@silverhawksuite.com</span> (contacts/safe senders) to avoid Promotions/Junk.
+          </p>
+        </div>
+      </div>
+
+      <div class="footDivider"></div>
+
+      <div class="footBottom">
         <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
         <div>© <span id="year"></span> SilverHawk Suite</div>
       </div>
@@ -896,11 +1071,6 @@
 
     // ================================
     // Social-proof popups (improved authenticity)
-    // - One toast visible at a time
-    // - Random delay 7–14s + occasional long gap
-    // - Cap total shown per session
-    // - Mixed verb/copy, no "grabbed"
-    // - aria-live, close button
     // ================================
     const toastContainer = document.getElementById("toast-container");
     const MAX_TOASTS = 20; // show fewer to feel real
@@ -925,36 +1095,7 @@
       { name: "Priya S.",    country: "India",        city: "Mumbai",       action: "joined Elite",                        when: "5 min ago" },
       { name: "Jonas W.",    country: "Denmark",      city: "Copenhagen",   action: "picked the Bundle",                   when: "5 min ago" },
       { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",                 when: "5 min ago" },
-      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",               when: "6 min ago" },
-      { name: "Valentina C.",country: "Argentina",    city: "Buenos Aires", action: "started Pro",                         when: "6 min ago" },
-      { name: "George P.",   country: "Greece",       city: "Athens",       action: "reviewing plan options",              when: "6 min ago" },
-      { name: "Nora L.",     country: "France",       city: "Paris",        action: "joined Bundle",                       when: "7 min ago" },
-      { name: "Ben T.",      country: "Australia",    city: "Sydney",       action: "downloaded Free Liquidity Lines",     when: "7 min ago" },
-      { name: "Fatima R.",   country: "Bahrain",      city: "Manama",       action: "enabled Elite add-on",                when: "7 min ago" },
-      { name: "Jasper K.",   country: "Netherlands",  city: "Amsterdam",    action: "upgraded to Pro",                     when: "8 min ago" },
-      { name: "Laura N.",    country: "USA",          city: "Chicago",      action: "looking at Elite controls",           when: "8 min ago" },
-      { name: "Victor H.",   country: "Vietnam",      city: "Hanoi",        action: "picked the Bundle",                   when: "8 min ago" },
-      { name: "Aisha M.",    country: "Qatar",        city: "Doha",         action: "started Pro monthly",                 when: "9 min ago" },
-      { name: "Ivan S.",     country: "Serbia",       city: "Belgrade",     action: "subscribed to Elite",                 when: "9 min ago" },
-      { name: "Léa D.",      country: "France",       city: "Lyon",         action: "added Bundle to cart",                when: "9 min ago" },
-      { name: "Zane P.",     country: "New Zealand",  city: "Auckland",     action: "browsing Pricing",                    when: "10 min ago" },
-      { name: "Kim J.",      country: "South Korea",  city: "Seoul",        action: "downloaded Free Breakouts",           when: "10 min ago" },
-      { name: "Samir B.",    country: "Jordan",       city: "Amman",        action: "joined Pro",                          when: "10 min ago" },
-      { name: "Helena F.",   country: "Finland",      city: "Helsinki",     action: "checking FAQ",                        when: "11 min ago" },
-      { name: "Lucas R.",    country: "Portugal",     city: "Porto",        action: "added Elite",                         when: "11 min ago" },
-      { name: "Tariq A.",    country: "Kuwait",       city: "Kuwait City",  action: "chose Pro + Elite",                    when: "11 min ago" },
-      { name: "Chloe W.",    country: "UK",           city: "Manchester",   action: "subscribed to Bundle",                when: "12 min ago" },
-      { name: "Diego M.",    country: "Chile",        city: "Santiago",     action: "joined Pro",                          when: "12 min ago" },
-      { name: "Rami S.",     country: "Lebanon",      city: "Beirut",       action: "viewing Suites",                      when: "12 min ago" },
-      { name: "Hannah C.",   country: "USA",          city: "San Diego",    action: "downloaded Free Liquidity Lines",     when: "13 min ago" },
-      { name: "Selim O.",    country: "Turkey",       city: "Istanbul",     action: "subscribed to Elite",                 when: "13 min ago" },
-      { name: "Petra V.",    country: "Czechia",      city: "Prague",       action: "upgraded to Bundle",                  when: "13 min ago" },
-      { name: "Andres L.",   country: "Colombia",     city: "Medellín",     action: "started Pro",                         when: "14 min ago" },
-      { name: "Maria J.",    country: "USA",          city: "Miami",        action: "reviewing Pricing",                   when: "14 min ago" },
-      { name: "Khaled F.",   country: "Oman",         city: "Muscat",       action: "added Elite",                         when: "14 min ago" },
-      { name: "Sven G.",     country: "Norway",       city: "Oslo",         action: "subscribed to Bundle",                when: "15 min ago" },
-      { name: "Ariana P.",   country: "Peru",         city: "Lima",         action: "downloaded Free Breakouts",           when: "15 min ago" },
-      { name: "Leo D.",      country: "USA",          city: "Denver",       action: "activated Pro",                       when: "15 min ago" },
+      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",               when: "6 min ago" }
     ];
 
     function shuffle(arr){
