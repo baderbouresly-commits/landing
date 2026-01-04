@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Suites + Indicators</title>
-  <meta name="description" content="Pick a suite. Get the exact indicators to execute it. 2 free suites, Pro (Prime MTF), and Elite (add-on toolkit)." />
+  <meta name="description" content="Pick a suite. Get the exact indicators to execute it. Free suites plus Pro and Elite add-ons." />
 
   <style>
     :root{
@@ -25,7 +25,6 @@
       --shadow2: 0 10px 30px rgba(0,0,0,.35);
       --max: 1120px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
@@ -39,10 +38,8 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
-
     /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
@@ -90,7 +87,6 @@
     }
     .nav a{ padding:8px 10px; border-radius:10px; }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-
     .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
       border:1px solid rgba(255,255,255,.12);
@@ -116,18 +112,15 @@
       color:#070A14;
     }
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
-
     .mobileOnly{ display:none; }
     @media (max-width: 860px){
       .nav{ display:none; }
       .mobileOnly{ display:inline-flex; }
       .brand{ min-width:auto; }
     }
-
     /* Sections */
     section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
-
     h1{
       font-size: clamp(34px, 5vw, 64px);
       line-height:1.02;
@@ -146,7 +139,6 @@
       max-width: 70ch;
       text-align:center;
     }
-
     .hero{ padding:70px 0 56px; }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
@@ -195,16 +187,10 @@
       font-weight:900;
       font-size:13px;
     }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.22);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset;
-    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.22); box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset; }
     .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
     .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
     .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
-
     .miniLine{
       margin:18px auto 0;
       max-width: 82ch;
@@ -213,7 +199,6 @@
       line-height:1.5;
       text-align:center;
     }
-
     .sectionHead{
       display:flex;
       align-items:flex-end;
@@ -236,7 +221,6 @@
       max-width: 80ch;
       text-align:left;
     }
-
     /* Suites cards */
     .grid4{
       display:grid;
@@ -255,123 +239,64 @@
       position:relative;
     }
     .cardInner{ padding:18px; }
-    .cardTitle{
-      font-size:18px;
-      font-weight:900;
-      letter-spacing:-.01em;
-      margin-top:8px;
-      margin-bottom:8px;
-    }
-    .cardDesc{
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.55;
-      margin:0 0 14px 0;
-    }
+    .cardTitle{ font-size:18px; font-weight:900; letter-spacing:-.01em; margin:8px 0; }
+    .cardDesc{ color: var(--muted); font-size:13px; line-height:1.55; margin:0 0 14px 0; }
     .labelRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .pill{
-      font-size:11px;
-      padding:6px 9px;
-      border-radius: 999px;
+      font-size:11px; padding:6px 9px; border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
-      font-weight:900;
-      letter-spacing:.02em;
-      color: rgba(234,240,255,.78);
+      font-weight:900; letter-spacing:.02em; color: rgba(234,240,255,.78);
     }
     .pill.free{ color: rgba(47,228,167,.95); border-color: rgba(47,228,167,.25); background: rgba(47,228,167,.06); }
     .pill.paid{ color: rgba(255,193,74,.95); border-color: rgba(255,193,74,.25); background: rgba(255,193,74,.06); }
 
-    .miniHead{
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color: rgba(234,240,255,.55);
-      margin:14px 0 10px;
-    }
+    .miniHead{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: rgba(234,240,255,.55); margin:14px 0 10px; }
     .tagRow{ display:flex; flex-wrap:wrap; gap:8px; }
     .tag{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius: 999px;
+      font-size:12px; padding:7px 10px; border-radius: 999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       color: rgba(234,240,255,.84);
       font-weight:800;
     }
-
-    details{
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top:14px;
-      padding-top:12px;
-    }
+    details{ border-top:1px solid rgba(255,255,255,.08); margin-top:14px; padding-top:12px; }
     summary{
-      list-style:none;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      font-weight:900;
-      color: rgba(234,240,255,.92);
-      user-select:none;
+      list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px;
+      font-weight:900; color: rgba(234,240,255,.92); user-select:none;
     }
     summary::-webkit-details-marker{ display:none; }
     .caret{
-      width:28px; height:28px;
-      border-radius: 10px;
+      width:28px; height:28px; border-radius: 10px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       display:grid; place-items:center;
-      transition: transform .14s ease;
-      flex: 0 0 auto;
+      transition: transform .14s ease; flex: 0 0 auto;
     }
     details[open] .caret{ transform: rotate(180deg); }
-    .rules{
-      margin:10px 0 0 0;
-      padding:0 0 0 18px;
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.6;
-    }
+    .rules{ margin:10px 0 0 0; padding:0 0 0 18px; color: var(--muted); font-size:13px; line-height:1.6; }
 
     .pricingFooter{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:10px; }
 
-    /* TESTIMONIALS (animated marquee) */
+    /* TESTIMONIALS (marquee) */
     .proofCard{
       border-radius: var(--radius);
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
+      overflow:hidden; position:relative;
     }
     .proofInner{ padding:18px; }
-
     .marquee{ position:relative; overflow:hidden; padding: 10px 0 6px; }
     .marquee::before,
     .marquee::after{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      width:90px;
-      pointer-events:none;
-      z-index:2;
+      content:""; position:absolute; top:0; bottom:0; width:90px; pointer-events:none; z-index:2;
     }
-    .marquee::before{
-      left:0;
-      background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0));
-    }
-    .marquee::after{
-      right:0;
-      background: linear-gradient(270deg, rgba(6,8,18,1), rgba(6,8,18,0));
-    }
+    .marquee::before{ left:0;  background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
+    .marquee::after { right:0; background: linear-gradient(270deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
     .track{
-      display:flex;
-      width:max-content;
-      gap:14px;
-      padding: 8px 10px;
+      display:flex; width:max-content; gap:14px; padding: 8px 10px;
       animation: scrollX 34s linear infinite;
     }
     .marquee:hover .track{ animation-play-state: paused; }
@@ -379,91 +304,38 @@
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-    @media (prefers-reduced-motion: reduce){
-      .track{ animation:none; }
-    }
+    @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
 
     .tCard{
-      width: 340px;
-      max-width: 78vw;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
+      width: 340px; max-width: 78vw;
+      border-radius: 16px; border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      padding:14px; display:flex; flex-direction:column; gap:10px;
     }
-    .tTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .who{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
+    .tTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .who{ display:flex; align-items:center; gap:10px; min-width:0; }
     .avatar{
-      width:34px; height:34px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      color: rgba(234,240,255,.92);
-      flex:0 0 auto;
+      width:34px; height:34px; border-radius: 999px; border:1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center; font-weight:900; color: rgba(234,240,255,.92); flex:0 0 auto;
       background: radial-gradient(120% 120% at 30% 20%, rgba(124,92,255,.45), rgba(74,215,255,.12));
     }
     .whoText{ min-width:0; }
-    .name{
-      font-weight:900;
-      font-size:13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .role{
-      color: var(--muted2);
-      font-size:12px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .stars{
-      font-size:12px;
-      letter-spacing:.06em;
-      color: rgba(255,193,74,.95);
-      flex:0 0 auto;
-    }
-    .tBody{
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.55;
-      margin:0;
-    }
-    .tTag{
-      margin-top:auto;
-      color: rgba(234,240,255,.65);
-      font-size:11px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-    }
+    .name{ font-weight:900; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .role{ color: var(--muted2); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .stars{ font-size:12px; letter-spacing:.06em; color: rgba(255,193,74,.95); flex:0 0 auto; }
+    .tBody{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
+    .tTag{ margin-top:auto; color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
 
-    /* PRICING (match your screenshot layout) */
+    /* PRICING */
     .pricingShell{
       border-radius: calc(var(--radius) + 6px);
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+      overflow:hidden; position:relative;
     }
     .pricingShell::before{
-      content:"";
-      position:absolute; inset:-2px;
+      content:""; position:absolute; inset:-2px;
       background:
         radial-gradient(850px 260px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
         radial-gradient(700px 260px at 92% 10%, rgba(74,215,255,.12), transparent 62%);
@@ -472,229 +344,56 @@
     .pricingInner{ position:relative; padding:18px; }
 
     .pricingHeaderRow{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;
       padding: 6px 6px 14px;
     }
-    .pricingHdrTitle{
-      font-weight:950;
-      font-size:14px;
-      letter-spacing:-.01em;
-    }
-    .pricingHdrSub{
-      margin-top:6px;
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.5;
-      max-width: 74ch;
-    }
-
-    .hdrRight{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .savePill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(47,228,167,.25);
-      background: rgba(47,228,167,.06);
-      color: rgba(47,228,167,.92);
-      font-weight:900;
-      font-size:12px;
-      white-space:nowrap;
-    }
-
-    .toggle{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:6px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .tBtn{
-      border:1px solid transparent;
-      background: transparent;
-      color: rgba(234,240,255,.75);
-      font-weight:900;
-      font-size:12px;
-      padding:8px 12px;
-      border-radius: 999px;
-      cursor:pointer;
-    }
-    .tBtn[aria-pressed="true"]{
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.12);
-      color: rgba(234,240,255,.95);
-    }
+    .pricingHdrTitle{ font-weight:950; font-size:14px; letter-spacing:-.01em; }
+    .pricingHdrSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 74ch; }
 
     .startFreeBar{
-      margin: 0 6px 14px;
-      padding: 14px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
+      margin: 0 6px 14px; padding: 14px;
+      border-radius: 16px; border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
-    .startFreeTitle{
-      font-weight:950;
-      letter-spacing:-.01em;
-    }
-    .startFreeSub{
-      margin-top:6px;
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.5;
-      max-width: 90ch;
-    }
+    .startFreeTitle{ font-weight:950; letter-spacing:-.01em; }
+    .startFreeSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 90ch; }
     .startFreeActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
     .pricingGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      padding: 0 6px 6px;
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:14px; padding: 0 6px 6px;
     }
-    @media (max-width: 980px){
-      .pricingGrid{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px){ .pricingGrid{ grid-template-columns: 1fr; } }
     .pCard{
       border-radius: var(--radius);
       background: rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
+      overflow:hidden; position:relative;
     }
     .pCardInner{ padding:18px; display:flex; flex-direction:column; height:100%; }
-
-    .pTop{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-      margin-bottom:10px;
-    }
+    .pTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
     .pName{ font-weight:950; font-size:16px; letter-spacing:-.01em; }
-    .pMeta{
-      color: rgba(234,240,255,.65);
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin-top:6px;
-    }
-    .badge{
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(124,92,255,.35);
-      background: rgba(124,92,255,.10);
-      color: rgba(196,186,255,.95);
-      font-weight:900;
-      white-space:nowrap;
-    }
-    .badgeRec{
-      border-color: rgba(47,228,167,.28);
-      background: rgba(47,228,167,.08);
-      color: rgba(47,228,167,.95);
-    }
-
-    .priceRow{
-      display:flex;
-      align-items:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-      margin: 6px 0 6px;
-    }
-    .priceBig{
-      font-size:48px;
-      line-height:1;
-      font-weight:950;
-      letter-spacing:-.03em;
-    }
-    .per{
-      font-weight:900;
-      color: rgba(234,240,255,.78);
-      margin-bottom:6px;
-    }
-    .priceSmall{
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.4;
-      margin: 0 0 10px 0;
-    }
-
-    .pList{
-      margin:12px 0 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-    }
-    .pList li{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      color: rgba(234,240,255,.82);
-      font-size:13px;
-      line-height:1.4;
-    }
-    .check{
-      width:18px; height:18px;
-      border-radius:999px;
-      background: rgba(47,228,167,.18);
-      border:1px solid rgba(47,228,167,.25);
-      display:grid;
-      place-items:center;
-      flex: 0 0 auto;
-      margin-top:1px;
-      color: rgba(47,228,167,.95);
-      font-weight:950;
-      font-size:12px;
-    }
-
-    .pCtas{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      padding-top:14px;
-    }
-
-    .notesRow{
-      padding: 10px 6px 2px;
-      color: rgba(234,240,255,.55);
-      font-size:12px;
-      line-height:1.45;
-    }
+    .pMeta{ color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.12em; text-transform:uppercase; margin-top:6px; }
+    .badge{ font-size:11px; padding:6px 10px; border-radius:999px; border:1px solid rgba(124,92,255,.35); background: rgba(124,92,255,.10); color: rgba(196,186,255,.95); font-weight:900; white-space:nowrap; }
+    .badgeRec{ border-color: rgba(47,228,167,.28); background: rgba(47,228,167,.08); color: rgba(47,228,167,.95); }
+    .priceRow{ display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; margin: 6px 0 6px; }
+    .priceBig{ font-size:48px; line-height:1; font-weight:950; letter-spacing:-.03em; }
+    .per{ font-weight:900; color: rgba(234,240,255,.78); margin-bottom:6px; }
+    .priceSmall{ color: var(--muted); font-size:12px; line-height:1.4; margin: 0 0 10px 0; }
+    .pList{ margin:12px 0 0 0; padding:0; list-style:none; display:grid; gap:10px; }
+    .pList li{ display:flex; gap:10px; align-items:flex-start; color: rgba(234,240,255,.82); font-size:13px; line-height:1.4; }
+    .check{ width:18px; height:18px; border-radius:999px; background: rgba(47,228,167,.18); border:1px solid rgba(47,228,167,.25); display:grid; place-items:center; flex: 0 0 auto; margin-top:1px; color: rgba(47,228,167,.95); font-weight:950; font-size:12px; }
+    .pCtas{ margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; padding-top:14px; }
+    .notesRow{ padding: 10px 6px 2px; color: rgba(234,240,255,.55); font-size:12px; line-height:1.45; }
 
     /* FAQ */
     .faqGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:16px;
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;
     }
-    @media (max-width: 920px){
-      .faqGrid{ grid-template-columns: 1fr; }
-    }
-    .faqItem{
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding:14px 14px 12px;
-    }
+    @media (max-width: 920px){ .faqGrid{ grid-template-columns: 1fr; } }
+    .faqItem{ border-radius: 16px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:14px 14px 12px; }
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
@@ -707,58 +406,37 @@
 
     /* Social proof toast */
     .toast-container{
-      position:fixed;
-      bottom:18px;
-      left:18px;
-      z-index:9999;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      pointer-events:none;
+      position:fixed; bottom:18px; left:18px; z-index:9999;
+      display:flex; flex-direction:column; gap:10px; pointer-events:none;
     }
     .toast{
-      min-width:260px;
-      max-width:320px;
-      padding:12px 14px;
-      border-radius:14px;
+      min-width:260px; max-width:320px;
+      padding:12px 14px; border-radius:14px;
       background: rgba(10,14,28,0.92);
       border:1px solid rgba(255,255,255,0.08);
       box-shadow: 0 16px 40px rgba(0,0,0,0.35);
-      color: var(--text);
-      font-size:13px;
-      line-height:1.45;
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      opacity:0;
-      transform: translateY(8px);
+      color: var(--text); font-size:13px; line-height:1.45;
+      display:flex; align-items:flex-start; gap:12px;
+      opacity:0; transform: translateY(8px);
       transition: opacity .25s ease, transform .25s ease;
       pointer-events:auto;
     }
     .toast.show{ opacity:1; transform: translateY(0); }
     .toast.hide{ opacity:0; transform: translateY(8px); }
     .toast-logo{
-      width:32px; height:32px;
-      border-radius:10px;
+      width:32px; height:32px; border-radius:10px;
       border:1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.08);
       display:grid; place-items:center;
-      font-weight:900;
-      color:#fff;
-      flex:0 0 auto;
+      font-weight:900; color:#fff; flex:0 0 auto;
     }
     .toast-body{ flex:1; }
     .toast-title{ font-weight:900; font-size:13px; margin-bottom:4px; }
     .toast-sub{ color: var(--muted2); font-size:12px; }
     .toast-time{ color: var(--muted2); font-size:11px; margin-top:6px; }
     .toast-close{
-      background: transparent;
-      border:none;
-      color: var(--muted2);
-      cursor:pointer;
-      padding:0;
-      font-size:14px;
-      line-height:1;
+      background: transparent; border:none; color: var(--muted2);
+      cursor:pointer; padding:0; font-size:14px; line-height:1;
     }
   </style>
 </head>
@@ -773,14 +451,12 @@
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
-
         <nav class="nav" aria-label="Primary">
           <a href="#suites">Suites</a>
           <a href="#proof">Reviews</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
-
         <div class="ctaRow">
           <a class="btn" href="#suites">View Suites</a>
           <a class="btn btnPrimary" href="#pricing" id="ctaTop">Get Access</a>
@@ -800,18 +476,15 @@
             Stop collecting random tools. Use a repeatable workflow:
             <b>filter → setup → trigger → risk</b>.
           </p>
-
           <div class="heroCtas">
             <a class="btn btnPrimary" href="#pricing" id="ctaPrimary">Get Access</a>
             <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
-
           <div class="heroStats" aria-label="Key highlights">
             <div class="statPill"><span class="dot good"></span> 2 Free Suites</div>
             <div class="statPill"><span class="dot warn"></span> Pro: Prime MTF</div>
             <div class="statPill"><span class="dot accent"></span> Elite Add-On Toolkit</div>
           </div>
-
           <div class="miniLine">
             Built for clarity and execution. Fewer trades, cleaner selection, consistent risk.
           </div>
@@ -835,130 +508,90 @@
         <div class="proofInner">
           <div class="marquee" aria-label="User testimonials">
             <div class="track">
-              <!-- SET A -->
+              <!-- Testimonials duplicated for loop -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">K</div>
-                    <div class="whoText">
-                      <div class="name">K. Thomas</div>
-                      <div class="role">Prop Challenge</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">K. Thomas</div><div class="role">Prop Challenge</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
                 <div class="tTag">Elite Toolkit</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">J</div>
-                    <div class="whoText">
-                      <div class="name">J. Almutairi</div>
-                      <div class="role">Options Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">J. Almutairi</div><div class="role">Options Trader</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
                 <div class="tTag">Workflow</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">R</div>
-                    <div class="whoText">
-                      <div class="name">R. Singh</div>
-                      <div class="role">Crypto Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">R. Singh</div><div class="role">Crypto Trader</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
                 <div class="tTag">Confirmations</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">H</div>
-                    <div class="whoText">
-                      <div class="name">H. Alhajeri</div>
-                      <div class="role">Scalper (15m/5m)</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">H. Alhajeri</div><div class="role">Scalper (15m/5m)</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
                 <div class="tTag">Quality &gt; Quantity</div>
               </article>
-
-              <!-- SET B (duplicate for seamless loop) -->
+              <!-- duplicate set for seamless scroll -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">K</div>
-                    <div class="whoText">
-                      <div class="name">K. Thomas</div>
-                      <div class="role">Prop Challenge</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">K. Thomas</div><div class="role">Prop Challenge</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
                 <div class="tTag">Elite Toolkit</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">J</div>
-                    <div class="whoText">
-                      <div class="name">J. Almutairi</div>
-                      <div class="role">Options Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">J. Almutairi</div><div class="role">Options Trader</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
                 <div class="tTag">Workflow</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">R</div>
-                    <div class="whoText">
-                      <div class="name">R. Singh</div>
-                      <div class="role">Crypto Trader</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">R. Singh</div><div class="role">Crypto Trader</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
                 <div class="tTag">Confirmations</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
                     <div class="avatar">H</div>
-                    <div class="whoText">
-                      <div class="name">H. Alhajeri</div>
-                      <div class="role">Scalper (15m/5m)</div>
-                    </div>
-                  </div>
-                  <div class="stars">★★★★★</div>
+                    <div class="whoText"><div class="name">H. Alhajeri</div><div class="role">Scalper (15m/5m)</div></div>
+                  </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
                 <div class="tTag">Quality &gt; Quantity</div>
               </article>
             </div>
           </div>
-
           <p class="mutedSmall" style="margin-top:10px;">Hover to pause the scroll.</p>
         </div>
       </div>
@@ -981,34 +614,24 @@
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill free">FREE</span>
-              <span class="pill">Breakouts Suite</span>
+              <span class="pill free">FREE</span><span class="pill">Breakouts Suite</span>
             </div>
-
             <div class="cardTitle">Breakouts Suite (Free)</div>
             <p class="cardDesc">Clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
-
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Breakouts</span>
-              <span class="tag">SH Trend</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-              <span class="tag">SH OB Radar</span>
-              <span class="tag">SH Structure Lite</span>
+              <span class="tag">SH Breakouts</span><span class="tag">SH Trend</span><span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span><span class="tag">SH OB Radar</span><span class="tag">SH Structure Lite</span>
             </div>
-
             <details>
               <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
-                <li><b>Filter:</b> trade only with trend alignment (Trend + HA Duo agreement).</li>
+                <li><b>Filter:</b> trend alignment (Trend + HA Duo agreement).</li>
                 <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
-                <li><b>Trigger:</b> breakout confirmation (not guessing inside chop).</li>
+                <li><b>Trigger:</b> breakout confirmation.</li>
                 <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
               </ul>
             </details>
-
             <div class="pricingFooter">
               <a class="btn btnPrimary" id="getFreeBreakouts" href="#">Get Free</a>
               <a class="btn" href="#pricing">Upgrade</a>
@@ -1020,34 +643,24 @@
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill free">FREE</span>
-              <span class="pill">Liquidity Lines Suite</span>
+              <span class="pill free">FREE</span><span class="pill">Liquidity Lines Suite</span>
             </div>
-
             <div class="cardTitle">Liquidity Lines Suite (Free)</div>
-            <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing support/resistance.</p>
-
+            <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing S/R.</p>
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Liquidity Lines</span>
-              <span class="tag">SH Trend</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-              <span class="tag">SH OB Radar</span>
-              <span class="tag">SH Structure Lite</span>
+              <span class="tag">SH Liquidity Lines</span><span class="tag">SH Trend</span><span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span><span class="tag">SH OB Radar</span><span class="tag">SH Structure Lite</span>
             </div>
-
             <details>
               <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
-                <li><b>Filter:</b> confirm context (trend/HTF bias) before hunting sweeps.</li>
+                <li><b>Filter:</b> confirm context (trend/HTF bias) before sweeps.</li>
                 <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
-                <li><b>Trigger:</b> reclaim + structure confirmation (one clean trigger, not stacked noise).</li>
-                <li><b>Risk:</b> invalidation beyond the sweep/structure; targets at next liquidity pool / structure.</li>
+                <li><b>Trigger:</b> reclaim + structure confirmation.</li>
+                <li><b>Risk:</b> invalidation beyond the sweep/structure; targets at next liquidity/structure.</li>
               </ul>
             </details>
-
             <div class="pricingFooter">
               <a class="btn btnPrimary" id="getFreeLiquidity" href="#">Get Free</a>
               <a class="btn" href="#pricing">Upgrade</a>
@@ -1055,58 +668,41 @@
           </div>
         </div>
 
-        <!-- PRO (info card) -->
+        <!-- PRO -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill paid">PAID</span>
-              <span class="pill">Pro Suite</span>
-              <span class="pill">Prime MTF</span>
+              <span class="pill paid">PAID</span><span class="pill">Pro Suite</span><span class="pill">Prime MTF</span>
             </div>
-
             <div class="cardTitle">Pro Suite — Prime MTF</div>
             <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
-
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Prime MTF</span>
-              <span class="tag">SH CISD + DBOS Pro</span>
-              <span class="tag">SH VOL OM MTF</span>
-              <span class="tag">SH VRO Pro</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
+              <span class="tag">SH Prime MTF</span><span class="tag">SH CISD + DBOS Pro</span><span class="tag">SH VOL OM MTF</span>
+              <span class="tag">SH VRO Pro</span><span class="tag">SH HA Duo</span><span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span>
             </div>
-
             <div class="pricingFooter">
               <a class="btn btnPrimary" href="#pricing">Choose Plan</a>
             </div>
           </div>
         </div>
 
-        <!-- ELITE (info card) -->
+        <!-- ELITE -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill paid">PAID</span>
-              <span class="pill">Elite Toolkit</span>
-              <span class="pill">Add-On</span>
+              <span class="pill paid">PAID</span><span class="pill">Elite Toolkit</span><span class="pill">Add-On</span>
             </div>
-
             <div class="cardTitle">Elite Toolkit — Decision & Control</div>
             <p class="cardDesc">
               Execution tools that make trading consistent: alignment checks, decision panels, and scenario control.
               <b>Works with Free or Pro.</b>
             </p>
-
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Decision Panel</span>
-              <span class="tag">SH HTF Align Pro</span>
-              <span class="tag">SH Scenario Matrix</span>
-              <span class="tag">SH Flip 4</span>
+              <span class="tag">SH Decision Panel</span><span class="tag">SH HTF Align Pro</span>
+              <span class="tag">SH Scenario Matrix</span><span class="tag">SH Flip 4</span>
             </div>
-
             <div class="pricingFooter">
               <a class="btn btnPrimary" href="#pricing">Choose Plan</a>
             </div>
@@ -1116,14 +712,14 @@
     </div>
   </section>
 
-  <!-- PRICING (FIXED) -->
+  <!-- PRICING (Monthly only) -->
   <section id="pricing">
     <div class="wrap">
       <div class="sectionHead">
         <div>
           <p class="kicker">Pricing</p>
           <h2>Paid access</h2>
-          <p class="subLeft">Choose monthly or yearly. Yearly is discounted and keeps you consistent.</p>
+          <p class="subLeft">One simple monthly option for each product. Cancel anytime.</p>
         </div>
       </div>
 
@@ -1132,25 +728,14 @@
           <div class="pricingHeaderRow">
             <div>
               <div class="pricingHdrTitle">Paid Access</div>
-              <div class="pricingHdrSub">Pro is the strategy. Elite is the execution control. Bundle is best value.</div>
-            </div>
-
-            <div class="hdrRight">
-              <span class="savePill" id="savePill">Yearly saves 2 months</span>
-              <div class="toggle" role="group" aria-label="Billing period">
-                <button class="tBtn" id="btnMonthly" aria-pressed="true" type="button">Monthly</button>
-                <button class="tBtn" id="btnYearly" aria-pressed="false" type="button">Yearly</button>
-              </div>
+              <div class="pricingHdrSub">Pro is the strategy. Elite is execution control. Bundle combines both.</div>
             </div>
           </div>
 
           <div class="startFreeBar">
             <div>
               <div class="startFreeTitle">Start Free: Breakouts + Liquidity Lines</div>
-              <div class="startFreeSub">
-                Get the workflow first. When you want MTF structure and higher-tier confirmation, upgrade to Pro.
-                If execution is your weakness, add Elite.
-              </div>
+              <div class="startFreeSub">Get the workflow first. Add Pro for MTF structure. Add Elite for tighter execution.</div>
             </div>
             <div class="startFreeActions">
               <a class="btn" href="#suites" id="seeFreeSuites">See Free Suites</a>
@@ -1168,19 +753,16 @@
                     <div class="pMeta">Prime MTF strategy</div>
                   </div>
                 </div>
-
                 <div class="priceRow">
                   <div class="priceBig" id="proPrice">$24.90</div>
                   <div class="per" id="proPer">/mo</div>
                 </div>
                 <p class="priceSmall" id="proSmall">Billed monthly. Cancel anytime.</p>
-
                 <ul class="pList">
                   <li><span class="check">✓</span>Prime MTF engine + confirmation tools</li>
                   <li><span class="check">✓</span>Cleaner selection (fewer, better setups)</li>
                   <li><span class="check">✓</span>Rules-first workflow (not random alerts)</li>
                 </ul>
-
                 <div class="pCtas">
                   <a class="btn btnPrimary" id="buyPro" href="#">Get Pro</a>
                   <a class="btn" href="#faq">Questions?</a>
@@ -1197,19 +779,16 @@
                     <div class="pMeta">Add-on toolkit</div>
                   </div>
                 </div>
-
                 <div class="priceRow">
                   <div class="priceBig" id="elitePrice">$29.90</div>
                   <div class="per" id="elitePer">/mo</div>
                 </div>
                 <p class="priceSmall" id="eliteSmall">Works with Free or Pro.</p>
-
                 <ul class="pList">
                   <li><span class="check">✓</span>Decision panel + alignment checks</li>
                   <li><span class="check">✓</span>Scenario control tools for consistency</li>
                   <li><span class="check">✓</span>“Checkpoint” before you click</li>
                 </ul>
-
                 <div class="pCtas">
                   <a class="btn btnPrimary" id="buyElite" href="#">Get Elite</a>
                   <a class="btn" href="#faq">Questions?</a>
@@ -1227,33 +806,27 @@
                   </div>
                   <span class="badge badgeRec">Recommended</span>
                 </div>
-
                 <div class="priceRow">
                   <div class="priceBig" id="bundlePrice">$44.90</div>
                   <div class="per" id="bundlePer">/mo</div>
                 </div>
                 <p class="priceSmall" id="bundleSmall">Best value: strategy + execution control.</p>
-
                 <ul class="pList">
                   <li><span class="check">✓</span>Everything in Pro</li>
                   <li><span class="check">✓</span>Everything in Elite</li>
                   <li><span class="check">✓</span>Discount vs buying separately</li>
                 </ul>
-
                 <div class="pCtas">
                   <a class="btn btnPrimary" id="buyBundle" href="#">Get Bundle</a>
                   <a class="btn" href="#faq">Questions?</a>
                 </div>
-
-                <p class="mutedSmall" style="margin-top:10px;">
-                  The full system: MTF strategy + execution control so you trade fewer, better, and more consistently.
-                </p>
+                <p class="mutedSmall" style="margin-top:10px;">Full system: MTF strategy + execution control.</p>
               </div>
             </div>
           </div>
 
           <div class="notesRow">
-            Notes: Prices shown exclude any platform taxes/fees. Trading involves risk. Nothing here is financial advice.
+            Notes: Prices exclude any platform taxes/fees. Trading involves risk. Nothing here is financial advice.
           </div>
         </div>
       </div>
@@ -1270,37 +843,13 @@
           <p class="subLeft">No fluff. Just what people actually ask before buying.</p>
         </div>
       </div>
-
       <div class="faqGrid">
-        <div class="faqItem">
-          <div class="faqQ">Do I need Pro to use the free suites?</div>
-          <p class="faqA">No. The free suites are standalone.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">What am I paying for in Pro?</div>
-          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Is Elite for everyone?</div>
-          <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
-          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Can I cancel anytime?</div>
-          <p class="faqA">Yes (set this in your Lemon Squeezy subscription settings). Monthly should be cancel-anytime.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">What platform is this for?</div>
-          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
-        </div>
+        <div class="faqItem"><div class="faqQ">Do I need Pro to use the free suites?</div><p class="faqA">No. The free suites are standalone.</p></div>
+        <div class="faqItem"><div class="faqQ">What am I paying for in Pro?</div><p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p></div>
+        <div class="faqItem"><div class="faqQ">Is Elite for everyone?</div><p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p></div>
+        <div class="faqItem"><div class="faqQ">Can Elite be used with the free suites or Pro?</div><p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p></div>
+        <div class="faqItem"><div class="faqQ">Can I cancel anytime?</div><p class="faqA">Yes. Monthly billing; cancel anytime.</p></div>
+        <div class="faqItem"><div class="faqQ">What platform is this for?</div><p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p></div>
       </div>
     </div>
   </section>
@@ -1320,155 +869,91 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Replace with your Lemon Squeezy checkout URLs
+    // Replace with your checkout URLs (monthly only)
     const LINKS = {
       freeBreakouts: "#",
       freeLiquidity: "#",
       pro_monthly: "#",
-      pro_yearly: "#",
       elite_monthly: "#",
-      elite_yearly: "#",
       bundle_monthly: "#",
-      bundle_yearly: "#",
     };
 
     const safeSet = (id, url) => {
       const el = document.getElementById(id);
       if (el) el.href = url;
     };
-
     safeSet("getFreeBreakouts", LINKS.freeBreakouts);
     safeSet("getFreeLiquidity", LINKS.freeLiquidity);
 
-    // Pricing logic (FIX)
-    const PRICING = {
-      monthly: {
-        savePill: "Yearly saves 2 months",
-        pro:   { big: "$24.90", per: "/mo", small: "Billed monthly. Cancel anytime.", link: LINKS.pro_monthly },
-        elite: { big: "$29.90", per: "/mo", small: "Works with Free or Pro.", link: LINKS.elite_monthly },
-        bundle:{ big: "$44.90", per: "/mo", small: "Best value: strategy + execution control.", link: LINKS.bundle_monthly },
-      },
-      yearly: {
-        savePill: "Yearly saves 2 months",
-        pro:   { big: "$249", per: "/yr", small: "($20.75/mo billed yearly)", link: LINKS.pro_yearly },
-        elite: { big: "$299", per: "/yr", small: "($24.92/mo billed yearly)", link: LINKS.elite_yearly },
-        bundle:{ big: "$449", per: "/yr", small: "($37.42/mo billed yearly)", link: LINKS.bundle_yearly },
-      }
-    };
-
-    const btnMonthly = document.getElementById("btnMonthly");
-    const btnYearly  = document.getElementById("btnYearly");
-    const savePill   = document.getElementById("savePill");
-
-    const proPrice   = document.getElementById("proPrice");
-    const proPer     = document.getElementById("proPer");
-    const proSmall   = document.getElementById("proSmall");
-
-    const elitePrice = document.getElementById("elitePrice");
-    const elitePer   = document.getElementById("elitePer");
-    const eliteSmall = document.getElementById("eliteSmall");
-
-    const bundlePrice= document.getElementById("bundlePrice");
-    const bundlePer  = document.getElementById("bundlePer");
-    const bundleSmall= document.getElementById("bundleSmall");
-
+    // Pricing (monthly only)
     const buyPro     = document.getElementById("buyPro");
     const buyElite   = document.getElementById("buyElite");
     const buyBundle  = document.getElementById("buyBundle");
-
-    let mode = "monthly"; // default monthly
-
-    function setMode(next){
-      mode = next;
-
-      btnMonthly.setAttribute("aria-pressed", mode === "monthly" ? "true" : "false");
-      btnYearly.setAttribute("aria-pressed", mode === "yearly" ? "true" : "false");
-
-      const d = PRICING[mode];
-      savePill.textContent = d.savePill;
-
-      proPrice.textContent = d.pro.big;
-      proPer.textContent   = d.pro.per;
-      proSmall.textContent = d.pro.small;
-
-      elitePrice.textContent = d.elite.big;
-      elitePer.textContent   = d.elite.per;
-      eliteSmall.textContent = d.elite.small;
-
-      bundlePrice.textContent = d.bundle.big;
-      bundlePer.textContent   = d.bundle.per;
-      bundleSmall.textContent = d.bundle.small;
-
-      if (buyPro)    buyPro.href    = d.pro.link;
-      if (buyElite)  buyElite.href  = d.elite.link;
-      if (buyBundle) buyBundle.href = d.bundle.link;
-    }
-
-    btnMonthly.addEventListener("click", () => setMode("monthly"));
-    btnYearly .addEventListener("click", () => setMode("yearly"));
-
-    setMode(mode);
+    if (buyPro)    buyPro.href    = LINKS.pro_monthly;
+    if (buyElite)  buyElite.href  = LINKS.elite_monthly;
+    if (buyBundle) buyBundle.href = LINKS.bundle_monthly;
 
     // ================================
-    // Social-proof popups (improved UX)
+    // Social-proof popups (improved authenticity)
     // - One toast visible at a time
     // - Random delay 7–14s + occasional long gap
     // - Cap total shown per session
-    // - Aria-live, close button
+    // - Mixed verb/copy, no "grabbed"
+    // - aria-live, close button
     // ================================
     const toastContainer = document.getElementById("toast-container");
-    const MAX_TOASTS = 22;
+    const MAX_TOASTS = 20; // show fewer to feel real
 
     const notifications = [
-      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "just subscribed to Elite",            when: "just now" },
-      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "joined Pro monthly",                  when: "moments ago" },
-      { name: "Noah B.",     country: "UK",           city: "London",       action: "upgraded to Bundle yearly",           when: "moments ago" },
-      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is viewing Pricing",                  when: "moments ago" },
-      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "grabbed Breakouts (Free)",            when: "1 min ago" },
-      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "started a Pro trial",                 when: "1 min ago" },
-      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "joined Elite monthly",                when: "1 min ago" },
-      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "viewing Liquidity Lines suite",       when: "2 min ago" },
-      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "bought Pro + Elite Bundle",           when: "2 min ago" },
-      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "subscribed to Pro yearly",            when: "2 min ago" },
-      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "is checking Elite toolkit",           when: "3 min ago" },
-      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "joined Elite yearly",                 when: "3 min ago" },
-      { name: "Sofia G.",    country: "Italy",        city: "Milan",        action: "grabbed Free Breakouts",              when: "3 min ago" },
-      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "added Bundle to cart",                when: "4 min ago" },
-      { name: "Mina F.",     country: "Egypt",        city: "Cairo",        action: "is viewing FAQ",                      when: "4 min ago" },
-      { name: "Carlos D.",   country: "Mexico",       city: "CDMX",         action: "started Pro monthly",                 when: "4 min ago" },
-      { name: "Priya S.",    country: "India",        city: "Mumbai",       action: "joined Elite monthly",                when: "5 min ago" },
-      { name: "Jonas W.",    country: "Denmark",      city: "Copenhagen",   action: "subscribed to Bundle yearly",         when: "5 min ago" },
-      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is on the Suites page",               when: "5 min ago" },
-      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "bought Pro + Elite",                  when: "6 min ago" },
-      { name: "Valentina C.",country: "Argentina",    city: "Buenos Aires", action: "started Pro yearly",                  when: "6 min ago" },
-      { name: "George P.",   country: "Greece",       city: "Athens",       action: "is comparing plans",                  when: "6 min ago" },
-      { name: "Nora L.",     country: "France",       city: "Paris",        action: "joined Bundle monthly",               when: "7 min ago" },
-      { name: "Ben T.",      country: "Australia",    city: "Sydney",       action: "grabbed Free Liquidity Lines",        when: "7 min ago" },
-      { name: "Fatima R.",   country: "Bahrain",      city: "Manama",       action: "joined Elite yearly",                 when: "7 min ago" },
+      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "activated Elite monthly",              when: "just now" },
+      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "started Pro monthly",                 when: "moments ago" },
+      { name: "Noah B.",     country: "UK",           city: "London",       action: "took the Bundle (Pro + Elite)",       when: "moments ago" },
+      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is reviewing Pricing",                when: "moments ago" },
+      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "claimed the Free Breakouts suite",    when: "1 min ago" },
+      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "joined Pro monthly",                  when: "1 min ago" },
+      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "added Elite toolkit",                 when: "1 min ago" },
+      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "reading Liquidity Lines details",     when: "2 min ago" },
+      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "picked Pro + Elite bundle",           when: "2 min ago" },
+      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "activated Pro monthly",               when: "2 min ago" },
+      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "checking Elite toolkit features",     when: "3 min ago" },
+      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "enabled Elite add-on",                when: "3 min ago" },
+      { name: "Sofia G.",    country: "Italy",        city: "Milan",        action: "downloaded Free Breakouts",           when: "3 min ago" },
+      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "considering the Bundle",              when: "4 min ago" },
+      { name: "Mina F.",     country: "Egypt",        city: "Cairo",        action: "reading the FAQ",                     when: "4 min ago" },
+      { name: "Carlos D.",   country: "Mexico",       city: "CDMX",         action: "subscribed to Pro",                   when: "4 min ago" },
+      { name: "Priya S.",    country: "India",        city: "Mumbai",       action: "joined Elite",                        when: "5 min ago" },
+      { name: "Jonas W.",    country: "Denmark",      city: "Copenhagen",   action: "picked the Bundle",                   when: "5 min ago" },
+      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",                 when: "5 min ago" },
+      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",               when: "6 min ago" },
+      { name: "Valentina C.",country: "Argentina",    city: "Buenos Aires", action: "started Pro",                         when: "6 min ago" },
+      { name: "George P.",   country: "Greece",       city: "Athens",       action: "reviewing plan options",              when: "6 min ago" },
+      { name: "Nora L.",     country: "France",       city: "Paris",        action: "joined Bundle",                       when: "7 min ago" },
+      { name: "Ben T.",      country: "Australia",    city: "Sydney",       action: "downloaded Free Liquidity Lines",     when: "7 min ago" },
+      { name: "Fatima R.",   country: "Bahrain",      city: "Manama",       action: "enabled Elite add-on",                when: "7 min ago" },
       { name: "Jasper K.",   country: "Netherlands",  city: "Amsterdam",    action: "upgraded to Pro",                     when: "8 min ago" },
-      { name: "Laura N.",    country: "USA",          city: "Chicago",      action: "is viewing Elite toolkit",            when: "8 min ago" },
-      { name: "Victor H.",   country: "Vietnam",      city: "Hanoi",        action: "bought Bundle yearly",                when: "8 min ago" },
+      { name: "Laura N.",    country: "USA",          city: "Chicago",      action: "looking at Elite controls",           when: "8 min ago" },
+      { name: "Victor H.",   country: "Vietnam",      city: "Hanoi",        action: "picked the Bundle",                   when: "8 min ago" },
       { name: "Aisha M.",    country: "Qatar",        city: "Doha",         action: "started Pro monthly",                 when: "9 min ago" },
       { name: "Ivan S.",     country: "Serbia",       city: "Belgrade",     action: "subscribed to Elite",                 when: "9 min ago" },
       { name: "Léa D.",      country: "France",       city: "Lyon",         action: "added Bundle to cart",                when: "9 min ago" },
-      { name: "Zane P.",     country: "New Zealand",  city: "Auckland",     action: "is browsing Pricing",                 when: "10 min ago" },
-      { name: "Kim J.",      country: "South Korea",  city: "Seoul",        action: "grabbed Free Breakouts",              when: "10 min ago" },
-      { name: "Samir B.",    country: "Jordan",       city: "Amman",        action: "joined Pro yearly",                   when: "10 min ago" },
-      { name: "Helena F.",   country: "Finland",      city: "Helsinki",     action: "is checking FAQ",                     when: "11 min ago" },
-      { name: "Lucas R.",    country: "Portugal",     city: "Porto",        action: "started Elite monthly",               when: "11 min ago" },
-      { name: "Tariq A.",    country: "Kuwait",       city: "Kuwait City",  action: "bought Pro + Elite",                  when: "11 min ago" },
+      { name: "Zane P.",     country: "New Zealand",  city: "Auckland",     action: "browsing Pricing",                    when: "10 min ago" },
+      { name: "Kim J.",      country: "South Korea",  city: "Seoul",        action: "downloaded Free Breakouts",           when: "10 min ago" },
+      { name: "Samir B.",    country: "Jordan",       city: "Amman",        action: "joined Pro",                          when: "10 min ago" },
+      { name: "Helena F.",   country: "Finland",      city: "Helsinki",     action: "checking FAQ",                        when: "11 min ago" },
+      { name: "Lucas R.",    country: "Portugal",     city: "Porto",        action: "added Elite",                         when: "11 min ago" },
+      { name: "Tariq A.",    country: "Kuwait",       city: "Kuwait City",  action: "chose Pro + Elite",                    when: "11 min ago" },
       { name: "Chloe W.",    country: "UK",           city: "Manchester",   action: "subscribed to Bundle",                when: "12 min ago" },
-      { name: "Diego M.",    country: "Chile",        city: "Santiago",     action: "joined Pro monthly",                  when: "12 min ago" },
-      { name: "Rami S.",     country: "Lebanon",      city: "Beirut",       action: "is viewing Suites",                   when: "12 min ago" },
-      { name: "Hannah C.",   country: "USA",          city: "San Diego",    action: "grabbed Free Liquidity Lines",        when: "13 min ago" },
+      { name: "Diego M.",    country: "Chile",        city: "Santiago",     action: "joined Pro",                          when: "12 min ago" },
+      { name: "Rami S.",     country: "Lebanon",      city: "Beirut",       action: "viewing Suites",                      when: "12 min ago" },
+      { name: "Hannah C.",   country: "USA",          city: "San Diego",    action: "downloaded Free Liquidity Lines",     when: "13 min ago" },
       { name: "Selim O.",    country: "Turkey",       city: "Istanbul",     action: "subscribed to Elite",                 when: "13 min ago" },
       { name: "Petra V.",    country: "Czechia",      city: "Prague",       action: "upgraded to Bundle",                  when: "13 min ago" },
-      { name: "Andres L.",   country: "Colombia",     city: "Medellín",     action: "started Pro yearly",                  when: "14 min ago" },
-      { name: "Maria J.",    country: "USA",          city: "Miami",        action: "is on the Pricing page",              when: "14 min ago" },
-      { name: "Khaled F.",   country: "Oman",         city: "Muscat",       action: "joined Elite monthly",                when: "14 min ago" },
-      { name: "Sven G.",     country: "Norway",       city: "Oslo",         action: "bought Bundle yearly",                when: "15 min ago" },
-      { name: "Ariana P.",   country: "Peru",         city: "Lima",         action: "grabbed Free Breakouts",              when: "15 min ago" },
-      { name: "Leo D.",      country: "USA",          city: "Denver",       action: "subscribed to Pro",                   when: "15 min ago" },
+      { name: "Andres L.",   country: "Colombia",     city: "Medellín",     action: "started Pro",                         when: "14 min ago" },
+      { name: "Maria J.",    country: "USA",          city: "Miami",        action: "reviewing Pricing",                   when: "14 min ago" },
+      { name: "Khaled F.",   country: "Oman",         city: "Muscat",       action: "added Elite",                         when: "14 min ago" },
+      { name: "Sven G.",     country: "Norway",       city: "Oslo",         action: "subscribed to Bundle",                when: "15 min ago" },
+      { name: "Ariana P.",   country: "Peru",         city: "Lima",         action: "downloaded Free Breakouts",           when: "15 min ago" },
+      { name: "Leo D.",      country: "USA",          city: "Denver",       action: "activated Pro",                       when: "15 min ago" },
     ];
 
     function shuffle(arr){
@@ -1478,13 +963,11 @@
       }
       return arr;
     }
-
     function nextDelay(){
       const base = Math.random() * 7000 + 7000; // 7–14s
-      const longGap = Math.random() < 0.18 ? 12000 : 0; // ~18% chance add 12s
+      const longGap = Math.random() < 0.18 ? 12000 : 0; // ~18% add 12s
       return base + longGap;
     }
-
     function createToast(note){
       const toast = document.createElement("div");
       toast.className = "toast";
@@ -1501,14 +984,12 @@
     }
 
     let showing = false;
-
     function showToast(note){
       if (showing) return;
       showing = true;
       const t = createToast(note);
       toastContainer.appendChild(t);
-      const closeBtn = t.querySelector(".toast-close");
-      closeBtn.addEventListener("click", () => {
+      t.querySelector(".toast-close").addEventListener("click", () => {
         t.classList.add("hide");
         setTimeout(() => { t.remove(); showing = false; }, 200);
       });
