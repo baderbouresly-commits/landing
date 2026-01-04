@@ -704,6 +704,59 @@
       color: rgba(234,240,255,.55);
       font-size:12px;
     }
+
+    /* Social proof toast */
+    .toast-container{
+      position:fixed;
+      bottom:18px;
+      left:18px;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      pointer-events:none;
+    }
+    .toast{
+      min-width:260px;
+      max-width:320px;
+      padding:12px 14px;
+      border-radius:14px;
+      background: rgba(10,14,28,0.92);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      color: var(--text);
+      font-size:13px;
+      line-height:1.45;
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      opacity:0;
+      transform: translateY(8px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events:auto;
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .toast.hide{
+      opacity:0;
+      transform: translateY(8px);
+    }
+    .toast-logo{
+      width:32px; height:32px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      display:grid; place-items:center;
+      font-weight:900;
+      color:#fff;
+      flex:0 0 auto;
+    }
+    .toast-body{ flex:1; }
+    .toast-title{ font-weight:900; font-size:13px; margin-bottom:4px; }
+    .toast-sub{ color: var(--muted2); font-size:12px; }
+    .toast-time{ color: var(--muted2); font-size:11px; margin-top:6px; }
   </style>
 </head>
 
@@ -1258,6 +1311,9 @@
     </div>
   </footer>
 
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1292,7 +1348,6 @@
       },
       yearly: {
         savePill: "Yearly saves 2 months",
-        // 24.90*10=249, 29.90*10=299, 44.90*10=449
         pro:   { big: "$249", per: "/yr", small: "($20.75/mo billed yearly)", link: LINKS.pro_yearly },
         elite: { big: "$299", per: "/yr", small: "($24.92/mo billed yearly)", link: LINKS.elite_yearly },
         bundle:{ big: "$449", per: "/yr", small: "($37.42/mo billed yearly)", link: LINKS.bundle_yearly },
@@ -1351,6 +1406,109 @@
     btnYearly.addEventListener("click", () => setMode("yearly"));
 
     setMode(mode);
+
+    // ================================
+    // Social-proof popups (50 queued, random intervals)
+    // ================================
+    const toastContainer = document.getElementById("toast-container");
+    const notifications = [
+      { name: "Amir K.", country: "UAE", city: "Dubai", action: "just subscribed to Elite", when: "now" },
+      { name: "Lucia M.", country: "Spain", city: "Barcelona", action: "joined Pro monthly", when: "15s ago" },
+      { name: "Noah B.", country: "UK", city: "London", action: "upgraded to Bundle yearly", when: "30s ago" },
+      { name: "Sara T.", country: "USA", city: "Austin", action: "is viewing the Pricing page", when: "45s ago" },
+      { name: "Youssef A.", country: "Morocco", city: "Casablanca", action: "grabbed Breakouts (Free)", when: "1m ago" },
+      { name: "Hiro K.", country: "Japan", city: "Osaka", action: "started a Pro trial", when: "1m ago" },
+      { name: "Marta R.", country: "Poland", city: "Kraków", action: "joined Elite monthly", when: "1m ago" },
+      { name: "Daniel S.", country: "Germany", city: "Frankfurt", action: "viewing Liquidity Lines suite", when: "2m ago" },
+      { name: "Lina P.", country: "Sweden", city: "Stockholm", action: "bought Pro + Elite Bundle", when: "2m ago" },
+      { name: "Omar H.", country: "Saudi Arabia", city: "Riyadh", action: "subscribed to Pro yearly", when: "2m ago" },
+      { name: "Isabella V.", country: "Brazil", city: "São Paulo", action: "is checking Elite toolkit", when: "3m ago" },
+      { name: "Chen L.", country: "Singapore", city: "Singapore", action: "joined Elite yearly", when: "3m ago" },
+      { name: "Sofia G.", country: "Italy", city: "Milan", action: "grabbed Free Breakouts", when: "3m ago" },
+      { name: "Ethan J.", country: "Canada", city: "Toronto", action: "added Bundle to cart", when: "4m ago" },
+      { name: "Mina F.", country: "Egypt", city: "Cairo", action: "is viewing FAQ", when: "4m ago" },
+      { name: "Carlos D.", country: "Mexico", city: "CDMX", action: "started Pro monthly", when: "4m ago" },
+      { name: "Priya S.", country: "India", city: "Mumbai", action: "joined Elite monthly", when: "5m ago" },
+      { name: "Jonas W.", country: "Denmark", city: "Copenhagen", action: "subscribed to Bundle yearly", when: "5m ago" },
+      { name: "Emily R.", country: "USA", city: "New York", action: "is on the Suites page", when: "5m ago" },
+      { name: "Ahmed Z.", country: "UAE", city: "Abu Dhabi", action: "bought Pro + Elite", when: "6m ago" },
+      { name: "Valentina C.", country: "Argentina", city: "Buenos Aires", action: "started Pro yearly", when: "6m ago" },
+      { name: "George P.", country: "Greece", city: "Athens", action: "is comparing plans", when: "6m ago" },
+      { name: "Nora L.", country: "France", city: "Paris", action: "joined Bundle monthly", when: "7m ago" },
+      { name: "Ben T.", country: "Australia", city: "Sydney", action: "grabbed Free Liquidity Lines", when: "7m ago" },
+      { name: "Fatima R.", country: "Bahrain", city: "Manama", action: "joined Elite yearly", when: "7m ago" },
+      { name: "Jasper K.", country: "Netherlands", city: "Amsterdam", action: "upgraded to Pro", when: "8m ago" },
+      { name: "Laura N.", country: "USA", city: "Chicago", action: "is viewing Elite toolkit", when: "8m ago" },
+      { name: "Victor H.", country: "Vietnam", city: "Hanoi", action: "bought Bundle yearly", when: "8m ago" },
+      { name: "Aisha M.", country: "Qatar", city: "Doha", action: "started Pro monthly", when: "9m ago" },
+      { name: "Ivan S.", country: "Serbia", city: "Belgrade", action: "subscribed to Elite", when: "9m ago" },
+      { name: "Léa D.", country: "France", city: "Lyon", action: "added Bundle to cart", when: "9m ago" },
+      { name: "Zane P.", country: "New Zealand", city: "Auckland", action: "is browsing Pricing", when: "10m ago" },
+      { name: "Kim J.", country: "South Korea", city: "Seoul", action: "grabbed Free Breakouts", when: "10m ago" },
+      { name: "Samir B.", country: "Jordan", city: "Amman", action: "joined Pro yearly", when: "10m ago" },
+      { name: "Helena F.", country: "Finland", city: "Helsinki", action: "is checking FAQ", when: "11m ago" },
+      { name: "Lucas R.", country: "Portugal", city: "Porto", action: "started Elite monthly", when: "11m ago" },
+      { name: "Tariq A.", country: "Kuwait", city: "Kuwait City", action: "bought Pro + Elite", when: "11m ago" },
+      { name: "Chloe W.", country: "UK", city: "Manchester", action: "subscribed to Bundle", when: "12m ago" },
+      { name: "Diego M.", country: "Chile", city: "Santiago", action: "joined Pro monthly", when: "12m ago" },
+      { name: "Rami S.", country: "Lebanon", city: "Beirut", action: "is viewing Suites", when: "12m ago" },
+      { name: "Hannah C.", country: "USA", city: "San Diego", action: "grabbed Free Liquidity Lines", when: "13m ago" },
+      { name: "Selim O.", country: "Turkey", city: "Istanbul", action: "subscribed to Elite", when: "13m ago" },
+      { name: "Petra V.", country: "Czechia", city: "Prague", action: "upgraded to Bundle", when: "13m ago" },
+      { name: "Andres L.", country: "Colombia", city: "Medellín", action: "started Pro yearly", when: "14m ago" },
+      { name: "Maria J.", country: "USA", city: "Miami", action: "is on the Pricing page", when: "14m ago" },
+      { name: "Khaled F.", country: "Oman", city: "Muscat", action: "joined Elite monthly", when: "14m ago" },
+      { name: "Sven G.", country: "Norway", city: "Oslo", action: "bought Bundle yearly", when: "15m ago" },
+      { name: "Ariana P.", country: "Peru", city: "Lima", action: "grabbed Free Breakouts", when: "15m ago" },
+      { name: "Leo D.", country: "USA", city: "Denver", action: "subscribed to Pro", when: "15m ago" },
+    ];
+
+    function shuffle(arr){
+      for (let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function createToast(note){
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <div class="toast-logo">SH</div>
+        <div class="toast-body">
+          <div class="toast-title">${note.name} • ${note.city}, ${note.country}</div>
+          <div class="toast-sub">${note.action}</div>
+          <div class="toast-time">${note.when}</div>
+        </div>
+      `;
+      return toast;
+    }
+
+    function showToast(note){
+      const t = createToast(note);
+      toastContainer.appendChild(t);
+      requestAnimationFrame(() => t.classList.add("show"));
+      setTimeout(() => {
+        t.classList.add("hide");
+        setTimeout(() => t.remove(), 400);
+      }, 5200);
+    }
+
+    (function runToasts(){
+      const queue = shuffle([...notifications]); // 50 items
+      let idx = 0;
+      function next(){
+        if (idx >= queue.length) return;
+        const delay = Math.floor(Math.random() * 5000) + 6000; // 6s–11s
+        setTimeout(() => {
+          showToast(queue[idx]);
+          idx += 1;
+          next();
+        }, delay);
+      }
+      next();
+    })();
   </script>
 </body>
 </html>
