@@ -395,12 +395,19 @@
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
-    /* Footer (simple, clean) */
+    /* Footer (UPDATED: background continues + icons + no contact box) */
     footer{
-      padding:36px 0 28px;
+      position:relative;
+      padding:40px 0 28px;
       border-top: 1px solid rgba(255,255,255,.06);
       color: rgba(234,240,255,.60);
       font-size:12px;
+
+      /* keep the “blue” continuing into footer so it doesn't look cut off */
+      background:
+        radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
+        radial-gradient(900px 520px at 88% 10%, rgba(74,215,255,.10), transparent 64%),
+        linear-gradient(180deg, rgba(6,8,18,.00), rgba(6,8,18,.28));
     }
     .footTop{
       display:grid;
@@ -458,13 +465,45 @@
       border-radius:8px;
     }
     .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
-    .footCard{
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding:12px 12px 10px;
+
+    .socialRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
-    .footCard p{ margin:0; color: rgba(234,240,255,.68); line-height:1.6; }
+    .iconBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.82);
+      font-weight:850;
+      font-size:13px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .iconBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      color: rgba(234,240,255,.92);
+    }
+    .icon{
+      width:18px; height:18px;
+      display:inline-grid;
+      place-items:center;
+      color: rgba(234,240,255,.80);
+    }
+    .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
+
+    .footHint{
+      margin:10px 0 0 0;
+      color: rgba(234,240,255,.60);
+      line-height:1.55;
+    }
+
     .footDivider{
       margin:18px 0 14px;
       height:1px;
@@ -713,7 +752,7 @@
     </div>
   </section>
 
-  <!-- UPDATED FOOTER -->
+  <!-- UPDATED FOOTER (no contact box; Instagram + Email icons; footer background continues) -->
   <footer>
     <div class="wrap">
       <div class="footTop">
@@ -738,11 +777,36 @@
         </div>
 
         <div>
-          <div class="footColTitle">Contact</div>
-          <div class="footCard">
-            <p><b>Support:</b> <span class="mono">support@silverhawksuite.com</span></p>
-            <p style="margin-top:6px;">Add this sender to contacts/safe senders to avoid missing alerts.</p>
+          <div class="footColTitle">Social / Support</div>
+
+          <div class="socialRow">
+            <!-- Instagram: replace with your real handle -->
+            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Instagram
+            </a>
+
+            <!-- Email: opens compose with support prefilled -->
+            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Email Support
+            </a>
           </div>
+
+          <p class="footHint">
+            Whitelist: <span class="mono">support@silverhawksuite.com</span> (contacts/safe senders) to avoid Promotions/Junk.
+          </p>
         </div>
       </div>
 
