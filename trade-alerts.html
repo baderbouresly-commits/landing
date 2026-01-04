@@ -1,1 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverHawk Suite — Trade Alerts</title>
+  <meta name="description" content="Quality-first trade alerts. Typical: 4–10 alerts/month. No spam. No forced trades." />
 
+  <style>
+    :root{
+      --bg0:#060812;
+      --bg1:#081028;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.10);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.58);
+      --accent:#7C5CFF;
+      --accent2:#4AD7FF;
+      --good:#2FE4A7;
+      --warn:#FFC14A;
+      --radius: 18px;
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
+        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(6,8,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbarInner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 240px; }
+
+    /* LOGO */
+    .logo{
+      width:50px; height:50px; border-radius:14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      flex: 0 0 auto;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      padding:0;
+      background: transparent;
+    }
+    .brandName{
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:14px;
+      opacity:.95;
+      line-height:1.1;
+    }
+
+    .nav{
+      display:flex; align-items:center; gap:14px;
+      color: var(--muted);
+      font-size:14px;
+    }
+    .nav a{ padding:8px 10px; border-radius:10px; }
+    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .nav a.active{
+      color: var(--text);
+      background: rgba(124,92,255,.14);
+      border: 1px solid rgba(124,92,255,.22);
+    }
+
+    .ctaRow{ display:flex; align-items:center; gap:10px; }
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+      color:#070A14;
+    }
+    .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+
+    .mobileOnly{ display:none; }
+    @media (max-width: 900px){
+      .nav{ display:none; }
+      .mobileOnly{ display:inline-flex; }
+      .brand{ min-width:auto; }
+    }
+
+    /* Sections */
+    section{ padding:64px 0; }
+    h1,h2,h3{ margin:0; }
+    h1{
+      font-size: clamp(34px, 5vw, 64px);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      text-align:center;
+    }
+    h2{
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing:-.015em;
+    }
+    .sub{
+      margin:14px auto 0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.55;
+      max-width: 74ch;
+      text-align:center;
+    }
+
+    .hero{ padding:70px 0 42px; }
+    .heroCard{
+      border-radius: calc(var(--radius) + 6px);
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
+      pointer-events:none;
+    }
+    .heroInner{
+      position:relative;
+      padding:34px 22px 26px;
+      text-align:center;
+    }
+    .heroCtas{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .heroStats{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .statPill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,240,255,.86);
+      font-weight:900;
+      font-size:13px;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset;
+    }
+    .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
+    .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
+    .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
+
+    .miniLine{
+      margin:18px auto 0;
+      max-width: 90ch;
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.5;
+      text-align:center;
+    }
+
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(234,240,255,.62);
+      margin:0 0 10px 0;
+    }
+    .subLeft{
+      margin:10px 0 0 0;
+      color: var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width: 76ch;
+      text-align:left;
+    }
+
+    /* Layout blocks */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .cardInner{ padding:18px; }
+
+    .bullets{
+      margin: 12px 0 0 0;
+      padding: 0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .bItem{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color: rgba(234,240,255,.86);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .check{
+      width:22px; height:22px;
+      border-radius: 999px;
+      background: rgba(47,228,167,.12);
+      border:1px solid rgba(47,228,167,.28);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      margin-top:1px;
+      color: rgba(47,228,167,.95);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    /* Pricing card */
+    .priceTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .badge{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:900;
+      letter-spacing:.02em;
+      color: rgba(234,240,255,.78);
+      white-space:nowrap;
+    }
+    .badge.accent{
+      color: rgba(124,92,255,1);
+      border-color: rgba(124,92,255,.28);
+      background: rgba(124,92,255,.10);
+    }
+
+    .planTitle{
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:-.01em;
+      margin-top:8px;
+      margin-bottom:10px;
+    }
+    .price{
+      font-weight:950;
+      font-size:42px;
+      letter-spacing:-.02em;
+      line-height:1;
+      margin: 6px 0 6px;
+    }
+    .per{
+      font-size:14px;
+      color: var(--muted2);
+      font-weight:800;
+      margin-left:6px;
+    }
+    .planDesc{
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin: 8px 0 0 0;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    /* FAQ */
+    .faqGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:16px;
+    }
+    @media (max-width: 920px){
+      .faqGrid{ grid-template-columns: 1fr; }
+    }
+    .faqItem{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:14px 14px 12px;
+    }
+    .faqQ{ font-weight:900; margin-bottom:6px; }
+    .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
+
+    /* Footer */
+    footer{
+      padding:34px 0 44px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(234,240,255,.55);
+      font-size:12px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbarInner">
+        <div class="brand">
+          <div class="logo" title="SilverHawk">
+            <!-- repo root: logo.png -->
+            <img src="logo.png" alt="SilverHawk logo" />
+          </div>
+          <div class="brandName">SilverHawk Suite</div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html#suites">Suites</a>
+          <a class="active" href="alerts.html">Trade Alerts</a>
+          <a href="index.html#proof">Reviews</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+
+        <div class="ctaRow">
+          <a class="btn" href="index.html#suites">View Suites</a>
+          <a class="btn btnPrimary" href="#pricing" id="ctaTop">Get Access</a>
+          <a class="btn mobileOnly" href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="heroCard">
+        <div class="heroInner">
+          <h1>Quality-first Trade Alerts.</h1>
+          <p class="sub">
+            No spam. No forced trades. Alerts only when the setup is clean and worth taking.
+          </p>
+
+          <div class="heroCtas">
+            <a class="btn btnPrimary" href="#pricing" id="ctaPrimary">Get Trade Alerts</a>
+            <a class="btn" href="index.html#suites">View Suites</a>
+          </div>
+
+          <div class="heroStats" aria-label="Key highlights">
+            <div class="statPill"><span class="dot good"></span> Typical: 4–10 / month</div>
+            <div class="statPill"><span class="dot warn"></span> Execution still matters</div>
+            <div class="statPill"><span class="dot accent"></span> Clear context + trigger</div>
+          </div>
+
+          <div class="miniLine">
+            Volume varies with market conditions. Expect fewer alerts during chop, more when conditions are clean.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS + WHY IT'S FEW -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Trade Alerts</p>
+          <h2>Why the alert count is intentionally “few”</h2>
+          <p class="subLeft">
+            You’re not paying for notifications. You’re paying for selectivity.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <div class="cardInner">
+            <h3 style="font-size:16px; font-weight:950; margin-bottom:10px;">The problem with “high-volume signals”</h3>
+            <p class="planDesc" style="font-size:14px;">
+              Most traders lose money from boredom trades and low-quality setups. More alerts usually means more noise.
+              This service is designed to keep you selective.
+            </p>
+
+            <ul class="bullets">
+              <li class="bItem"><span class="check">✓</span><span><b>Only A+ setups.</b> No “we must post something today” behavior.</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Chop = silence.</b> Fewer alerts when conditions are bad is a feature, not a bug.</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Consistency mindset.</b> One clean setup can beat 10 random ones.</span></li>
+            </ul>
+
+            <p class="planDesc" style="margin-top:12px;">
+              <b>Typical:</b> 4–10 alerts/month. Volume varies with market conditions and clean setups.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardInner">
+            <h3 style="font-size:16px; font-weight:950; margin-bottom:10px;">What you’ll receive</h3>
+
+            <ul class="bullets">
+              <li class="bItem"><span class="check">✓</span><span><b>Direction:</b> long/short bias</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Context:</b> why this setup is valid (in simple terms)</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Trigger:</b> what confirms the entry</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Invalidation:</b> where the idea is wrong</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Risk note:</b> quick reminder (execution still matters)</span></li>
+            </ul>
+
+            <p class="planDesc" style="margin-top:12px;">
+              Delivery method can be Email / Telegram / Discord later — page copy stays the same.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Pricing</p>
+          <h2>Simple monthly access</h2>
+          <p class="subLeft">Cancel anytime. No long-term commitments.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardInner">
+          <div class="priceTop">
+            <div>
+              <div class="badge accent">TRADE ALERTS</div>
+              <div class="planTitle">Quality-first Trade Alerts</div>
+            </div>
+            <div class="badge">Typical: 4–10 / month</div>
+          </div>
+
+          <div class="price">
+            $19.90<span class="per">/mo</span>
+          </div>
+          <p class="planDesc">Best for traders who want selective, higher-quality setups without spam.</p>
+
+          <ul class="bullets" style="margin-top:14px;">
+            <li class="bItem"><span class="check">✓</span><span>Alerts only when conditions are clean</span></li>
+            <li class="bItem"><span class="check">✓</span><span>Context + trigger + invalidation (no vague posts)</span></li>
+            <li class="bItem"><span class="check">✓</span><span>Consistency > dopamine</span></li>
+          </ul>
+
+          <div class="actions">
+            <a class="btn btnPrimary" id="buyAlerts" href="#">Get Trade Alerts</a>
+            <a class="btn" href="#faq">Questions?</a>
+            <a class="btn" href="index.html#pricing">View Suite Pricing</a>
+          </div>
+
+          <p class="planDesc" style="margin-top:10px; color: var(--muted2); font-size:12px;">
+            Trading involves risk. This is not financial advice. Results vary. Execution still matters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">FAQ</p>
+          <h2>Quick answers</h2>
+          <p class="subLeft">Clarity before you subscribe.</p>
+        </div>
+      </div>
+
+      <div class="faqGrid">
+        <div class="faqItem">
+          <div class="faqQ">How many alerts will I get?</div>
+          <p class="faqA"><b>Typical:</b> 4–10 per month. Fewer during chop, more when conditions are clean.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Is it daily signals?</div>
+          <p class="faqA">No. It’s quality-first. If there’s no clean setup, there’s no alert.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Do you guarantee profits?</div>
+          <p class="faqA">No. There are no guarantees in trading. You’re paying for selectivity and structure, not certainty.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can I cancel anytime?</div>
+          <p class="faqA">Yes. Monthly should be cancel-anytime via your Lemon Squeezy subscription settings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
+        <div>© <span id="year"></span> SilverHawk Suite</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Replace with your Lemon Squeezy checkout URL for Trade Alerts
+    const LINKS = {
+      alerts: "#"
+    };
+
+    const el = document.getElementById("buyAlerts");
+    if (el) el.href = LINKS.alerts;
+  </script>
+</body>
+</html>
