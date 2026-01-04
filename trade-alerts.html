@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Trade Alerts</title>
-  <meta name="description" content="Quality-first trade alerts. Typical: 4–10 alerts/month. No spam. No forced trades." />
+  <meta name="description" content="Quality-first trade alerts delivered by email. Typical: 4–10 alerts/month. No spam. No forced trades." />
 
   <style>
     :root{
@@ -350,6 +350,32 @@
       margin-top:14px;
     }
 
+    /* Email note card */
+    .noteCard{
+      margin-top:14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+    }
+    .noteTitle{
+      font-weight:950;
+      font-size:13px;
+      margin:0 0 6px 0;
+      color: rgba(234,240,255,.92);
+    }
+    .noteText{
+      margin:0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight:900;
+      color: rgba(234,240,255,.92);
+    }
+
     /* FAQ */
     .faqGrid{
       display:grid;
@@ -393,7 +419,8 @@
 
         <nav class="nav" aria-label="Primary">
           <a href="index.html#suites">Suites</a>
-          <a class="active" href="alerts.html">Trade Alerts</a>
+          <!-- Use your actual file name here. If your file is trade-alerts.html, keep this exactly. -->
+          <a class="active" href="trade-alerts.html">Trade Alerts</a>
           <a href="index.html#proof">Reviews</a>
           <a href="index.html#pricing">Pricing</a>
           <a href="index.html#faq">FAQ</a>
@@ -483,9 +510,24 @@
               <li class="bItem"><span class="check">✓</span><span><b>Risk note:</b> quick reminder (execution still matters)</span></li>
             </ul>
 
-            <p class="planDesc" style="margin-top:12px;">
-              Delivery method can be Email / Telegram / Discord later — page copy stays the same.
-            </p>
+            <div style="height:14px"></div>
+
+            <h3 style="font-size:16px; font-weight:950; margin-bottom:10px;">Delivered by email — on purpose</h3>
+            <ul class="bullets">
+              <li class="bItem"><span class="check">✓</span><span><b>Private.</b> No public groups, no showing “how many members”.</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Reliable.</b> Works anywhere, no app installs, no “missed ping”.</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>Clean history.</b> Searchable, organized, and easy to review later.</span></li>
+              <li class="bItem"><span class="check">✓</span><span><b>No noise.</b> You’ll only get the alert — not a chat room.</span></li>
+            </ul>
+
+            <div class="noteCard">
+              <div class="noteTitle">Don’t miss alerts</div>
+              <p class="noteText">
+                Add <span class="mono">support@silverhawksuite.com</span> to your contacts (or safe sender) so Trade Alerts don’t land in Promotions/Junk.
+                If you don’t see the first email, check Junk/Promotions and click <b>“Not spam”</b> (or <b>Move to Inbox</b>).
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -510,7 +552,10 @@
               <div class="badge accent">TRADE ALERTS</div>
               <div class="planTitle">Quality-first Trade Alerts</div>
             </div>
-            <div class="badge">Typical: 4–10 / month</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+              <div class="badge">Delivered by email</div>
+              <div class="badge">Typical: 4–10 / month</div>
+            </div>
           </div>
 
           <div class="price">
@@ -528,6 +573,13 @@
             <a class="btn btnPrimary" id="buyAlerts" href="#">Get Trade Alerts</a>
             <a class="btn" href="#faq">Questions?</a>
             <a class="btn" href="index.html#pricing">View Suite Pricing</a>
+          </div>
+
+          <div class="noteCard" style="margin-top:12px;">
+            <div class="noteTitle">Whitelist this sender</div>
+            <p class="noteText">
+              Add <span class="mono">support@silverhawksuite.com</span> to contacts/safe senders to avoid missing alerts.
+            </p>
           </div>
 
           <p class="planDesc" style="margin-top:10px; color: var(--muted2); font-size:12px;">
@@ -553,6 +605,21 @@
         <div class="faqItem">
           <div class="faqQ">How many alerts will I get?</div>
           <p class="faqA"><b>Typical:</b> 4–10 per month. Fewer during chop, more when conditions are clean.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">How are alerts delivered?</div>
+          <p class="faqA">By email. It’s private, reliable, and searchable — and doesn’t force you into a public group.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Why email instead of Telegram/Discord/WhatsApp?</div>
+          <p class="faqA">Email avoids noise and public group “member counts”, works everywhere, and keeps a clean history you can search later.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What email address should I whitelist?</div>
+          <p class="faqA">Add <b>support@silverhawksuite.com</b> to contacts/safe senders. If the first email lands in Junk/Promotions, move it to Inbox and mark “Not spam”.</p>
         </div>
 
         <div class="faqItem">
