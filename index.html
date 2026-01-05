@@ -88,6 +88,7 @@
     }
     .nav a{ padding:8px 10px; border-radius:10px; }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
     .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
       border:1px solid rgba(255,255,255,.12);
@@ -113,6 +114,7 @@
       color:#070A14;
     }
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+
     .mobileOnly{ display:none; }
     @media (max-width: 860px){
       .nav{ display:none; }
@@ -141,6 +143,7 @@
       max-width: 70ch;
       text-align:center;
     }
+
     .hero{ padding:70px 0 56px; }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
@@ -193,6 +196,7 @@
     .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
     .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
     .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
+
     .miniLine{
       margin:18px auto 0;
       max-width: 82ch;
@@ -201,6 +205,7 @@
       line-height:1.5;
       text-align:center;
     }
+
     .sectionHead{
       display:flex;
       align-items:flex-end;
@@ -263,6 +268,7 @@
       color: rgba(234,240,255,.84);
       font-weight:800;
     }
+
     details{ border-top:1px solid rgba(255,255,255,.08); margin-top:14px; padding-top:12px; }
     summary{
       list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -400,14 +406,12 @@
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
-    /* FOOTER (UPDATED: same as trade-alerts) */
     footer{
       position:relative;
       padding:40px 0 28px;
       border-top: 1px solid rgba(255,255,255,.06);
       color: rgba(234,240,255,.60);
       font-size:12px;
-
       background:
         radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
         radial-gradient(900px 520px at 88% 10%, rgba(74,215,255,.10), transparent 64%),
@@ -422,11 +426,7 @@
     @media (max-width: 920px){
       .footTop{ grid-template-columns: 1fr; }
     }
-    .footBrand{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
+    .footBrand{ display:flex; gap:12px; align-items:flex-start; }
     .footLogo{
       width:44px; height:44px; border-radius:14px;
       background: rgba(255,255,255,.06);
@@ -436,56 +436,20 @@
       flex:0 0 auto;
     }
     .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
-    .footName{
-      font-weight:950;
-      color: rgba(234,240,255,.92);
-      font-size:13px;
-      margin:0;
-      line-height:1.25;
-    }
-    .footTag{
-      margin:6px 0 0 0;
-      color: rgba(234,240,255,.60);
-      line-height:1.55;
-      max-width: 46ch;
-    }
-    .footColTitle{
-      font-weight:950;
-      color: rgba(234,240,255,.86);
-      margin:0 0 10px 0;
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .footLinks{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .footLinks a{
-      color: rgba(234,240,255,.70);
-      padding:2px 0;
-      width:fit-content;
-      border-radius:8px;
-    }
+    .footName{ font-weight:950; color: rgba(234,240,255,.92); font-size:13px; margin:0; line-height:1.25; }
+    .footTag{ margin:6px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; max-width: 46ch; }
+    .footColTitle{ font-weight:950; color: rgba(234,240,255,.86); margin:0 0 10px 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .footLinks{ display:flex; flex-direction:column; gap:8px; }
+    .footLinks a{ color: rgba(234,240,255,.70); padding:2px 0; width:fit-content; border-radius:8px; }
     .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
-
-    .socialRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .socialRow{ display:flex; gap:10px; flex-wrap:wrap; }
     .iconBtn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:9px 12px;
-      border-radius: 999px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px; border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
       color: rgba(234,240,255,.82);
-      font-weight:850;
-      font-size:13px;
+      font-weight:850; font-size:13px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
     .iconBtn:hover{
@@ -501,23 +465,10 @@
       color: rgba(234,240,255,.80);
     }
     .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
-
-    .footHint{
-      margin:10px 0 0 0;
-      color: rgba(234,240,255,.60);
-      line-height:1.55;
-    }
-
-    .footDivider{
-      margin:18px 0 14px;
-      height:1px;
-      background: rgba(255,255,255,.06);
-    }
+    .footHint{ margin:10px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; }
+    .footDivider{ margin:18px 0 14px; height:1px; background: rgba(255,255,255,.06); }
     .footBottom{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       color: rgba(234,240,255,.55);
     }
 
@@ -568,6 +519,7 @@
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
+
         <nav class="nav" aria-label="Primary">
           <a href="#suites">Suites</a>
           <a href="trade-alerts.html">Trade Alerts</a>
@@ -575,9 +527,10 @@
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
+
         <div class="ctaRow">
           <a class="btn" href="#suites">View Suites</a>
-          <a class="btn btnPrimary" href="#pricing" id="ctaTop">Get Access</a>
+          <a class="btn btnPrimary" id="ctaTop">Get Access</a>
           <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
@@ -594,15 +547,18 @@
             Stop collecting random tools. Use a repeatable workflow:
             <b>filter → setup → trigger → risk</b>.
           </p>
+
           <div class="heroCtas">
-            <a class="btn btnPrimary" href="#pricing" id="ctaPrimary">Get Access</a>
+            <a class="btn btnPrimary" id="ctaPrimary">Get Access</a>
             <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
+
           <div class="heroStats" aria-label="Key highlights">
             <div class="statPill"><span class="dot good"></span> 2 Free Suites</div>
             <div class="statPill"><span class="dot warn"></span> Pro: Prime MTF</div>
             <div class="statPill"><span class="dot accent"></span> Elite Add-On Toolkit</div>
           </div>
+
           <div class="miniLine">
             Built for clarity and execution. Fewer trades, cleaner selection, consistent risk.
           </div>
@@ -637,6 +593,7 @@
                 <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
                 <div class="tTag">Elite Toolkit</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -647,6 +604,7 @@
                 <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
                 <div class="tTag">Workflow</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -657,6 +615,7 @@
                 <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
                 <div class="tTag">Confirmations</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -667,6 +626,7 @@
                 <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
                 <div class="tTag">Quality &gt; Quantity</div>
               </article>
+
               <!-- duplicate set for seamless scroll -->
               <article class="tCard">
                 <div class="tTop">
@@ -678,6 +638,7 @@
                 <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
                 <div class="tTag">Elite Toolkit</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -688,6 +649,7 @@
                 <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
                 <div class="tTag">Workflow</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -698,6 +660,7 @@
                 <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
                 <div class="tTag">Confirmations</div>
               </article>
+
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -710,6 +673,7 @@
               </article>
             </div>
           </div>
+
           <p class="mutedSmall" style="margin-top:10px;">Hover to pause the scroll.</p>
         </div>
       </div>
@@ -732,27 +696,37 @@
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill free">FREE</span><span class="pill">Breakouts Suite</span>
+              <span class="pill free">FREE</span>
+              <span class="pill">Breakouts Suite</span>
             </div>
+
             <div class="cardTitle">Breakouts Suite (Free)</div>
             <p class="cardDesc">Clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
+
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Breakouts</span><span class="tag">SH Trend</span><span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span><span class="tag">SH OB Radar</span><span class="tag">SH Structure Lite</span>
+              <span class="tag">SH Breakouts</span>
+              <span class="tag">SH Trend</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+              <span class="tag">SH OB Radar</span>
+              <span class="tag">SH Structure Lite</span>
             </div>
+
             <details>
               <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li><b>Filter:</b> trend alignment (Trend + HA Duo agreement).</li>
-                <li><b>Setup:</b> defined range box + compression → wait for clean breakout confirmation.</li>
+                <li><b>Setup:</b> range box + compression → wait for breakout confirmation.</li>
                 <li><b>Trigger:</b> breakout confirmation.</li>
                 <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
               </ul>
             </details>
+
             <div class="pricingFooter">
-              <a class="btn btnPrimary" id="getFreeBreakouts" href="#">Get Free</a>
-              <a class="btn" href="#pricing">Upgrade</a>
+              <a class="btn btnPrimary" id="getFreeBreakouts">Get Free</a>
+              <a class="btn" id="upgradeBreakouts">Upgrade</a>
             </div>
           </div>
         </div>
@@ -761,68 +735,95 @@
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill free">FREE</span><span class="pill">Liquidity Lines Suite</span>
+              <span class="pill free">FREE</span>
+              <span class="pill">Liquidity Lines Suite</span>
             </div>
+
             <div class="cardTitle">Liquidity Lines Suite (Free)</div>
             <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing S/R.</p>
+
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Liquidity Lines</span><span class="tag">SH Trend</span><span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span><span class="tag">SH OB Radar</span><span class="tag">SH Structure Lite</span>
+              <span class="tag">SH Liquidity Lines</span>
+              <span class="tag">SH Trend</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+              <span class="tag">SH OB Radar</span>
+              <span class="tag">SH Structure Lite</span>
             </div>
+
             <details>
               <summary>See suite rules <span class="caret">▾</span></summary>
               <ul class="rules">
                 <li><b>Filter:</b> confirm context (trend/HTF bias) before sweeps.</li>
-                <li><b>Setup:</b> price sweeps a liquidity level → watch reaction at structure/OB.</li>
+                <li><b>Setup:</b> sweep → watch reaction at structure/OB.</li>
                 <li><b>Trigger:</b> reclaim + structure confirmation.</li>
-                <li><b>Risk:</b> invalidation beyond the sweep/structure; targets at next liquidity/structure.</li>
+                <li><b>Risk:</b> invalidation beyond sweep/structure; targets at next liquidity/structure.</li>
               </ul>
             </details>
+
             <div class="pricingFooter">
-              <a class="btn btnPrimary" id="getFreeLiquidity" href="#">Get Free</a>
-              <a class="btn" href="#pricing">Upgrade</a>
+              <a class="btn btnPrimary" id="getFreeLiquidity">Get Free</a>
+              <a class="btn" id="upgradeLiquidity">Upgrade</a>
             </div>
           </div>
         </div>
 
-        <!-- PRO -->
+        <!-- PRO (info card) -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill paid">PAID</span><span class="pill">Pro Suite</span><span class="pill">Prime MTF</span>
+              <span class="pill paid">PAID</span>
+              <span class="pill">Pro Suite</span>
+              <span class="pill">Prime MTF</span>
             </div>
+
             <div class="cardTitle">Pro Suite — Prime MTF</div>
             <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
+
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Prime MTF</span><span class="tag">SH CISD + DBOS Pro</span><span class="tag">SH VOL OM MTF</span>
-              <span class="tag">SH VRO Pro</span><span class="tag">SH HA Duo</span><span class="tag">SH Range Box</span><span class="tag">SH PatternScan</span>
+              <span class="tag">SH Prime MTF</span>
+              <span class="tag">SH CISD + DBOS Pro</span>
+              <span class="tag">SH VOL OM MTF</span>
+              <span class="tag">SH VRO Pro</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
             </div>
+
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="#pricing">Choose Plan</a>
+              <a class="btn btnPrimary" id="choosePlanPro">Choose Plan</a>
             </div>
           </div>
         </div>
 
-        <!-- ELITE -->
+        <!-- ELITE (info card) -->
         <div class="card">
           <div class="cardInner">
             <div class="labelRow">
-              <span class="pill paid">PAID</span><span class="pill">Elite Toolkit</span><span class="pill">Add-On</span>
+              <span class="pill paid">PAID</span>
+              <span class="pill">Elite Toolkit</span>
+              <span class="pill">Add-On</span>
             </div>
+
             <div class="cardTitle">Elite Toolkit — Decision & Control</div>
             <p class="cardDesc">
-              Execution tools that make trading consistent: alignment checks, decision panels, and scenario control.
+              Execution tools that make trading consistent: alignment checks, decision panels, scenario control.
               <b>Works with Free or Pro.</b>
             </p>
+
             <div class="miniHead">Included indicators</div>
             <div class="tagRow">
-              <span class="tag">SH Decision Panel</span><span class="tag">SH HTF Align Pro</span>
-              <span class="tag">SH Scenario Matrix</span><span class="tag">SH Flip 4</span>
+              <span class="tag">SH Decision Panel</span>
+              <span class="tag">SH HTF Align Pro</span>
+              <span class="tag">SH Scenario Matrix</span>
+              <span class="tag">SH Flip 4</span>
             </div>
+
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="#pricing">Choose Plan</a>
+              <a class="btn btnPrimary" id="choosePlanElite">Choose Plan</a>
             </div>
           </div>
         </div>
@@ -856,8 +857,8 @@
               <div class="startFreeSub">Get the workflow first. Add Pro for MTF structure. Add Elite for tighter execution.</div>
             </div>
             <div class="startFreeActions">
-              <a class="btn" href="#suites" id="seeFreeSuites">See Free Suites</a>
-              <a class="btn btnPrimary" href="#pricing" id="choosePlanBtn">Choose Plan</a>
+              <a class="btn" id="seeFreeSuites" href="#suites">See Free Suites</a>
+              <a class="btn btnPrimary" id="choosePlanBtn">Choose Plan</a>
             </div>
           </div>
 
@@ -871,18 +872,21 @@
                     <div class="pMeta">Prime MTF strategy</div>
                   </div>
                 </div>
+
                 <div class="priceRow">
                   <div class="priceBig" id="proPrice">$24.90</div>
                   <div class="per" id="proPer">/mo</div>
                 </div>
                 <p class="priceSmall" id="proSmall">Billed monthly. Cancel anytime.</p>
+
                 <ul class="pList">
                   <li><span class="check">✓</span>Prime MTF engine + confirmation tools</li>
                   <li><span class="check">✓</span>Cleaner selection (fewer, better setups)</li>
                   <li><span class="check">✓</span>Rules-first workflow (not random alerts)</li>
                 </ul>
+
                 <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyPro" href="#">Get Pro</a>
+                  <a class="btn btnPrimary" id="buyPro">Get Pro</a>
                   <a class="btn" href="#faq">Questions?</a>
                 </div>
               </div>
@@ -897,18 +901,21 @@
                     <div class="pMeta">Add-on toolkit</div>
                   </div>
                 </div>
+
                 <div class="priceRow">
                   <div class="priceBig" id="elitePrice">$29.90</div>
                   <div class="per" id="elitePer">/mo</div>
                 </div>
                 <p class="priceSmall" id="eliteSmall">Works with Free or Pro.</p>
+
                 <ul class="pList">
                   <li><span class="check">✓</span>Decision panel + alignment checks</li>
                   <li><span class="check">✓</span>Scenario control tools for consistency</li>
                   <li><span class="check">✓</span>“Checkpoint” before you click</li>
                 </ul>
+
                 <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyElite" href="#">Get Elite</a>
+                  <a class="btn btnPrimary" id="buyElite">Get Elite</a>
                   <a class="btn" href="#faq">Questions?</a>
                 </div>
               </div>
@@ -924,21 +931,27 @@
                   </div>
                   <span class="badge badgeRec">Recommended</span>
                 </div>
+
                 <div class="priceRow">
                   <div class="priceBig" id="bundlePrice">$44.90</div>
                   <div class="per" id="bundlePer">/mo</div>
                 </div>
                 <p class="priceSmall" id="bundleSmall">Best value: strategy + execution control.</p>
+
                 <ul class="pList">
                   <li><span class="check">✓</span>Everything in Pro</li>
                   <li><span class="check">✓</span>Everything in Elite</li>
                   <li><span class="check">✓</span>Discount vs buying separately</li>
                 </ul>
+
                 <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyBundle" href="#">Get Bundle</a>
+                  <a class="btn btnPrimary" id="buyBundle">Get Bundle</a>
                   <a class="btn" href="#faq">Questions?</a>
                 </div>
-                <p class="mutedSmall" style="margin-top:10px;">Full system: MTF strategy + execution control.</p>
+
+                <p class="mutedSmall" style="margin-top:10px;">
+                  Full system: MTF strategy + execution control.
+                </p>
               </div>
             </div>
           </div>
@@ -960,18 +973,41 @@
           <h2>Quick answers</h2>
         </div>
       </div>
+
       <div class="faqGrid">
-        <div class="faqItem"><div class="faqQ">Do I need Pro to use the free suites?</div><p class="faqA">No. The free suites are standalone.</p></div>
-        <div class="faqItem"><div class="faqQ">What am I paying for in Pro?</div><p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p></div>
-        <div class="faqItem"><div class="faqQ">Is Elite for everyone?</div><p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p></div>
-        <div class="faqItem"><div class="faqQ">Can Elite be used with the free suites or Pro?</div><p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p></div>
-        <div class="faqItem"><div class="faqQ">Can I cancel anytime?</div><p class="faqA">Yes. Monthly billing; cancel anytime.</p></div>
-        <div class="faqItem"><div class="faqQ">What platform is this for?</div><p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p></div>
+        <div class="faqItem">
+          <div class="faqQ">Do I need Pro to use the free suites?</div>
+          <p class="faqA">No. The free suites are standalone.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What am I paying for in Pro?</div>
+          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Is Elite for everyone?</div>
+          <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
+          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can I cancel anytime?</div>
+          <p class="faqA">Yes. Monthly billing; cancel anytime.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What platform is this for?</div>
+          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- UPDATED FOOTER (same as Trade Alerts) -->
   <footer>
     <div class="wrap">
       <div class="footTop">
@@ -997,66 +1033,61 @@
 
         <div>
           <div class="footColTitle">Social / Support</div>
-
           <div class="socialRow">
-  <!-- Instagram: replace with your real handle -->
-  <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </span>
-    Instagram
-  </a>
+            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Instagram
+            </a>
 
-  <!-- X (Twitter): replace with your profile link -->
-  <a class="iconBtn" href="https://x.com/" target="_blank" rel="noreferrer" aria-label="Open X">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-    </span>
-    X
-  </a>
+            <a class="iconBtn" href="https://x.com/" target="_blank" rel="noreferrer" aria-label="Open X">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              X
+            </a>
 
-  <!-- YouTube: replace with your channel link -->
-  <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noreferrer" aria-label="Open YouTube">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-        <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
-      </svg>
-    </span>
-    YouTube
-  </a>
+            <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noreferrer" aria-label="Open YouTube">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
+                </svg>
+              </span>
+              YouTube
+            </a>
 
-  <!-- TradingView: replace with your profile or product link -->
-  <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noreferrer" aria-label="Open TradingView">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
-        <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
-      </svg>
-    </span>
-    TradingView
-  </a>
+            <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noreferrer" aria-label="Open TradingView">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
+                  <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+              TradingView
+            </a>
 
-  <!-- Email: opens compose with support prefilled -->
-  <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-    Email
-  </a>
-</div>
+            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Email
+            </a>
+          </div>
+
           <p class="footHint">
-            Whitelist: <span class="mono">support@silverhawksuite.com</span> (contacts/safe senders) to avoid Promotions/Junk.
+            Whitelist: <span class="mono">support@silverhawksuite.com</span> to avoid Promotions/Junk.
           </p>
         </div>
       </div>
@@ -1076,57 +1107,52 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Replace with your checkout URLs (monthly only)
-    const LINKS = {
-      freeBreakouts: "#",
-      freeLiquidity: "#",
-      pro_monthly: "#",
-      elite_monthly: "#",
-      bundle_monthly: "#",
-    };
+    // ALL CTA TARGET URL
+    const SHOP_URL = "https://shop.silverhawksuite.com/";
 
-    const safeSet = (id, url) => {
+    const LINK_IDS = [
+      "ctaTop","ctaPrimary",
+      "getFreeBreakouts","getFreeLiquidity",
+      "upgradeBreakouts","upgradeLiquidity",
+      "choosePlanPro","choosePlanElite","choosePlanBtn",
+      "buyPro","buyElite","buyBundle"
+    ];
+
+    LINK_IDS.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.href = url;
-    };
-    safeSet("getFreeBreakouts", LINKS.freeBreakouts);
-    safeSet("getFreeLiquidity", LINKS.freeLiquidity);
+      if (el) el.href = SHOP_URL;
+    });
 
-    // Pricing (monthly only)
-    const buyPro     = document.getElementById("buyPro");
-    const buyElite   = document.getElementById("buyElite");
-    const buyBundle  = document.getElementById("buyBundle");
-    if (buyPro)    buyPro.href    = LINKS.pro_monthly;
-    if (buyElite)  buyElite.href  = LINKS.elite_monthly;
-    if (buyBundle) buyBundle.href = LINKS.bundle_monthly;
+    // Pricing (monthly only labels)
+    document.getElementById("proPer").textContent    = "/mo";
+    document.getElementById("elitePer").textContent  = "/mo";
+    document.getElementById("bundlePer").textContent = "/mo";
+    document.getElementById("proSmall").textContent    = "Billed monthly. Cancel anytime.";
+    document.getElementById("eliteSmall").textContent  = "Works with Free or Pro.";
+    document.getElementById("bundleSmall").textContent = "Best value: strategy + execution control.";
 
     // ================================
-    // Social-proof popups (improved authenticity)
+    // Social-proof popups (one at a time, randomized)
     // ================================
     const toastContainer = document.getElementById("toast-container");
-    const MAX_TOASTS = 20; // show fewer to feel real
+    const MAX_TOASTS = 15; // fewer = more believable
 
     const notifications = [
-      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "activated Elite monthly",              when: "just now" },
-      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "started Pro monthly",                 when: "moments ago" },
-      { name: "Noah B.",     country: "UK",           city: "London",       action: "took the Bundle (Pro + Elite)",       when: "moments ago" },
-      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is reviewing Pricing",                when: "moments ago" },
-      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "claimed the Free Breakouts suite",    when: "1 min ago" },
-      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "joined Pro monthly",                  when: "1 min ago" },
-      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "added Elite toolkit",                 when: "1 min ago" },
-      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "reading Liquidity Lines details",     when: "2 min ago" },
-      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "picked Pro + Elite bundle",           when: "2 min ago" },
-      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "activated Pro monthly",               when: "2 min ago" },
-      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "checking Elite toolkit features",     when: "3 min ago" },
-      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "enabled Elite add-on",                when: "3 min ago" },
-      { name: "Sofia G.",    country: "Italy",        city: "Milan",        action: "downloaded Free Breakouts",           when: "3 min ago" },
-      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "considering the Bundle",              when: "4 min ago" },
-      { name: "Mina F.",     country: "Egypt",        city: "Cairo",        action: "reading the FAQ",                     when: "4 min ago" },
-      { name: "Carlos D.",   country: "Mexico",       city: "CDMX",         action: "subscribed to Pro",                   when: "4 min ago" },
-      { name: "Priya S.",    country: "India",        city: "Mumbai",       action: "joined Elite",                        when: "5 min ago" },
-      { name: "Jonas W.",    country: "Denmark",      city: "Copenhagen",   action: "picked the Bundle",                   when: "5 min ago" },
-      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",                 when: "5 min ago" },
-      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",               when: "6 min ago" }
+      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "activated Elite monthly",          when: "just now" },
+      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "started Pro monthly",             when: "moments ago" },
+      { name: "Noah B.",     country: "UK",           city: "London",       action: "took the Bundle (Pro + Elite)",   when: "moments ago" },
+      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is reviewing Pricing",            when: "moments ago" },
+      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "claimed the Free Breakouts suite",when: "1 min ago" },
+      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "joined Pro monthly",              when: "1 min ago" },
+      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "added Elite toolkit",             when: "1 min ago" },
+      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "reading Liquidity Lines details", when: "2 min ago" },
+      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "picked Pro + Elite bundle",       when: "2 min ago" },
+      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "activated Pro monthly",           when: "2 min ago" },
+      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "checking Elite toolkit features", when: "3 min ago" },
+      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "enabled Elite add-on",            when: "3 min ago" },
+      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "considering the Bundle",          when: "4 min ago" },
+      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",             when: "5 min ago" },
+      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",           when: "6 min ago" }
     ];
 
     function shuffle(arr){
@@ -1138,7 +1164,7 @@
     }
     function nextDelay(){
       const base = Math.random() * 7000 + 7000; // 7–14s
-      const longGap = Math.random() < 0.18 ? 12000 : 0; // ~18% add 12s
+      const longGap = Math.random() < 0.2 ? 12000 : 0; // ~20% add 12s
       return base + longGap;
     }
     function createToast(note){
