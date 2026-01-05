@@ -66,21 +66,9 @@
       box-shadow: var(--shadow2);
       flex: 0 0 auto;
     }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-      padding:0;
-      background: transparent;
-    }
-    .brandName{
-      font-weight:900;
-      letter-spacing:.2px;
-      font-size:14px;
-      opacity:.95;
-      line-height:1.1;
-    }
+    .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
+    .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
+
     .nav{
       display:flex; align-items:center; gap:18px;
       color: var(--muted);
@@ -161,36 +149,18 @@
         radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
       pointer-events:none;
     }
-    .heroInner{
-      position:relative;
-      padding:34px 22px 26px;
-      text-align:center;
-    }
+    .heroInner{ position:relative; padding:34px 22px 26px; text-align:center; }
     .heroCtas{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:18px;
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;
     }
     .heroStats{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:18px;
+      display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;
     }
     .statPill{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.86);
-      font-weight:900;
-      font-size:13px;
+      display:flex; align-items:center; gap:10px; padding:10px 12px;
+      border-radius: 999px; border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04); color: rgba(234,240,255,.86);
+      font-weight:900; font-size:13px;
     }
     .dot{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.22); box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset; }
     .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
@@ -332,7 +302,7 @@
     .name{ font-weight:900; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .role{ color: var(--muted2); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .stars{ font-size:12px; letter-spacing:.06em; color: rgba(255,193,74,.95); flex:0 0 auto; }
-    .tBody{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
+    .tBody{ color: var(--muted); font-size:13px; line-length:1.55; margin:0; }
     .tTag{ margin-top:auto; color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
 
     /* PRICING */
@@ -458,12 +428,7 @@
       border-color: rgba(255,255,255,.18);
       color: rgba(234,240,255,.92);
     }
-    .icon{
-      width:18px; height:18px;
-      display:inline-grid;
-      place-items:center;
-      color: rgba(234,240,255,.80);
-    }
+    .icon{ width:18px; height:18px; display:inline-grid; place-items:center; color: rgba(234,240,255,.80); }
     .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
     .footHint{ margin:10px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; }
     .footDivider{ margin:18px 0 14px; height:1px; background: rgba(255,255,255,.06); }
@@ -525,6 +490,7 @@
           <a href="trade-alerts.html">Trade Alerts</a>
           <a href="#proof">Reviews</a>
           <a href="#pricing">Pricing</a>
+          <a href="https://shop.silverhawksuite.com/" target="_blank" rel="noreferrer">Shop</a>
           <a href="#faq">FAQ</a>
         </nav>
 
@@ -1027,6 +993,7 @@
             <a href="#suites">Suites</a>
             <a href="trade-alerts.html">Trade Alerts</a>
             <a href="#pricing">Pricing</a>
+            <a href="https://shop.silverhawksuite.com/" target="_blank" rel="noreferrer">Shop</a>
             <a href="#faq">FAQ</a>
           </div>
         </div>
@@ -1107,7 +1074,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ALL CTA TARGET URL
+    // SHOP link for all CTAs
     const SHOP_URL = "https://shop.silverhawksuite.com/";
 
     const LINK_IDS = [
@@ -1117,13 +1084,12 @@
       "choosePlanPro","choosePlanElite","choosePlanBtn",
       "buyPro","buyElite","buyBundle"
     ];
-
     LINK_IDS.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.href = SHOP_URL;
     });
 
-    // Pricing (monthly only labels)
+    // Pricing text (monthly only)
     document.getElementById("proPer").textContent    = "/mo";
     document.getElementById("elitePer").textContent  = "/mo";
     document.getElementById("bundlePer").textContent = "/mo";
