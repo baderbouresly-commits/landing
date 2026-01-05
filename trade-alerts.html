@@ -395,15 +395,13 @@
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
 
-    /* Footer (UPDATED: background continues + icons + no contact box) */
+    /* Footer */
     footer{
       position:relative;
       padding:40px 0 28px;
       border-top: 1px solid rgba(255,255,255,.06);
       color: rgba(234,240,255,.60);
       font-size:12px;
-
-      /* keep the “blue” continuing into footer so it doesn't look cut off */
       background:
         radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
         radial-gradient(900px 520px at 88% 10%, rgba(74,215,255,.10), transparent 64%),
@@ -432,49 +430,15 @@
       flex:0 0 auto;
     }
     .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
-    .footName{
-      font-weight:950;
-      color: rgba(234,240,255,.92);
-      font-size:13px;
-      margin:0;
-      line-height:1.25;
-    }
-    .footTag{
-      margin:6px 0 0 0;
-      color: rgba(234,240,255,.60);
-      line-height:1.55;
-      max-width: 46ch;
-    }
-    .footColTitle{
-      font-weight:950;
-      color: rgba(234,240,255,.86);
-      margin:0 0 10px 0;
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .footLinks{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .footLinks a{
-      color: rgba(234,240,255,.70);
-      padding:2px 0;
-      width:fit-content;
-      border-radius:8px;
-    }
+    .footName{ font-weight:950; color: rgba(234,240,255,.92); font-size:13px; margin:0; line-height:1.25; }
+    .footTag{ margin:6px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; max-width: 46ch; }
+    .footColTitle{ font-weight:950; color: rgba(234,240,255,.86); margin:0 0 10px 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .footLinks{ display:flex; flex-direction:column; gap:8px; }
+    .footLinks a{ color: rgba(234,240,255,.70); padding:2px 0; width:fit-content; border-radius:8px; }
     .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
-
-    .socialRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .socialRow{ display:flex; gap:10px; flex-wrap:wrap; }
     .iconBtn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+      display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
@@ -490,30 +454,12 @@
       border-color: rgba(255,255,255,.18);
       color: rgba(234,240,255,.92);
     }
-    .icon{
-      width:18px; height:18px;
-      display:inline-grid;
-      place-items:center;
-      color: rgba(234,240,255,.80);
-    }
+    .icon{ width:18px; height:18px; display:inline-grid; place-items:center; color: rgba(234,240,255,.80); }
     .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
-
-    .footHint{
-      margin:10px 0 0 0;
-      color: rgba(234,240,255,.60);
-      line-height:1.55;
-    }
-
-    .footDivider{
-      margin:18px 0 14px;
-      height:1px;
-      background: rgba(255,255,255,.06);
-    }
+    .footHint{ margin:10px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; }
+    .footDivider{ margin:18px 0 14px; height:1px; background: rgba(255,255,255,.06); }
     .footBottom{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       color: rgba(234,240,255,.55);
     }
   </style>
@@ -535,6 +481,7 @@
           <a class="active" href="trade-alerts.html">Trade Alerts</a>
           <a href="index.html#proof">Reviews</a>
           <a href="index.html#pricing">Pricing</a>
+          <a href="https://shop.silverhawksuite.com/" target="_blank" rel="noreferrer">Shop</a>
           <a href="index.html#faq">FAQ</a>
         </nav>
 
@@ -752,7 +699,7 @@
     </div>
   </section>
 
-  <!-- UPDATED FOOTER (no contact box; Instagram + Email icons; footer background continues) -->
+  <!-- Footer -->
   <footer>
     <div class="wrap">
       <div class="footTop">
@@ -772,70 +719,65 @@
             <a href="index.html#suites">Suites</a>
             <a href="trade-alerts.html">Trade Alerts</a>
             <a href="index.html#pricing">Pricing</a>
+            <a href="https://shop.silverhawksuite.com/" target="_blank" rel="noreferrer">Shop</a>
             <a href="index.html#faq">FAQ</a>
           </div>
         </div>
 
         <div>
           <div class="footColTitle">Social / Support</div>
-
           <div class="socialRow">
-  <!-- Instagram: replace with your real handle -->
-  <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </span>
-    Instagram
-  </a>
+            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Open Instagram">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Instagram
+            </a>
 
-  <!-- X (Twitter): replace with your profile link -->
-  <a class="iconBtn" href="https://x.com/" target="_blank" rel="noreferrer" aria-label="Open X">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-    </span>
-    X
-  </a>
+            <a class="iconBtn" href="https://x.com/" target="_blank" rel="noreferrer" aria-label="Open X">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              X
+            </a>
 
-  <!-- YouTube: replace with your channel link -->
-  <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noreferrer" aria-label="Open YouTube">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-        <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
-      </svg>
-    </span>
-    YouTube
-  </a>
+            <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noreferrer" aria-label="Open YouTube">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
+                </svg>
+              </span>
+              YouTube
+            </a>
 
-  <!-- TradingView: replace with your profile or product link -->
-  <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noreferrer" aria-label="Open TradingView">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
-        <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
-      </svg>
-    </span>
-    TradingView
-  </a>
+            <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noreferrer" aria-label="Open TradingView">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
+                  <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+              TradingView
+            </a>
 
-  <!-- Email: opens compose with support prefilled -->
-  <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-    Email
-  </a>
-</div>
+            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Email
+            </a>
+          </div>
 
           <p class="footHint">
             Whitelist: <span class="mono">support@silverhawksuite.com</span> (contacts/safe senders) to avoid Promotions/Junk.
@@ -855,13 +797,14 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Replace with your Lemon Squeezy checkout URL for Trade Alerts
-    const LINKS = {
-      alerts: "#"
-    };
+    // SHOP target for CTAs
+    const SHOP_URL = "https://shop.silverhawksuite.com/";
 
-    const el = document.getElementById("buyAlerts");
-    if (el) el.href = LINKS.alerts;
+    const CTA_IDS = ["ctaTop", "ctaPrimary", "buyAlerts"];
+    CTA_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = SHOP_URL;
+    });
   </script>
 </body>
 </html>
