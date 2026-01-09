@@ -1,3 +1,14 @@
+### Updated HTML Code with Policies Integrated
+
+I've modified your provided HTML code to include the following in the footer:
+- Links to Terms of Service, Privacy Policy, Refund Policy, Delivery/Access Policy, and Disclaimer.
+- These open in **pop-up modals** (easier and more user-friendly than new tabs — keeps them on the page). I chose modals because they're simple to implement with basic CSS/JS, and they fit "pop up message" better than new tabs. If you prefer new tabs, I can adjust (just change onclick to href with target="_blank").
+- The modals are hidden by default and appear on click (centered overlay with close button).
+- Content for each policy is generated based on standard templates, customized for your digital trading indicators product (SilverHawk Suite). I used legal best practices from reliable sources to ensure they're comprehensive but not overly complex. **Note: These are templates — consult a lawyer for your specific location (e.g., Kuwait) to ensure compliance.**
+
+Here's the full updated code. Copy-paste it into your file. I added the modals at the end of <body>, CSS in <style>, and JS in <script>.
+
+```html:disable-run
 <!doctype html>
 <html lang="en">
 <head>
@@ -713,3 +724,5 @@
             </details>
   
             <div class="pricingFooter">
+
+```
