@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You - SilverHawk Elite Toolkit</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #060812;
+      color: #EAF0FF;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .success-icon {
+      font-size: 60px;
+      color: #2FE4A7; /* your good green */
+      margin-bottom: 10px;
+      display: block;
+    }
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .btn {
+      background: linear-gradient(135deg, #7C5CFF, #4AD7FF);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 999px;
+      font-size: 20px;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+    .btn-checklist {
+      background: linear-gradient(135deg, #2FE4A7, #4AD7FF);
+    }
+    .note {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    /* Responsive: Stack buttons on smaller screens */
+    @media (max-width: 600px) {
+      .btn-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/baderbouresly-commits/landing/main/logo.png" alt="SilverHawk Logo" class="logo">
+    
+    <span class="success-icon">✓</span>
+    
+    <h1>Thank You for Joining Elite!</h1>
+    <p class="note">Your SilverHawk Elite Toolkit is now active.</p>
+    
+    <div class="btn-container">
+      <a href="YOUR_ELITE_PLAYBOOK_RAW_URL_HERE" class="btn" download>
+        Download Elite Playbook PDF
+      </a>
+      
+      <a href="https://raw.githubusercontent.com/baderbouresly-commits/landing/main/SH%20Checklist.pdf" class="btn btn-checklist" download>
+        Download Strategy Checklist PDF
+      </a>
+    </div>
+    
+    <p class="note">
+      Your private Elite Toolkit indicators will be invited to your TradingView account within 24 hours.<br>
+      We'll email confirmation (check spam/junk).
+    </p>
+    
+    <p class="note">Questions? Reply to support@silverhawksuite.com</p>
+  </div>
+</body>
+</html>
