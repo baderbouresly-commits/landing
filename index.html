@@ -1,11 +1,10 @@
+```html:disable-run
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SilverHawk Suite — Suites + Indicators</title>
   <meta name="description" content="Pick a suite. Get the exact indicators to execute it. Free suites plus Pro and Elite add-ons." />
-
   <style>
     :root{
       --bg0:#060812;
@@ -25,7 +24,6 @@
       --shadow2: 0 10px 30px rgba(0,0,0,.35);
       --max: 1120px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     html{ scroll-behavior:smooth; }
@@ -40,19 +38,15 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
     :focus-visible{
       outline: 2px solid rgba(74,215,255,.55);
       outline-offset: 2px;
       border-radius: 10px;
     }
-
     section{ scroll-margin-top: 92px; }
-
     /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
@@ -80,7 +74,6 @@
     }
     .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
     .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
-
     .nav{
       display:flex; align-items:center; gap:18px;
       color: var(--muted);
@@ -88,7 +81,6 @@
     }
     .nav a{ padding:8px 10px; border-radius:10px; }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-
     .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
       border:1px solid rgba(255,255,255,.12);
@@ -114,14 +106,12 @@
       color:#070A14;
     }
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
-
     .mobileOnly{ display:none; }
     @media (max-width: 860px){
       .nav{ display:none; }
       .mobileOnly{ display:inline-flex; }
       .brand{ min-width:auto; }
     }
-
     /* Sections */
     section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
@@ -143,7 +133,6 @@
       max-width: 70ch;
       text-align:center;
     }
-
     .hero{ padding:70px 0 56px; }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
@@ -157,8 +146,8 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
-        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
+        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.30), transparent 60%),
+        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.10), transparent 62%);
       pointer-events:none;
     }
     .heroInner{ position:relative; padding:34px 22px 26px; text-align:center; }
@@ -178,7 +167,6 @@
     .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
     .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
     .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
-
     .miniLine{
       margin:18px auto 0;
       max-width: 82ch;
@@ -187,7 +175,6 @@
       line-height:1.5;
       text-align:center;
     }
-
     .sectionHead{
       display:flex;
       align-items:flex-end;
@@ -210,7 +197,6 @@
       max-width: 80ch;
       text-align:left;
     }
-
     /* =========================
        ABOUT (Premium)
        ========================= */
@@ -225,29 +211,10 @@
       content:""; position:absolute; inset:-2px;
       background:
         radial-gradient(900px 320px at 15% 0%, rgba(124,92,255,.14), transparent 62%),
-        radial-gradient(760px 320px at 92% 10%, rgba(74,215,255,.12), transparent 62%);
+        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.12), transparent 62%);
       pointer-events:none;
     }
     .aboutInner{ position:relative; padding:18px; }
-    .aboutGrid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      padding: 0 6px 6px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .aboutGrid{ grid-template-columns: 1fr; }
-    }
-    .aboutLeft, .aboutRight{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .aboutLeftInner, .aboutRightInner{ padding:18px; }
     .aboutTitleRow{
       display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
       margin-bottom:10px;
@@ -266,9 +233,9 @@
     .microBadge{
       display:inline-flex; align-items:center; gap:8px;
       font-size:11px; padding:7px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.80);
+      border:1px solid var(--line);
+      background: var(--card);
+      color: var(--muted);
       font-weight:900;
       letter-spacing:.02em;
     }
@@ -277,15 +244,14 @@
       background: rgba(255,255,255,.22);
       box-shadow: 0 0 0 3px rgba(255,255,255,.05) inset;
     }
-    .microDot.good{ background: rgba(47,228,167,.92); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
-    .microDot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
-    .microDot.accent{ background: rgba(74,215,255,.92); box-shadow: 0 0 0 3px rgba(74,215,255,.14) inset; }
-
+    .microDot.good{ background: var(--good); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
+    .microDot.warn{ background: var(--warn); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
+    .microDot.accent{ background: var(--accent); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
     .workflow{
       margin-top:14px;
       border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      background: var(--card);
       padding:14px;
     }
     .workflowHead{
@@ -294,10 +260,10 @@
     }
     .workflowTitle{
       font-weight:950; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-      color: rgba(234,240,255,.78);
+      color: var(--muted2);
     }
     .workflowNote{
-      color: rgba(234,240,255,.55);
+      color: var(--muted2);
       font-size:12px;
     }
     .steps{
@@ -311,22 +277,20 @@
     .step{
       display:flex; gap:12px; align-items:flex-start;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      background: var(--card2);
       padding:12px;
     }
     .stepIcon{
       width:34px; height:34px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: radial-gradient(120% 120% at 30% 20%, rgba(124,92,255,.30), rgba(74,215,255,.10));
+      border:1px solid var(--line);
+      background: var(--card2);
       display:grid; place-items:center;
-      flex: 0 0 auto;
     }
-    .stepIcon svg{ width:18px; height:18px; display:block; color: rgba(234,240,255,.88); }
+    .stepIcon svg{ width:18px; height:18px; display:block; color: var(--muted); }
     .stepText{ min-width:0; }
     .stepName{ font-weight:950; font-size:13px; margin:0 0 3px 0; }
     .stepDesc{ margin:0; color: var(--muted); font-size:12px; line-height:1.55; }
-
     .aboutRightGrid{
       display:grid;
       grid-template-columns: 1fr;
@@ -334,29 +298,26 @@
     }
     .featureCard{
       border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      background: var(--card);
       padding:14px;
       display:flex; gap:12px; align-items:flex-start;
     }
     .fIcon{
       width:38px; height:38px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      background: var(--card2);
       display:grid; place-items:center;
-      flex:0 0 auto;
     }
-    .fIcon svg{ width:18px; height:18px; display:block; color: rgba(234,240,255,.88); }
+    .fIcon svg{ width:18px; height:18px; display:block; color: var(--muted); }
     .fTitle{ font-weight:950; font-size:13px; margin:0 0 4px 0; }
     .fDesc{ margin:0; color: var(--muted); font-size:12px; line-height:1.6; }
-
     .aboutFinePrint{
       margin: 10px 6px 2px;
-      color: rgba(234,240,255,.55);
+      color: var(--muted2);
       font-size:12px;
       line-height:1.45;
     }
-
     /* Suites cards */
     .grid4{
       display:grid;
@@ -368,8 +329,8 @@
     }
     .card{
       border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       box-shadow: var(--shadow2);
       overflow:hidden;
       position:relative;
@@ -380,47 +341,43 @@
     .labelRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .pill{
       font-size:11px; padding:6px 9px; border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      font-weight:900; letter-spacing:.02em; color: rgba(234,240,255,.78);
+      border:1px solid var(--line);
+      background: var(--card2);
+      font-weight:900; letter-spacing:.02em; color: var(--muted);
     }
-    .pill.free{ color: rgba(47,228,167,.95); border-color: rgba(47,228,167,.25); background: rgba(47,228,167,.06); }
-    .pill.paid{ color: rgba(255,193,74,.95); border-color: rgba(255,193,74,.25); background: rgba(255,193,74,.06); }
-
-    .miniHead{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: rgba(234,240,255,.55); margin:14px 0 10px; }
+    .pill.free{ color: var(--good); border-color: rgba(47,228,167,.25); background: rgba(47,228,167,.06); }
+    .pill.paid{ color: var(--warn); border-color: rgba(255,193,74,.25); background: rgba(255,193,74,.06); }
+    .miniHead{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--muted2); margin:14px 0 10px; }
     .tagRow{ display:flex; flex-wrap:wrap; gap:8px; }
     .tag{
       font-size:12px; padding:7px 10px; border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.84);
+      border:1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
       font-weight:800;
     }
-
-    details{ border-top:1px solid rgba(255,255,255,.08); margin-top:14px; padding-top:12px; }
+    details{ border-top:1px solid var(--card2); margin-top:14px; padding-top:12px; }
     summary{
       list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px;
-      font-weight:900; color: rgba(234,240,255,.92); user-select:none;
+      font-weight:900; color: var(--muted); user-select:none;
     }
     summary::-webkit-details-marker{ display:none; }
     .caret{
       width:28px; height:28px; border-radius: 10px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      background: var(--card2);
       display:grid; place-items:center;
       transition: transform .14s ease; flex: 0 0 auto;
     }
     details[open] .caret{ transform: rotate(180deg); }
     .rules{ margin:10px 0 0 0; padding:0 0 0 18px; color: var(--muted); font-size:13px; line-height:1.6; }
-
     .pricingFooter{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:10px; }
-
     /* TESTIMONIALS (marquee) */
     .proofCard{
       border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       box-shadow: var(--shadow2);
       overflow:hidden; position:relative;
     }
@@ -430,8 +387,8 @@
     .marquee::after{
       content:""; position:absolute; top:0; bottom:0; width:90px; pointer-events:none; z-index:2;
     }
-    .marquee::before{ left:0;  background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
-    .marquee::after { right:0; background: linear-gradient(270deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
+    .marquee::before{ left:0; background: linear-gradient(90deg, var(--bg0) 0%, transparent); }
+    .marquee::after { right:0; background: linear-gradient(270deg, var(--bg0) 0%, transparent); }
     .track{
       display:flex; width:max-content; gap:14px; padding: 8px 10px;
       animation: scrollX 34s linear infinite;
@@ -439,35 +396,33 @@
     .marquee:hover .track{ animation-play-state: paused; }
     @keyframes scrollX{
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      to { transform: translateX(-50%); }
     }
     @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
-
     .tCard{
       width: 340px; max-width: 78vw;
-      border-radius: 16px; border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border-radius: 16px; border:1px solid var(--line);
+      background: var(--card2);
       padding:14px; display:flex; flex-direction:column; gap:10px;
     }
     .tTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
     .who{ display:flex; align-items:center; gap:10px; min-width:0; }
     .avatar{
-      width:34px; height:34px; border-radius: 999px; border:1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center; font-weight:900; color: rgba(234,240,255,.92); flex:0 0 auto;
+      width:34px; height:34px; border-radius: 999px; border:1px solid var(--line);
+      display:grid; place-items:center; font-weight:900; color: var(--text); flex:0 0 auto;
       background: radial-gradient(120% 120% at 30% 20%, rgba(124,92,255,.45), rgba(74,215,255,.12));
     }
     .whoText{ min-width:0; }
     .name{ font-weight:900; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .role{ color: var(--muted2); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .stars{ font-size:12px; letter-spacing:.06em; color: rgba(255,193,74,.95); flex:0 0 auto; }
+    .stars{ font-size:12px; letter-spacing:.06em; color: var(--warn); flex:0 0 auto; }
     .tBody{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
-    .tTag{ margin-top:auto; color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
-
+    .tTag{ margin-top:auto; color: var(--muted2); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
     /* PRICING */
     .pricingShell{
       border-radius: calc(var(--radius) + 6px);
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       box-shadow: var(--shadow);
       overflow:hidden; position:relative;
     }
@@ -479,24 +434,21 @@
       pointer-events:none;
     }
     .pricingInner{ position:relative; padding:18px; }
-
     .pricingHeaderRow{
       display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;
       padding: 6px 6px 14px;
     }
     .pricingHdrTitle{ font-weight:950; font-size:14px; letter-spacing:-.01em; }
     .pricingHdrSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 74ch; }
-
     .startFreeBar{
       margin: 0 6px 14px; padding: 14px;
-      border-radius: 16px; border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border-radius: 16px; border:1px solid var(--line);
+      background: var(--card2);
       display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
     .startFreeTitle{ font-weight:950; letter-spacing:-.01em; }
     .startFreeSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 90ch; }
     .startFreeActions{ display:flex; gap:10px; flex-wrap:wrap; }
-
     .pricingGrid{
       display:grid; grid-template-columns: repeat(3, 1fr);
       gap:14px; padding: 0 6px 6px;
@@ -504,41 +456,39 @@
     @media (max-width: 980px){ .pricingGrid{ grid-template-columns: 1fr; } }
     .pCard{
       border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       box-shadow: var(--shadow2);
       overflow:hidden; position:relative;
     }
     .pCardInner{ padding:18px; display:flex; flex-direction:column; height:100%; }
     .pTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
     .pName{ font-weight:950; font-size:16px; letter-spacing:-.01em; }
-    .pMeta{ color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.12em; text-transform:uppercase; margin-top:6px; }
+    .pMeta{ color: var(--muted2); font-size:11px; letter-spacing:.12em; text-transform:uppercase; margin-top:6px; }
     .badge{ font-size:11px; padding:6px 10px; border-radius:999px; border:1px solid rgba(124,92,255,.35); background: rgba(124,92,255,.10); color: rgba(196,186,255,.95); font-weight:900; white-space:nowrap; }
     .badgeRec{ border-color: rgba(47,228,167,.28); background: rgba(47,228,167,.08); color: rgba(47,228,167,.95); }
     .priceRow{ display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; margin: 6px 0 6px; }
     .priceBig{ font-size:48px; line-height:1; font-weight:950; letter-spacing:-.03em; }
-    .per{ font-weight:900; color: rgba(234,240,255,.78); margin-bottom:6px; }
+    .per{ font-weight:900; color: var(--muted); margin-bottom:6px; }
     .priceSmall{ color: var(--muted); font-size:12px; line-height:1.4; margin: 0 0 10px 0; }
     .pList{ margin:12px 0 0 0; padding:0; list-style:none; display:grid; gap:10px; }
-    .pList li{ display:flex; gap:10px; align-items:flex-start; color: rgba(234,240,255,.82); font-size:13px; line-height:1.4; }
+    .pList li{ display:flex; gap:10px; align-items:flex-start; color: var(--muted); font-size:13px; line-height:1.4; }
     .check{ width:18px; height:18px; border-radius:999px; background: rgba(47,228,167,.18); border:1px solid rgba(47,228,167,.25); display:grid; place-items:center; flex: 0 0 auto; margin-top:1px; color: rgba(47,228,167,.95); font-weight:950; font-size:12px; }
     .pCtas{ margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; padding-top:14px; }
-    .notesRow{ padding: 10px 6px 2px; color: rgba(234,240,255,.55); font-size:12px; line-height:1.45; }
-
+    .notesRow{ padding: 10px 6px 2px; color: var(--muted2); font-size:12px; line-height:1.45; }
     /* FAQ */
     .faqGrid{
       display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;
     }
     @media (max-width: 920px){ .faqGrid{ grid-template-columns: 1fr; } }
-    .faqItem{ border-radius: 16px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:14px 14px 12px; }
+    .faqItem{ border-radius: 16px; border:1px solid var(--line); background: var(--card2); padding:14px 14px 12px; }
     .faqQ{ font-weight:900; margin-bottom:6px; }
     .faqA{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
-
     footer{
       position:relative;
       padding:40px 0 28px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      color: rgba(234,240,255,.60);
+      border-top: 1px solid var(--line);
+      color: var(--muted2);
       font-size:12px;
       background:
         radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
@@ -555,46 +505,44 @@
       .footTop{ grid-template-columns: 1fr; }
     }
     .footBrand{ display:flex; gap:12px; align-items:flex-start; }
-    .footLogo{
-      width:44px; height:44px; border-radius:14px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
+    .footLogo{ width:44px; height:44px; border-radius:14px;
+      background: var(--card2);
+      border:1px solid var(--line);
       display:grid; place-items:center;
       overflow:hidden;
       flex:0 0 auto;
     }
     .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
-    .footName{ font-weight:950; color: rgba(234,240,255,.92); font-size:13px; margin:0; line-height:1.25; }
-    .footTag{ margin:6px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; max-width: 46ch; }
-    .footColTitle{ font-weight:950; color: rgba(234,240,255,.86); margin:0 0 10px 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .footName{ font-weight:950; color: var(--muted); font-size:13px; margin:0; line-height:1.25; }
+    .footTag{ margin:6px 0 0 0; color: var(--muted2); line-height:1.55; max-width: 46ch; }
+    .footColTitle{ font-weight:950; color: var(--muted); margin:0 0 10px 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
     .footLinks{ display:flex; flex-direction:column; gap:8px; }
-    .footLinks a{ color: rgba(234,240,255,.70); padding:2px 0; width:fit-content; border-radius:8px; }
-    .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
+    .footLinks a{ color: var(--muted2); padding:2px 0; width:fit-content; border-radius:8px; }
+    .footLinks a:hover{ color: var(--muted); text-decoration:underline; }
     .socialRow{ display:flex; gap:10px; flex-wrap:wrap; }
     .iconBtn{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px; border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(234,240,255,.82);
+      border:1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
       font-weight:850; font-size:13px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
     .iconBtn:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.18);
-      color: rgba(234,240,255,.92);
+      background: var(--card2);
+      border-color: var(--line);
+      color: var(--text);
     }
-    .icon{ width:18px; height:18px; display:inline-grid; place-items:center; color: rgba(234,240,255,.80); }
+    .icon{ width:18px; height:18px; display:inline-grid; place-items:center; color: var(--muted); }
     .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
-    .footHint{ margin:10px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; }
-    .footDivider{ margin:18px 0 14px; height:1px; background: rgba(255,255,255,.06); }
+    .footHint{ margin:10px 0 0 0; color: var(--muted2); line-height:1.55; }
+    .footDivider{ margin:18px 0 14px; height:1px; background: var(--line); }
     .footBottom{
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      color: rgba(234,240,255,.55);
+      color: var(--muted2);
     }
-
     /* Social proof toast */
     .toast-container{
       position:fixed; bottom:18px; left:18px; z-index:9999;
@@ -629,7 +577,6 @@
       background: transparent; border:none; color: var(--muted2);
       cursor:pointer; padding:0; font-size:14px; line-height:1;
     }
-
     /* Policy Modal */
     .modal{ position:fixed; inset:0; z-index:10000; display:none; }
     .modal.show{ display:block; }
@@ -653,48 +600,42 @@
       padding:16px 16px 12px;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .modalTitle{
-      font-weight:950; letter-spacing:-.01em;
-      font-size:16px; color: rgba(234,240,255,.95);
-    }
-    .modalSub{
-      margin-top:6px; font-size:12px; color: rgba(234,240,255,.60);
-    }
+    .modalTitle{ font-weight:950; letter-spacing:-.01em; font-size:16px; color: var(--text); }
+    .modalSub{ margin-top:6px; font-size:12px; color: var(--muted2); }
     .modalClose{
       width:36px; height:36px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      color: rgba(234,240,255,.85);
+      border:1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
       cursor:pointer;
       font-size:18px; line-height:1;
     }
-    .modalClose:hover{ background: rgba(255,255,255,.08); }
+    .modalClose:hover{ background: var(--card2); }
     .modalBody{
       max-height: 68vh;
       overflow:auto;
       padding: 14px 16px 18px;
-      color: rgba(234,240,255,.82);
+      color: var(--muted);
       font-size:13px;
       line-height:1.65;
     }
     .modalBody h3{
       margin:14px 0 8px; font-size:14px; letter-spacing:-.01em;
-      color: rgba(234,240,255,.95);
+      color: var(--text);
     }
     .modalBody p{ margin: 0 0 10px 0; }
     .modalBody ul{ margin: 0 0 12px 18px; padding:0; }
-    .modalBody li{ margin: 6px 0; color: rgba(234,240,255,.80); }
-    .modalBody .muted{ color: rgba(234,240,255,.62); }
+    .modalBody li{ margin: 6px 0; color: var(--muted); }
+    .modalBody .muted{ color: var(--muted2); }
     .modalBody .box{
       padding:12px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      background: var(--card2);
       margin: 10px 0 14px;
     }
   </style>
 </head>
-
 <body>
   <header class="topbar">
     <div class="wrap">
@@ -705,7 +646,6 @@
           </div>
           <div class="brandName">SilverHawk Suite</div>
         </div>
-
         <nav class="nav" aria-label="Primary">
           <a href="#suites">Suites</a>
           <a href="#about">About</a>
@@ -715,7 +655,6 @@
           <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Shop</a>
           <a href="#faq">FAQ</a>
         </nav>
-
         <div class="ctaRow">
           <a class="btn" href="#suites">View Suites</a>
           <a class="btn btnPrimary" id="ctaTop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
@@ -724,7 +663,6 @@
       </div>
     </div>
   </header>
-
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="wrap">
@@ -735,18 +673,15 @@
             Stop collecting random tools. Use a repeatable workflow:
             <b>filter → setup → trigger → risk</b>.
           </p>
-
           <div class="heroCtas">
             <a class="btn btnPrimary" id="ctaPrimary" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
             <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
-
           <div class="heroStats" aria-label="Key highlights">
             <div class="statPill"><span class="dot good"></span> 2 Free Suites</div>
             <div class="statPill"><span class="dot warn"></span> Pro: Prime MTF</div>
             <div class="statPill"><span class="dot accent"></span> Elite Add-On Toolkit</div>
           </div>
-
           <div class="miniLine">
             Built for clarity and execution. Fewer trades, cleaner selection, consistent risk.
           </div>
@@ -754,129 +689,30 @@
       </div>
     </div>
   </section>
-
-  <!-- ABOUT (Premium) -->
-<!-- ABOUT (Ultra-Short & Aspirational) -->
-<section id="about" style="padding: 60px 0 40px;">
-  <div class="wrap">
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px;">
-        Discipline > Signals
-      </h2>
-      <p style="font-size: 18px; color: var(--muted); line-height: 1.6; max-width: 600px; margin: 0 auto 32px;">
-        Most traders lose because they chase random signals.  
-        SilverHawk changes that: one repeatable system that enforces discipline, stacks confirmations, and puts risk first.  
-        Fewer trades. Cleaner decisions. Real consistency.
-      </p>
-
-      <!-- Small 3-icon highlights -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-bottom: 40px;">
-        <div style="flex: 1 1 200px; max-width: 220px;">
-          <div style="font-size: 40px; color: var(--good); margin-bottom: 8px;">✓</div>
-          <p style="font-weight: 700;">Repeatable process</p>
-          <p style="color: var(--muted); font-size: 14px;">No guesswork — just rules.</p>
+  <!-- ABOUT (Ultra-Short & Aspirational – No Icons) -->
+  <section id="about" style="padding: 60px 0 40px;">
+    <div class="wrap">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px;">
+          Discipline > Signals
+        </h2>
+        <p style="font-size: 18px; color: var(--muted); line-height: 1.6; max-width: 600px; margin: 0 auto 32px;">
+          Most traders lose because they chase random signals.
+          SilverHawk changes that: one repeatable system that enforces discipline, stacks confirmations, and puts risk first.
+          Fewer trades. Cleaner decisions. Real consistency.
+        </p>
+        <!-- CTAs -->
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a class="btn" href="#suites">See suites</a>
+          <a class="btn btnPrimary" href="#pricing">See pricing</a>
         </div>
-        <div style="flex: 1 1 200px; max-width: 220px;">
-          <div style="font-size: 40px; color: var(--good); margin-bottom: 8px;">✓</div>
-          <p style="font-weight: 700;">Confirmation stacking</p>
-          <p style="color: var(--muted); font-size: 14px;">Kill fake-outs before they cost you.</p>
-        </div>
-        <div style="flex: 1 1 200px; max-width: 220px;">
-          <div style="font-size: 40px; color: var(--good); margin-bottom: 8px;">✓</div>
-          <p style="font-weight: 700;">Risk-first mindset</p>
-          <p style="color: var(--muted); font-size: 14px;">Invalidation before targets. Size always controlled.</p>
-        </div>
-      </div>
-
-      <!-- CTAs -->
-      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a class="btn" href="#suites">See suites</a>
-        <a class="btn btnPrimary" href="#pricing">See pricing</a>
-      </div>
-
-      <!-- Fine print -->
-      <p style="margin-top: 32px; color: rgba(234,240,255,.55); font-size: 13px;">
-        Educational tools only. Not financial advice. Trading involves risk.
-      </p>
-    </div>
-  </div>
-</section>
-
-            <!-- RIGHT: Premium Feature Cards -->
-            <div class="aboutRight">
-              <div class="aboutRightInner">
-                <div class="aboutRightGrid">
-                  <div class="featureCard">
-                    <div class="fIcon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M12 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="fTitle">Suites, not clutter</p>
-                      <p class="fDesc">Each suite is a complete workflow. You’re not collecting indicators — you’re executing rules.</p>
-                    </div>
-                  </div>
-
-                  <div class="featureCard">
-                    <div class="fIcon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 18V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M4 15c4-2 6-6 10-6s6 4 6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M20 18V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="fTitle">Designed for quality</p>
-                      <p class="fDesc">The goal is fewer trades and cleaner selection — not higher “signal count”.</p>
-                    </div>
-                  </div>
-
-                  <div class="featureCard">
-                    <div class="fIcon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                        <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="fTitle">Enforcement + checkpoints</p>
-                      <p class="fDesc">Elite tools act as a “checkpoint before you click” so you stop violating your own rules.</p>
-                    </div>
-                  </div>
-
-                  <div class="featureCard">
-                    <div class="fIcon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M7 7h10M7 12h10M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M4 4h16v16H4V4Z" stroke="currentColor" stroke-width="2" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="fTitle">Clear product ladder</p>
-                      <p class="fDesc">Start Free. Add Pro for MTF structure. Add Elite for execution control. Bundle for full system.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pricingFooter" style="margin-top:14px;">
-                  <a class="btn" href="#suites">See suites</a>
-                  <a class="btn btnPrimary" href="#pricing">See pricing</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="notesRow" style="padding: 10px 6px 2px;">
-            Notes: Trading involves risk. Nothing here is financial advice. Use proper risk management.
-          </div>
-        </div>
+        <!-- Fine print -->
+        <p style="margin-top: 32px; color: rgba(234,240,255,.55); font-size: 13px;">
+          Educational tools only. Not financial advice. Trading involves risk.
+        </p>
       </div>
     </div>
   </section>
-
   <!-- SOCIAL PROOF -->
   <section id="proof">
     <div class="wrap">
@@ -887,7 +723,6 @@
           <p class="subLeft">A scrolling snapshot of feedback. Results vary — execution still matters.</p>
         </div>
       </div>
-
       <div class="proofCard">
         <div class="proofInner">
           <div class="marquee" aria-label="User testimonials">
@@ -902,7 +737,6 @@
                 <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
                 <div class="tTag">Elite Toolkit</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -913,7 +747,6 @@
                 <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
                 <div class="tTag">Workflow</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -924,7 +757,6 @@
                 <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
                 <div class="tTag">Confirmations</div>
               </article>
-
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -933,878 +765,5 @@
                   </div><div class="stars">★★★★★</div>
                 </div>
                 <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
-                <div class="tTag">Quality &gt; Quantity</div>
-              </article>
-
-              <!-- duplicate set -->
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar">K</div>
-                    <div class="whoText"><div class="name">K. Thomas</div><div class="role">Prop Challenge</div></div>
-                  </div><div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
-                <div class="tTag">Elite Toolkit</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar">J</div>
-                    <div class="whoText"><div class="name">J. Almutairi</div><div class="role">Options Trader</div></div>
-                  </div><div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“I like that it’s suites, not ‘signals’. You still think — but with structure and rules.”</p>
-                <div class="tTag">Workflow</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar">R</div>
-                    <div class="whoText"><div class="name">R. Singh</div><div class="role">Crypto Trader</div></div>
-                  </div><div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“Cleaner selection, fewer fake-outs. The confirmations reduced my ‘early entry’ mistakes.”</p>
-                <div class="tTag">Confirmations</div>
-              </article>
-
-              <article class="tCard">
-                <div class="tTop">
-                  <div class="who">
-                    <div class="avatar">H</div>
-                    <div class="whoText"><div class="name">H. Alhajeri</div><div class="role">Scalper (15m/5m)</div></div>
-                  </div><div class="stars">★★★★★</div>
-                </div>
-                <p class="tBody">“The suite didn’t ‘increase signals’ — it increased quality. That’s the point.”</p>
-                <div class="tTag">Quality &gt; Quantity</div>
-              </article>
-            </div>
-          </div>
-
-          <p class="mutedSmall" style="margin-top:10px;">Hover to pause the scroll.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUITES -->
-  <section id="suites">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <p class="kicker">Suites</p>
-          <h2>SH Suites</h2>
-          <p class="subLeft">Two free suites. One Pro strategy. One Elite add-on (works with Free or Pro).</p>
-        </div>
-      </div>
-
-      <div class="grid4">
-        <!-- FREE: Breakouts -->
-        <div class="card">
-          <div class="cardInner">
-            <div class="labelRow">
-              <span class="pill free">FREE</span>
-              <span class="pill">Breakouts Suite</span>
-            </div>
-
-            <div class="cardTitle">Breakouts Suite (Free)</div>
-            <p class="cardDesc">Clean range breaks + momentum continuation. Built to reduce chop and random entries.</p>
-
-            <div class="miniHead">Included indicators</div>
-            <div class="tagRow">
-              <span class="tag">SH Breakouts</span>
-              <span class="tag">SH Trend</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-              <span class="tag">SH OB Radar</span>
-              <span class="tag">SH Structure Lite</span>
-            </div>
-
-            <details>
-              <summary>See suite rules <span class="caret">▾</span></summary>
-              <ul class="rules">
-                <li><b>Filter:</b> trend alignment (Trend + HA Duo agreement).</li>
-                <li><b>Setup:</b> range box + compression → wait for breakout confirmation.</li>
-                <li><b>Trigger:</b> breakout confirmation.</li>
-                <li><b>Risk:</b> invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
-              </ul>
-            </details>
-
-            <div class="pricingFooter">
-              <a class="btn btnPrimary" id="getFreeBreakouts" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Free</a>
-              <a class="btn" id="upgradeBreakouts" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Upgrade</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- FREE: Liquidity Lines -->
-        <div class="card">
-          <div class="cardInner">
-            <div class="labelRow">
-              <span class="pill free">FREE</span>
-              <span class="pill">Liquidity Lines Suite</span>
-            </div>
-
-            <div class="cardTitle">Liquidity Lines Suite (Free)</div>
-            <p class="cardDesc">Sweeps + reclaim entries around obvious liquidity pools. Cleaner than guessing S/R.</p>
-
-            <div class="miniHead">Included indicators</div>
-            <div class="tagRow">
-              <span class="tag">SH Liquidity Lines</span>
-              <span class="tag">SH Trend</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-              <span class="tag">SH OB Radar</span>
-              <span class="tag">SH Structure Lite</span>
-            </div>
-
-            <details>
-              <summary>See suite rules <span class="caret">▾</span></summary>
-              <ul class="rules">
-                <li><b>Filter:</b> confirm context (trend/HTF bias) before sweeps.</li>
-                <li><b>Setup:</b> sweep → watch reaction at structure/OB.</li>
-                <li><b>Trigger:</b> reclaim + structure confirmation.</li>
-                <li><b>Risk:</b> invalidation beyond sweep/structure; targets at next liquidity/structure.</li>
-              </ul>
-            </details>
-
-            <div class="pricingFooter">
-              <a class="btn btnPrimary" id="getFreeLiquidity" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Free</a>
-              <a class="btn" id="upgradeLiquidity" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Upgrade</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRO (info card) -->
-        <div class="card">
-          <div class="cardInner">
-            <div class="labelRow">
-              <span class="pill paid">PAID</span>
-              <span class="pill">Pro Suite</span>
-              <span class="pill">Prime MTF</span>
-            </div>
-
-            <div class="cardTitle">Pro Suite — Prime MTF</div>
-            <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
-
-            <div class="miniHead">Included indicators</div>
-            <div class="tagRow">
-              <span class="tag">SH Prime MTF</span>
-              <span class="tag">SH CISD + DBOS Pro</span>
-              <span class="tag">SH VOL OM MTF</span>
-              <span class="tag">SH VRO Pro</span>
-              <span class="tag">SH HA Duo</span>
-              <span class="tag">SH Range Box</span>
-              <span class="tag">SH PatternScan</span>
-            </div>
-
-            <div class="pricingFooter">
-              <a class="btn btnPrimary" id="choosePlanPro" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ELITE (info card) -->
-        <div class="card">
-          <div class="cardInner">
-            <div class="labelRow">
-              <span class="pill paid">PAID</span>
-              <span class="pill">Elite Toolkit</span>
-              <span class="pill">Add-On</span>
-            </div>
-
-            <div class="cardTitle">Elite Toolkit — Decision & Control</div>
-            <p class="cardDesc">
-              Execution tools that make trading consistent: alignment checks, decision panels, scenario control.
-              <b>Works with Free or Pro.</b>
-            </p>
-
-            <div class="miniHead">Included indicators</div>
-            <div class="tagRow">
-              <span class="tag">SH Decision Panel</span>
-              <span class="tag">SH HTF Align Pro</span>
-              <span class="tag">SH Scenario Matrix</span>
-              <span class="tag">SH Flip 4</span>
-            </div>
-
-            <div class="pricingFooter">
-              <a class="btn btnPrimary" id="choosePlanElite" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING (Monthly only) -->
-  <section id="pricing">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <p class="kicker">Pricing</p>
-          <h2>Paid access</h2>
-          <p class="subLeft">One simple monthly option for each product. Cancel anytime.</p>
-        </div>
-      </div>
-
-      <div class="pricingShell">
-        <div class="pricingInner">
-          <div class="pricingHeaderRow">
-            <div>
-              <div class="pricingHdrTitle">Paid Access</div>
-              <div class="pricingHdrSub">Pro is the strategy. Elite is execution control. Bundle combines both.</div>
-            </div>
-          </div>
-
-          <div class="startFreeBar">
-            <div>
-              <div class="startFreeTitle">Start Free: Breakouts + Liquidity Lines</div>
-              <div class="startFreeSub">Get the workflow first. Add Pro for MTF structure. Add Elite for tighter execution.</div>
-            </div>
-            <div class="startFreeActions">
-              <a class="btn" id="seeFreeSuites" href="#suites">See Free Suites</a>
-              <a class="btn btnPrimary" id="choosePlanBtn" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
-            </div>
-          </div>
-
-          <div class="pricingGrid">
-            <!-- PRO -->
-            <div class="pCard">
-              <div class="pCardInner">
-                <div class="pTop">
-                  <div>
-                    <div class="pName">Pro</div>
-                    <div class="pMeta">Prime MTF strategy</div>
-                  </div>
-                </div>
-
-                <div class="priceRow">
-                  <div class="priceBig" id="proPrice">$24.90</div>
-                  <div class="per" id="proPer">/mo</div>
-                </div>
-                <p class="priceSmall" id="proSmall">Billed monthly. Cancel anytime.</p>
-
-                <ul class="pList">
-                  <li><span class="check">✓</span>Prime MTF engine + confirmation tools</li>
-                  <li><span class="check">✓</span>Cleaner selection (fewer, better setups)</li>
-                  <li><span class="check">✓</span>Rules-first workflow (not random alerts)</li>
-                </ul>
-
-                <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyPro" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Pro</a>
-                  <a class="btn" href="#faq">Questions?</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- ELITE -->
-            <div class="pCard">
-              <div class="pCardInner">
-                <div class="pTop">
-                  <div>
-                    <div class="pName">Elite</div>
-                    <div class="pMeta">Add-on toolkit</div>
-                  </div>
-                </div>
-
-                <div class="priceRow">
-                  <div class="priceBig" id="elitePrice">$29.90</div>
-                  <div class="per" id="elitePer">/mo</div>
-                </div>
-                <p class="priceSmall" id="eliteSmall">Works with Free or Pro.</p>
-
-                <ul class="pList">
-                  <li><span class="check">✓</span>Decision panel + alignment checks</li>
-                  <li><span class="check">✓</span>Scenario control tools for consistency</li>
-                  <li><span class="check">✓</span>“Checkpoint” before you click</li>
-                </ul>
-
-                <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyElite" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Elite</a>
-                  <a class="btn" href="#faq">Questions?</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- BUNDLE -->
-            <div class="pCard">
-              <div class="pCardInner">
-                <div class="pTop">
-                  <div>
-                    <div class="pName">Pro + Elite</div>
-                    <div class="pMeta">Bundle</div>
-                  </div>
-                  <span class="badge badgeRec">Recommended</span>
-                </div>
-
-                <div class="priceRow">
-                  <div class="priceBig" id="bundlePrice">$44.90</div>
-                  <div class="per" id="bundlePer">/mo</div>
-                </div>
-                <p class="priceSmall" id="bundleSmall">Best value: strategy + execution control.</p>
-
-                <ul class="pList">
-                  <li><span class="check">✓</span>Everything in Pro</li>
-                  <li><span class="check">✓</span>Everything in Elite</li>
-                  <li><span class="check">✓</span>Discount vs buying separately</li>
-                </ul>
-
-                <div class="pCtas">
-                  <a class="btn btnPrimary" id="buyBundle" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Bundle</a>
-                  <a class="btn" href="#faq">Questions?</a>
-                </div>
-
-                <p class="mutedSmall" style="margin-top:10px;">
-                  Full system: MTF strategy + execution control.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="notesRow">
-            Notes: Prices exclude any platform taxes/fees. Trading involves risk. Nothing here is financial advice.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <p class="kicker">FAQ</p>
-          <h2>Quick answers</h2>
-        </div>
-      </div>
-
-      <div class="faqGrid">
-        <div class="faqItem">
-          <div class="faqQ">Do I need Pro to use the free suites?</div>
-          <p class="faqA">No. The free suites are standalone.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">What am I paying for in Pro?</div>
-          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Is Elite for everyone?</div>
-          <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
-          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">Can I cancel anytime?</div>
-          <p class="faqA">Yes. Monthly billing; cancel anytime.</p>
-        </div>
-
-        <div class="faqItem">
-          <div class="faqQ">What platform is this for?</div>
-          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <div class="footTop">
-        <div class="footBrand">
-          <div class="footLogo" aria-hidden="true">
-            <img src="logo.png" alt="" />
-          </div>
-          <div>
-            <p class="footName">SilverHawk Suite</p>
-            <p class="footTag">Suites + Trade Alerts for structured execution. Fewer trades. Cleaner selection. Consistent risk.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Links</div>
-          <div class="footLinks">
-            <a href="#suites">Suites</a>
-            <a href="#about">About</a>
-            <a href="trade-alerts.html">Trade Alerts</a>
-            <a href="#pricing">Pricing</a>
-            <a id="footShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Shop</a>
-            <a href="#faq">FAQ</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Policies</div>
-          <div class="footLinks">
-            <a href="#" data-policy="terms">Terms of Service</a>
-            <a href="#" data-policy="privacy">Privacy Policy</a>
-            <a href="#" data-policy="refunds">Refund Policy</a>
-            <a href="#" data-policy="delivery">Delivery &amp; Access</a>
-            <a href="#" data-policy="disclaimer">Disclaimer</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Social / Support</div>
-          <div class="socialRow">
-            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </span>
-              Instagram
-            </a>
-
-            <a class="iconBtn" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Open X">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                  <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
-              </span>
-              X
-            </a>
-
-            <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
-                </svg>
-              </span>
-              YouTube
-            </a>
-
-            <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer" aria-label="Open TradingView">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
-                  <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
-              </span>
-              TradingView
-            </a>
-
-            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              Email
-            </a>
-          </div>
-
-          <p class="footHint">
-            Whitelist: <span class="mono">support@silverhawksuite.com</span> to avoid Promotions/Junk.
-          </p>
-        </div>
-      </div>
-
-      <div class="footDivider"></div>
-
-      <div class="footBottom">
-        <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
-        <div>© <span id="year"></span> SilverHawk Suite</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Policy Modal -->
-  <div class="modal" id="policyModal" aria-hidden="true">
-    <div class="modalBackdrop" data-close="1"></div>
-    <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
-      <div class="modalHeader">
-        <div>
-          <div class="modalTitle" id="policyTitle">Policy</div>
-          <div class="modalSub" id="policySub">Last updated: <span id="policyUpdated"></span></div>
-        </div>
-        <button class="modalClose" type="button" aria-label="Close" id="policyCloseBtn">×</button>
-      </div>
-      <div class="modalBody" id="policyBody"></div>
-    </div>
-  </div>
-
-  <!-- Toast container -->
-  <div id="toast-container" class="toast-container" aria-live="polite"></div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ================================
-    // SHOP destination (TEMP)
-    // ================================
-    // Use http for now because your custom domain HTTPS is failing until Gumroad SSL is fully working.
-    // When HTTPS works, change this to: "https://shop.silverhawksuite.com/"
-    const SHOP_URL = "http://shop.silverhawksuite.com/";
-
-    // Keep Shop links consistent
-    const navShop = document.getElementById("navShop");
-    const footShop = document.getElementById("footShop");
-    if (navShop) navShop.href = SHOP_URL;
-    if (footShop) footShop.href = SHOP_URL;
-
-    // All CTAs that should go to Shop
-    const LINK_IDS = [
-      "ctaTop","ctaPrimary",
-      "getFreeBreakouts","getFreeLiquidity",
-      "upgradeBreakouts","upgradeLiquidity",
-      "choosePlanPro","choosePlanElite","choosePlanBtn",
-      "buyPro","buyElite","buyBundle"
-    ];
-    LINK_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.href = SHOP_URL;
-    });
-
-    // Pricing text (monthly only)
-    document.getElementById("proPer").textContent    = "/mo";
-    document.getElementById("elitePer").textContent  = "/mo";
-    document.getElementById("bundlePer").textContent = "/mo";
-    document.getElementById("proSmall").textContent    = "Billed monthly. Cancel anytime.";
-    document.getElementById("eliteSmall").textContent  = "Works with Free or Pro.";
-    document.getElementById("bundleSmall").textContent = "Best value: strategy + execution control.";
-
-    // ================================
-    // Policies (Modal Popups)
-    // ================================
-    const POLICY_LAST_UPDATED = "2026-01-09"; // change when you edit text
-    const SUPPORT_EMAIL = "support@silverhawksuite.com";
-    const LEGAL_ENTITY = "SilverHawk Suite";
-    const JURISDICTION = "Kuwait";
-
-    const POLICIES = {
-      terms: {
-        title: "Terms of Service",
-        html: `
-          <div class="box">
-            <p><b>Summary:</b> By using this website and purchasing/using our TradingView indicators and toolkits, you agree to these Terms.</p>
-            <p class="muted">Template text. Get legal review for your jurisdiction if you want maximum protection.</p>
-          </div>
-
-          <h3>1) Acceptance of Terms</h3>
-          <p>By accessing this website or purchasing any product from ${LEGAL_ENTITY}, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the site or purchase the products.</p>
-
-          <h3>2) Products and Access</h3>
-          <p>We sell digital products and subscriptions (e.g., TradingView indicators, toolkits, templates, documentation). Access is provided digitally and may require your TradingView username (see “Delivery &amp; Access”).</p>
-
-          <h3>3) Purchases, Billing, and Platform</h3>
-          <p>Payments and subscriptions are processed by a third-party platform (e.g., Gumroad). Your purchase may be subject to that platform’s terms and policies in addition to these Terms.</p>
-
-          <h3>4) License (No Resale / No Sharing)</h3>
-          <ul>
-            <li>You receive a <b>personal, non-exclusive, non-transferable</b> license to use the product for your own trading/education.</li>
-            <li>You may <b>not</b> resell, share, redistribute, leak, publish, or provide access to any indicator, source code, files, or materials.</li>
-            <li>You may <b>not</b> reverse engineer, decompile, or attempt to extract proprietary logic except where prohibited by law.</li>
-          </ul>
-
-          <h3>5) Prohibited Use</h3>
-          <ul>
-            <li>Attempting to bypass access controls or share private indicators.</li>
-            <li>Using the products to provide a competing product/service.</li>
-            <li>Abusive, fraudulent, or chargeback-based behavior.</li>
-          </ul>
-
-          <h3>6) Updates and Changes</h3>
-          <p>We may update products, features, pricing, and these Terms at any time. Continued use after changes means you accept the updated Terms.</p>
-
-          <h3>7) No Financial Advice</h3>
-          <p>All content and tools are for <b>educational and informational purposes</b> only. We are not providing financial, investment, or trading advice. You are responsible for your decisions.</p>
-
-          <h3>8) No Guarantees</h3>
-          <p>Trading involves risk. Results vary. Past performance is not indicative of future results. We do not guarantee profits or specific outcomes.</p>
-
-          <h3>9) Disclaimer of Warranties</h3>
-          <p>Products are provided “as is” and “as available.” We disclaim all warranties to the maximum extent permitted by law.</p>
-
-          <h3>10) Limitation of Liability</h3>
-          <p>To the maximum extent permitted by law, ${LEGAL_ENTITY} will not be liable for any indirect, incidental, special, consequential, or trading-related losses arising from use of the site or products.</p>
-
-          <h3>11) Termination</h3>
-          <p>We may suspend or terminate access if you breach these Terms (including sharing/leaking access). Upon termination, your license ends immediately.</p>
-
-          <h3>12) Governing Law</h3>
-          <p>These Terms are governed by the laws of <b>${JURISDICTION}</b>, without regard to conflict of law principles.</p>
-
-          <h3>13) Contact</h3>
-          <p>Questions: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p>
-        `
-      },
-
-      privacy: {
-        title: "Privacy Policy",
-        html: `
-          <div class="box">
-            <p><b>Summary:</b> We collect only what we need to deliver access, support customers, and improve the site.</p>
-          </div>
-
-          <h3>1) What We Collect</h3>
-          <ul>
-            <li><b>Contact info:</b> name/email you provide or that comes with your purchase.</li>
-            <li><b>Order info:</b> product purchased, subscription status, timestamps (from the payment platform).</li>
-            <li><b>Delivery data:</b> your TradingView username (if required for private access).</li>
-            <li><b>Usage data:</b> basic analytics (page views, device/browser) and cookies where enabled.</li>
-          </ul>
-
-          <h3>2) What We Do NOT Store</h3>
-          <p>We do not store your full payment card details. Payments are processed by the payment platform (e.g., Gumroad).</p>
-
-          <h3>3) How We Use Data</h3>
-          <ul>
-            <li>To deliver access (e.g., invite to private TradingView indicators).</li>
-            <li>To provide support and handle account/access issues.</li>
-            <li>To prevent fraud/abuse and enforce licensing rules.</li>
-            <li>To improve site performance and user experience.</li>
-          </ul>
-
-          <h3>4) Sharing</h3>
-          <p>We share data only with service providers necessary to operate and deliver the service (e.g., payment processor/platform, email delivery, analytics, hosting/CDN). We do not sell personal data.</p>
-
-          <h3>5) Cookies and Analytics</h3>
-          <p>We may use cookies/analytics for site functionality and performance. You can restrict cookies in your browser settings, but parts of the site may not work as intended.</p>
-
-          <h3>6) Data Retention</h3>
-          <p>We retain customer/order/support data for as long as necessary to provide access, comply with legal obligations, resolve disputes, and enforce agreements.</p>
-
-          <h3>7) Your Rights</h3>
-          <p>Depending on your location, you may have rights to access, correct, or delete your data. Contact us at <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>
-
-          <h3>8) Security</h3>
-          <p>We use reasonable safeguards, but no method of transmission/storage is 100% secure.</p>
-
-          <h3>9) Changes</h3>
-          <p>We may update this Privacy Policy. The “Last updated” date will reflect changes.</p>
-        `
-      },
-
-      refunds: {
-        title: "Refund Policy",
-        html: `
-          <div class="box">
-            <p><b>Summary:</b> Digital products are generally non-refundable once access is delivered. We will fix delivery/access problems.</p>
-          </div>
-
-          <h3>1) Digital Products</h3>
-          <p>Because our products are digital and access can be granted instantly or manually, <b>all sales are final once access is delivered</b>, unless required otherwise by applicable law.</p>
-
-          <h3>2) Subscriptions</h3>
-          <ul>
-            <li>You can cancel future billing anytime via the purchase platform.</li>
-            <li>Cancellation stops future charges. You may retain access until the end of the current billing period (depending on platform rules).</li>
-          </ul>
-
-          <h3>3) Exceptions We Will Consider</h3>
-          <ul>
-            <li>Duplicate purchase (same product bought twice by mistake).</li>
-            <li>We failed to deliver access after you provided the required information and worked with support.</li>
-            <li>Platform billing error confirmed by the platform/provider.</li>
-          </ul>
-
-          <h3>4) Chargebacks</h3>
-          <p>Fraudulent chargebacks may result in immediate termination of access and permanent refusal of service. Always contact support first so we can resolve issues.</p>
-
-          <h3>5) How to Request Help</h3>
-          <p>Email <a href="mailto:${SUPPORT_EMAIL}?subject=Refund%20Request">${SUPPORT_EMAIL}</a> with your order email/receipt and the issue.</p>
-        `
-      },
-
-      delivery: {
-        title: "Delivery & Access Policy",
-        html: `
-          <div class="box">
-            <p><b>Summary:</b> Access is delivered digitally. Some items require your TradingView username for private indicator access.</p>
-          </div>
-
-          <h3>1) How You Receive Indicators</h3>
-          <ul>
-            <li>Indicators may be delivered as <b>private TradingView indicators</b> (invite-only access).</li>
-            <li>To receive private access, you must provide the correct <b>TradingView username</b>.</li>
-          </ul>
-
-          <h3>2) Delivery Timeframe</h3>
-          <ul>
-            <li>Typical access time: <b>within 24 hours</b> after purchase once we have your TradingView username.</li>
-            <li>If you do not provide your username (or it is incorrect), delivery is delayed until corrected.</li>
-          </ul>
-
-          <h3>3) Support for Access Issues</h3>
-          <p>If you do not receive access within the stated timeframe, email <a href="mailto:${SUPPORT_EMAIL}?subject=Access%20Issue">${SUPPORT_EMAIL}</a> with your order email and TradingView username.</p>
-
-          <h3>4) Subscription Access</h3>
-          <p>If your product is subscription-based, access may be removed when the subscription ends or is cancelled, depending on platform rules and product type.</p>
-
-          <h3>5) Updates</h3>
-          <p>We may update indicators over time. Updates are included unless explicitly stated otherwise on the product page.</p>
-        `
-      },
-
-      disclaimer: {
-        title: "Disclaimer (No Financial Advice)",
-        html: `
-          <div class="box">
-            <p><b>Summary:</b> Educational tools only. Trading is risky. You are responsible for your decisions.</p>
-          </div>
-
-          <h3>1) Educational Use Only</h3>
-          <p>All content, indicators, alerts, templates, and materials provided by ${LEGAL_ENTITY} are for educational and informational purposes only and do not constitute financial, investment, tax, or legal advice.</p>
-
-          <h3>2) No Guarantees</h3>
-          <p>We do not guarantee any profit, result, or performance. Past performance is not indicative of future results.</p>
-
-          <h3>3) Risk Warning</h3>
-          <p>Trading involves substantial risk and may not be suitable for all investors. You can lose all or more than your initial capital depending on the instruments you trade.</p>
-
-          <h3>4) Personal Responsibility</h3>
-          <p>You are solely responsible for your trades, risk management, position sizing, and decisions.</p>
-
-          <h3>5) Platform / Data Limitations</h3>
-          <p>Indicators depend on data feeds and platform behavior (e.g., TradingView). Delays, outages, slippage, spreads, or data errors can occur.</p>
-        `
-      }
-    };
-
-    (function initPolicyModal(){
-      const modal = document.getElementById("policyModal");
-      const title = document.getElementById("policyTitle");
-      const updated = document.getElementById("policyUpdated");
-      const body = document.getElementById("policyBody");
-      const closeBtn = document.getElementById("policyCloseBtn");
-
-      if (!modal || !title || !body || !closeBtn) return;
-
-      updated.textContent = POLICY_LAST_UPDATED;
-
-      function openPolicy(key){
-        const p = POLICIES[key];
-        if (!p) return;
-        title.textContent = p.title;
-        body.innerHTML = p.html;
-        modal.classList.add("show");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        closeBtn.focus();
-      }
-
-      function closePolicy(){
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      document.querySelectorAll('[data-policy]').forEach(a => {
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          openPolicy(a.getAttribute("data-policy"));
-        });
-      });
-
-      closeBtn.addEventListener("click", closePolicy);
-
-      modal.addEventListener("click", (e) => {
-        const target = e.target;
-        if (target && target.getAttribute("data-close") === "1") closePolicy();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("show")) closePolicy();
-      });
-    })();
-
-    // ================================
-    // Social-proof popups (one at a time, randomized)
-    // ================================
-    const toastContainer = document.getElementById("toast-container");
-    const MAX_TOASTS = 15;
-
-    const notifications = [
-      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "activated Elite monthly",           when: "just now" },
-      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "started Pro monthly",              when: "moments ago" },
-      { name: "Noah B.",     country: "UK",           city: "London",       action: "took the Bundle (Pro + Elite)",    when: "moments ago" },
-      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is reviewing Pricing",             when: "moments ago" },
-      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "claimed the Free Breakouts suite", when: "1 min ago" },
-      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "joined Pro monthly",               when: "1 min ago" },
-      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "added Elite toolkit",              when: "1 min ago" },
-      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "reading Liquidity Lines details",  when: "2 min ago" },
-      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "picked Pro + Elite bundle",        when: "2 min ago" },
-      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "activated Pro monthly",            when: "2 min ago" },
-      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "checking Elite toolkit features",  when: "3 min ago" },
-      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "enabled Elite add-on",             when: "3 min ago" },
-      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "considering the Bundle",           when: "4 min ago" },
-      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",              when: "5 min ago" },
-      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",            when: "6 min ago" }
-    ];
-
-    function shuffle(arr){
-      for (let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-    function nextDelay(){
-      const base = Math.random() * 7000 + 7000; // 7–14s
-      const longGap = Math.random() < 0.2 ? 12000 : 0;
-      return base + longGap;
-    }
-    function createToast(note){
-      const toast = document.createElement("div");
-      toast.className = "toast";
-      toast.innerHTML = `
-        <div class="toast-logo">SH</div>
-        <div class="toast-body">
-          <div class="toast-title">${note.name} • ${note.city}, ${note.country}</div>
-          <div class="toast-sub">${note.action}</div>
-          <div class="toast-time">${note.when}</div>
-        </div>
-        <button class="toast-close" aria-label="Close">×</button>
-      `;
-      return toast;
-    }
-
-    let showing = false;
-    function showToast(note){
-      if (showing) return;
-      showing = true;
-      const t = createToast(note);
-      toastContainer.appendChild(t);
-      t.querySelector(".toast-close").addEventListener("click", () => {
-        t.classList.add("hide");
-        setTimeout(() => { t.remove(); showing = false; }, 200);
-      });
-      requestAnimationFrame(() => t.classList.add("show"));
-      setTimeout(() => {
-        t.classList.add("hide");
-        setTimeout(() => { t.remove(); showing = false; }, 400);
-      }, 5200);
-    }
-
-    (function runToasts(){
-      const queue = shuffle([...notifications]).slice(0, MAX_TOASTS);
-      let idx = 0;
-      function next(){
-        if (idx >= queue.length) return;
-        const delay = nextDelay();
-        setTimeout(() => {
-          showToast(queue[idx]);
-          idx += 1;
-          next();
-        }, delay);
-      }
-      next();
-    })();
-  </script>
-</body>
-</html>
+                
+```
