@@ -1699,19 +1699,3 @@
   </script>
 </body>
 </html>
-
-// Mobile dropdown toggle
-if (window.innerWidth <= 860) {
-  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const dropdown = toggle.parentElement;
-      dropdown.classList.toggle('active');
-      
-      // Close others
-      document.querySelectorAll('.dropdown').forEach(d => {
-        if (d !== dropdown) d.classList.remove('active');
-      });
-    });
-  });
-}
