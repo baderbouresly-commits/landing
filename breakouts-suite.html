@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Breakouts Suite (Free) — SilverHawk Suite</title>
   <meta name="description" content="Clean range breaks + momentum continuation. Free suite + playbook & checklist." />
-
   <style>
     :root{
       --bg0:#060812;
@@ -570,6 +569,24 @@
       background: rgba(255,255,255,.04);
       margin: 10px 0 14px;
     }
+    .success-popup{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.7);
+      z-index:9999;
+      display:none;
+      justify-content:center;
+      align-items:center;
+    }
+    .success-content{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:16px;
+      padding:40px;
+      max-width:500px;
+      text-align:center;
+      box-shadow:0 20px 70px rgba(0,0,0,.45);
+    }
   </style>
 </head>
 <body>
@@ -616,7 +633,6 @@
       </div>
     </div>
   </header>
-
   <section class="hero" style="padding-top: 100px;">
     <div class="wrap">
       <div class="heroCard">
@@ -629,7 +645,6 @@
       </div>
     </div>
   </section>
-
   <section id="details">
     <div class="wrap">
       <div style="max-width: 900px; margin: 0 auto;">
@@ -637,7 +652,6 @@
         <p style="font-size:18px; color:var(--muted); text-align:center; margin:24px 0 48px;">
           High-probability breakout setups with clear momentum continuation. Designed to filter out noise and give you clean, rule-based entries.
         </p>
-
         <h3>Included Indicators</h3>
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin:24px 0;">
           <span class="tag">SH Breakouts</span>
@@ -648,7 +662,6 @@
           <span class="tag">SH OB Radar</span>
           <span class="tag">SH Structure Lite</span>
         </div>
-
         <h3>Workflow & Rules</h3>
         <ul style="font-size:16px; line-height:1.8; color:var(--muted); list-style:none; padding-left:0;">
           <li><b>Filter:</b> Trend alignment (Trend + HA Duo agreement).</li>
@@ -656,7 +669,6 @@
           <li><b>Trigger:</b> Breakout confirmation.</li>
           <li><b>Risk:</b> Invalidation from Structure Lite + OB Radar; targets from range projection + structure.</li>
         </ul>
-
         <div style="margin:60px 0; text-align:center; background:rgba(255,255,255,.04); padding:40px; border-radius:16px; border:1px solid rgba(255,255,255,.12);">
           <h3>Get Your Free Downloads</h3>
           <p style="color:var(--muted); margin:16px 0 32px;">
@@ -664,7 +676,6 @@
             <br>• Breakouts Strategy Playbook (detailed guide)
             <br>• Breakouts Strategy Checklist (quick reference)
           </p>
-
           <form id="downloadForm" style="max-width:500px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
             <input type="email" id="email" placeholder="your.email@example.com" required style="padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:var(--text); font-size:16px;" />
             <button type="submit" class="btn btnPrimary" style="padding:14px; font-size:16px;">
@@ -674,25 +685,22 @@
               We'll never spam you. Unsubscribe anytime.
             </p>
           </form>
-
-          <div id="successMessage" style="display:none; margin-top:32px;">
-            <p style="color:var(--good); font-size:18px; font-weight:900;">Thanks! Check your email (or spam) shortly.</p>
-            <p style="margin:20px 0;">
-              Or download directly:
-            </p>
-            <a href="https://github.com/baderbouresly-commits/landing/raw/86c20930e9913947e8fe36bb2b85b433b55a1789/SilverHawk%20Core%20Suite%20%E2%80%94%20Breakouts%20Playbook%20(FREE).pdf" download class="btn btnPrimary" style="margin:10px;">
-              Download Strategy Playbook PDF
-            </a>
-            <a href="https://github.com/baderbouresly-commits/landing/raw/86c20930e9913947e8fe36bb2b85b433b55a1789/SH%20Checklist.pdf" download class="btn" style="margin:10px;">
-              Download Strategy Checklist PDF
-            </a>
+          <div id="successPopup" class="success-popup">
+            <div class="success-content">
+              <h2 style="color:var(--good); margin-bottom:16px;">Success!</h2>
+              <p style="font-size:18px; color:var(--text); margin-bottom:24px;">
+                Thanks! We've sent the Playbook + Checklist to your email.<br>
+                Check your inbox (or spam folder).
+              </p>
+              <p style="color:var(--muted2); font-size:14px;">
+                Redirecting to homepage in 3 seconds...
+              </p>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
-
   <footer>
     <div class="wrap">
       <div class="footTop">
@@ -788,7 +796,6 @@
       </div>
     </div>
   </footer>
-
   <div class="modal" id="policyModal" aria-hidden="true">
     <div class="modalBackdrop" data-close="1"></div>
     <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
@@ -802,9 +809,7 @@
       <div class="modalBody" id="policyBody"></div>
     </div>
   </div>
-
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
-
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     (function initSuitesDropdown(){
@@ -1137,8 +1142,10 @@
       const email = document.getElementById('email').value;
       if (email) {
         console.log('Email captured:', email);
-        document.getElementById('downloadForm').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('successPopup').style.display = 'flex';
+        setTimeout(() => {
+          window.location.href = 'https://silverhawksuite.com/';
+        }, 3000);
       }
     });
   </script>
