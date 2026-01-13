@@ -123,20 +123,24 @@
       transition: transform .14s ease;
       flex:0 0 auto;
     }
-    .dropdown.open .chev{ transform: rotate(180deg); }
-    .dropMenu{
-      position:absolute;
-      top: calc(100% + 10px);
-      left:0;
-      min-width: 240px;
-      padding:8px;
-      border-radius: 14px;
-      background: rgba(10,14,28,.96);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      display:none;
-      z-index:80;
-    }
+/* Suites dropdown */
+.dropMenu{
+  position:absolute;
+  top: calc(100% + 10px);
+
+  /* CENTER under the Suites button */
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 260px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(10,14,28,.96);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow2);
+  display:none;
+  z-index:80;
+}
     .dropdown:hover .dropMenu,
     .dropdown:focus-within .dropMenu,
     .dropdown.open .dropMenu{ display:block; }
