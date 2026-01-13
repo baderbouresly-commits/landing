@@ -257,24 +257,21 @@
       a.brand{ min-width:auto; }
       .hamburger{ display:inline-flex; }
 
-/* Suites dropdown */
-.dropMenu{
-  position:absolute;
-  top: calc(100% + 10px);
-
-  /* CENTER under the Suites button */
-  left: 50%;
-  transform: translateX(-50%);
-
-  min-width: 260px;
-  padding: 8px;
-  border-radius: 14px;
-  background: rgba(10,14,28,.96);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow: var(--shadow2);
-  display:none;
-  z-index:80;
-}
+      /* Nav collapses completely */
+      .nav{
+        display:none;
+        position:absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(6,8,18,.96);
+        flex-direction: column;
+        padding: 18px 20px 22px;
+        gap: 16px;
+        text-align: center;
+        z-index: 80;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
 
       /* Checkbox toggles nav open */
       #navToggle:checked ~ .nav{ display:flex; }
