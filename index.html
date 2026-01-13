@@ -611,7 +611,16 @@
           <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Shop</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <!-- Removed ctaRow completely (no View Suites, no Get Access) -->
+        <div class="ctaRow">
+          <a class="btn" href="#suites">View Suites</a>
+          <a class="btn btnPrimary" id="ctaTop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
+          <a class="btn mobileOnly" href="#faq">FAQ</a>
+        </div>
+        <div style="margin-left: auto;">
+          <button class="btn" onclick="Whop.openCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -627,8 +636,8 @@
             <b>filter → setup → trigger → risk</b>.
           </p>
           <div class="heroCtas">
-            <a class="btn btnPrimary" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
-            <a class="btn" href="#suites">View Suites</a>
+            <a class="btn btnPrimary" id="ctaPrimary" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
+            <a class="btn" href="#suites" id="ctaSecondary">View Suites</a>
           </div>
           <div class="heroStats" aria-label="Key highlights">
             <div class="statPill"><span class="dot good"></span> 2 Free Suites</div>
@@ -643,7 +652,7 @@
     </div>
   </section>
 
-  <!-- ABOUT (Ultra-Short & Aspirational) -->
+  <!-- ABOUT -->
   <section id="about" style="padding: 60px 0 40px;">
     <div class="wrap">
       <div style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -684,7 +693,7 @@
     </div>
   </section>
 
-  <!-- SOCIAL PROOF (unchanged) -->
+  <!-- SOCIAL PROOF -->
   <section id="proof">
     <div class="wrap">
       <div class="sectionHead">
@@ -699,6 +708,17 @@
           <div class="marquee" aria-label="User testimonials">
             <div class="track">
               <!-- Your testimonials here – unchanged -->
+              <article class="tCard">
+                <div class="tTop">
+                  <div class="who">
+                    <div class="avatar">K</div>
+                    <div class="whoText"><div class="name">K. Thomas</div><div class="role">Prop Challenge</div></div>
+                  </div><div class="stars">★★★★★</div>
+                </div>
+                <p class="tBody">“Elite toolkit is a game-changer for discipline. It’s like a checkpoint before I click.”</p>
+                <div class="tTag">Elite Toolkit</div>
+              </article>
+              <!-- ... rest of testimonials unchanged ... -->
             </div>
           </div>
           <p class="mutedSmall" style="margin-top:10px;">Hover to pause the scroll.</p>
@@ -707,7 +727,7 @@
     </div>
   </section>
 
-  <!-- SUITES (unchanged except pricingFooter already updated in previous messages if needed) -->
+  <!-- SUITES -->
   <section id="suites">
     <div class="wrap">
       <div class="sectionHead">
@@ -754,6 +774,7 @@
             </div>
           </div>
         </div>
+
         <!-- FREE: Liquidity Lines -->
         <div class="card" id="liquidity">
           <div class="cardInner">
@@ -790,19 +811,66 @@
             </div>
           </div>
         </div>
-        <!-- PRO and ELITE unchanged -->
-        <!-- ... rest of suites cards ... -->
+
+        <!-- PRO -->
+        <div class="card" id="pro-suite">
+          <div class="cardInner">
+            <div class="labelRow">
+              <span class="pill paid">PAID</span>
+              <span class="pill">Pro Suite</span>
+              <span class="pill">Prime MTF</span>
+            </div>
+            <div class="cardTitle">Pro Suite — Prime MTF</div>
+            <p class="cardDesc">Multi-timeframe structure + confirmation stacking without overfitting. Built for higher-quality trades.</p>
+            <div class="miniHead">Included indicators</div>
+            <div class="tagRow">
+              <span class="tag">SH Prime MTF</span>
+              <span class="tag">SH CISD + DBOS Pro</span>
+              <span class="tag">SH VOL OM MTF</span>
+              <span class="tag">SH VRO Pro</span>
+              <span class="tag">SH HA Duo</span>
+              <span class="tag">SH Range Box</span>
+              <span class="tag">SH PatternScan</span>
+            </div>
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" id="choosePlanPro" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ELITE -->
+        <div class="card" id="elite-toolkit">
+          <div class="cardInner">
+            <div class="labelRow">
+              <span class="pill paid">PAID</span>
+              <span class="pill">Elite Toolkit</span>
+              <span class="pill">Add-On</span>
+            </div>
+            <div class="cardTitle">Elite Toolkit — Decision & Control</div>
+            <p class="cardDesc">
+              Execution tools that make trading consistent: alignment checks, decision panels, scenario control.
+              <b>Works with Free or Pro.</b>
+            </p>
+            <div class="miniHead">Included indicators</div>
+            <div class="tagRow">
+              <span class="tag">SH Decision Panel</span>
+              <span class="tag">SH HTF Align Pro</span>
+              <span class="tag">SH Scenario Matrix</span>
+              <span class="tag">SH Flip 4</span>
+            </div>
+            <div class="pricingFooter">
+              <a class="btn btnPrimary" id="choosePlanElite" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING, FAQ, FOOTER – keep as is -->
+  <!-- PRICING, FAQ, FOOTER – unchanged, keep as is in your file -->
 
-  <!-- Scripts – keep your existing ones, but cart logic is removed -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    // Your dropdown, policy modal, toast scripts – keep them
-  </script>
+  <!-- Scripts – keep your existing ones, just make sure Whop.init is there -->
+
   <script src="https://cdn.whop.com/sdk/whop-sdk.js"></script>
   <script>
     Whop.init({
@@ -813,5 +881,7 @@
       }
     });
   </script>
+
+  <!-- Your other scripts (dropdown, toast, policy modal, etc.) – keep them -->
 </body>
 </html>
