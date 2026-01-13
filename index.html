@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Suites + Indicators</title>
   <meta name="description" content="Pick a suite. Get the exact indicators to execute it. Free suites plus Pro and Elite add-ons." />
-
   <style>
     :root{
       --bg0:#060812;
@@ -25,7 +24,6 @@
       --shadow2: 0 10px 30px rgba(0,0,0,.35);
       --max: 1120px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     html{ scroll-behavior:smooth; }
@@ -40,19 +38,15 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
     :focus-visible{
       outline: 2px solid rgba(74,215,255,.55);
       outline-offset: 2px;
       border-radius: 10px;
     }
-
     section{ scroll-margin-top: 92px; }
-
     /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
@@ -80,15 +74,26 @@
     }
     .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
     .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
-
     .nav{
       display:flex; align-items:center; gap:18px;
       color: var(--muted);
       font-size:14px;
+      flex: 1;
+      justify-content: center;
     }
-    .nav a{ padding:8px 10px; border-radius:10px; }
+    .nav a{ padding:8px 10px; border-radius:10px; position: relative; }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-
+    .nav a.active::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
     /* Suites dropdown */
     .dropdown{ position:relative; }
     .dropBtn{
@@ -103,6 +108,7 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
+      font-weight: 800;
     }
     .dropBtn:hover{ background: rgba(255,255,255,.06); color: var(--text); }
     .chev{
@@ -118,7 +124,6 @@
       flex:0 0 auto;
     }
     .dropdown.open .chev{ transform: rotate(180deg); }
-
     .dropMenu{
       position:absolute;
       top: calc(100% + 10px);
@@ -135,7 +140,6 @@
     .dropdown:hover .dropMenu,
     .dropdown:focus-within .dropMenu,
     .dropdown.open .dropMenu{ display:block; }
-
     .dropMenu a{
       display:block;
       padding:10px 10px;
@@ -150,7 +154,6 @@
       margin:6px 6px;
       background: rgba(255,255,255,.08);
     }
-
     .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
       border:1px solid rgba(255,255,255,.12);
@@ -176,14 +179,35 @@
       color:#070A14;
     }
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
-
     .mobileOnly{ display:none; }
     @media (max-width: 860px){
       .nav{ display:none; }
       .mobileOnly{ display:inline-flex; }
       .brand{ min-width:auto; }
+      .nav{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(6,8,18,.96);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        text-align: center;
+        display: none;
+        z-index: 80;
+      }
+      .nav.open{
+        display: flex;
+      }
+      .mobileHamburger{
+        background: transparent;
+        border: none;
+        color: var(--text);
+        font-size: 24px;
+        cursor: pointer;
+      }
     }
-
     /* Sections */
     section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
@@ -205,7 +229,6 @@
       max-width: 70ch;
       text-align:center;
     }
-
     .hero{ padding:70px 0 56px; }
     .heroCard{
       border-radius: calc(var(--radius) + 6px);
@@ -272,7 +295,6 @@
       max-width: 80ch;
       text-align:left;
     }
-
     /* Suites cards */
     .grid4{
       display:grid;
@@ -302,7 +324,6 @@
     }
     .pill.free{ color: rgba(47,228,167,.95); border-color: rgba(47,228,167,.25); background: rgba(47,228,167,.06); }
     .pill.paid{ color: rgba(255,193,74,.95); border-color: rgba(255,193,74,.25); background: rgba(255,193,74,.06); }
-
     .miniHead{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: rgba(234,240,255,.55); margin:14px 0 10px; }
     .tagRow{ display:flex; flex-wrap:wrap; gap:8px; }
     .tag{
@@ -312,7 +333,6 @@
       color: rgba(234,240,255,.84);
       font-weight:800;
     }
-
     details{ border-top:1px solid rgba(255,255,255,.08); margin-top:14px; padding-top:12px; }
     summary{
       list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -328,10 +348,8 @@
     }
     details[open] .caret{ transform: rotate(180deg); }
     .rules{ margin:10px 0 0 0; padding:0 0 0 18px; color: var(--muted); font-size:13px; line-height:1.6; }
-
     .pricingFooter{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:10px; }
-
     /* TESTIMONIALS (marquee) */
     .proofCard{
       border-radius: var(--radius);
@@ -346,7 +364,7 @@
     .marquee::after{
       content:""; position:absolute; top:0; bottom:0; width:90px; pointer-events:none; z-index:2;
     }
-    .marquee::before{ left:0;  background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
+    .marquee::before{ left:0; background: linear-gradient(90deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
     .marquee::after { right:0; background: linear-gradient(270deg, rgba(6,8,18,1), rgba(6,8,18,0)); }
     .track{
       display:flex; width:max-content; gap:14px; padding: 8px 10px;
@@ -355,10 +373,9 @@
     .marquee:hover .track{ animation-play-state: paused; }
     @keyframes scrollX{
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      to { transform: translateX(-50%); }
     }
     @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
-
     .tCard{
       width: 340px; max-width: 78vw;
       border-radius: 16px; border:1px solid rgba(255,255,255,.10);
@@ -378,7 +395,6 @@
     .stars{ font-size:12px; letter-spacing:.06em; color: rgba(255,193,74,.95); flex:0 0 auto; }
     .tBody{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
     .tTag{ margin-top:auto; color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
-
     /* PRICING */
     .pricingShell{
       border-radius: calc(var(--radius) + 6px);
@@ -395,14 +411,12 @@
       pointer-events:none;
     }
     .pricingInner{ position:relative; padding:18px; }
-
     .pricingHeaderRow{
       display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;
       padding: 6px 6px 14px;
     }
     .pricingHdrTitle{ font-weight:950; font-size:14px; letter-spacing:-.01em; }
     .pricingHdrSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 74ch; }
-
     .startFreeBar{
       margin: 0 6px 14px; padding: 14px;
       border-radius: 16px; border:1px solid rgba(255,255,255,.10);
@@ -412,7 +426,6 @@
     .startFreeTitle{ font-weight:950; letter-spacing:-.01em; }
     .startFreeSub{ margin-top:6px; color: var(--muted); font-size:12px; line-height:1.5; max-width: 90ch; }
     .startFreeActions{ display:flex; gap:10px; flex-wrap:wrap; }
-
     .pricingGrid{
       display:grid; grid-template-columns: repeat(3, 1fr);
       gap:14px; padding: 0 6px 6px;
@@ -1231,7 +1244,7 @@
             <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube">
               <span class="icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 a3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                   <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
                 </svg>
               </span>
@@ -1294,7 +1307,6 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
     // ================================
     // Suites dropdown (click-to-toggle + close on outside/Escape)
     // ================================
@@ -1304,42 +1316,34 @@
       const btn = dd.querySelector(".dropBtn");
       const menu = dd.querySelector(".dropMenu");
       if (!btn || !menu) return;
-
       function setOpen(open){
         dd.classList.toggle("open", open);
         btn.setAttribute("aria-expanded", open ? "true" : "false");
       }
-
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const isOpen = dd.classList.contains("open");
         setOpen(!isOpen);
       });
-
       menu.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => setOpen(false));
       });
-
       document.addEventListener("click", (e) => {
         if (!dd.contains(e.target)) setOpen(false);
       });
-
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") setOpen(false);
       });
     })();
-
     // ================================
     // SHOP destination (TEMP)
     // ================================
     const SHOP_URL = "http://shop.silverhawksuite.com/";
-
     // Keep Shop links consistent
     const navShop = document.getElementById("navShop");
     const footShop = document.getElementById("footShop");
     if (navShop) navShop.href = SHOP_URL;
     if (footShop) footShop.href = SHOP_URL;
-
     // All CTAs that should go to Shop
     const LINK_IDS = [
       "ctaPrimary",
@@ -1352,15 +1356,13 @@
       const el = document.getElementById(id);
       if (el) el.href = SHOP_URL;
     });
-
     // Pricing text (monthly only)
-    document.getElementById("proPer").textContent    = "/mo";
-    document.getElementById("elitePer").textContent  = "/mo";
+    document.getElementById("proPer").textContent = "/mo";
+    document.getElementById("elitePer").textContent = "/mo";
     document.getElementById("bundlePer").textContent = "/mo";
-    document.getElementById("proSmall").textContent    = "Billed monthly. Cancel anytime.";
-    document.getElementById("eliteSmall").textContent  = "Works with Free or Pro.";
+    document.getElementById("proSmall").textContent = "Billed monthly. Cancel anytime.";
+    document.getElementById("eliteSmall").textContent = "Works with Free or Pro.";
     document.getElementById("bundleSmall").textContent = "Best value: strategy + execution control.";
-
     // ================================
     // Policies (Modal Popups)
     // ================================
@@ -1368,7 +1370,6 @@
     const SUPPORT_EMAIL = "support@silverhawksuite.com";
     const LEGAL_ENTITY = "SilverHawk Suite";
     const JURISDICTION = "Kuwait";
-
     const POLICIES = {
       terms: {
         title: "Terms of Service",
@@ -1377,63 +1378,48 @@
             <p><b>Summary:</b> By using this website and purchasing/using our TradingView indicators and toolkits, you agree to these Terms.</p>
             <p class="muted">Template text. Get legal review for your jurisdiction if you want maximum protection.</p>
           </div>
-
           <h3>1) Acceptance of Terms</h3>
           <p>By accessing this website or purchasing any product from ${LEGAL_ENTITY}, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the site or purchase the products.</p>
-
           <h3>2) Products and Access</h3>
           <p>We sell digital products and subscriptions (e.g., TradingView indicators, toolkits, templates, documentation). Access is provided digitally and may require your TradingView username (see “Delivery &amp; Access”).</p>
-
           <h3>3) Purchases, Billing, and Platform</h3>
           <p>Payments and subscriptions are processed by a third-party platform (e.g., Gumroad). Your purchase may be subject to that platform’s terms and policies in addition to these Terms.</p>
-
           <h3>4) License (No Resale / No Sharing)</h3>
           <ul>
             <li>You receive a <b>personal, non-exclusive, non-transferable</b> license to use the product for your own trading/education.</li>
             <li>You may <b>not</b> resell, share, redistribute, leak, publish, or provide access to any indicator, source code, files, or materials.</li>
             <li>You may <b>not</b> reverse engineer, decompile, or attempt to extract proprietary logic except where prohibited by law.</li>
           </ul>
-
           <h3>5) Prohibited Use</h3>
           <ul>
             <li>Attempting to bypass access controls or share private indicators.</li>
             <li>Using the products to provide a competing product/service.</li>
             <li>Abusive, fraudulent, or chargeback-based behavior.</li>
           </ul>
-
           <h3>6) Updates and Changes</h3>
           <p>We may update products, features, pricing, and these Terms at any time. Continued use after changes means you accept the updated Terms.</p>
-
           <h3>7) No Financial Advice</h3>
           <p>All content and tools are for <b>educational and informational purposes</b> only. We are not providing financial, investment, or trading advice. You are responsible for your decisions.</p>
-
           <h3>8) No Guarantees</h3>
           <p>Trading involves risk. Results vary. Past performance is not indicative of future results. We do not guarantee profits or specific outcomes.</p>
-
           <h3>9) Disclaimer of Warranties</h3>
           <p>Products are provided “as is” and “as available.” We disclaim all warranties to the maximum extent permitted by law.</p>
-
           <h3>10) Limitation of Liability</h3>
           <p>To the maximum extent permitted by law, ${LEGAL_ENTITY} will not be liable for any indirect, incidental, special, consequential, or trading-related losses arising from use of the site or products.</p>
-
           <h3>11) Termination</h3>
           <p>We may suspend or terminate access if you breach these Terms (including sharing/leaking access). Upon termination, your license ends immediately.</p>
-
           <h3>12) Governing Law</h3>
           <p>These Terms are governed by the laws of <b>${JURISDICTION}</b>, without regard to conflict of law principles.</p>
-
           <h3>13) Contact</h3>
           <p>Questions: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p>
         `
       },
-
       privacy: {
         title: "Privacy Policy",
         html: `
           <div class="box">
             <p><b>Summary:</b> We collect only what we need to deliver access, support customers, and improve the site.</p>
           </div>
-
           <h3>1) What We Collect</h3>
           <ul>
             <li><b>Contact info:</b> name/email you provide or that comes with your purchase.</li>
@@ -1441,10 +1427,8 @@
             <li><b>Delivery data:</b> your TradingView username (if required for private access).</li>
             <li><b>Usage data:</b> basic analytics (page views, device/browser) and cookies where enabled.</li>
           </ul>
-
           <h3>2) What We Do NOT Store</h3>
           <p>We do not store your full payment card details. Payments are processed by the payment platform (e.g., Gumroad).</p>
-
           <h3>3) How We Use Data</h3>
           <ul>
             <li>To deliver access (e.g., invite to private TradingView indicators).</li>
@@ -1452,124 +1436,96 @@
             <li>To prevent fraud/abuse and enforce licensing rules.</li>
             <li>To improve site performance and user experience.</li>
           </ul>
-
           <h3>4) Sharing</h3>
           <p>We share data only with service providers necessary to operate and deliver the service (e.g., payment processor/platform, email delivery, analytics, hosting/CDN). We do not sell personal data.</p>
-
           <h3>5) Cookies and Analytics</h3>
           <p>We may use cookies/analytics for site functionality and performance. You can restrict cookies in your browser settings, but parts of the site may not work as intended.</p>
-
           <h3>6) Data Retention</h3>
           <p>We retain customer/order/support data for as long as necessary to provide access, comply with legal obligations, resolve disputes, and enforce agreements.</p>
-
           <h3>7) Your Rights</h3>
           <p>Depending on your location, you may have rights to access, correct, or delete your data. Contact us at <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>
-
           <h3>8) Security</h3>
           <p>We use reasonable safeguards, but no method of transmission/storage is 100% secure.</p>
-
           <h3>9) Changes</h3>
           <p>We may update this Privacy Policy. The “Last updated” date will reflect changes.</p>
         `
       },
-
       refunds: {
         title: "Refund Policy",
         html: `
           <div class="box">
             <p><b>Summary:</b> Digital products are generally non-refundable once access is delivered. We will fix delivery/access problems.</p>
           </div>
-
           <h3>1) Digital Products</h3>
           <p>Because our products are digital and access can be granted instantly or manually, <b>all sales are final once access is delivered</b>, unless required otherwise by applicable law.</p>
-
           <h3>2) Subscriptions</h3>
           <ul>
             <li>You can cancel future billing anytime via the purchase platform.</li>
             <li>Cancellation stops future charges. You may retain access until the end of the current billing period (depending on platform rules).</li>
           </ul>
-
           <h3>3) Exceptions We Will Consider</h3>
           <ul>
             <li>Duplicate purchase (same product bought twice by mistake).</li>
             <li>We failed to deliver access after you provided the required information and worked with support.</li>
             <li>Platform billing error confirmed by the platform/provider.</li>
           </ul>
-
           <h3>4) Chargebacks</h3>
           <p>Fraudulent chargebacks may result in immediate termination of access and permanent refusal of service. Always contact support first so we can resolve issues.</p>
-
           <h3>5) How to Request Help</h3>
           <p>Email <a href="mailto:${SUPPORT_EMAIL}?subject=Refund%20Request">${SUPPORT_EMAIL}</a> with your order email/receipt and the issue.</p>
         `
       },
-
       delivery: {
         title: "Delivery & Access Policy",
         html: `
           <div class="box">
             <p><b>Summary:</b> Access is delivered digitally. Some items require your TradingView username for private indicator access.</p>
           </div>
-
           <h3>1) How You Receive Indicators</h3>
           <ul>
             <li>Indicators may be delivered as <b>private TradingView indicators</b> (invite-only access).</li>
             <li>To receive private access, you must provide the correct <b>TradingView username</b>.</li>
           </ul>
-
           <h3>2) Delivery Timeframe</h3>
           <ul>
             <li>Typical access time: <b>within 24 hours</b> after purchase once we have your TradingView username.</li>
             <li>If you do not provide your username (or it is incorrect), delivery is delayed until corrected.</li>
           </ul>
-
           <h3>3) Support for Access Issues</h3>
           <p>If you do not receive access within the stated timeframe, email <a href="mailto:${SUPPORT_EMAIL}?subject=Access%20Issue">${SUPPORT_EMAIL}</a> with your order email and TradingView username.</p>
-
           <h3>4) Subscription Access</h3>
           <p>If your product is subscription-based, access may be removed when the subscription ends or is cancelled, depending on platform rules and product type.</p>
-
           <h3>5) Updates</h3>
           <p>We may update indicators over time. Updates are included unless explicitly stated otherwise on the product page.</p>
         `
       },
-
       disclaimer: {
         title: "Disclaimer (No Financial Advice)",
         html: `
           <div class="box">
             <p><b>Summary:</b> Educational tools only. Trading is risky. You are responsible for your decisions.</p>
           </div>
-
           <h3>1) Educational Use Only</h3>
           <p>All content, indicators, alerts, templates, and materials provided by ${LEGAL_ENTITY} are for educational and informational purposes only and do not constitute financial, investment, tax, or legal advice.</p>
-
           <h3>2) No Guarantees</h3>
           <p>We do not guarantee any profit, result, or performance. Past performance is not indicative of future results.</p>
-
           <h3>3) Risk Warning</h3>
           <p>Trading involves substantial risk and may not be suitable for all investors. You can lose all or more than your initial capital depending on the instruments you trade.</p>
-
           <h3>4) Personal Responsibility</h3>
           <p>You are solely responsible for your trades, risk management, position sizing, and decisions.</p>
-
           <h3>5) Platform / Data Limitations</h3>
           <p>Indicators depend on data feeds and platform behavior (e.g., TradingView). Delays, outages, slippage, spreads, or data errors can occur.</p>
         `
       }
     };
-
     (function initPolicyModal(){
       const modal = document.getElementById("policyModal");
       const title = document.getElementById("policyTitle");
       const updated = document.getElementById("policyUpdated");
       const body = document.getElementById("policyBody");
       const closeBtn = document.getElementById("policyCloseBtn");
-
       if (!modal || !title || !body || !closeBtn) return;
-
       updated.textContent = POLICY_LAST_UPDATED;
-
       function openPolicy(key){
         const p = POLICIES[key];
         if (!p) return;
@@ -1580,60 +1536,52 @@
         document.body.style.overflow = "hidden";
         closeBtn.focus();
       }
-
       function closePolicy(){
         modal.classList.remove("show");
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
-
       document.querySelectorAll('[data-policy]').forEach(a => {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           openPolicy(a.getAttribute("data-policy"));
         });
       });
-
       closeBtn.addEventListener("click", closePolicy);
-
       modal.addEventListener("click", (e) => {
         const target = e.target;
         if (target && target.getAttribute("data-close") === "1") closePolicy();
       });
-
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && modal.classList.contains("show")) closePolicy();
       });
     })();
-
     // ================================
     // Social-proof popups (one at a time, randomized)
     // ================================
     const toastContainer = document.getElementById("toast-container");
     const MAX_TOASTS = 15;
-
     const notifications = [
-      { name: "Amir K.",     country: "UAE",          city: "Dubai",        action: "activated Elite monthly",           when: "just now" },
-      { name: "Lucia M.",    country: "Spain",        city: "Barcelona",    action: "started Pro monthly",              when: "moments ago" },
-      { name: "Noah B.",     country: "UK",           city: "London",       action: "took the Bundle (Pro + Elite)",    when: "moments ago" },
-      { name: "Sara T.",     country: "USA",          city: "Austin",       action: "is reviewing Pricing",             when: "moments ago" },
-      { name: "Youssef A.",  country: "Morocco",      city: "Casablanca",   action: "claimed the Free Breakouts suite", when: "1 min ago" },
-      { name: "Hiro K.",     country: "Japan",        city: "Osaka",        action: "joined Pro monthly",               when: "1 min ago" },
-      { name: "Marta R.",    country: "Poland",       city: "Kraków",       action: "added Elite toolkit",              when: "1 min ago" },
-      { name: "Daniel S.",   country: "Germany",      city: "Frankfurt",    action: "reading Liquidity Lines details",  when: "2 min ago" },
-      { name: "Lina P.",     country: "Sweden",       city: "Stockholm",    action: "picked Pro + Elite bundle",        when: "2 min ago" },
-      { name: "Omar H.",     country: "Saudi Arabia", city: "Riyadh",       action: "activated Pro monthly",            when: "2 min ago" },
-      { name: "Isabella V.", country: "Brazil",       city: "São Paulo",    action: "checking Elite toolkit features",  when: "3 min ago" },
-      { name: "Chen L.",     country: "Singapore",    city: "Singapore",    action: "enabled Elite add-on",             when: "3 min ago" },
-      { name: "Ethan J.",    country: "Canada",       city: "Toronto",      action: "considering the Bundle",           when: "4 min ago" },
-      { name: "Emily R.",    country: "USA",          city: "New York",     action: "is comparing Suites",              when: "5 min ago" },
-      { name: "Ahmed Z.",    country: "UAE",          city: "Abu Dhabi",    action: "activated Pro + Elite",            when: "6 min ago" }
+      { name: "Amir K.", country: "UAE", city: "Dubai", action: "activated Elite monthly", when: "just now" },
+      { name: "Lucia M.", country: "Spain", city: "Barcelona", action: "started Pro monthly", when: "moments ago" },
+      { name: "Noah B.", country: "UK", city: "London", action: "took the Bundle (Pro + Elite)", when: "moments ago" },
+      { name: "Sara T.", country: "USA", city: "Austin", action: "is reviewing Pricing", when: "moments ago" },
+      { name: "Youssef A.", country: "Morocco", city: "Casablanca", action: "claimed the Free Breakouts suite", when: "1 min ago" },
+      { name: "Hiro K.", country: "Japan", city: "Osaka", action: "joined Pro monthly", when: "1 min ago" },
+      { name: "Marta R.", country: "Poland", city: "Kraków", action: "added Elite toolkit", when: "1 min ago" },
+      { name: "Daniel S.", country: "Germany", city: "Frankfurt", action: "reading Liquidity Lines details", when: "2 min ago" },
+      { name: "Lina P.", country: "Sweden", city: "Stockholm", action: "picked Pro + Elite bundle", when: "2 min ago" },
+      { name: "Omar H.", country: "Saudi Arabia", city: "Riyadh", action: "activated Pro monthly", when: "2 min ago" },
+      { name: "Isabella V.", country: "Brazil", city: "São Paulo", action: "checking Elite toolkit features", when: "3 min ago" },
+      { name: "Chen L.", country: "Singapore", city: "Singapore", action: "enabled Elite add-on", when: "3 min ago" },
+      { name: "Ethan J.", country: "Canada", city: "Toronto", action: "considering the Bundle", when: "4 min ago" },
+      { name: "Emily R.", country: "USA", city: "New York", action: "is comparing Suites", when: "5 min ago" },
+      { name: "Ahmed Z.", country: "UAE", city: "Abu Dhabi", action: "activated Pro + Elite", when: "6 min ago" }
     ];
-
     function shuffle(arr){
       for (let i = arr.length - 1; i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        [arr[i], arr[j] = [arr[j], arr[i]];
       }
       return arr;
     }
@@ -1656,7 +1604,6 @@
       `;
       return toast;
     }
-
     let showing = false;
     function showToast(note){
       if (showing) return;
@@ -1673,7 +1620,6 @@
         setTimeout(() => { t.remove(); showing = false; }, 400);
       }, 5200);
     }
-
     (function runToasts(){
       const queue = shuffle([...notifications]).slice(0, MAX_TOASTS);
       let idx = 0;
