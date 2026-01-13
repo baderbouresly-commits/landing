@@ -47,6 +47,7 @@
       border-radius: 10px;
     }
     section{ scroll-margin-top: 92px; }
+
     /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
@@ -74,6 +75,7 @@
     }
     .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
     .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
+
     .nav{
       display:flex; align-items:center; gap:18px;
       color: var(--muted);
@@ -94,6 +96,7 @@
       background: var(--accent);
       border-radius: 2px;
     }
+
     /* Suites dropdown */
     .dropdown{ position:relative; }
     .dropBtn{
@@ -123,24 +126,25 @@
       transition: transform .14s ease;
       flex:0 0 auto;
     }
-/* Suites dropdown */
-.dropMenu{
-  position:absolute;
-  top: calc(100% + 10px);
 
-  /* CENTER under the Suites button */
-  left: 50%;
-  transform: translateX(-50%);
+    /* Suites dropdown */
+    .dropMenu{
+      position:absolute;
+      top: calc(100% + 10px);
 
-  min-width: 260px;
-  padding: 8px;
-  border-radius: 14px;
-  background: rgba(10,14,28,.96);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow: var(--shadow2);
-  display:none;
-  z-index:80;
-}
+      /* CENTER under the Suites button */
+      left: 50%;
+      transform: translateX(-50%);
+
+      min-width: 260px;
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(10,14,28,.96);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      display:none;
+      z-index:80;
+    }
     .dropdown:hover .dropMenu,
     .dropdown:focus-within .dropMenu,
     .dropdown.open .dropMenu{ display:block; }
@@ -158,6 +162,7 @@
       margin:6px 6px;
       background: rgba(255,255,255,.08);
     }
+
     .ctaRow{ display:flex; align-items:center; gap:10px; }
     .btn{
       border:1px solid rgba(255,255,255,.12);
@@ -183,6 +188,7 @@
       color:#070A14;
     }
     .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+
     .mobileOnly{ display:none; }
     @media (max-width: 860px){
       .nav{ display:none; }
@@ -212,6 +218,7 @@
         cursor: pointer;
       }
     }
+
     /* Sections */
     section{ padding:64px 0; }
     h1,h2,h3{ margin:0; }
@@ -299,6 +306,7 @@
       max-width: 80ch;
       text-align:left;
     }
+
     /* Suites cards */
     .grid4{
       display:grid;
@@ -354,6 +362,7 @@
     .rules{ margin:10px 0 0 0; padding:0 0 0 18px; color: var(--muted); font-size:13px; line-height:1.6; }
     .pricingFooter{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .mutedSmall{ color: var(--muted2); font-size:12px; line-height:1.45; margin-top:10px; }
+
     /* TESTIMONIALS (marquee) */
     .proofCard{
       border-radius: var(--radius);
@@ -399,6 +408,7 @@
     .stars{ font-size:12px; letter-spacing:.06em; color: rgba(255,193,74,.95); flex:0 0 auto; }
     .tBody{ color: var(--muted); font-size:13px; line-height:1.55; margin:0; }
     .tTag{ margin-top:auto; color: rgba(234,240,255,.65); font-size:11px; letter-spacing:.10em; text-transform:uppercase; }
+
     /* PRICING */
     .pricingShell{
       border-radius: calc(var(--radius) + 6px);
@@ -640,6 +650,7 @@
         </div>
 
         <nav class="nav" aria-label="Primary">
+          <!-- ORDER: Suites, Trade Alerts, Results, Reviews, Pricing, FAQ -->
           <div class="dropdown" id="suitesDropdown">
             <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
               Suites <span class="chev" aria-hidden="true">▾</span>
@@ -654,11 +665,10 @@
             </div>
           </div>
 
-          <a href="#about">About</a>
           <a href="trade-alerts.html">Trade Alerts</a>
+          <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Results</a>
           <a href="#proof">Reviews</a>
           <a href="#pricing">Pricing</a>
-          <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Results</a>
           <a href="#faq">FAQ</a>
         </nav>
 
@@ -1201,11 +1211,12 @@
         <div>
           <div class="footColTitle">Links</div>
           <div class="footLinks">
+            <!-- ORDER: Suites, Trade Alerts, Results, Reviews, Pricing, FAQ -->
             <a href="#suites">Suites</a>
-            <a href="#about">About</a>
             <a href="trade-alerts.html">Trade Alerts</a>
-            <a href="#pricing">Pricing</a>
             <a id="footShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Results</a>
+            <a href="#proof">Reviews</a>
+            <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
           </div>
         </div>
@@ -1311,6 +1322,7 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
     // ================================
     // Suites dropdown (click-to-toggle + close on outside/Escape)
     // ================================
@@ -1320,34 +1332,42 @@
       const btn = dd.querySelector(".dropBtn");
       const menu = dd.querySelector(".dropMenu");
       if (!btn || !menu) return;
+
       function setOpen(open){
         dd.classList.toggle("open", open);
         btn.setAttribute("aria-expanded", open ? "true" : "false");
       }
+
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const isOpen = dd.classList.contains("open");
         setOpen(!isOpen);
       });
+
       menu.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => setOpen(false));
       });
+
       document.addEventListener("click", (e) => {
         if (!dd.contains(e.target)) setOpen(false);
       });
+
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") setOpen(false);
       });
     })();
+
     // ================================
     // SHOP destination (TEMP)
     // ================================
     const SHOP_URL = "http://shop.silverhawksuite.com/";
+
     // Keep Shop links consistent
     const navShop = document.getElementById("navShop");
     const footShop = document.getElementById("footShop");
     if (navShop) navShop.href = SHOP_URL;
     if (footShop) footShop.href = SHOP_URL;
+
     // All CTAs that should go to Shop
     const LINK_IDS = [
       "ctaPrimary",
@@ -1360,6 +1380,7 @@
       const el = document.getElementById(id);
       if (el) el.href = SHOP_URL;
     });
+
     // Pricing text (monthly only)
     document.getElementById("proPer").textContent = "/mo";
     document.getElementById("elitePer").textContent = "/mo";
@@ -1367,6 +1388,7 @@
     document.getElementById("proSmall").textContent = "Billed monthly. Cancel anytime.";
     document.getElementById("eliteSmall").textContent = "Works with Free or Pro.";
     document.getElementById("bundleSmall").textContent = "Best value: strategy + execution control.";
+
     // ================================
     // Policies (Modal Popups)
     // ================================
@@ -1522,6 +1544,7 @@
         `
       }
     };
+
     (function initPolicyModal(){
       const modal = document.getElementById("policyModal");
       const title = document.getElementById("policyTitle");
@@ -1529,7 +1552,9 @@
       const body = document.getElementById("policyBody");
       const closeBtn = document.getElementById("policyCloseBtn");
       if (!modal || !title || !body || !closeBtn) return;
+
       updated.textContent = POLICY_LAST_UPDATED;
+
       function openPolicy(key){
         const p = POLICIES[key];
         if (!p) return;
@@ -1540,26 +1565,32 @@
         document.body.style.overflow = "hidden";
         closeBtn.focus();
       }
+
       function closePolicy(){
         modal.classList.remove("show");
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
+
       document.querySelectorAll('[data-policy]').forEach(a => {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           openPolicy(a.getAttribute("data-policy"));
         });
       });
+
       closeBtn.addEventListener("click", closePolicy);
+
       modal.addEventListener("click", (e) => {
         const target = e.target;
         if (target && target.getAttribute("data-close") === "1") closePolicy();
       });
+
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && modal.classList.contains("show")) closePolicy();
       });
     })();
+
     // ================================
     // Social-proof popups (one at a time, randomized)
     // ================================
@@ -1582,18 +1613,21 @@
       { name: "Emily R.", country: "USA", city: "New York", action: "is comparing Suites", when: "5 min ago" },
       { name: "Ahmed Z.", country: "UAE", city: "Abu Dhabi", action: "activated Pro + Elite", when: "6 min ago" }
     ];
+
     function shuffle(arr){
       for (let i = arr.length - 1; i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j] = [arr[j], arr[i]];
+        [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
     }
+
     function nextDelay(){
       const base = Math.random() * 7000 + 7000; // 7–14s
       const longGap = Math.random() < 0.2 ? 12000 : 0;
       return base + longGap;
     }
+
     function createToast(note){
       const toast = document.createElement("div");
       toast.className = "toast";
@@ -1608,22 +1642,27 @@
       `;
       return toast;
     }
+
     let showing = false;
     function showToast(note){
       if (showing) return;
       showing = true;
       const t = createToast(note);
       toastContainer.appendChild(t);
+
       t.querySelector(".toast-close").addEventListener("click", () => {
         t.classList.add("hide");
         setTimeout(() => { t.remove(); showing = false; }, 200);
       });
+
       requestAnimationFrame(() => t.classList.add("show"));
+
       setTimeout(() => {
         t.classList.add("hide");
         setTimeout(() => { t.remove(); showing = false; }, 400);
       }, 5200);
     }
+
     (function runToasts(){
       const queue = shuffle([...notifications]).slice(0, MAX_TOASTS);
       let idx = 0;
