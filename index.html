@@ -623,7 +623,6 @@
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <!-- Suites dropdown (replaced) -->
           <div class="dropdown" id="suitesDropdown">
             <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
               Suites <span class="chev" aria-hidden="true">▾</span>
@@ -646,9 +645,8 @@
           <a href="#faq">FAQ</a>
         </nav>
 
+        <!-- Header CTAs removed (View Suites / Get Access) -->
         <div class="ctaRow">
-          <a class="btn" href="#suites">View Suites</a>
-          <a class="btn btnPrimary" id="ctaTop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Access</a>
           <a class="btn mobileOnly" href="#faq">FAQ</a>
         </div>
       </div>
@@ -685,11 +683,10 @@
     </div>
   </section>
 
-  <!-- ABOUT (Ultra-Short & Aspirational) -->
+  <!-- ABOUT -->
   <section id="about" style="padding: 60px 0 40px;">
     <div class="wrap">
       <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-
         <p class="kicker" style="text-align:center; margin-bottom:12px;">PHILOSOPHY</p>
 
         <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px;">
@@ -701,7 +698,6 @@
           Fewer trades. Cleaner decisions. Real consistency.
         </p>
 
-        <!-- Small 3-icon highlights -->
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-bottom: 40px;">
           <div style="flex: 1 1 200px; max-width: 220px;">
             <div style="font-size: 40px; color: var(--good); margin-bottom: 8px;">✓</div>
@@ -720,13 +716,11 @@
           </div>
         </div>
 
-        <!-- CTAs -->
         <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
           <a class="btn" href="#suites">See suites</a>
           <a class="btn btnPrimary" href="#pricing">See pricing</a>
         </div>
 
-        <!-- Fine print -->
         <p style="margin-top: 32px; color: rgba(234,240,255,.55); font-size: 13px;">
           Educational tools only. Not financial advice. Trading involves risk.
         </p>
@@ -997,7 +991,7 @@
     </div>
   </section>
 
-  <!-- PRICING (Monthly only) -->
+  <!-- PRICING -->
   <section id="pricing">
     <div class="wrap">
       <div class="sectionHead">
@@ -1338,8 +1332,6 @@
     // ================================
     // SHOP destination (TEMP)
     // ================================
-    // Use http for now because your custom domain HTTPS is failing until Gumroad SSL is fully working.
-    // When HTTPS works, change this to: "https://shop.silverhawksuite.com/"
     const SHOP_URL = "http://shop.silverhawksuite.com/";
 
     // Keep Shop links consistent
@@ -1350,7 +1342,7 @@
 
     // All CTAs that should go to Shop
     const LINK_IDS = [
-      "ctaTop","ctaPrimary",
+      "ctaPrimary",
       "getFreeBreakouts","getFreeLiquidity",
       "upgradeBreakouts","upgradeLiquidity",
       "choosePlanPro","choosePlanElite","choosePlanBtn",
@@ -1372,7 +1364,7 @@
     // ================================
     // Policies (Modal Popups)
     // ================================
-    const POLICY_LAST_UPDATED = "2026-01-09"; // change when you edit text
+    const POLICY_LAST_UPDATED = "2026-01-09";
     const SUPPORT_EMAIL = "support@silverhawksuite.com";
     const LEGAL_ENTITY = "SilverHawk Suite";
     const JURISDICTION = "Kuwait";
