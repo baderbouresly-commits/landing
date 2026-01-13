@@ -504,6 +504,49 @@
     .pCtas{ margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; padding-top:14px; }
     .notesRow{ padding: 10px 6px 2px; color: rgba(234,240,255,.55); font-size:12px; line-height:1.45; }
 
+    /* ===== Additional Pricing Tweaks ===== */
+.pricingGrid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pricingGrid .pCard {
+  flex: 1 1 320px;
+  max-width: 380px;
+  transition: all 0.3s ease;
+}
+
+.pricingGrid .pCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,.5);
+}
+
+.startFreeBar {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: center;
+  background: rgba(124,92,255,.15);
+  border: 1px solid rgba(124,92,255,.3);
+  padding: 30px 20px;
+  border-radius: 16px;
+}
+
+.startFreeActions {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.notesRow {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
     /* FAQ */
     .faqGrid{
       display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;
@@ -1095,90 +1138,90 @@
   </section>
 
   <!-- PRICING -->
-  <section id="pricing">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <p class="kicker">Pricing</p>
-          <h2>Paid access</h2>
-          <p class="subLeft">One simple monthly option for each product. Cancel anytime.</p>
-        </div>
-      </div>
-
-      <div class="pricingShell">
-        <div class="pricingInner">
-          <div class="pricingHeaderRow">
-            <div>
-              <div class="pricingHdrTitle">Paid Access</div>
-              <div class="pricingHdrSub">Pro is the strategy. Elite is execution control. Bundle combines both.</div>
-            </div>
-          </div>
-
-          <div class="startFreeBar">
-            <div>
-              <div class="startFreeTitle">Start Free: Breakouts + Liquidity Lines</div>
-              <div class="startFreeSub">Get the workflow first. Add Pro for MTF structure. Add Elite for tighter execution.</div>
-            </div>
-            <div class="startFreeActions">
-              <a class="btn" id="seeFreeSuites" href="#suites">See Free Suites</a>
-              <a class="btn btnPrimary" id="choosePlanBtn" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
-            </div>
-          </div>
-
-          <div class="pricingGrid">
-  <!-- PRO -->
-  <div class="pCard">
-    <div class="pCardInner">
-      <div class="pTop">
-        <div>
-          <div class="pName">Pro</div>
-          <div class="pMeta">Prime MTF strategy</div>
-        </div>
-      </div>
-      <div class="priceRow">
-        <div class="priceBig" id="proPrice">$24.90</div>
-        <div class="per" id="proPer">/mo</div>
-      </div>
-      <p class="priceSmall" id="proSmall">Billed monthly. Cancel anytime.</p>
-      <ul class="pList">
-        <li><span class="check">✓</span>Prime MTF engine + confirmation tools</li>
-        <li><span class="check">✓</span>Cleaner selection (fewer, better setups)</li>
-        <li><span class="check">✓</span>Rules-first workflow (not random alerts)</li>
-      </ul>
-      <div class="pCtas">
-        <a class="btn btnPrimary" id="buyPro" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Pro</a>
-        <a class="btn" href="#faq">Questions?</a>
+  <!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sectionHead">
+      <div>
+        <p class="kicker">Pricing</p>
+        <h2>Paid access</h2>
+        <p class="subLeft">One simple monthly option for each product. Cancel anytime.</p>
       </div>
     </div>
-  </div>
 
-  <!-- ELITE -->
-  <div class="pCard">
-    <div class="pCardInner">
-      <div class="pTop">
-        <div>
-          <div class="pName">Elite</div>
-          <div class="pMeta">Add-on toolkit</div>
-        </div>
+    <!-- Start Free Bar - Made wider, centered, more prominent -->
+    <div class="startFreeBar" style="max-width: 800px; margin: 0 auto 40px; text-align: center;">
+      <div>
+        <div class="startFreeTitle">Start Free: Breakouts + Liquidity Lines</div>
+        <div class="startFreeSub">Get the workflow first. Add Pro for MTF structure. Add Elite for tighter execution.</div>
       </div>
-      <div class="priceRow">
-        <div class="priceBig" id="elitePrice">$29.90</div>
-        <div class="per" id="elitePer">/mo</div>
-      </div>
-      <p class="priceSmall" id="eliteSmall">Works with Free or Pro.</p>
-      <ul class="pList">
-        <li><span class="check">✓</span>Decision panel + alignment checks</li>
-        <li><span class="check">✓</span>Scenario control tools for consistency</li>
-        <li><span class="check">✓</span>“Checkpoint” before you click</li>
-      </ul>
-      <div class="pCtas">
-        <a class="btn btnPrimary" id="buyElite" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Elite</a>
-        <a class="btn" href="#faq">Questions?</a>
+      <div class="startFreeActions" style="justify-content: center; margin-top: 20px;">
+        <a class="btn" id="seeFreeSuites" href="#suites">See Free Suites</a>
+        <a class="btn btnPrimary" id="choosePlanBtn" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Choose Plan</a>
       </div>
     </div>
-  </div>
-</div>
 
+    <!-- Pricing Cards - Centered flex row, larger, hover effects -->
+    <div class="pricingGrid" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
+      <!-- PRO -->
+      <div class="pCard" style="flex: 1 1 320px; max-width: 380px;">
+        <div class="pCardInner">
+          <div class="pTop">
+            <div>
+              <div class="pName">Pro</div>
+              <div class="pMeta">Prime MTF strategy</div>
+            </div>
+          </div>
+          <div class="priceRow">
+            <div class="priceBig" id="proPrice">$24.90</div>
+            <div class="per" id="proPer">/mo</div>
+          </div>
+          <p class="priceSmall" id="proSmall">Billed monthly. Cancel anytime.</p>
+          <ul class="pList">
+            <li><span class="check">✓</span>Prime MTF engine + confirmation tools</li>
+            <li><span class="check">✓</span>Cleaner selection (fewer, better setups)</li>
+            <li><span class="check">✓</span>Rules-first workflow (not random alerts)</li>
+          </ul>
+          <div class="pCtas">
+            <a class="btn btnPrimary" id="buyPro" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Pro</a>
+            <a class="btn" href="#faq">Questions?</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELITE -->
+      <div class="pCard" style="flex: 1 1 320px; max-width: 380px;">
+        <div class="pCardInner">
+          <div class="pTop">
+            <div>
+              <div class="pName">Elite</div>
+              <div class="pMeta">Add-on toolkit</div>
+            </div>
+          </div>
+          <div class="priceRow">
+            <div class="priceBig" id="elitePrice">$29.90</div>
+            <div class="per" id="elitePer">/mo</div>
+          </div>
+          <p class="priceSmall" id="eliteSmall">Works with Free or Pro.</p>
+          <ul class="pList">
+            <li><span class="check">✓</span>Decision panel + alignment checks</li>
+            <li><span class="check">✓</span>Scenario control tools for consistency</li>
+            <li><span class="check">✓</span>“Checkpoint” before you click</li>
+          </ul>
+          <div class="pCtas">
+            <a class="btn btnPrimary" id="buyElite" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Elite</a>
+            <a class="btn" href="#faq">Questions?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notesRow" style="text-align: center; margin-top: 40px;">
+      Notes: Prices exclude any platform taxes/fees. Trading involves risk. Nothing here is financial advice.
+    </div>
+  </div>
+</section>
+  
   <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
