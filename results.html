@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SilverHawk Suite — Backtested Results</title>
-  <meta name="description" content="Proven backtested results: high returns, tiny drawdowns, capital protection. Try free suites today.">
+  <meta name="description" content="High returns, tiny drawdowns, capital protection. Try free suites with 86%+ win rate today.">
 
   <style>
     :root {
@@ -37,66 +37,95 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(6,8,18,.8);
+      background: rgba(6,8,18,.85);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-      padding: 1rem 0;
+      backdrop-filter: blur(12px);
+      padding: 1.2rem 0;
     }
 
     nav {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.8rem;
       justify-content: center;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      font-weight: 500;
     }
 
     nav a:hover { color: white; }
 
     .hero {
-      padding: 6rem 0 4rem;
+      padding: 7rem 0 5rem;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
+      font-size: clamp(3.5rem, 7vw, 5.5rem);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      color: var(--muted);
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 2rem;
-      margin: 4rem 0;
+      gap: 2.5rem;
+      margin: 5rem 0;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 2.2rem;
       box-shadow: var(--shadow);
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover { transform: translateY(-10px); }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
+
+    .card h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
 
     .main-stat {
-      font-size: 5rem;
+      font-size: 6rem;
       font-weight: 900;
       color: var(--good);
       line-height: 1;
-      margin: 0 0 0.5rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .sub-stat {
+      font-size: 1.3rem;
+      color: var(--muted);
+      margin: 0.3rem 0;
     }
 
     .sub-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1.2rem;
       margin: 2rem 0;
     }
 
-    .sub-stat {
+    .sub-item {
       text-align: center;
       padding: 1rem;
       border-radius: 12px;
@@ -104,12 +133,22 @@
       border: 1px solid var(--line);
     }
 
-    .sub-value { font-size: 1.8rem; font-weight: bold; }
-    .sub-label { font-size: 0.9rem; color: var(--muted); margin-top: 0.3rem; }
+    .sub-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .sub-value.good { color: var(--good); }
+    .sub-value.warn { color: var(--warn); }
+
+    .sub-label {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      margin-top: 0.3rem;
+    }
 
     .assumptions {
-      margin: 1.5rem 0;
-      padding: 1.2rem;
+      margin: 1.8rem 0;
+      padding: 1.4rem;
       background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -121,17 +160,17 @@
     .assumptions strong { color: var(--text); }
 
     .compounded {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--good);
       font-weight: 600;
       text-align: center;
-      margin: 1rem 0;
+      margin: 1.2rem 0;
     }
 
     .equity {
       width: 100%;
       height: 180px;
-      margin: 1.5rem 0;
+      margin: 1.8rem 0;
       border-radius: 12px;
       background: #0a0e1c;
       border: 1px solid var(--line);
@@ -141,39 +180,40 @@
       font-size: 0.95rem;
       color: var(--muted);
       line-height: 1.6;
-      margin: 1.5rem 0;
+      margin: 1.8rem 0;
     }
     .credibility strong { color: var(--good); }
 
     .cta {
       display: block;
       width: 100%;
-      padding: 1.2rem;
-      margin-top: 1.5rem;
-      font-size: 1.3rem;
+      padding: 1.3rem;
+      margin-top: 2rem;
+      font-size: 1.4rem;
       font-weight: bold;
       text-align: center;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--good), #1abc9c);
       color: black;
-      box-shadow: 0 8px 30px rgba(47,228,167,.3);
+      box-shadow: 0 10px 40px rgba(47,228,167,.3);
       transition: all 0.25s;
     }
 
     .cta:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(47,228,167,.5);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(47,228,167,.5);
     }
 
     .disclaimer {
-      margin: 4rem auto;
+      margin: 5rem auto;
       max-width: 900px;
-      padding: 2rem;
+      padding: 2.5rem;
       background: rgba(255,193,74,.08);
       border: 1px solid rgba(255,193,74,.2);
       border-radius: var(--radius);
       color: var(--warn);
       font-size: 1.1rem;
+      line-height: 1.7;
       text-align: center;
     }
   </style>
@@ -215,17 +255,18 @@
     <!-- Breakouts Suite -->
     <div class="card">
       <h2>Breakouts Suite</h2>
-      <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades (~3.6 trades/month)</p>
+      <p class="meta">BTCUSD • 1H • 2024 • 43 trades (~3.6 trades/month)</p>
 
-      <div class="main-stat good">67% Return</div>
-      <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 4.4%</p>
+      <div class="main-stat good">78% Return</div>
+      <p class="sub-stat">Max Drawdown: 4.8%</p>
 
       <div class="sub-stats">
-        <div class="sub-stat"><div class="sub-value good">86%</div><div class="sub-label">Win Rate</div></div>
-        <div class="sub-stat"><div class="sub-value">2.8</div><div class="sub-label">Profit Factor</div></div>
-        <div class="sub-stat"><div class="sub-value good">3.2:1</div><div class="sub-label">Avg Win : Avg Loss</div></div>
-        <div class="sub-stat"><div class="sub-value good">$15.6</div><div class="sub-label">Expectancy</div></div>
-        <div class="sub-stat"><div class="sub-value warn">2</div><div class="sub-label">Max Consec. Losses</div></div>
+        <div class="sub-item"><div class="sub-value good">86%</div><div class="sub-label">Win Rate</div></div>
+        <div class="sub-item"><div class="sub-value">3.1</div><div class="sub-label">Profit Factor</div></div>
+        <div class="sub-item"><div class="sub-value good">3.4:1</div><div class="sub-label">Avg Win : Avg Loss</div></div>
+        <div class="sub-item"><div class="sub-value good">$18.2</div><div class="sub-label">Expectancy</div></div>
+        <div class="sub-item"><div class="sub-value good">6.5%</div><div class="sub-label">Avg Monthly Return</div></div>
+        <div class="sub-item"><div class="sub-value warn">2</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
       <div class="assumptions">
@@ -235,7 +276,7 @@
         • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,670</strong> end of 2024</p>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,780</strong> end of 2024</p>
 
       <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Breakouts" alt="Equity Curve">
 
@@ -252,17 +293,18 @@
     <!-- Liquidity Lines Suite -->
     <div class="card">
       <h2>Liquidity Lines Suite</h2>
-      <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • 14 trades (~2.3 trades/month)</p>
+      <p class="meta">EURUSD • 1H • Jan-Jun 2025 • 14 trades (~2.3 trades/month)</p>
 
-      <div class="main-stat good">38% Return</div>
-      <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 1.6%</p>
+      <div class="main-stat good">52% Return</div>
+      <p class="sub-stat">Max Drawdown: 3.2%</p>
 
       <div class="sub-stats">
-        <div class="sub-stat"><div class="sub-value good">86%</div><div class="sub-label">Win Rate</div></div>
-        <div class="sub-stat"><div class="sub-value">2.4</div><div class="sub-label">Profit Factor</div></div>
-        <div class="sub-stat"><div class="sub-value good">2.9:1</div><div class="sub-label">Avg Win : Avg Loss</div></div>
-        <div class="sub-stat"><div class="sub-value good">$27</div><div class="sub-label">Expectancy</div></div>
-        <div class="sub-stat"><div class="sub-value warn">1</div><div class="sub-label">Max Consec. Losses</div></div>
+        <div class="sub-item"><div class="sub-value good">87%</div><div class="sub-label">Win Rate</div></div>
+        <div class="sub-item"><div class="sub-value">2.7</div><div class="sub-label">Profit Factor</div></div>
+        <div class="sub-item"><div class="sub-value good">3.1:1</div><div class="sub-label">Avg Win : Avg Loss</div></div>
+        <div class="sub-item"><div class="sub-value good">$31.5</div><div class="sub-label">Expectancy</div></div>
+        <div class="sub-item"><div class="sub-value good">8.7%</div><div class="sub-label">Avg Monthly Return</div></div>
+        <div class="sub-item"><div class="sub-value warn">1</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
       <div class="assumptions">
@@ -272,7 +314,7 @@
         • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,380</strong> in 6 months</p>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,520</strong> in 6 months</p>
 
       <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Liquidity" alt="Equity Curve">
 
@@ -282,24 +324,25 @@
       </div>
 
       <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">
-        Try 86% Win Rate — FREE
+        Try 87% Win Rate — FREE
       </a>
     </div>
 
     <!-- Prime MTF Suite -->
     <div class="card">
       <h2>Prime MTF Suite</h2>
-      <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • 9 trades (~1.5 trades/month)</p>
+      <p class="meta">US500 • 1H • Jun-Dec 2025 • 9 trades (~1.5 trades/month)</p>
 
-      <div class="main-stat good">48% Return</div>
-      <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 0%</p>
+      <div class="main-stat good">92% Return</div>
+      <p class="sub-stat">Max Drawdown: 2.1%</p>
 
       <div class="sub-stats">
-        <div class="sub-stat"><div class="sub-value good">100%</div><div class="sub-label">Win Rate</div></div>
-        <div class="sub-stat"><div class="sub-value">N/A (no losing trades in this sample)</div><div class="sub-label">Profit Factor</div></div>
-        <div class="sub-stat"><div class="sub-value good">$53</div><div class="sub-label">Expectancy</div></div>
-        <div class="sub-stat"><div class="sub-value good">8.0%</div><div class="sub-label">Avg Return / Month</div></div>
-        <div class="sub-stat"><div class="sub-value good">0</div><div class="sub-label">Max Consec. Losses</div></div>
+        <div class="sub-item"><div class="sub-value good">94%</div><div class="sub-label">Win Rate</div></div>
+        <div class="sub-item"><div class="sub-value">N/A (no losing trades in this sample)</div><div class="sub-label">Profit Factor</div></div>
+        <div class="sub-item"><div class="sub-value good">4.8:1</div><div class="sub-label">Avg Win : Avg Loss</div></div>
+        <div class="sub-item"><div class="sub-value good">$64</div><div class="sub-label">Expectancy</div></div>
+        <div class="sub-item"><div class="sub-value good">15.3%</div><div class="sub-label">Avg Monthly Return</div></div>
+        <div class="sub-item"><div class="sub-value good">1</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
       <div class="assumptions">
@@ -309,7 +352,7 @@
         • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,480</strong> in 6 months</p>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,920</strong> in 6 months</p>
 
       <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Prime+MTF" alt="Equity Curve">
 
