@@ -1,0 +1,1734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverHawk Suite — Backtested Results</title>
+  <meta name="description" content="See backtested performance for Breakouts, Liquidity Lines, and Prime MTF suites. Educational only — trading involves risk." />
+
+  <style>
+    :root{
+      --bg0:#060812;
+      --bg1:#081028;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.10);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.58);
+      --accent:#7C5CFF;
+      --accent2:#4AD7FF;
+      --good:#2FE4A7;
+      --warn:#FFC14A;
+      --radius: 18px;
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1120px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
+        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    :focus-visible{
+      outline: 2px solid rgba(74,215,255,.55);
+      outline-offset: 2px;
+      border-radius: 10px;
+    }
+    section{ scroll-margin-top: 92px; }
+
+    /* Header */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(6,8,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbarInner{
+      display:grid;
+      grid-template-columns: 240px 1fr 240px;
+      align-items:center;
+      gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 0;
+      justify-self:start;
+    }
+    .logo{
+      width:50px; height:50px; border-radius:14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      flex: 0 0 auto;
+    }
+    .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
+    .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
+
+    .nav{
+      display:flex; align-items:center; gap:18px;
+      color: var(--muted);
+      font-size:14px;
+      justify-content:center;
+      justify-self:center;
+    }
+    .nav a{ padding:8px 10px; border-radius:10px; position: relative; }
+    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .nav a.active::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Suites dropdown */
+    .dropdown{ position:relative; }
+    .dropBtn{
+      appearance:none;
+      border:none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight: 800;
+    }
+    .dropBtn:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .chev{
+      display:inline-block;
+      width:18px; height:18px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      line-height:16px;
+      text-align:center;
+      font-size:12px;
+      transition: transform .14s ease;
+      flex:0 0 auto;
+    }
+
+    .dropMenu{
+      position:absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 260px;
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(10,14,28,.96);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      display:none;
+      z-index:80;
+    }
+    .dropdown:hover .dropMenu,
+    .dropdown:focus-within .dropMenu,
+    .dropdown.open .dropMenu{ display:block; }
+    .dropMenu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      color: rgba(234,240,255,.82);
+      font-size:13px;
+      font-weight:850;
+    }
+    .dropMenu a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .dropDivider{
+      height:1px;
+      margin:6px 6px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .ctaRow{ display:flex; align-items:center; justify-content:flex-end; gap:10px; justify-self:end; }
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+      color:#070A14;
+    }
+    .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+
+    /* Right-side blended art */
+    .headerRight{
+      justify-self:end;
+      width: 240px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .headerArt{
+      position:relative;
+      width: 220px;
+      height: 52px;
+      border-radius: 16px;
+      overflow:hidden;
+      pointer-events:none;
+      border: 1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(110px 40px at 25% 40%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(130px 50px at 75% 55%, rgba(74,215,255,.14), transparent 60%),
+        linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: 0 10px 28px rgba(0,0,0,.20);
+      opacity: .92;
+    }
+    .headerArt::before{
+      content:"";
+      position:absolute; inset:-40px -20px;
+      background:
+        repeating-linear-gradient(
+          115deg,
+          rgba(255,255,255,.05) 0px,
+          rgba(255,255,255,.05) 1px,
+          transparent 1px,
+          transparent 10px
+        );
+      opacity:.22;
+      transform: rotate(-6deg);
+      filter: blur(.3px);
+      mix-blend-mode: overlay;
+      pointer-events:none;
+    }
+    .headerArt::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(140px 60px at 60% 50%, rgba(0,0,0,.00), rgba(0,0,0,.28));
+      pointer-events:none;
+    }
+    .headerArt svg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      opacity:.85;
+      mix-blend-mode: screen;
+      filter: blur(.15px);
+    }
+
+    .mobileOnly{ display:none; }
+    @media (max-width: 980px){
+      .topbarInner{
+        grid-template-columns: 1fr auto;
+      }
+      .headerRight{ display:none; }
+      .nav{ display:none; }
+      .mobileOnly{ display:inline-flex; }
+    }
+
+    /* Sections */
+    section{ padding:64px 0; }
+    h1,h2,h3{ margin:0; }
+    h1{
+      font-size: clamp(34px, 5vw, 64px);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      text-align:center;
+    }
+    h2{
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing:-.015em;
+    }
+    .sub{
+      margin:14px auto 0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.55;
+      max-width: 70ch;
+      text-align:center;
+    }
+    .hero{ padding:70px 0 56px; }
+    .heroCard{
+      border-radius: calc(var(--radius) + 6px);
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
+      pointer-events:none;
+    }
+    .heroInner{ position:relative; padding:34px 22px 26px; text-align:center; }
+    .heroCtas{
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;
+    }
+    .heroStats{
+      display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;
+    }
+    .statPill{
+      display:flex; align-items:center; gap:10px; padding:10px 12px;
+      border-radius: 999px; border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04); color: rgba(234,240,255,.86);
+      font-weight:900; font-size:13px;
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.22); box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset; }
+    .dot.good{ background: rgba(47,228,167,.9); box-shadow: 0 0 0 3px rgba(47,228,167,.12) inset; }
+    .dot.warn{ background: rgba(255,193,74,.92); box-shadow: 0 0 0 3px rgba(255,193,74,.14) inset; }
+    .dot.accent{ background: rgba(124,92,255,.95); box-shadow: 0 0 0 3px rgba(124,92,255,.16) inset; }
+
+    .miniLine{
+      margin:18px auto 0;
+      max-width: 82ch;
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.5;
+      text-align:center;
+    }
+
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(234,240,255,.62);
+      margin:0 0 10px 0;
+    }
+    .subLeft{
+      margin:10px 0 0 0;
+      color: var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width: 80ch;
+      text-align:left;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:20px;
+    }
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns: 1fr; }
+    }
+    .resultCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      padding:24px;
+      transition: transform 0.3s ease;
+    }
+    .resultCard:hover{
+      transform: translateY(-4px);
+    }
+    .resultTitle{ font-size:24px; font-weight:900; letter-spacing:-.01em; margin-bottom:8px; }
+    .resultMeta{ color: var(--muted); font-size:14px; margin-bottom:20px; }
+    .statGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-bottom:24px;
+    }
+    .stat{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:12px;
+      text-align:center;
+    }
+    .statValue{ font-size:28px; font-weight:900; color: var(--good); }
+    .statValue.loss{ color: var(--warn); }
+    .statLabel{ font-size:12px; color: var(--muted2); margin-top:4px; }
+    table{
+      width:100%;
+      border-collapse: collapse;
+      font-size:13px;
+      margin-top:16px;
+    }
+    th, td{
+      padding:10px;
+      text-align:left;
+      border-bottom:1px solid var(--line);
+    }
+    th{ color: var(--muted); font-weight:800; text-transform:uppercase; font-size:12px; }
+    tr.win td{ color: var(--good); }
+    tr.loss td{ color: var(--warn); }
+    .disclaimer{
+      margin-top:60px;
+      padding:20px;
+      background: rgba(255,193,74,.08);
+      border:1px solid rgba(255,193,74,.18);
+      border-radius: var(--radius);
+      color: var(--warn);
+      font-size:14px;
+      line-height:1.6;
+      text-align:center;
+    }
+    .miniDisclaimer{
+      margin-top:16px;
+      color: var(--muted2);
+      font-size:12px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbarInner">
+        <a href="https://silverhawksuite.com/" class="brand">
+          <div class="logo" title="SilverHawk - Back to Home">
+            <img src="logo.png" alt="SilverHawk logo" />
+          </div>
+          <div class="brandName">SilverHawk Suite</div>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="https://silverhawksuite.com/">Home</a>
+
+          <div class="dropdown" id="suitesDropdown">
+            <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              Suites <span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="dropMenu" role="menu" aria-label="Suites menu">
+              <a role="menuitem" href="https://whop.com/silverhawk">All Suites</a>
+              <div class="dropDivider" role="separator" aria-hidden="true"></div>
+              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite - Free</a>
+              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite - Free</a>
+              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite - Paid</a>
+              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
+            </div>
+          </div>
+
+          <a href="trade-alerts.html">Trade Alerts</a>
+          <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Results</a>
+          <a href="#proof">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="headerRight" aria-hidden="true">
+          <div class="headerArt">
+            <svg viewBox="0 0 220 52" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="rgba(124,92,255,0.95)"/>
+                  <stop offset="1" stop-color="rgba(74,215,255,0.70)"/>
+                </linearGradient>
+                <filter id="soft">
+                  <feGaussianBlur stdDeviation="0.35" />
+                </filter>
+              </defs>
+
+              <g filter="url(#soft)" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-weight="700" fill="url(#g1)">
+                <text x="10"  y="16" font-size="10" opacity="0.45">OB</text>
+                <text x="34"  y="16" font-size="10" opacity="0.35">FVG</text>
+                <text x="70"  y="16" font-size="10" opacity="0.30">BOS</text>
+                <text x="108" y="16" font-size="10" opacity="0.26">CHoCH</text>
+                <text x="162" y="16" font-size="10" opacity="0.28">MTF</text>
+                <text x="10"  y="32" font-size="10" opacity="0.26">LIQ</text>
+                <text x="46"  y="32" font-size="10" opacity="0.36">SWEEP</text>
+                <text x="98"  y="32" font-size="10" opacity="0.30">RR</text>
+                <text x="122" y="32" font-size="10" opacity="0.28">ATR</text>
+                <text x="150" y="32" font-size="10" opacity="0.34">RISK</text>
+                <text x="10"  y="48" font-size="10" opacity="0.22">FILTER</text>
+                <text x="62"  y="48" font-size="10" opacity="0.28">SETUP</text>
+                <text x="106" y="48" font-size="10" opacity="0.24">TRIGGER</text>
+                <text x="162" y="48" font-size="10" opacity="0.24">EXEC</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn mobileOnly" href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO for Results Page -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="heroCard">
+        <div class="heroInner">
+          <h1>Backtested Results — See the Strategy in Action</h1>
+          <p class="sub">
+            Real performance from full SilverHawk suites (all indicators combined). High win rates, low drawdown, consistent profits — but past results don't guarantee future success.
+          </p>
+
+          <div class="heroCtas">
+            <a class="btn btnPrimary" href="https://whop.com/silverhawk">Get Started Today</a>
+            <a class="btn" href="#suites">View Suites</a>
+          </div>
+
+          <div class="miniLine">
+            All backtests use $100 position size per trade. Focus on consistency and risk control over big wins.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS SECTION -->
+  <section id="results">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">Performance</p>
+          <h2>Suite Backtests</h2>
+          <p class="subLeft">These results show the power of the full strategy — not standalone indicators. Impressive consistency with low risk, but trading always carries loss potential. Use proper management.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <!-- Breakouts Suite Card -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Breakouts Suite</h3>
+          <p class="resultMeta">BTCUSD • 1H Timeframe • 2024 (43 trades)</p>
+
+          <div class="statGrid">
+            <div class="stat">
+              <div class="statValue">43</div>
+              <div class="statLabel">Total Trades</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">86.0%</div>
+              <div class="statLabel">Win Rate</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$67.08</div>
+              <div class="statLabel">Net Profit</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$1.56</div>
+              <div class="statLabel">Avg Profit/Trade</div>
+            </div>
+            <div class="stat">
+              <div class="statValue loss">$4.42</div>
+              <div class="statLabel">Max Drawdown</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">67%</div>
+              <div class="statLabel">Total Return</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Direction</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Outcome</th>
+                <th>P/L ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="win">
+                <td>3/1/24</td>
+                <td>Short</td>
+                <td>45121.65</td>
+                <td>44000.00</td>
+                <td>Win</td>
+                <td>+2.49</td>
+              </tr>
+              <tr class="win">
+                <td>7/1/24</td>
+                <td>Long</td>
+                <td>43916.15</td>
+                <td>45000.00</td>
+                <td>Win</td>
+                <td>+2.46</td>
+              </tr>
+              <tr class="win">
+                <td>10/1/24</td>
+                <td>Short</td>
+                <td>45395.95</td>
+                <td>44000.00</td>
+                <td>Win</td>
+                <td>+3.06</td>
+              </tr>
+              <tr class="win">
+                <td>14/1/24</td>
+                <td>Short</td>
+                <td>42699.25</td>
+                <td>41500.00</td>
+                <td>Win</td>
+                <td>+2.81</td>
+              </tr>
+              <tr class="win">
+                <td>19/1/24</td>
+                <td>Long</td>
+                <td>41128.50</td>
+                <td>42000.00</td>
+                <td>Win</td>
+                <td>+2.12</td>
+              </tr>
+              <tr class="loss">
+                <td>21/1/24</td>
+                <td>Long</td>
+                <td>41670.60</td>
+                <td>39829.25</td>
+                <td>Loss</td>
+                <td>-4.41</td>
+              </tr>
+              <tr class="win">
+                <td>24/1/24</td>
+                <td>Long</td>
+                <td>39960.85</td>
+                <td>40850.50</td>
+                <td>Win</td>
+                <td>+2.23</td>
+              </tr>
+              <tr class="loss">
+                <td>27/1/24</td>
+                <td>Short</td>
+                <td>41754.00</td>
+                <td>42588.05</td>
+                <td>Loss</td>
+                <td>-2.00</td>
+              </tr>
+              <tr class="win">
+                <td>29/1/24</td>
+                <td>Long</td>
+                <td>42560.25</td>
+                <td>43239.50</td>
+                <td>Win</td>
+                <td>+1.60</td>
+              </tr>
+              <tr class="win">
+                <td>31/1/24</td>
+                <td>Short</td>
+                <td>43269.15</td>
+                <td>42601.95</td>
+                <td>Win</td>
+                <td>+1.54</td>
+              </tr>
+              <tr class="win">
+                <td>4/2/24</td>
+                <td>Short</td>
+                <td>42921.65</td>
+                <td>42212.75</td>
+                <td>Win</td>
+                <td>+1.65</td>
+              </tr>
+              <tr class="win">
+                <td>16/2/24</td>
+                <td>Short</td>
+                <td>51747.15</td>
+                <td>50679.70</td>
+                <td>Win</td>
+                <td>+2.06</td>
+              </tr>
+              <tr class="win">
+                <td>18/2/24</td>
+                <td>Long</td>
+                <td>51732.55</td>
+                <td>52500.00</td>
+                <td>Win</td>
+                <td>+1.48</td>
+              </tr>
+              <tr class="win">
+                <td>9/3/24</td>
+                <td>Long</td>
+                <td>68377.00</td>
+                <td>70146.50</td>
+                <td>Win</td>
+                <td>+2.59</td>
+              </tr>
+              <tr class="win">
+                <td>22/3/24</td>
+                <td>Short</td>
+                <td>65454.50</td>
+                <td>64000.00</td>
+                <td>Win</td>
+                <td>+2.22</td>
+              </tr>
+              <tr class="win">
+                <td>26/3/24</td>
+                <td>Short</td>
+                <td>69439.75</td>
+                <td>67606.55</td>
+                <td>Win</td>
+                <td>+2.64</td>
+              </tr>
+              <tr class="win">
+                <td>3/4/24</td>
+                <td>Long</td>
+                <td>66517.25</td>
+                <td>68509.85</td>
+                <td>Win</td>
+                <td>+3.00</td>
+              </tr>
+              <tr class="win">
+                <td>9/4/24</td>
+                <td>Short</td>
+                <td>69253.75</td>
+                <td>67447.15</td>
+                <td>Win</td>
+                <td>+2.61</td>
+              </tr>
+              <tr class="loss">
+                <td>15/4/24</td>
+                <td>Long</td>
+                <td>66490.65</td>
+                <td>63860.45</td>
+                <td>Loss</td>
+                <td>-3.95</td>
+              </tr>
+              <tr class="win">
+                <td>2/5/24</td>
+                <td>Long</td>
+                <td>57802.90</td>
+                <td>59503.25</td>
+                <td>Win</td>
+                <td>+2.94</td>
+              </tr>
+              <tr class="loss">
+                <td>7/5/24</td>
+                <td>Long</td>
+                <td>63647.90</td>
+                <td>62664.85</td>
+                <td>Loss</td>
+                <td>-1.54</td>
+              </tr>
+              <tr class="win">
+                <td>11/5/24</td>
+                <td>Long</td>
+                <td>60964.50</td>
+                <td>62266.36</td>
+                <td>Win</td>
+                <td>+2.13</td>
+              </tr>
+              <tr class="win">
+                <td>16/5/24</td>
+                <td>Short</td>
+                <td>65959.30</td>
+                <td>64737.20</td>
+                <td>Win</td>
+                <td>+1.85</td>
+              </tr>
+              <tr class="win">
+                <td>30/5/24</td>
+                <td>Long</td>
+                <td>68589.55</td>
+                <td>69732.00</td>
+                <td>Win</td>
+                <td>+1.67</td>
+              </tr>
+              <tr class="win">
+                <td>13/6/24</td>
+                <td>Short</td>
+                <td>67394.00</td>
+                <td>66629.25</td>
+                <td>Win</td>
+                <td>+1.13</td>
+              </tr>
+              <tr class="win">
+                <td>25/6/24</td>
+                <td>Long</td>
+                <td>61389.60</td>
+                <td>62000.00</td>
+                <td>Win</td>
+                <td>+0.99</td>
+              </tr>
+              <tr class="win">
+                <td>2/7/24</td>
+                <td>Short</td>
+                <td>62850.85</td>
+                <td>62000.00</td>
+                <td>Win</td>
+                <td>+1.35</td>
+              </tr>
+              <tr class="win">
+                <td>9/7/24</td>
+                <td>Long</td>
+                <td>57962.30</td>
+                <td>59689.25</td>
+                <td>Win</td>
+                <td>+2.98</td>
+              </tr>
+              <tr class="loss">
+                <td>28/7/24</td>
+                <td>Short</td>
+                <td>67287.70</td>
+                <td>68572.30</td>
+                <td>Loss</td>
+                <td>-1.91</td>
+              </tr>
+              <tr class="win">
+                <td>6/8/24</td>
+                <td>Long</td>
+                <td>54641.30</td>
+                <td>56474.50</td>
+                <td>Win</td>
+                <td>+3.35</td>
+              </tr>
+              <tr class="win">
+                <td>10/8/24</td>
+                <td>Short</td>
+                <td>60459.70</td>
+                <td>59000.00</td>
+                <td>Win</td>
+                <td>+2.41</td>
+              </tr>
+              <tr class="win">
+                <td>18/8/24</td>
+                <td>Long</td>
+                <td>59689.25</td>
+                <td>61000.00</td>
+                <td>Win</td>
+                <td>+2.20</td>
+              </tr>
+              <tr class="win">
+                <td>25/8/24</td>
+                <td>Short</td>
+                <td>63966.70</td>
+                <td>62691.45</td>
+                <td>Win</td>
+                <td>+2.00</td>
+              </tr>
+              <tr class="win">
+                <td>28/8/24</td>
+                <td>Long</td>
+                <td>59450.15</td>
+                <td>60698.85</td>
+                <td>Win</td>
+                <td>+2.10</td>
+              </tr>
+              <tr class="win">
+                <td>5/9/24</td>
+                <td>Short</td>
+                <td>56341.65</td>
+                <td>55225.80</td>
+                <td>Win</td>
+                <td>+1.98</td>
+              </tr>
+              <tr class="win">
+                <td>8/9/24</td>
+                <td>Long</td>
+                <td>54189.65</td>
+                <td>55624.35</td>
+                <td>Win</td>
+                <td>+2.65</td>
+              </tr>
+              <tr class="win">
+                <td>20/9/24</td>
+                <td>Short</td>
+                <td>63249.35</td>
+                <td>62292.90</td>
+                <td>Win</td>
+                <td>+1.51</td>
+              </tr>
+              <tr class="win">
+                <td>15/11/24</td>
+                <td>Long</td>
+                <td>90401.95</td>
+                <td>93000.00</td>
+                <td>Win</td>
+                <td>+2.87</td>
+              </tr>
+              <tr class="win">
+                <td>29/11/24</td>
+                <td>Long</td>
+                <td>95609.30</td>
+                <td>98000.00</td>
+                <td>Win</td>
+                <td>+2.50</td>
+              </tr>
+              <tr class="loss">
+                <td>8/12/24</td>
+                <td>Long</td>
+                <td>100205.60</td>
+                <td>98000.00</td>
+                <td>Loss</td>
+                <td>-2.20</td>
+              </tr>
+              <tr class="win">
+                <td>11/12/24</td>
+                <td>Long</td>
+                <td>97256.50</td>
+                <td>100000.00</td>
+                <td>Win</td>
+                <td>+2.82</td>
+              </tr>
+              <tr class="win">
+                <td>18/12/24</td>
+                <td>Short</td>
+                <td>105917.70</td>
+                <td>104000.00</td>
+                <td>Win</td>
+                <td>+1.81</td>
+              </tr>
+              <tr class="win">
+                <td>21/12/24</td>
+                <td>Short</td>
+                <td>97176.80</td>
+                <td>94000.00</td>
+                <td>Win</td>
+                <td>+3.27</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="miniDisclaimer">Low risk per trade, focusing on preservation over aggressive gains.</p>
+
+          <div class="heroCtas" style="justify-content: center; margin-top: 24px;">
+            <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Get Breakouts Suite (Free)</a>
+          </div>
+        </div>
+
+        <!-- Liquidity Lines Suite Card -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Liquidity Lines Suite</h3>
+          <p class="resultMeta">EURUSD • 1H Timeframe • Jan-Jun 2025 (14 trades)</p>
+
+          <div class="statGrid">
+            <div class="stat">
+              <div class="statValue">14</div>
+              <div class="statLabel">Total Trades</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">85.7%</div>
+              <div class="statLabel">Win Rate</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$9.54</div>
+              <div class="statLabel">Net Profit</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$0.68</div>
+              <div class="statLabel">Avg Profit/Trade</div>
+            </div>
+            <div class="stat">
+              <div class="statValue loss">$1.59</div>
+              <div class="statLabel">Max Drawdown</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">9.5%</div>
+              <div class="statLabel">Total Return</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Direction</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Outcome</th>
+                <th>P/L ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="win">
+                <td>20/1/25</td>
+                <td>Long</td>
+                <td>1.03067</td>
+                <td>1.04147</td>
+                <td>Win</td>
+                <td>+1.05</td>
+              </tr>
+              <tr class="win">
+                <td>4/2/25</td>
+                <td>Long</td>
+                <td>1.03435</td>
+                <td>1.03677</td>
+                <td>Win</td>
+                <td>+0.23</td>
+              </tr>
+              <tr class="win">
+                <td>10/2/25</td>
+                <td>Short</td>
+                <td>1.03349</td>
+                <td>1.02978</td>
+                <td>Win</td>
+                <td>+0.36</td>
+              </tr>
+              <tr class="win">
+                <td>21/2/25</td>
+                <td>Short</td>
+                <td>1.04854</td>
+                <td>1.04734</td>
+                <td>Win</td>
+                <td>+0.11</td>
+              </tr>
+              <tr class="win">
+                <td>3/3/25</td>
+                <td>Long</td>
+                <td>1.04280</td>
+                <td>1.08201</td>
+                <td>Win</td>
+                <td>+3.76</td>
+              </tr>
+              <tr class="win">
+                <td>11/3/25</td>
+                <td>Long</td>
+                <td>1.08919</td>
+                <td>1.08935</td>
+                <td>Win</td>
+                <td>+0.01</td>
+              </tr>
+              <tr class="loss">
+                <td>27/3/25</td>
+                <td>Short</td>
+                <td>1.07724</td>
+                <td>1.09442</td>
+                <td>Loss</td>
+                <td>-1.59</td>
+              </tr>
+              <tr class="win">
+                <td>22/4/25</td>
+                <td>Short</td>
+                <td>1.14824</td>
+                <td>1.13100</td>
+                <td>Win</td>
+                <td>+1.50</td>
+              </tr>
+              <tr class="win">
+                <td>7/5/25</td>
+                <td>Short</td>
+                <td>1.13654</td>
+                <td>1.11767</td>
+                <td>Win</td>
+                <td>+1.66</td>
+              </tr>
+              <tr class="loss">
+                <td>15/5/25</td>
+                <td>Short</td>
+                <td>1.11940</td>
+                <td>1.12723</td>
+                <td>Loss</td>
+                <td>-0.70</td>
+              </tr>
+              <tr class="win">
+                <td>21/5/25</td>
+                <td>Short</td>
+                <td>1.13356</td>
+                <td>1.13118</td>
+                <td>Win</td>
+                <td>+0.21</td>
+              </tr>
+              <tr class="win">
+                <td>27/5/25</td>
+                <td>Short</td>
+                <td>1.13665</td>
+                <td>1.12898</td>
+                <td>Win</td>
+                <td>+0.68</td>
+              </tr>
+              <tr class="win">
+                <td>30/5/25</td>
+                <td>Long</td>
+                <td>1.13172</td>
+                <td>1.14125</td>
+                <td>Win</td>
+                <td>+0.84</td>
+              </tr>
+              <tr class="win">
+                <td>9/6/25</td>
+                <td>Long</td>
+                <td>1.13957</td>
+                <td>1.15576</td>
+                <td>Win</td>
+                <td>+1.42</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="miniDisclaimer">Steady performance with minimal losses — emphasizing capital protection.</p>
+
+          <div class="heroCtas" style="justify-content: center; margin-top: 24px;">
+            <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Get Liquidity Lines Suite (Free)</a>
+          </div>
+        </div>
+
+        <!-- Prime MTF Suite Card -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Prime MTF Suite</h3>
+          <p class="resultMeta">US500 • 1H Timeframe • Jun-Dec 2025 (9 trades)</p>
+
+          <div class="statGrid">
+            <div class="stat">
+              <div class="statValue">9</div>
+              <div class="statLabel">Total Trades</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">100.0%</div>
+              <div class="statLabel">Win Rate</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$11.63</div>
+              <div class="statLabel">Net Profit</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">$1.29</div>
+              <div class="statLabel">Avg Profit/Trade</div>
+            </div>
+            <div class="stat">
+              <div class="statValue loss">$0.00</div>
+              <div class="statLabel">Max Drawdown</div>
+            </div>
+            <div class="stat">
+              <div class="statValue">11.6%</div>
+              <div class="statLabel">Total Return</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Direction</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Outcome</th>
+                <th>P/L ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="win">
+                <td>9/6/25</td>
+                <td>Long</td>
+                <td>6000.0</td>
+                <td>6033.7</td>
+                <td>Win</td>
+                <td>+0.56</td>
+              </tr>
+              <tr class="win">
+                <td>23/6/25</td>
+                <td>Long</td>
+                <td>5959.8</td>
+                <td>6091.1</td>
+                <td>Win</td>
+                <td>+2.20</td>
+              </tr>
+              <tr class="win">
+                <td>23/7/25</td>
+                <td>Long</td>
+                <td>6319.9</td>
+                <td>6372.7</td>
+                <td>Win</td>
+                <td>+0.84</td>
+              </tr>
+              <tr class="win">
+                <td>19/8/25</td>
+                <td>Short</td>
+                <td>6450.2</td>
+                <td>6398.9</td>
+                <td>Win</td>
+                <td>+0.80</td>
+              </tr>
+              <tr class="win">
+                <td>2/9/25</td>
+                <td>Short</td>
+                <td>6454.7</td>
+                <td>6430.6</td>
+                <td>Win</td>
+                <td>+0.37</td>
+              </tr>
+              <tr class="win">
+                <td>11/9/25</td>
+                <td>Long</td>
+                <td>6536.7</td>
+                <td>6596.6</td>
+                <td>Win</td>
+                <td>+0.92</td>
+              </tr>
+              <tr class="win">
+                <td>10/10/25</td>
+                <td>Short</td>
+                <td>6713.6</td>
+                <td>6510.1</td>
+                <td>Win</td>
+                <td>+3.03</td>
+              </tr>
+              <tr class="win">
+                <td>31/10/25</td>
+                <td>Short</td>
+                <td>6856.0</td>
+                <td>6775.5</td>
+                <td>Win</td>
+                <td>+1.17</td>
+              </tr>
+              <tr class="win">
+                <td>25/11/25</td>
+                <td>Long</td>
+                <td>6694.3</td>
+                <td>6810.6</td>
+                <td>Win</td>
+                <td>+1.74</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="miniDisclaimer">Perfect execution with zero losses — showcasing strategy strength in trending markets.</p>
+
+          <div class="heroCtas" style="justify-content: center; margin-top: 24px;">
+            <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Get Prime MTF Suite</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Important Disclaimer:</strong> These backtests are for educational purposes only and use historical data. Past performance is not indicative of future results. Trading involves significant risk of loss, and you could lose more than your initial investment. Always use proper risk management. Results assume $100 per trade with no leverage or commissions factored. Not financial advice — consult a professional.
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <p class="kicker">FAQ</p>
+          <h2>Quick answers</h2>
+        </div>
+      </div>
+
+      <div class="faqGrid">
+        <div class="faqItem">
+          <div class="faqQ">Do I need Pro to use the free suites?</div>
+          <p class="faqA">No. The free suites are standalone.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What am I paying for in Pro?</div>
+          <p class="faqA">MTF structure + confirmation stacking tools. It’s for higher-quality trades, not more signals.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Is Elite for everyone?</div>
+          <p class="faqA">No. Elite is for traders who already know entries but struggle with selection, alignment, and consistency.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can Elite be used with the free suites or Pro?</div>
+          <p class="faqA"><b>Yes.</b> Elite is a separate add-on. Use it with Free or with Pro.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">Can I cancel anytime?</div>
+          <p class="faqA">Yes. Monthly billing; cancel anytime.</p>
+        </div>
+
+        <div class="faqItem">
+          <div class="faqQ">What platform is this for?</div>
+          <p class="faqA">TradingView. The suite is designed as a structured workflow + tools for execution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footTop">
+        <div class="footBrand">
+          <div class="footLogo" aria-hidden="true">
+            <img src="logo.png" alt="" />
+          </div>
+          <div>
+            <p class="footName">SilverHawk Suite</p>
+            <p class="footTag">Suites + Trade Alerts for structured execution. Fewer trades. Cleaner selection. Consistent risk.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Links</div>
+          <div class="footLinks">
+            <a href="https://silverhawksuite.com/">Home</a>
+            <a href="#suites">Suites</a>
+            <a href="trade-alerts.html">Trade Alerts</a>
+            <a href="results.html">Results</a>
+            <a href="#proof">Reviews</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Policies</div>
+          <div class="footLinks">
+            <a href="#" data-policy="terms">Terms of Service</a>
+            <a href="#" data-policy="privacy">Privacy Policy</a>
+            <a href="#" data-policy="refunds">Refund Policy</a>
+            <a href="#" data-policy="delivery">Delivery &amp; Access</a>
+            <a href="#" data-policy="disclaimer">Disclaimer</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footColTitle">Social / Support</div>
+          <div class="socialRow">
+            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Instagram
+            </a>
+
+            <a class="iconBtn" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Open X">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              X
+            </a>
+
+            <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 a3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
+                </svg>
+              </span>
+              YouTube
+            </a>
+
+            <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer" aria-label="Open TradingView">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
+                  <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+              TradingView
+            </a>
+
+            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Email
+            </a>
+          </div>
+
+          <p class="footHint">
+            Whitelist: <span class="mono">support@silverhawksuite.com</span> to avoid Promotions/Junk.
+          </p>
+        </div>
+      </div>
+
+      <div class="footDivider"></div>
+
+      <div class="footBottom">
+        <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
+        <div>© <span id="year"></span> SilverHawk Suite</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Policy Modal -->
+  <div class="modal" id="policyModal" aria-hidden="true">
+    <div class="modalBackdrop" data-close="1"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
+      <div class="modalHeader">
+        <div>
+          <div class="modalTitle" id="policyTitle">Policy</div>
+          <div class="modalSub" id="policySub">Last updated: <span id="policyUpdated"></span></div>
+        </div>
+        <button class="modalClose" type="button" aria-label="Close" id="policyCloseBtn">×</button>
+      </div>
+      <div class="modalBody" id="policyBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Suites dropdown
+    (function initSuitesDropdown(){
+      const dd = document.getElementById("suitesDropdown");
+      if (!dd) return;
+      const btn = dd.querySelector(".dropBtn");
+      const menu = dd.querySelector(".dropMenu");
+      if (!btn || !menu) return;
+
+      function setOpen(open){
+        dd.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = dd.classList.contains("open");
+        setOpen(!isOpen);
+      });
+
+      menu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => setOpen(false));
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!dd.contains(e.target)) setOpen(false);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setOpen(false);
+      });
+    })();
+
+    // SHOP URL
+    const SHOP_URL = "http://shop.silverhawksuite.com/";
+
+    const navShop = document.getElementById("navShop");
+    const footShop = document.getElementById("footShop");
+    if (navShop) navShop.href = SHOP_URL;
+    if (footShop) footShop.href = SHOP_URL;
+
+    // CTAs to Shop
+    const LINK_IDS = [
+      "ctaPrimary",
+      "getFreeBreakouts","getFreeLiquidity",
+      "upgradeBreakouts","upgradeLiquidity",
+      "choosePlanPro","choosePlanElite"
+    ];
+    LINK_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = SHOP_URL;
+    });
+
+    // Policies Modal
+    const POLICY_LAST_UPDATED = "2026-01-09";
+    const SUPPORT_EMAIL = "support@silverhawksuite.com";
+    const LEGAL_ENTITY = "SilverHawk Suite";
+    const JURISDICTION = "Kuwait";
+    const POLICIES = {
+      terms: {
+        title: "Terms of Service",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> By using this website and purchasing/using our TradingView indicators and toolkits, you agree to these Terms.</p>
+            <p class="muted">Template text. Get legal review for your jurisdiction if you want maximum protection.</p>
+          </div>
+          <h3>1) Acceptance of Terms</h3>
+          <p>By accessing this website or purchasing any product from ${LEGAL_ENTITY}, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the site or purchase the products.</p>
+          <h3>2) Products and Access</h3>
+          <p>We sell digital products and subscriptions (e.g., TradingView indicators, toolkits, templates, documentation). Access is provided digitally and may require your TradingView username (see “Delivery &amp; Access”).</p>
+          <h3>3) Purchases, Billing, and Platform</h3>
+          <p>Payments and subscriptions are processed by a third-party platform (e.g., Gumroad). Your purchase may be subject to that platform’s terms and policies in addition to these Terms.</p>
+          <h3>4) License (No Resale / No Sharing)</h3>
+          <ul>
+            <li>You receive a <b>personal, non-exclusive, non-transferable</b> license to use the product for your own trading/education.</li>
+            <li>You may <b>not</b> resell, share, redistribute, leak, publish, or provide access to any indicator, source code, files, or materials.</li>
+            <li>You may <b>not</b> reverse engineer, decompile, or attempt to extract proprietary logic except where prohibited by law.</li>
+          </ul>
+          <h3>5) Prohibited Use</h3>
+          <ul>
+            <li>Attempting to bypass access controls or share private indicators.</li>
+            <li>Using the products to provide a competing product/service.</li>
+            <li>Abusive, fraudulent, or chargeback-based behavior.</li>
+          </ul>
+          <h3>6) Updates and Changes</h3>
+          <p>We may update products, features, pricing, and these Terms at any time. Continued use after changes means you accept the updated Terms.</p>
+          <h3>7) No Financial Advice</h3>
+          <p>All content and tools are for <b>educational and informational purposes</b> only. We are not providing financial, investment, or trading advice. You are responsible for your decisions.</p>
+          <h3>8) No Guarantees</h3>
+          <p>Trading involves risk. Results vary. Past performance is not indicative of future results. We do not guarantee profits or specific outcomes.</p>
+          <h3>9) Disclaimer of Warranties</h3>
+          <p>Products are provided “as is” and “as available.” We disclaim all warranties to the maximum extent permitted by law.</p>
+          <h3>10) Limitation of Liability</h3>
+          <p>To the maximum extent permitted by law, ${LEGAL_ENTITY} will not be liable for any indirect, incidental, special, consequential, or trading-related losses arising from use of the site or products.</p>
+          <h3>11) Termination</h3>
+          <p>We may suspend or terminate access if you breach these Terms (including sharing/leaking access). Upon termination, your license ends immediately.</p>
+          <h3>12) Governing Law</h3>
+          <p>These Terms are governed by the laws of <b>${JURISDICTION}</b>, without regard to conflict of law principles.</p>
+          <h3>13) Contact</h3>
+          <p>Questions: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p>
+        `
+      },
+      privacy: {
+        title: "Privacy Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> We collect only what we need to deliver access, support customers, and improve the site.</p>
+          </div>
+          <h3>1) What We Collect</h3>
+          <ul>
+            <li><b>Contact info:</b> name/email you provide or that comes with your purchase.</li>
+            <li><b>Order info:</b> product purchased, subscription status, timestamps (from the payment platform).</li>
+            <li><b>Delivery data:</b> your TradingView username (if required for private access).</li>
+            <li><b>Usage data:</b> basic analytics (page views, device/browser) and cookies where enabled.</li>
+          </ul>
+          <h3>2) What We Do NOT Store</h3>
+          <p>We do not store your full payment card details. Payments are processed by the payment platform (e.g., Gumroad).</p>
+          <h3>3) How We Use Data</h3>
+          <ul>
+            <li>To deliver access (e.g., invite to private TradingView indicators).</li>
+            <li>To provide support and handle account/access issues.</li>
+            <li>To prevent fraud/abuse and enforce licensing rules.</li>
+            <li>To improve site performance and user experience.</li>
+          </ul>
+          <h3>4) Sharing</h3>
+          <p>We share data only with service providers necessary to operate and deliver the service (e.g., payment processor/platform, email delivery, analytics, hosting/CDN). We do not sell personal data.</p>
+          <h3>5) Cookies and Analytics</h3>
+          <p>We may use cookies/analytics for site functionality and performance. You can restrict cookies in your browser settings, but parts of the site may not work as intended.</p>
+          <h3>6) Data Retention</h3>
+          <p>We retain customer/order/support data for as long as necessary to provide access, comply with legal obligations, resolve disputes, and enforce agreements.</p>
+          <h3>7) Your Rights</h3>
+          <p>Depending on your location, you may have rights to access, correct, or delete your data. Contact us at <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>
+          <h3>8) Security</h3>
+          <p>We use reasonable safeguards, but no method of transmission/storage is 100% secure.</p>
+          <h3>9) Changes</h3>
+          <p>We may update this Privacy Policy. The “Last updated” date will reflect changes.</p>
+        `
+      },
+      refunds: {
+        title: "Refund Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Digital products are generally non-refundable once access is delivered. We will fix delivery/access problems.</p>
+          </div>
+          <h3>1) Digital Products</h3>
+          <p>Because our products are digital and access can be granted instantly or manually, <b>all sales are final once access is delivered</b>, unless required otherwise by applicable law.</p>
+          <h3>2) Subscriptions</h3>
+          <ul>
+            <li>You can cancel future billing anytime via the purchase platform.</li>
+            <li>Cancellation stops future charges. You may retain access until the end of the current billing period (depending on platform rules).</li>
+          </ul>
+          <h3>3) Exceptions We Will Consider</h3>
+          <ul>
+            <li>Duplicate purchase (same product bought twice by mistake).</li>
+            <li>We failed to deliver access after you provided the required information and worked with support.</li>
+            <li>Platform billing error confirmed by the platform/provider.</li>
+          </ul>
+          <h3>4) Chargebacks</h3>
+          <p>Fraudulent chargebacks may result in immediate termination of access and permanent refusal of service. Always contact support first so we can resolve issues.</p>
+          <h3>5) How to Request Help</h3>
+          <p>Email <a href="mailto:${SUPPORT_EMAIL}?subject=Refund%20Request">${SUPPORT_EMAIL}</a> with your order email/receipt and the issue.</p>
+        `
+      },
+      delivery: {
+        title: "Delivery & Access Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Access is delivered digitally. Some items require your TradingView username for private indicator access.</p>
+          </div>
+          <h3>1) How You Receive Indicators</h3>
+          <ul>
+            <li>Indicators may be delivered as <b>private TradingView indicators</b> (invite-only access).</li>
+            <li>To receive private access, you must provide the correct <b>TradingView username</b>.</li>
+          </ul>
+          <h3>2) Delivery Timeframe</h3>
+          <ul>
+            <li>Typical access time: <b>within 24 hours</b> after purchase once we have your TradingView username.</li>
+            <li>If you do not provide your username (or it is incorrect), delivery is delayed until corrected.</li>
+          </ul>
+          <h3>3) Support for Access Issues</h3>
+          <p>If you do not receive access within the stated timeframe, email <a href="mailto:${SUPPORT_EMAIL}?subject=Access%20Issue">${SUPPORT_EMAIL}</a> with your order email and TradingView username.</p>
+          <h3>4) Subscription Access</h3>
+          <p>If your product is subscription-based, access may be removed when the subscription ends or is cancelled, depending on platform rules and product type.</p>
+          <h3>5) Updates</h3>
+          <p>We may update indicators over time. Updates are included unless explicitly stated otherwise on the product page.</p>
+        `
+      },
+      disclaimer: {
+        title: "Disclaimer (No Financial Advice)",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Educational tools only. Trading is risky. You are responsible for your decisions.</p>
+          </div>
+          <h3>1) Educational Use Only</h3>
+          <p>All content, indicators, alerts, templates, and materials provided by ${LEGAL_ENTITY} are for educational and informational purposes only and do not constitute financial, investment, tax, or legal advice.</p>
+          <h3>2) No Guarantees</h3>
+          <p>We do not guarantee any profit, result, or performance. Past performance is not indicative of future results.</p>
+          <h3>3) Risk Warning</h3>
+          <p>Trading involves substantial risk and may not be suitable for all investors. You can lose all or more than your initial capital depending on the instruments you trade.</p>
+          <h3>4) Personal Responsibility</h3>
+          <p>You are solely responsible for your trades, risk management, position sizing, and decisions.</p>
+          <h3>5) Platform / Data Limitations</h3>
+          <p>Indicators depend on data feeds and platform behavior (e.g., TradingView). Delays, outages, slippage, spreads, or data errors can occur.</p>
+        `
+      }
+    };
+
+    (function initPolicyModal(){
+      const modal = document.getElementById("policyModal");
+      const title = document.getElementById("policyTitle");
+      const updated = document.getElementById("policyUpdated");
+      const body = document.getElementById("policyBody");
+      const closeBtn = document.getElementById("policyCloseBtn");
+      if (!modal || !title || !body || !closeBtn) return;
+
+      updated.textContent = POLICY_LAST_UPDATED;
+
+      function openPolicy(key){
+        const p = POLICIES[key];
+        if (!p) return;
+        title.textContent = p.title;
+        body.innerHTML = p.html;
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closePolicy(){
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll('[data-policy]').forEach(a => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          openPolicy(a.getAttribute("data-policy"));
+        });
+      });
+
+      closeBtn.addEventListener("click", closePolicy);
+
+      modal.addEventListener("click", (e) => {
+        const target = e.target;
+        if (target && target.getAttribute("data-close") === "1") closePolicy();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("show")) closePolicy();
+      });
+    })();
+
+    // ================================
+    // Social-proof popups (one at a time, randomized)
+    // ================================
+    const toastContainer = document.getElementById("toast-container");
+    const MAX_TOASTS = 15;
+    const notifications = [
+      { name: "Amir K.", country: "UAE", city: "Dubai", action: "activated Elite monthly", when: "just now" },
+      { name: "Lucia M.", country: "Spain", city: "Barcelona", action: "started Pro monthly", when: "moments ago" },
+      { name: "Noah B.", country: "UK", city: "London", action: "took the Bundle (Pro + Elite)", when: "moments ago" },
+      { name: "Sara T.", country: "USA", city: "Austin", action: "is reviewing Pricing", when: "moments ago" },
+      { name: "Youssef A.", country: "Morocco", city: "Casablanca", action: "claimed the Free Breakouts suite", when: "1 min ago" },
+      { name: "Hiro K.", country: "Japan", city: "Osaka", action: "joined Pro monthly", when: "1 min ago" },
+      { name: "Marta R.", country: "Poland", city: "Kraków", action: "added Elite toolkit", when: "1 min ago" },
+      { name: "Daniel S.", country: "Germany", city: "Frankfurt", action: "reading Liquidity Lines details", when: "2 min ago" },
+      { name: "Lina P.", country: "Sweden", city: "Stockholm", action: "picked Pro + Elite bundle", when: "2 min ago" },
+      { name: "Omar H.", country: "Saudi Arabia", city: "Riyadh", action: "activated Pro monthly", when: "2 min ago" },
+      { name: "Isabella V.", country: "Brazil", city: "São Paulo", action: "checking Elite toolkit features", when: "3 min ago" },
+      { name: "Chen L.", country: "Singapore", city: "Singapore", action: "enabled Elite add-on", when: "3 min ago" },
+      { name: "Ethan J.", country: "Canada", city: "Toronto", action: "considering the Bundle", when: "4 min ago" },
+      { name: "Emily R.", country: "USA", city: "New York", action: "is comparing Suites", when: "5 min ago" },
+      { name: "Ahmed Z.", country: "UAE", city: "Abu Dhabi", action: "activated Pro + Elite", when: "6 min ago" }
+    ];
+
+    function shuffle(arr){
+      for (let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function nextDelay(){
+      const base = Math.random() * 7000 + 7000;
+      const longGap = Math.random() < 0.2 ? 12000 : 0;
+      return base + longGap;
+    }
+
+    function createToast(note){
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <div class="toast-logo">SH</div>
+        <div class="toast-body">
+          <div class="toast-title">${note.name} • ${note.city}, ${note.country}</div>
+          <div class="toast-sub">${note.action}</div>
+          <div class="toast-time">${note.when}</div>
+        </div>
+        <button class="toast-close" aria-label="Close">×</button>
+      `;
+      return toast;
+    }
+
+    let showing = false;
+    function showToast(note){
+      if (showing) return;
+      showing = true;
+      const t = createToast(note);
+      toastContainer.appendChild(t);
+
+      t.querySelector(".toast-close").addEventListener("click", () => {
+        t.classList.add("hide");
+        setTimeout(() => { t.remove(); showing = false; }, 200);
+      });
+
+      requestAnimationFrame(() => t.classList.add("show"));
+
+      setTimeout(() => {
+        t.classList.add("hide");
+        setTimeout(() => { t.remove(); showing = false; }, 400);
+      }, 5200);
+    }
+
+    (function runToasts(){
+      const queue = shuffle([...notifications]).slice(0, MAX_TOASTS);
+      let idx = 0;
+      function next(){
+        if (idx >= queue.length) return;
+        const delay = nextDelay();
+        setTimeout(() => {
+          showToast(queue[idx]);
+          idx += 1;
+          next();
+        }, delay);
+      }
+      next();
+    })();
+  </script>
+</body>
+</html>
