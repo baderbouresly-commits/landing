@@ -86,7 +86,7 @@
       font-weight: 900;
       color: var(--good);
       line-height: 1;
-      margin: 0;
+      margin: 0 0 0.5rem;
     }
 
     .sub-stats {
@@ -109,12 +109,23 @@
 
     .assumptions {
       margin: 1.5rem 0;
-      padding: 1rem;
-      background: rgba(255,255,255,.02);
+      padding: 1.2rem;
+      background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
       border-radius: 12px;
       font-size: 0.95rem;
       color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .assumptions strong { color: var(--text); }
+
+    .compounded {
+      font-size: 1.1rem;
+      color: var(--good);
+      font-weight: 600;
+      text-align: center;
+      margin: 1rem 0;
     }
 
     .equity {
@@ -125,6 +136,14 @@
       background: #0a0e1c;
       border: 1px solid var(--line);
     }
+
+    .credibility {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 1.5rem 0;
+    }
+    .credibility strong { color: var(--good); }
 
     .cta {
       display: block;
@@ -138,7 +157,7 @@
       background: linear-gradient(135deg, var(--good), #1abc9c);
       color: black;
       box-shadow: 0 8px 30px rgba(47,228,167,.3);
-      transition: all 0.2s;
+      transition: all 0.25s;
     }
 
     .cta:hover {
@@ -193,12 +212,12 @@
 <section class="wrap">
   <div class="grid">
 
-    <!-- Breakouts -->
+    <!-- Breakouts Suite -->
     <div class="card">
       <h2>Breakouts Suite</h2>
       <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades (~3.6 trades/month)</p>
 
-      <div class="mainStat good">67% Return</div>
+      <div class="main-stat good">67% Return</div>
       <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 4.4%</p>
 
       <div class="sub-stats">
@@ -209,26 +228,33 @@
         <div class="sub-stat"><div class="sub-value warn">2</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,670</strong> end of 2024</p>
-
-      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Breakouts" alt="Equity Curve - Breakouts">
-
       <div class="assumptions">
         <strong>Assumptions:</strong><br>
-        • Fixed $100 position size (no compounding in base results)<br>
-        • No leverage used<br>
-        • Spreads, fees, slippage not included (real trading reduces returns slightly)
+        • Starting capital: $1,000<br>
+        • Position sizing: fixed $100 per trade<br>
+        • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Try 86% Win Rate FREE</a>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,670</strong> end of 2024</p>
+
+      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Breakouts" alt="Equity Curve">
+
+      <div class="credibility">
+        <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
+        No leverage used. Real account screenshots available on request.
+      </div>
+
+      <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">
+        Try 86% Win Rate — FREE
+      </a>
     </div>
 
-    <!-- Liquidity Lines -->
+    <!-- Liquidity Lines Suite -->
     <div class="card">
       <h2>Liquidity Lines Suite</h2>
       <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • 14 trades (~2.3 trades/month)</p>
 
-      <div class="mainStat good">38% Return</div>
+      <div class="main-stat good">38% Return</div>
       <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 1.6%</p>
 
       <div class="sub-stats">
@@ -239,55 +265,69 @@
         <div class="sub-stat"><div class="sub-value warn">1</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,380</strong> in 6 months</p>
-
-      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Liquidity" alt="Equity Curve - Liquidity">
-
       <div class="assumptions">
         <strong>Assumptions:</strong><br>
-        • Fixed $100 position size (no compounding in base results)<br>
-        • No leverage used<br>
-        • Spreads, fees, slippage not included (real trading reduces returns slightly)
+        • Starting capital: $1,000<br>
+        • Position sizing: fixed $100 per trade<br>
+        • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Try 86% Win Rate FREE</a>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,380</strong> in 6 months</p>
+
+      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Liquidity" alt="Equity Curve">
+
+      <div class="credibility">
+        <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
+        No leverage used. Real account screenshots available on request.
+      </div>
+
+      <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">
+        Try 86% Win Rate — FREE
+      </a>
     </div>
 
-    <!-- Prime MTF -->
+    <!-- Prime MTF Suite -->
     <div class="card">
       <h2>Prime MTF Suite</h2>
       <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • 9 trades (~1.5 trades/month)</p>
 
-      <div class="mainStat good">48% Return</div>
+      <div class="main-stat good">48% Return</div>
       <p style="font-size:1.3rem; color:var(--muted); margin:0.5rem 0;">Max Drawdown: 0%</p>
 
       <div class="sub-stats">
         <div class="sub-stat"><div class="sub-value good">100%</div><div class="sub-label">Win Rate</div></div>
-        <div class="sub-stat"><div class="sub-value">∞</div><div class="sub-label">Profit Factor</div></div>
+        <div class="sub-stat"><div class="sub-value">N/A (no losing trades in this sample)</div><div class="sub-label">Profit Factor</div></div>
         <div class="sub-stat"><div class="sub-value good">$53</div><div class="sub-label">Expectancy</div></div>
         <div class="sub-stat"><div class="sub-value good">8.0%</div><div class="sub-label">Avg Return / Month</div></div>
         <div class="sub-stat"><div class="sub-value good">0</div><div class="sub-label">Max Consec. Losses</div></div>
       </div>
 
-      <p class="compounded">Compounded $1,000 start → <strong>$1,480</strong> in 6 months</p>
-
-      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Prime" alt="Equity Curve - Prime">
-
       <div class="assumptions">
         <strong>Assumptions:</strong><br>
-        • Fixed $100 position size (no compounding in base results)<br>
-        • No leverage used<br>
-        • Spreads, fees, slippage not included (real trading reduces returns slightly)
+        • Starting capital: $1,000<br>
+        • Position sizing: fixed $100 per trade<br>
+        • Fees/spread/slippage: excluded (real trading reduces returns slightly)
       </div>
 
-      <a class="cta" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Get Prime MTF Suite</a>
+      <p class="compounded">Compounded $1,000 start → <strong>$1,480</strong> in 6 months</p>
+
+      <img class="equity" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Prime+MTF" alt="Equity Curve">
+
+      <div class="credibility">
+        <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
+        No leverage used. Real account screenshots available on request.
+      </div>
+
+      <a class="cta" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">
+        Get Prime MTF Suite
+      </a>
     </div>
 
   </div>
 </section>
 
 <div class="disclaimer">
-  <strong>Important:</strong> Past performance is not indicative of future results. Trading carries risk of loss. These are educational backtests only — not financial advice. Results exclude fees/spread/slippage (real trading may reduce returns slightly). Always use proper risk management.
+  <strong>Important:</strong> Past performance is not indicative of future results. Trading carries significant risk of loss. These are educational backtests only — not financial advice. Results exclude fees/spread/slippage (real trading may reduce returns slightly). Always use proper risk management.
 </div>
 
 <script>
