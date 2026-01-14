@@ -76,6 +76,10 @@
       overflow:hidden;
       box-shadow: var(--shadow2);
       flex: 0 0 auto;
+      transition: transform 0.2s ease;
+    }
+    .logo:hover{
+      transform: scale(1.05);
     }
     .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
     .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
@@ -645,14 +649,18 @@
   <header class="topbar">
     <div class="wrap">
       <div class="topbarInner">
-        <div class="brand">
-          <div class="logo" title="SilverHawk">
+        <!-- Logo now clickable to home -->
+        <a href="https://silverhawksuite.com/" class="brand">
+          <div class="logo" title="SilverHawk - Back to Home">
             <img src="logo.png" alt="SilverHawk logo" />
           </div>
           <div class="brandName">SilverHawk Suite</div>
-        </div>
+        </a>
 
         <nav class="nav" aria-label="Primary">
+          <!-- Home button added at the beginning -->
+          <a href="https://silverhawksuite.com/">Home</a>
+
           <div class="dropdown" id="suitesDropdown">
             <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
               Suites <span class="chev" aria-hidden="true">▾</span>
