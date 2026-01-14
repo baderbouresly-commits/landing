@@ -1,50 +1,329 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SilverHawk Suite — Results</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverHawk Suite — Backtested Results</title>
+  <meta name="description" content="See backtested performance for Breakouts, Liquidity Lines, and Prime MTF suites. Educational only — trading involves risk." />
+
   <style>
     :root {
       --bg0: #060812;
       --bg1: #081028;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.10);
       --text: #EAF0FF;
       --muted: rgba(234,240,255,.72);
+      --muted2: rgba(234,240,255,.58);
       --accent: #7C5CFF;
+      --accent2: #4AD7FF;
       --good: #2FE4A7;
+      --warn: #FFC14A;
+      --radius: 18px;
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1120px;
     }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       color: var(--text);
       background: linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x: hidden;
     }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    header { background: rgba(6,8,18,.8); padding: 1rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-    nav { display: flex; gap: 1.5rem; justify-content: center; }
-    main { padding: 4rem 0; text-align: center; }
-    h1 { color: var(--good); }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Header (same as main site) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(6,8,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbarInner {
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: var(--shadow2);
+    }
+    .logo img { width: 100%; height: 100%; object-fit: contain; }
+    .brandName { font-weight: 900; font-size: 14px; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .nav a {
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+
+    /* Dropdown styles (simplified for now) */
+    .dropdown { position: relative; }
+    .dropBtn {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font: inherit;
+      padding: 8px 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+    }
+    .dropBtn:hover { background: rgba(255,255,255,.06); }
+    .dropMenu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 260px;
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(10,14,28,.96);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      display: none;
+      z-index: 80;
+    }
+    .dropdown:hover .dropMenu { display: block; }
+    .dropMenu a {
+      display: block;
+      padding: 10px;
+      border-radius: 10px;
+      color: rgba(234,240,255,.82);
+    }
+    .dropMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+
+    /* Main content */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: clamp(40px, 6vw, 72px); margin-bottom: 16px; }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 700px; margin: 0 auto 32px; }
+    .heroCtas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .btnPrimary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000;
+      box-shadow: 0 8px 30px rgba(124,92,255,.3);
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .resultCard {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow2);
+      transition: transform 0.3s;
+    }
+    .resultCard:hover { transform: translateY(-8px); }
+    .resultTitle { font-size: 28px; margin-bottom: 8px; }
+    .resultMeta { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+
+    .statGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .stat {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .statValue { font-size: 32px; font-weight: 900; }
+    .statValue.good { color: var(--good); }
+    .statValue.warn { color: var(--warn); }
+    .statLabel { font-size: 13px; color: var(--muted2); margin-top: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 800; text-transform: uppercase; font-size: 12px; }
+    tr.win td { background: rgba(47,228,167,.05); color: var(--good); }
+    tr.loss td { background: rgba(255,193,74,.05); color: var(--warn); }
+
+    .disclaimer {
+      margin-top: 60px;
+      padding: 24px;
+      background: rgba(255,193,74,.08);
+      border: 1px solid rgba(255,193,74,.18);
+      border-radius: var(--radius);
+      color: var(--warn);
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- Header -->
+  <header class="topbar">
     <div class="wrap">
-      <nav>
-        <a href="/">Home</a>
-        <a href="/results">Results</a>
-      </nav>
+      <div class="topbarInner">
+        <a href="https://silverhawksuite.com/" class="brand">
+          <div class="logo">
+            <img src="logo.png" alt="SilverHawk logo" />
+          </div>
+          <div class="brandName">SilverHawk Suite</div>
+        </a>
+
+        <nav class="nav">
+          <a href="https://silverhawksuite.com/">Home</a>
+
+          <div class="dropdown" id="suitesDropdown">
+            <button class="dropBtn">
+              Suites <span>▾</span>
+            </button>
+            <div class="dropMenu">
+              <a href="https://whop.com/silverhawk">All Suites</a>
+              <hr style="border-color: var(--line); margin: 8px 0;">
+              <a href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite - Free</a>
+              <a href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite - Free</a>
+              <a href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite - Paid</a>
+              <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
+            </div>
+          </div>
+
+          <a href="trade-alerts.html">Trade Alerts</a>
+          <a href="http://shop.silverhawksuite.com/" target="_blank">Results</a>
+          <a href="#proof">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <h1>Results Page — This Should Now Load!</h1>
-    <p style="color: var(--muted);">If you see this text and header, the page is rendering correctly.</p>
-    <p>Now we can add back the full stats, tables, and design step-by-step.</p>
-  </main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Backtested Results</h1>
+      <p class="sub">Real trades using the full SilverHawk strategy (all indicators combined). High consistency, low risk — focus on not losing money first.</p>
+      <div class="heroCtas">
+        <a class="btn btnPrimary" href="https://whop.com/silverhawk">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results">
+    <div class="wrap">
+      <div class="grid3">
+        <!-- Breakouts -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Breakouts Suite</h3>
+          <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades</p>
+          <div class="statGrid">
+            <div class="stat"><div class="statValue good">86.0%</div><div class="statLabel">Win Rate</div></div>
+            <div class="stat"><div class="statValue good">$67</div><div class="statLabel">Net Profit</div></div>
+            <div class="stat"><div class="statValue">$1.56</div><div class="statLabel">Avg / Trade</div></div>
+            <div class="stat"><div class="statValue warn">$4.42</div><div class="statLabel">Max Drawdown</div></div>
+          </div>
+          <!-- Add table here when ready -->
+          <p class="miniDisclaimer">Low risk per trade — capital preservation first.</p>
+          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/" style="display:block; text-align:center; margin-top:20px;">Get Breakouts (Free)</a>
+        </div>
+
+        <!-- Liquidity Lines -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Liquidity Lines Suite</h3>
+          <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • 14 trades</p>
+          <div class="statGrid">
+            <div class="stat"><div class="statValue good">85.7%</div><div class="statLabel">Win Rate</div></div>
+            <div class="stat"><div class="statValue good">$9.54</div><div class="statLabel">Net Profit</div></div>
+            <div class="stat"><div class="statValue">$0.68</div><div class="statLabel">Avg / Trade</div></div>
+            <div class="stat"><div class="statValue warn">$1.59</div><div class="statLabel">Max Drawdown</div></div>
+          </div>
+          <p class="miniDisclaimer">Minimal losses — steady capital protection.</p>
+          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/" style="display:block; text-align:center; margin-top:20px;">Get Liquidity Lines (Free)</a>
+        </div>
+
+        <!-- Prime MTF -->
+        <div class="resultCard">
+          <h3 class="resultTitle">Prime MTF Suite</h3>
+          <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • 9 trades</p>
+          <div class="statGrid">
+            <div class="stat"><div class="statValue good">100%</div><div class="statLabel">Win Rate</div></div>
+            <div class="stat"><div class="statValue good">$11.63</div><div class="statLabel">Net Profit</div></div>
+            <div class="stat"><div class="statValue">$1.29</div><div class="statLabel">Avg / Trade</div></div>
+            <div class="stat"><div class="statValue good">$0.00</div><div class="statLabel">Max Drawdown</div></div>
+          </div>
+          <p class="miniDisclaimer">Zero losses — strong in trending markets.</p>
+          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/" style="display:block; text-align:center; margin-top:20px;">Get Prime MTF</a>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Important:</strong> Past performance is not indicative of future results. Trading involves risk of loss. These are educational backtests only — not financial advice. Always use proper risk management.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (simplified for now) -->
+  <footer style="padding: 40px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--line);">
+    <div class="wrap">
+      <p>© <span id="year"></span> SilverHawk Suite. Trading involves risk.</p>
+    </div>
+  </footer>
 
   <script>
-    console.log("Results page script loaded successfully!");
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
