@@ -41,15 +41,9 @@
     }
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    :focus-visible{
-      outline: 2px solid rgba(74,215,255,.55);
-      outline-offset: 2px;
-      border-radius: 10px;
-    }
     section{ scroll-margin-top: 92px; }
 
-    /* Header (exact copy from main page) */
+    /* Header - exact from main page */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -78,9 +72,7 @@
       flex: 0 0 auto;
       transition: transform 0.2s ease;
     }
-    .logo:hover{
-      transform: scale(1.05);
-    }
+    .logo:hover{ transform: scale(1.05); }
     .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
     .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
 
@@ -292,7 +284,7 @@
       text-align:center;
     }
 
-    /* Results cards - decluttered but full details */
+    /* Results cards - fuller but clean */
     .grid3{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -870,7 +862,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Dropdown logic from main page
+    // Dropdown logic
     (function initSuitesDropdown(){
       const dd = document.getElementById("suitesDropdown");
       if (!dd) return;
