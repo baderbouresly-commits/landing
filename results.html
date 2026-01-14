@@ -1,212 +1,50 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SilverHawk Suite — Backtested Results</title>
-  <meta name="description" content="See backtested performance for Breakouts, Liquidity Lines, and Prime MTF suites. Educational only — trading involves risk." />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SilverHawk Suite — Results</title>
   <style>
     :root {
       --bg0: #060812;
       --bg1: #081028;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.10);
       --text: #EAF0FF;
       --muted: rgba(234,240,255,.72);
-      --muted2: rgba(234,240,255,.58);
       --accent: #7C5CFF;
-      --accent2: #4AD7FF;
       --good: #2FE4A7;
-      --warn: #FFC14A;
-      --radius: 18px;
-      --shadow: 0 20px 70px rgba(0,0,0,.45);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-      --max: 1120px;
     }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: system-ui, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
-        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
-        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x: hidden;
+      background: linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
-
-    section { padding: 64px 0; }
-
-    /* Header styles (copied from your main site) */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(6,8,18,.55);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    /* ... rest of header CSS ... */
-
-    /* Result page specific styles */
-    .heroCard {
-      border-radius: calc(var(--radius) + 6px);
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .resultCard {
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      padding: 24px;
-      transition: transform 0.3s ease;
-    }
-    .resultCard:hover { transform: translateY(-4px); }
-
-    .statGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin: 20px 0;
-    }
-    .stat {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-    }
-    .statValue {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--good);
-    }
-    .statValue.loss { color: var(--warn); }
-    .statLabel {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      font-size: 14px;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--line);
-    }
-    th {
-      color: var(--muted);
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-    tr.win td { color: var(--good); background: rgba(47,228,167,.05); }
-    tr.loss td { color: var(--warn); background: rgba(255,193,74,.05); }
-
-    .disclaimer {
-      margin-top: 60px;
-      padding: 24px;
-      background: rgba(255,193,74,.08);
-      border: 1px solid rgba(255,193,74,.18);
-      border-radius: var(--radius);
-      color: var(--warn);
-      font-size: 15px;
-      line-height: 1.6;
-      text-align: center;
-    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header { background: rgba(6,8,18,.8); padding: 1rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+    nav { display: flex; gap: 1.5rem; justify-content: center; }
+    main { padding: 4rem 0; text-align: center; }
+    h1 { color: var(--good); }
   </style>
 </head>
-
 <body>
 
-  <!-- Header (same as main site) -->
-  <header class="topbar">
+  <header>
     <div class="wrap">
-      <div class="topbarInner">
-        <a href="https://silverhawksuite.com/" class="brand">
-          <div class="logo">
-            <img src="logo.png" alt="SilverHawk logo" />
-          </div>
-          <div class="brandName">SilverHawk Suite</div>
-        </a>
-
-        <nav class="nav">
-          <a href="https://silverhawksuite.com/">Home</a>
-          <!-- Your dropdown and other nav items here -->
-          <div class="dropdown" id="suitesDropdown">
-            <!-- ... your existing dropdown code ... -->
-          </div>
-          <!-- ... rest of nav ... -->
-        </nav>
-
-        <!-- ... header right art ... -->
-      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/results">Results</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="heroCard">
-        <div class="heroInner">
-          <h1>Backtested Results</h1>
-          <p class="sub">Real trades using full SilverHawk suites. Consistency and low risk are the focus.</p>
-          <div class="heroCtas">
-            <a class="btn btnPrimary" href="https://whop.com/silverhawk">Get Access</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main class="wrap">
+    <h1>Results Page — This Should Now Load!</h1>
+    <p style="color: var(--muted);">If you see this text and header, the page is rendering correctly.</p>
+    <p>Now we can add back the full stats, tables, and design step-by-step.</p>
+  </main>
 
-  <!-- Results -->
-  <section id="results">
-    <div class="wrap">
-      <h2>Suite Performance</h2>
-
-      <div class="grid3">
-        <!-- Breakouts Card -->
-        <div class="resultCard">
-          <h3>Breakouts Suite</h3>
-          <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades</p>
-          <div class="statGrid">
-            <div class="stat"><div class="statValue">86.0%</div><div class="statLabel">Win Rate</div></div>
-            <div class="stat"><div class="statValue">$67</div><div class="statLabel">Net Profit</div></div>
-            <!-- ... rest of stats ... -->
-          </div>
-          <!-- Table here -->
-        </div>
-
-        <!-- Liquidity & Prime cards similarly -->
-      </div>
-
-      <div class="disclaimer">
-        Past performance is not indicative of future results. Trading involves risk of loss.
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer & Scripts (copy from your main index.html) -->
-  <!-- ... paste your full footer, modal, toast script here ... -->
-
+  <script>
+    console.log("Results page script loaded successfully!");
+  </script>
 </body>
 </html>
