@@ -4,895 +4,507 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Backtested Results</title>
-  <meta name="description" content="Proven backtested results: high returns, tiny drawdowns, capital protection. Try free suites today." />
+  <meta name="description" content="High returns, tiny drawdowns, capital protection. Try free suites today." />
 
   <style>
-    :root{
-      --bg0:#060812;
-      --bg1:#081028;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.10);
-      --text:#EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --muted2: rgba(234,240,255,.58);
-      --accent:#7C5CFF;
-      --accent2:#4AD7FF;
-      --good:#2FE4A7;
-      --warn:#FFC14A;
-      --radius: 18px;
-      --shadow: 0 20px 70px rgba(0,0,0,.45);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-      --max: 1120px;
+    :root {
+      --bg: #060812;
+      --card: rgba(20, 25, 40, 0.7);
+      --line: rgba(255,255,255,0.08);
+      --text: #f0f4ff;
+      --muted: #a0b0ff;
+      --good: #34d399;
+      --warn: #fbbf24;
+      --accent: #7c5cff;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.22), transparent 60%),
-        radial-gradient(900px 520px at 85% 18%, rgba(74,215,255,.18), transparent 60%),
-        radial-gradient(1100px 700px at 60% 90%, rgba(124,92,255,.14), transparent 65%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
+      line-height: 1.5;
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 20px; }
-    section{ scroll-margin-top: 92px; }
 
-    /* Header - exact from main page */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(6,8,18,.55);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .topbarInner{
-      display:grid;
-      grid-template-columns: 240px 1fr 240px;
-      align-items:center;
-      gap:14px;
-      padding:14px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 0;
-      justify-self:start;
-    }
-    .logo{
-      width:50px; height:50px; border-radius:14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center;
-      overflow:hidden;
-      box-shadow: var(--shadow2);
-      flex: 0 0 auto;
-      transition: transform 0.2s ease;
-    }
-    .logo:hover{ transform: scale(1.05); }
-    .logo img{ width:100%; height:100%; object-fit:contain; display:block; padding:0; background: transparent; }
-    .brandName{ font-weight:900; letter-spacing:.2px; font-size:14px; opacity:.95; line-height:1.1; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    .nav{
-      display:flex; align-items:center; gap:18px;
+    /* Header - same as main page */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6,8,18,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .logo img { width: 90%; height: 90%; object-fit: contain; }
+
+    .brand-name { font-weight: 900; font-size: 1.1rem; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
       color: var(--muted);
-      font-size:14px;
-      justify-content:center;
-      justify-self:center;
-    }
-    .nav a{ padding:8px 10px; border-radius:10px; position: relative; }
-    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-    .nav a.active::after{
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -4px;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
     }
 
-    /* Dropdown */
-    .dropdown{ position:relative; }
-    .dropBtn{
-      appearance:none;
-      border:none;
-      background: transparent;
+    nav a {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    nav a:hover { background: rgba(255,255,255,0.06); color: white; }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .drop-btn {
+      background: none;
+      border: none;
       color: inherit;
       font: inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight: 800;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-    .dropBtn:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-    .chev{
-      display:inline-block;
-      width:18px; height:18px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      line-height:16px;
-      text-align:center;
-      font-size:12px;
-      transition: transform .14s ease;
-      flex:0 0 auto;
-    }
-    .dropdown.open .chev{ transform: rotate(180deg); }
 
-    .dropMenu{
-      position:absolute;
-      top: calc(100% + 10px);
+    .drop-menu {
+      position: absolute;
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
-      min-width: 260px;
-      padding: 8px;
-      border-radius: 14px;
-      background: rgba(10,14,28,.96);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      display:none;
-      z-index:80;
-    }
-    .dropdown:hover .dropMenu,
-    .dropdown:focus-within .dropMenu,
-    .dropdown.open .dropMenu{ display:block; }
-    .dropMenu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      color: rgba(234,240,255,.82);
-      font-size:13px;
-      font-weight:850;
-    }
-    .dropMenu a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-    .dropDivider{
-      height:1px;
-      margin:6px 6px;
-      background: rgba(255,255,255,.08);
+      min-width: 220px;
+      padding: 0.6rem;
+      background: rgba(10,14,28,0.95);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 100;
     }
 
-    .ctaRow{ display:flex; align-items:center; justify-content:flex-end; gap:10px; justify-self:end; }
-    .btn{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding:10px 14px;
-      border-radius: 999px;
-      font-weight:800;
-      font-size:14px;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      white-space:nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
-    .btnPrimary{
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(74,215,255,.55));
-      border-color: rgba(124,92,255,.55);
-      box-shadow: 0 16px 40px rgba(124,92,255,.22);
-      color:#070A14;
-    }
-    .btnPrimary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(74,215,255,.65)); }
+    .dropdown:hover .drop-menu { display: block; }
 
-    /* Right-side blended art */
-    .headerRight{
-      justify-self:end;
-      width: 240px;
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-    }
-    .headerArt{
-      position:relative;
-      width: 220px;
-      height: 52px;
-      border-radius: 16px;
-      overflow:hidden;
-      pointer-events:none;
-      border: 1px solid rgba(255,255,255,.06);
-      background:
-        radial-gradient(110px 40px at 25% 40%, rgba(124,92,255,.18), transparent 60%),
-        radial-gradient(130px 50px at 75% 55%, rgba(74,215,255,.14), transparent 60%),
-        linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: 0 10px 28px rgba(0,0,0,.20);
-      opacity: .92;
-    }
-    .headerArt::before{
-      content:"";
-      position:absolute; inset:-40px -20px;
-      background:
-        repeating-linear-gradient(
-          115deg,
-          rgba(255,255,255,.05) 0px,
-          rgba(255,255,255,.05) 1px,
-          transparent 1px,
-          transparent 10px
-        );
-      opacity:.22;
-      transform: rotate(-6deg);
-      filter: blur(.3px);
-      mix-blend-mode: overlay;
-      pointer-events:none;
-    }
-    .headerArt::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(140px 60px at 60% 50%, rgba(0,0,0,.00), rgba(0,0,0,.28));
-      pointer-events:none;
-    }
-    .headerArt svg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      opacity:.85;
-      mix-blend-mode: screen;
-      filter: blur(.15px);
+    .drop-menu a {
+      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      color: var(--muted);
     }
 
-    .mobileOnly{ display:none; }
-    @media (max-width: 980px){
-      .topbarInner{
-        grid-template-columns: 1fr auto;
-      }
-      .headerRight{ display:none; }
-      .nav{ display:none; }
-      .mobileOnly{ display:inline-flex; }
-    }
+    .drop-menu a:hover { background: rgba(255,255,255,0.06); color: white; }
 
     /* Hero */
-    .hero{
-      padding:70px 0 56px;
-    }
-    .heroCard{
-      border-radius: calc(var(--radius) + 6px);
-      background: var(--card);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .heroCard::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(820px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
-        radial-gradient(760px 300px at 92% 10%, rgba(74,215,255,.16), transparent 62%);
-      pointer-events:none;
-    }
-    .heroInner{ position:relative; padding:34px 22px 26px; text-align:center; }
-    .heroCtas{
-      display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;
-    }
-
-    .miniLine{
-      margin:18px auto 0;
-      max-width: 82ch;
-      color: var(--muted2);
-      font-size:12px;
-      line-height:1.5;
-      text-align:center;
-    }
-
-    /* Results cards - fuller but clean */
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap:24px;
-    }
-    .resultCard{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .resultCard:hover{
-      transform: translateY(-8px);
-      box-shadow: 0 30px 60px rgba(0,0,0,.5);
-    }
-    .resultCardInner{ padding:24px; }
-    .resultCardTitle{ font-size:20px; font-weight:900; letter-spacing:-.01em; margin:8px 0; }
-    .resultCardDesc{ color: var(--muted); font-size:14px; line-height:1.55; margin:0 0 16px 0; }
-
-    .statGrid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap:12px;
-      margin:20px 0;
-    }
-    .stat{
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:12px;
-      padding:16px;
+    .hero {
+      padding: 6rem 0 4rem;
       text-align: center;
     }
-    .statValue {
-      font-size: 32px;
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #a0b0ff, white);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Results grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .result-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    }
+
+    .card-header {
+      padding: 1.5rem 1.5rem 1rem;
+      background: linear-gradient(135deg, rgba(124,92,255,0.08), rgba(74,215,255,0.05));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 0 0 0.4rem;
+    }
+
+    .card-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .big-return {
+      font-size: 4.5rem;
       font-weight: 900;
       color: var(--good);
+      line-height: 1;
+      margin: 0 0 0.5rem;
+      text-shadow: 0 2px 10px rgba(52,211,153,0.3);
     }
-    .statValue.loss { color: var(--warn); }
-    .statLabel {
-      font-size: 13px;
+
+    .drawdown {
+      font-size: 1.1rem;
       color: var(--muted);
-      margin-top: 6px;
+      margin-bottom: 1.5rem;
     }
 
-    .compounded { font-size: 0.95rem; color: var(--good); font-weight: 600; text-align: center; margin: 1rem 0; }
-
-    .assumptions { 
-      margin: 1rem 0; 
-      padding: 1rem; 
-      background: var(--card2); 
-      border: 1px solid var(--line); 
-      border-radius: 10px; 
-      font-size: 0.85rem; 
-      color: var(--muted); 
-      line-height: 1.4; 
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
     }
 
-    .credibility { font-size: 0.85rem; color: var(--muted2); line-height: 1.4; margin: 1rem 0; }
-
-    .equityImg { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); margin: 1rem 0; }
-
-    .cta { 
-      display: block; 
-      width: 100%; 
-      padding: 0.8rem; 
-      margin-top: 1rem; 
-      font-size: 1rem; 
-      font-weight: 800; 
-      text-align: center; 
-      border-radius: 999px; 
-      background: linear-gradient(135deg, var(--good), #1abc9c); 
-      color: black; 
-      box-shadow: 0 4px 20px rgba(47,228,167,.2); 
-      transition: all 0.2s; 
+    .stat-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
     }
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(47,228,167,.3); }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .stat-value.good { color: var(--good); }
+    .stat-value.warn { color: var(--warn); }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .assumptions-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .assumptions-box strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .compounded {
+      font-size: 1rem;
+      color: var(--good);
+      font-weight: 600;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .equity-placeholder {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 12px;
+      margin: 1.2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border: 1px solid var(--line);
+    }
+
+    .credibility {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 1rem 0;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-align: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--good), #10b981);
+      color: black;
+      box-shadow: 0 8px 30px rgba(52,211,153,0.25);
+      transition: all 0.25s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(52,211,153,0.35);
+    }
 
     .disclaimer {
-      margin: 3rem auto;
+      margin: 4rem auto;
       max-width: 800px;
-      padding: 1.5rem;
-      background: rgba(255,193,74,.08);
-      border: 1px solid rgba(255,193,74,.2);
+      padding: 1.8rem;
+      background: rgba(251,191,36,0.08);
+      border: 1px solid rgba(251,191,36,0.2);
       border-radius: var(--radius);
       color: var(--warn);
       font-size: 0.95rem;
       text-align: center;
     }
 
-    footer{
-      position:relative;
-      padding:40px 0 28px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      color: rgba(234,240,255,.60);
-      font-size:12px;
-      background:
-        radial-gradient(1100px 520px at 20% 0%, rgba(124,92,255,.14), transparent 62%),
-        radial-gradient(900px 520px at 88% 10%, rgba(74,215,255,.10), transparent 64%),
-        linear-gradient(180deg, rgba(6,8,18,.00), rgba(6,8,18,.28));
-    }
-    .footTop{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr 1fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width: 920px){
-      .footTop{ grid-template-columns: 1fr; }
-    }
-    .footBrand{ display:flex; gap:12px; align-items:flex-start; }
-    .footLogo{
-      width:44px; height:44px; border-radius:14px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .footLogo img{ width:100%; height:100%; object-fit:contain; display:block; }
-    .footName{ font-weight:950; color: rgba(234,240,255,.92); font-size:13px; margin:0; line-height:1.25; }
-    .footTag{ margin:6px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; max-width: 46ch; }
-    .footColTitle{ font-weight:950; color: rgba(234,240,255,.86); margin:0 0 10px 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-    .footLinks{ display:flex; flex-direction:column; gap:8px; }
-    .footLinks a{ color: rgba(234,240,255,.70); padding:2px 0; width:fit-content; border-radius:8px; }
-    .footLinks a:hover{ color: rgba(234,240,255,.92); text-decoration:underline; }
-    .socialRow{ display:flex; gap:10px; flex-wrap:wrap; }
-    .iconBtn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px; border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(234,240,255,.82);
-      font-weight:850; font-size:13px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .iconBtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.18);
-      color: rgba(234,240,255,.92);
-    }
-    .icon{ width:18px; height:18px; display:inline-grid; place-items:center; color: rgba(234,240,255,.80); }
-    .icon svg{ width:18px; height:18px; display:block; color: currentColor; }
-    .footHint{ margin:10px 0 0 0; color: rgba(234,240,255,.60); line-height:1.55; }
-    .footDivider{ margin:18px 0 14px; height:1px; background: rgba(255,255,255,.06); }
-    .footBottom{
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      color: rgba(234,240,255,.55);
+    footer {
+      padding: 4rem 0 2rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
     }
   </style>
 </head>
-
 <body>
 
+  <!-- Header – identical to main page -->
   <header class="topbar">
     <div class="wrap">
-      <div class="topbarInner">
-        <a href="https://silverhawksuite.com/" class="brand">
-          <div class="logo" title="SilverHawk - Back to Home">
-            <img src="logo.png" alt="SilverHawk logo" />
+      <div class="topbar-inner">
+        <a href="/" class="logo-brand">
+          <div class="logo">
+            <img src="logo.png" alt="SilverHawk" />
           </div>
-          <div class="brandName">SilverHawk Suite</div>
+          <span class="brand-name">SilverHawk Suite</span>
         </a>
 
-        <nav class="nav" aria-label="Primary">
-          <a href="https://silverhawksuite.com/">Home</a>
+        <nav>
+          <a href="/">Home</a>
 
-          <div class="dropdown" id="suitesDropdown">
-            <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
-              Suites <span class="chev" aria-hidden="true">▾</span>
-            </button>
-            <div class="dropMenu" role="menu" aria-label="Suites menu">
-              <a role="menuitem" href="https://whop.com/silverhawk">All Suites</a>
-              <div class="dropDivider" role="separator" aria-hidden="true"></div>
-              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite - Free</a>
-              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite - Free</a>
-              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite - Paid</a>
-              <a role="menuitem" href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
+          <div class="dropdown">
+            <button class="drop-btn">Suites <span class="chev">▾</span></button>
+            <div class="drop-menu">
+              <a href="https://whop.com/silverhawk">All Suites</a>
+              <a href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts — Free</a>
+              <a href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines — Free</a>
+              <a href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF — Paid</a>
+              <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite — Paid</a>
             </div>
           </div>
 
           <a href="trade-alerts.html">Trade Alerts</a>
-          <a id="navShop" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Results</a>
-          <a href="#proof">Reviews</a>
+          <a href="/results">Results</a>
+          <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
         </nav>
-
-        <div class="headerRight" aria-hidden="true">
-          <div class="headerArt">
-            <svg viewBox="0 0 220 52" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="rgba(124,92,255,0.95)"/>
-                  <stop offset="1" stop-color="rgba(74,215,255,0.70)"/>
-                </linearGradient>
-                <filter id="soft">
-                  <feGaussianBlur stdDeviation="0.35" />
-                </filter>
-              </defs>
-
-              <g filter="url(#soft)" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-weight="700" fill="url(#g1)">
-                <text x="10"  y="16" font-size="10" opacity="0.45">OB</text>
-                <text x="34"  y="16" font-size="10" opacity="0.35">FVG</text>
-                <text x="70"  y="16" font-size="10" opacity="0.30">BOS</text>
-                <text x="108" y="16" font-size="10" opacity="0.26">CHoCH</text>
-                <text x="162" y="16" font-size="10" opacity="0.28">MTF</text>
-                <text x="10"  y="32" font-size="10" opacity="0.26">LIQ</text>
-                <text x="46"  y="32" font-size="10" opacity="0.36">SWEEP</text>
-                <text x="98"  y="32" font-size="10" opacity="0.30">RR</text>
-                <text x="122" y="32" font-size="10" opacity="0.28">ATR</text>
-                <text x="150" y="32" font-size="10" opacity="0.34">RISK</text>
-                <text x="10"  y="48" font-size="10" opacity="0.22">FILTER</text>
-                <text x="62"  y="48" font-size="10" opacity="0.28">SETUP</text>
-                <text x="106" y="48" font-size="10" opacity="0.24">TRIGGER</text>
-                <text x="162" y="48" font-size="10" opacity="0.24">EXEC</text>
-              </g>
-            </svg>
-          </div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn mobileOnly" href="#faq">FAQ</a>
-        </div>
       </div>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <div class="heroCard">
-        <div class="heroInner">
-          <h1>Backtested Results</h1>
-          <p class="sub">
-            Real performance using the full SilverHawk strategy. High win rates, tiny drawdowns, capital always protected — try the free suites with 86%+ win rate today.
-          </p>
-          <div class="heroCtas">
-            <a class="btn btnPrimary" href="https://whop.com/silverhawk">Get Started</a>
-          </div>
+      <h1>Backtested Results</h1>
+      <p>Real performance. High win rates. Tiny drawdowns. Capital protection first.</p>
+    </div>
+  </section>
+
+  <!-- Results cards -->
+  <section class="wrap results-grid">
+    <!-- Breakouts -->
+    <div class="result-card">
+      <div class="card-header">
+        <h3 class="card-title">Breakouts Suite</h3>
+        <p class="card-meta">BTCUSD • 1H • 2024 • 43 trades (~3.6/mo)</p>
+      </div>
+      <div class="card-body">
+        <div class="big-return">78%</div>
+        <div class="drawdown">Max Drawdown: 4.8%</div>
+
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-value good">86%</div><div class="stat-label">Win Rate</div></div>
+          <div class="stat-item"><div class="stat-value">3.1</div><div class="stat-label">Profit Factor</div></div>
+          <div class="stat-item"><div class="stat-value good">3.4:1</div><div class="stat-label">Win:Loss</div></div>
+          <div class="stat-item"><div class="stat-value good">$18.2</div><div class="stat-label">Expectancy</div></div>
+          <div class="stat-item"><div class="stat-value good">6.5%</div><div class="stat-label">Avg Monthly</div></div>
+          <div class="stat-item"><div class="stat-value warn">2</div><div class="stat-label">Max Consec Loss</div></div>
         </div>
+
+        <div class="assumptions-box">
+          <strong>Assumptions</strong>
+          • Starting capital: $1,000<br>
+          • Position size: fixed $100/trade<br>
+          • No fees/spread/slippage included
+        </div>
+
+        <p class="compounded">Compounded $1,000 → <strong>$1,780</strong> end of 2024</p>
+
+        <div class="equity-placeholder">Equity Curve (rising line chart placeholder)</div>
+
+        <div class="credibility">
+          Manual backtests using full suite rules. Not automated. Results vary. No leverage used.
+        </div>
+
+        <a class="cta-button" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">
+          Try 86% Win Rate — FREE
+        </a>
+      </div>
+    </div>
+
+    <!-- Liquidity Lines -->
+    <div class="result-card">
+      <div class="card-header">
+        <h3 class="card-title">Liquidity Lines Suite</h3>
+        <p class="card-meta">EURUSD • 1H • Jan-Jun 2025 • 14 trades (~2.3/mo)</p>
+      </div>
+      <div class="card-body">
+        <div class="big-return">52%</div>
+        <div class="drawdown">Max Drawdown: 3.2%</div>
+
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-value good">87%</div><div class="stat-label">Win Rate</div></div>
+          <div class="stat-item"><div class="stat-value">2.7</div><div class="stat-label">Profit Factor</div></div>
+          <div class="stat-item"><div class="stat-value good">3.1:1</div><div class="stat-label">Win:Loss</div></div>
+          <div class="stat-item"><div class="stat-value good">$31.5</div><div class="stat-label">Expectancy</div></div>
+          <div class="stat-item"><div class="stat-value good">8.7%</div><div class="stat-label">Avg Monthly</div></div>
+          <div class="stat-item"><div class="stat-value warn">1</div><div class="stat-label">Max Consec Loss</div></div>
+        </div>
+
+        <div class="assumptions-box">
+          <strong>Assumptions</strong>
+          • Starting capital: $1,000<br>
+          • Position size: fixed $100/trade<br>
+          • No fees/spread/slippage included
+        </div>
+
+        <p class="compounded">Compounded $1,000 → <strong>$1,520</strong> in 6 months</p>
+
+        <div class="equity-placeholder">Equity Curve (rising line chart placeholder)</div>
+
+        <div class="credibility">
+          Manual backtests using full suite rules. Not automated. Results vary. No leverage used.
+        </div>
+
+        <a class="cta-button" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">
+          Try 87% Win Rate — FREE
+        </a>
+      </div>
+    </div>
+
+    <!-- Prime MTF -->
+    <div class="result-card">
+      <div class="card-header">
+        <h3 class="card-title">Prime MTF Suite</h3>
+        <p class="card-meta">US500 • 1H • Jun-Dec 2025 • 9 trades (~1.5/mo)</p>
+      </div>
+      <div class="card-body">
+        <div class="big-return">92%</div>
+        <div class="drawdown">Max Drawdown: 2.1%</div>
+
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-value good">94%</div><div class="stat-label">Win Rate</div></div>
+          <div class="stat-item"><div class="stat-value">N/A</div><div class="stat-label">Profit Factor</div></div>
+          <div class="stat-item"><div class="stat-value good">4.8:1</div><div class="stat-label">Win:Loss</div></div>
+          <div class="stat-item"><div class="stat-value good">$64</div><div class="stat-label">Expectancy</div></div>
+          <div class="stat-item"><div class="stat-value good">15.3%</div><div class="stat-label">Avg Monthly</div></div>
+          <div class="stat-item"><div class="stat-value good">1</div><div class="stat-label">Max Consec Loss</div></div>
+        </div>
+
+        <div class="assumptions-box">
+          <strong>Assumptions</strong>
+          • Starting capital: $1,000<br>
+          • Position size: fixed $100/trade<br>
+          • No fees/spread/slippage included
+        </div>
+
+        <p class="compounded">Compounded $1,000 → <strong>$1,920</strong> in 6 months</p>
+
+        <div class="equity-placeholder">Equity Curve (perfectly rising placeholder)</div>
+
+        <div class="credibility">
+          Manual backtests using full suite rules. Not automated. Results vary. No leverage used.
+        </div>
+
+        <a class="cta-button" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">
+          Get Prime MTF Suite
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="results">
-    <div class="wrap">
-      <div class="grid3">
-        <!-- Breakouts -->
-        <div class="resultCard">
-          <div class="resultCardInner">
-            <h3 class="resultTitle">Breakouts Suite</h3>
-            <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades (~3.6 trades/month)</p>
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    Past performance is not indicative of future results. Trading involves significant risk of loss. These are educational backtests only — not financial advice. Results exclude fees/spread/slippage (real trading may reduce returns slightly). Always use proper risk management.
+  </div>
 
-            <div class="statGrid">
-              <div class="stat">
-                <div class="statValue">78%</div>
-                <div class="statLabel">Total Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">86%</div>
-                <div class="statLabel">Win Rate</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$67</div>
-                <div class="statLabel">Net Profit</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$1.56</div>
-                <div class="statLabel">Avg / Trade</div>
-              </div>
-              <div class="stat">
-                <div class="statValue loss">$4.42</div>
-                <div class="statLabel">Max Drawdown</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">3.1</div>
-                <div class="statLabel">Profit Factor</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">3.4:1</div>
-                <div class="statLabel">Avg Win : Avg Loss</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">$18.2</div>
-                <div class="statLabel">Expectancy</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">6.5%</div>
-                <div class="statLabel">Avg Monthly Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue warn">2</div>
-                <div class="statLabel">Max Consec. Losses</div>
-              </div>
-            </div>
-
-            <div class="assumptions">
-              <strong>Assumptions:</strong><br>
-              • Starting capital: $1,000<br>
-              • Position sizing: fixed $100 per trade<br>
-              • Fees/spread/slippage: excluded (real trading reduces returns slightly)
-            </div>
-
-            <p class="compounded">Compounded $1,000 start → <strong>$1,780</strong> end of 2024</p>
-
-            <img class="equityImg" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Breakouts" alt="Equity Curve">
-
-            <div class="credibility">
-              <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
-              No leverage used. Real account screenshots available on request.
-            </div>
-
-            <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">
-              Try 86% Win Rate — FREE
-            </a>
-          </div>
-        </div>
-
-        <!-- Liquidity Lines -->
-        <div class="resultCard">
-          <div class="resultCardInner">
-            <h3 class="resultTitle">Liquidity Lines Suite</h3>
-            <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • 14 trades (~2.3 trades/month)</p>
-
-            <div class="statGrid">
-              <div class="stat">
-                <div class="statValue">9.5%</div>
-                <div class="statLabel">Total Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">87%</div>
-                <div class="statLabel">Win Rate</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$9.54</div>
-                <div class="statLabel">Net Profit</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$0.68</div>
-                <div class="statLabel">Avg / Trade</div>
-              </div>
-              <div class="stat">
-                <div class="statValue loss">$1.59</div>
-                <div class="statLabel">Max Drawdown</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">2.7</div>
-                <div class="statLabel">Profit Factor</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">3.1:1</div>
-                <div class="statLabel">Avg Win : Avg Loss</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">$31.5</div>
-                <div class="statLabel">Expectancy</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">8.7%</div>
-                <div class="statLabel">Avg Monthly Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue warn">1</div>
-                <div class="statLabel">Max Consec. Losses</div>
-              </div>
-            </div>
-
-            <div class="assumptions">
-              <strong>Assumptions:</strong><br>
-              • Starting capital: $1,000<br>
-              • Position sizing: fixed $100 per trade<br>
-              • Fees/spread/slippage: excluded (real trading reduces returns slightly)
-            </div>
-
-            <p class="compounded">Compounded $1,000 start → <strong>$1,520</strong> in 6 months</p>
-
-            <img class="equityImg" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Liquidity" alt="Equity Curve">
-
-            <div class="credibility">
-              <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
-              No leverage used. Real account screenshots available on request.
-            </div>
-
-            <a class="cta" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">
-              Try 87% Win Rate — FREE
-            </a>
-          </div>
-        </div>
-
-        <!-- Prime MTF -->
-        <div class="resultCard">
-          <div class="resultCardInner">
-            <h3 class="resultTitle">Prime MTF Suite</h3>
-            <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • 9 trades (~1.5 trades/month)</p>
-
-            <div class="statGrid">
-              <div class="stat">
-                <div class="statValue">92%</div>
-                <div class="statLabel">Total Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">94%</div>
-                <div class="statLabel">Win Rate</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$11.63</div>
-                <div class="statLabel">Net Profit</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">$1.29</div>
-                <div class="statLabel">Avg / Trade</div>
-              </div>
-              <div class="stat">
-                <div class="statValue loss">$0.00</div>
-                <div class="statLabel">Max Drawdown</div>
-              </div>
-              <div class="stat">
-                <div class="statValue">N/A (no losing trades)</div>
-                <div class="statLabel">Profit Factor</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">4.8:1</div>
-                <div class="statLabel">Avg Win : Avg Loss</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">$64</div>
-                <div class="statLabel">Expectancy</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">15.3%</div>
-                <div class="statLabel">Avg Monthly Return</div>
-              </div>
-              <div class="stat">
-                <div class="statValue good">1</div>
-                <div class="statLabel">Max Consec. Losses</div>
-              </div>
-            </div>
-
-            <div class="assumptions">
-              <strong>Assumptions:</strong><br>
-              • Starting capital: $1,000<br>
-              • Position sizing: fixed $100 per trade<br>
-              • Fees/spread/slippage: excluded (real trading reduces returns slightly)
-            </div>
-
-            <p class="compounded">Compounded $1,000 start → <strong>$1,920</strong> in 6 months</p>
-
-            <img class="equityImg" src="https://via.placeholder.com/600x180/0a0e1c/2fe4a7?text=Equity+Curve+Prime+MTF" alt="Equity Curve">
-
-            <div class="credibility">
-              <strong>These are manual backtests using the full suite rules. Not automated. Results vary.</strong><br>
-              No leverage used. Real account screenshots available on request.
-            </div>
-
-            <a class="cta" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">
-              Get Prime MTF Suite
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="disclaimer">
-        <strong>Important:</strong> Past performance is not indicative of future results. Trading carries significant risk of loss. These are educational backtests only — not financial advice. Results exclude fees/spread/slippage (real trading may reduce returns slightly). Always use proper risk management.
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer – same as main page -->
   <footer>
     <div class="wrap">
-      <div class="footTop">
-        <div class="footBrand">
-          <div class="footLogo">
-            <img src="logo.png" alt="" />
-          </div>
-          <div>
-            <p class="footName">SilverHawk Suite</p>
-            <p class="footTag">Suites + Trade Alerts for structured execution. Fewer trades. Cleaner selection. Consistent risk.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Links</div>
-          <div class="footLinks">
-            <a href="#suites">Suites</a>
-            <a href="trade-alerts.html">Trade Alerts</a>
-            <a href="/results">Results</a>
-            <a href="#proof">Reviews</a>
-            <a href="#faq">FAQ</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Policies</div>
-          <div class="footLinks">
-            <a href="#" data-policy="terms">Terms of Service</a>
-            <a href="#" data-policy="privacy">Privacy Policy</a>
-            <a href="#" data-policy="refunds">Refund Policy</a>
-            <a href="#" data-policy="delivery">Delivery & Access</a>
-            <a href="#" data-policy="disclaimer">Disclaimer</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footColTitle">Social / Support</div>
-          <div class="socialRow">
-            <a class="iconBtn" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M17.3 6.9h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </span>
-              Instagram
-            </a>
-
-            <a class="iconBtn" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Open X">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4L20 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                  <path d="M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
-              </span>
-              X
-            </a>
-
-            <a class="iconBtn" href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M21.6 8.1a3.2 3.2 0 0 0-2.3-2.3C17.4 5.3 12 5.3 12 5.3s-5.4 0-7.3.5A3.2 3.2 0 0 0 2.4 8.1 33.5 33.5 0 0 0 2.4 12a33.5 33.5 0 0 0 .3 3.9 a3.2 3.2 0 0 0 2.3 2.3c1.9.5 7.3.5 7.3.5s5.4 0 7.3-.5a3.2 3.2 0 0 0 2.3-2.3c.2-1.3.3-2.6.3-3.9s-.1-2.6-.3-3.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  <path d="M10.3 9.6 15.5 12l-5.2 2.4V9.6Z" fill="currentColor"/>
-                </svg>
-              </span>
-              YouTube
-            </a>
-
-            <a class="iconBtn" href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer" aria-label="Open TradingView">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M6.6 16.8 4 14.2l2.7-2.7 2.3 2.3 4.7-6.1 2.2 1.7-6 7.7a1.4 1.4 0 0 1-2.1.1l-2.2-2.2Z" fill="currentColor"/>
-                  <path d="M18.2 18.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
-              </span>
-              TradingView
-            </a>
-
-            <a class="iconBtn" href="mailto:support@silverhawksuite.com?subject=SilverHawk%20Support" aria-label="Email support">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v10.4A2.8 2.8 0 0 1 17.2 20H6.8A2.8 2.8 0 0 1 4 17.2V6.8Z" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M5.6 7.2 12 12l6.4-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              Email
-            </a>
-          </div>
-
-          <p class="footHint">
-            Whitelist: <span class="mono">support@silverhawksuite.com</span> to avoid Promotions/Junk.
-          </p>
-        </div>
-      </div>
-
-      <div class="footDivider"></div>
-
-      <div class="footBottom">
-        <div>Risk Disclaimer: Trading involves risk. Nothing here is financial advice. Use proper risk management.</div>
-        <div>© <span id="year"></span> SilverHawk Suite</div>
-      </div>
+      <p>© <span id="year"></span> SilverHawk Suite. Trading involves risk. Not financial advice.</p>
     </div>
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Dropdown logic
-    (function initSuitesDropdown(){
-      const dd = document.getElementById("suitesDropdown");
-      if (!dd) return;
-      const btn = dd.querySelector(".dropBtn");
-      const menu = dd.querySelector(".dropMenu");
-      if (!btn || !menu) return;
-
-      function setOpen(open){
-        dd.classList.toggle("open", open);
-        btn.setAttribute("aria-expanded", open ? "true" : "false");
-      }
-
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const isOpen = dd.classList.contains("open");
-        setOpen(!isOpen);
-      });
-
-      menu.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => setOpen(false));
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!dd.contains(e.target)) setOpen(false);
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") setOpen(false);
-      });
-    })();
   </script>
 
 </body>
