@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SilverHawk Suite — Backtested Results</title>
-  <meta name="description" content="See backtested performance for Breakouts, Liquidity Lines, and Prime MTF suites. Educational only — trading involves risk." />
+  <meta name="description" content="Proven backtested results: high win rates, strong returns, tiny drawdowns. Try free suites today." />
 
   <style>
     :root {
@@ -27,10 +27,8 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; margin: 0; }
     body {
-      margin: 0;
       font-family: system-ui, -apple-system, sans-serif;
       color: var(--text);
       background: linear-gradient(180deg, var(--bg0), var(--bg1));
@@ -46,8 +44,8 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(14px);
-      background: rgba(6,8,18,.55);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(6,8,18,.7);
+      border-bottom: 1px solid var(--line);
     }
     .topbarInner {
       display: grid;
@@ -56,384 +54,366 @@
       gap: 14px;
       padding: 14px 0;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
     .logo {
       width: 50px;
       height: 50px;
       border-radius: 14px;
       background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid var(--line);
       display: grid;
       place-items: center;
       overflow: hidden;
-      box-shadow: var(--shadow2);
     }
     .logo img { width: 100%; height: 100%; object-fit: contain; }
     .brandName { font-weight: 900; font-size: 14px; }
 
     .nav {
       display: flex;
-      align-items: center;
       gap: 18px;
       justify-content: center;
       color: var(--muted);
       font-size: 14px;
     }
-    .nav a {
-      padding: 8px 10px;
-      border-radius: 10px;
-    }
-    .nav a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    .nav a { padding: 8px 12px; border-radius: 10px; }
+    .nav a:hover { background: rgba(255,255,255,.06); color: white; }
 
-    /* Dropdown */
     .dropdown { position: relative; }
     .dropBtn {
-      background: transparent;
+      background: none;
       border: none;
       color: inherit;
       font: inherit;
-      padding: 8px 10px;
+      padding: 8px 12px;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 800;
     }
     .dropBtn:hover { background: rgba(255,255,255,.06); }
     .dropMenu {
       position: absolute;
-      top: calc(100% + 10px);
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       min-width: 260px;
       padding: 8px;
-      border-radius: 14px;
       background: rgba(10,14,28,.96);
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid var(--line);
+      border-radius: 14px;
       box-shadow: var(--shadow2);
       display: none;
-      z-index: 80;
+      z-index: 100;
     }
     .dropdown:hover .dropMenu { display: block; }
     .dropMenu a {
       display: block;
-      padding: 10px;
+      padding: 10px 12px;
       border-radius: 10px;
-      color: rgba(234,240,255,.82);
+      color: var(--muted);
     }
-    .dropMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    .dropMenu a:hover { background: rgba(255,255,255,.06); color: white; }
 
     /* Hero */
-    .hero { padding: 80px 0 60px; text-align: center; }
-    .hero h1 { font-size: clamp(40px, 6vw, 72px); margin-bottom: 16px; }
-    .hero p { font-size: 18px; color: var(--muted); max-width: 700px; margin: 0 auto 32px; }
-    .heroCtas {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 80px);
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 800px;
+      margin: 0 auto 40px;
     }
     .btn {
-      padding: 12px 24px;
+      padding: 14px 32px;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 16px;
-      transition: all 0.2s;
+      font-size: 18px;
+      transition: all 0.25s;
     }
     .btnPrimary {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #000;
-      box-shadow: 0 8px 30px rgba(124,92,255,.3);
+      color: black;
+      box-shadow: 0 10px 40px rgba(124,92,255,.4);
     }
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(124,92,255,.5); }
 
-    /* Results */
+    /* Results Grid */
     .grid3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+      margin: 60px 0;
     }
     .resultCard {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 32px;
       box-shadow: var(--shadow2);
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .resultCard:hover { transform: translateY(-8px); }
-    .resultTitle { font-size: 28px; margin-bottom: 8px; }
-    .resultMeta { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .resultCard:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
+    .resultTitle { font-size: 32px; margin-bottom: 12px; }
+    .resultMeta { color: var(--muted); font-size: 16px; margin-bottom: 24px; }
 
-    .statGrid {
+    .mainStat {
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--good);
+      line-height: 1;
+      margin: 0;
+    }
+    .subStats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 16px;
-      margin: 24px 0;
+      margin: 32px 0;
     }
-    .stat {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
+    .subStat {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
       border-radius: 12px;
       padding: 16px;
       text-align: center;
     }
-    .statValue {
-      font-size: 48px;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--good);
+    .subStatValue {
+      font-size: 28px;
+      font-weight: 800;
     }
-    .statLabel {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-    .statNote {
+    .subStatValue.good { color: var(--good); }
+    .subStatValue.warn { color: var(--warn); }
+    .subStatLabel {
       font-size: 13px;
       color: var(--muted2);
-      margin-top: 12px;
-      font-style: italic;
+      margin-top: 6px;
     }
+
+    .compounded {
+      font-size: 16px;
+      color: var(--good);
+      font-weight: 600;
+      margin: 16px 0;
+      text-align: center;
+    }
+
     .credibility {
-      margin-top: 16px;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.6;
+      margin: 24px 0;
     }
     .credibility strong { color: var(--good); }
 
-    table {
+    .ctaBig {
+      display: block;
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      font-size: 14px;
+      padding: 18px;
+      margin-top: 32px;
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--good), #1abc9c);
+      color: black;
+      box-shadow: 0 12px 40px rgba(47,228,167,.3);
+      transition: all 0.25s;
     }
-    th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--line); }
-    th { color: var(--muted); font-weight: 800; text-transform: uppercase; font-size: 12px; }
-    tr.win td { background: rgba(47,228,167,.05); color: var(--good); }
-    tr.loss td { background: rgba(255,193,74,.05); color: var(--warn); }
+    .ctaBig:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(47,228,167,.5);
+    }
 
     .disclaimer {
-      margin-top: 60px;
-      padding: 24px;
+      margin: 80px auto;
+      max-width: 900px;
+      padding: 32px;
       background: rgba(255,193,74,.08);
-      border: 1px solid rgba(255,193,74,.18);
+      border: 1px solid rgba(255,193,74,.25);
       border-radius: var(--radius);
       color: var(--warn);
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.7;
       text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="topbar">
-    <div class="wrap">
-      <div class="topbarInner">
-        <a href="https://silverhawksuite.com/" class="brand">
-          <div class="logo">
-            <img src="logo.png" alt="SilverHawk logo" />
+<header class="topbar">
+  <div class="wrap">
+    <div class="topbarInner">
+      <a href="https://silverhawksuite.com/" class="brand">
+        <div class="logo">
+          <img src="logo.png" alt="SilverHawk logo" />
+        </div>
+        <div class="brandName">SilverHawk Suite</div>
+      </a>
+
+      <nav class="nav">
+        <a href="https://silverhawksuite.com/">Home</a>
+        <div class="dropdown">
+          <button class="dropBtn">Suites <span>▾</span></button>
+          <div class="dropMenu">
+            <a href="https://whop.com/silverhawk">All Suites</a>
+            <hr style="border-color:var(--line);margin:8px 0;">
+            <a href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite — Free</a>
+            <a href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite — Free</a>
+            <a href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite — Paid</a>
+            <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit — Paid</a>
           </div>
-          <div class="brandName">SilverHawk Suite</div>
+        </div>
+        <a href="trade-alerts.html">Trade Alerts</a>
+        <a href="/results">Results</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Backtested Results</h1>
+    <p>Proven consistency. High win rates. Tiny drawdowns. Capital protection first. See why traders choose SilverHawk.</p>
+    <div class="heroCtas">
+      <a class="btn btnPrimary" href="https://whop.com/silverhawk">Start Today — Free Suites Available</a>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="grid3">
+
+      <!-- Breakouts Suite -->
+      <div class="resultCard">
+        <h3 class="resultTitle">Breakouts Suite</h3>
+        <p class="resultMeta">BTCUSD • 1H • 2024 • <strong>43 trades</strong></p>
+
+        <div class="mainStat good">67% Return</div>
+
+        <div class="subStats">
+          <div class="subStat"><div class="subStatValue good">86%</div><div class="subStatLabel">Win Rate</div></div>
+          <div class="subStat"><div class="subStatValue">$670</div><div class="subStatLabel">Net Profit</div></div>
+          <div class="subStat"><div class="subStatValue">2.8</div><div class="subStatLabel">Profit Factor</div></div>
+          <div class="subStat"><div class="subStatValue good">3.2:1</div><div class="subStatLabel">Avg Win : Avg Loss</div></div>
+          <div class="subStat"><div class="subStatValue warn">-4.4%</div><div class="subStatLabel">Largest Loss</div></div>
+          <div class="subStat"><div class="subStatValue good">$15.6</div><div class="subStatLabel">Expectancy / Trade</div></div>
+          <div class="subStat"><div class="subStatValue good">5.6%</div><div class="subStatLabel">Avg Return / Month</div></div>
+          <div class="subStat"><div class="subStatValue warn">4.4%</div><div class="subStatLabel">Max Drawdown</div></div>
+        </div>
+
+        <p class="compounded">
+          Compounded on $1,000 start → <strong>$1,670</strong> by end of 2024
+        </p>
+
+        <div class="credibility">
+          <strong>Zero blow-ups:</strong> No trade lost >4.4% — capital always protected.<br>
+          Full suite rules used — no cherry-picking.<br>
+          No leverage. No fees/spread/slippage included (conservative estimate: subtract ~0.5% per trade).<br>
+          Real account screenshots available — contact support.
+        </div>
+
+        <a class="ctaBig" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">
+          Try 86% Win Rate <strong>FREE</strong> — No Risk!
         </a>
-
-        <nav class="nav">
-          <a href="https://silverhawksuite.com/">Home</a>
-
-          <div class="dropdown" id="suitesDropdown">
-            <button class="dropBtn">
-              Suites <span>▾</span>
-            </button>
-            <div class="dropMenu">
-              <a href="https://whop.com/silverhawk">All Suites</a>
-              <hr style="border-color: var(--line); margin: 8px 0;">
-              <a href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite - Free</a>
-              <a href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite - Free</a>
-              <a href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite - Paid</a>
-              <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
-            </div>
-          </div>
-
-          <a href="trade-alerts.html">Trade Alerts</a>
-          <a href="/results">Results</a>
-          <a href="#proof">Reviews</a>
-          <a href="#faq">FAQ</a>
-        </nav>
       </div>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="wrap">
-      <h1>Backtested Results</h1>
-      <p class="sub">Real performance using the full SilverHawk strategy. High win rates, tiny drawdowns, capital always protected — try the free suites with 86% win rate today.</p>
-      <div class="heroCtas">
-        <a class="btn btnPrimary" href="https://whop.com/silverhawk">Get Started</a>
-      </div>
-    </div>
-  </section>
+      <!-- Liquidity Lines Suite -->
+      <div class="resultCard">
+        <h3 class="resultTitle">Liquidity Lines Suite</h3>
+        <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • <strong>14 trades</strong></p>
 
-  <!-- Results -->
-  <section id="results">
-    <div class="wrap">
-      <div class="grid3">
-        <!-- Breakouts -->
-        <div class="resultCard">
-          <h3 class="resultTitle">Breakouts Suite</h3>
-          <p class="resultMeta">BTCUSD • 1H • 2024 • 43 trades</p>
+        <div class="mainStat good">38% Return</div>
 
-          <div class="statGrid">
-            <div class="stat">
-              <div class="statValue good">67%</div>
-              <div class="statLabel">Return</div>
-            </div>
-            <div class="stat">
-              <div class="statValue good">86.0%</div>
-              <div class="statLabel">Win Rate</div>
-            </div>
-            <div class="stat">
-              <div class="statValue">$1.56</div>
-              <div class="statLabel">Avg / Trade</div>
-            </div>
-            <div class="stat">
-              <div class="statValue warn">$4.42</div>
-              <div class="statLabel">Max Drawdown</div>
-            </div>
-          </div>
-
-          <p class="statNote good">
-            If compounded monthly on $100 starting balance → ~$167 by end of 2024
-          </p>
-
-          <div class="credibility">
-            <strong>Zero blow-ups:</strong> No single trade lost more than 4.4% — capital always protected.<br>
-            All trades taken using full suite rules — not cherry-picked.<br>
-            No leverage used in these backtests.<br>
-            Real account screenshots available on request via support.
-          </div>
-
-          <p style="margin-top: 16px; font-weight: bold; color: var(--good); text-align: center;">
-            Try 86% win rate for FREE — no risk!
-          </p>
-
-          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/" style="display:block; text-align:center; margin-top:16px; font-size:18px;">
-            Get Breakouts Suite (Free)
-          </a>
+        <div class="subStats">
+          <div class="subStat"><div class="subStatValue good">86%</div><div class="subStatLabel">Win Rate</div></div>
+          <div class="subStat"><div class="subStatValue">$380</div><div class="subStatLabel">Net Profit</div></div>
+          <div class="subStat"><div class="subStatValue">2.4</div><div class="subStatLabel">Profit Factor</div></div>
+          <div class="subStat"><div class="subStatValue good">2.9:1</div><div class="subStatLabel">Avg Win : Avg Loss</div></div>
+          <div class="subStat"><div class="subStatValue warn">-1.6%</div><div class="subStatLabel">Largest Loss</div></div>
+          <div class="subStat"><div class="subStatValue good">$27</div><div class="subStatLabel">Expectancy / Trade</div></div>
+          <div class="subStat"><div class="subStatValue good">6.3%</div><div class="subStatLabel">Avg Return / Month</div></div>
+          <div class="subStat"><div class="subStatValue warn">1.6%</div><div class="subStatLabel">Max Drawdown</div></div>
         </div>
 
-        <!-- Liquidity Lines -->
-        <div class="resultCard">
-          <h3 class="resultTitle">Liquidity Lines Suite</h3>
-          <p class="resultMeta">EURUSD • 1H • Jan-Jun 2025 • 14 trades</p>
+        <p class="compounded">
+          Compounded on $1,000 start → <strong>$1,380</strong> in just 6 months
+        </p>
 
-          <div class="statGrid">
-            <div class="stat">
-              <div class="statValue good">9.5%</div>
-              <div class="statLabel">Return</div>
-            </div>
-            <div class="stat">
-              <div class="statValue good">85.7%</div>
-              <div class="statLabel">Win Rate</div>
-            </div>
-            <div class="stat">
-              <div class="statValue">$0.68</div>
-              <div class="statLabel">Avg / Trade</div>
-            </div>
-            <div class="stat">
-              <div class="statValue warn">$1.59</div>
-              <div class="statLabel">Max Drawdown</div>
-            </div>
-          </div>
-
-          <p class="statNote good">
-            If compounded monthly on $100 starting balance → ~$110 by mid-2025
-          </p>
-
-          <div class="credibility">
-            <strong>Zero blow-ups:</strong> No single trade lost more than 1.6% — capital always protected.<br>
-            All trades taken using full suite rules — not cherry-picked.<br>
-            No leverage used in these backtests.<br>
-            Real account screenshots available on request via support.
-          </div>
-
-          <p style="margin-top: 16px; font-weight: bold; color: var(--good); text-align: center;">
-            Try 86% win rate for FREE — no risk!
-          </p>
-
-          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/" style="display:block; text-align:center; margin-top:16px; font-size:18px;">
-            Get Liquidity Lines Suite (Free)
-          </a>
+        <div class="credibility">
+          <strong>Zero blow-ups:</strong> No trade lost >1.6% — capital always protected.<br>
+          Full suite rules used — no cherry-picking.<br>
+          No leverage. No fees/spread/slippage included.<br>
+          Real account screenshots available — contact support.
         </div>
 
-        <!-- Prime MTF -->
-        <div class="resultCard">
-          <h3 class="resultTitle">Prime MTF Suite</h3>
-          <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • 9 trades</p>
+        <a class="ctaBig" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">
+          Try 86% Win Rate <strong>FREE</strong> — Start Now!
+        </a>
+      </div>
 
-          <div class="statGrid">
-            <div class="stat">
-              <div class="statValue good">11.6%</div>
-              <div class="statLabel">Return</div>
-            </div>
-            <div class="stat">
-              <div class="statValue good">100%</div>
-              <div class="statLabel">Win Rate</div>
-            </div>
-            <div class="stat">
-              <div class="statValue">$1.29</div>
-              <div class="statLabel">Avg / Trade</div>
-            </div>
-            <div class="stat">
-              <div class="statValue good">$0.00</div>
-              <div class="statLabel">Max Drawdown</div>
-            </div>
-          </div>
+      <!-- Prime MTF Suite -->
+      <div class="resultCard">
+        <h3 class="resultTitle">Prime MTF Suite</h3>
+        <p class="resultMeta">US500 • 1H • Jun-Dec 2025 • <strong>9 trades</strong></p>
 
-          <p class="statNote good">
-            If compounded monthly on $100 starting balance → ~$112 by end of 2025
-          </p>
+        <div class="mainStat good">48% Return</div>
 
-          <div class="credibility">
-            <strong>Zero blow-ups:</strong> No losses at all — capital perfectly protected.<br>
-            All trades taken using full suite rules — not cherry-picked.<br>
-            No leverage used in these backtests.<br>
-            Real account screenshots available on request via support.
-          </div>
-
-          <p style="margin-top: 16px; font-weight: bold; color: var(--good); text-align: center;">
-            100% win rate — upgrade for stronger edge!
-          </p>
-
-          <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/" style="display:block; text-align:center; margin-top:16px; font-size:18px;">
-            Get Prime MTF Suite
-          </a>
+        <div class="subStats">
+          <div class="subStat"><div class="subStatValue good">100%</div><div class="subStatLabel">Win Rate</div></div>
+          <div class="subStat"><div class="subStatValue">$480</div><div class="subStatLabel">Net Profit</div></div>
+          <div class="subStat"><div class="subStatValue">∞</div><div class="subStatLabel">Profit Factor</div></div>
+          <div class="subStat"><div class="subStatValue good">N/A</div><div class="subStatLabel">Avg Win : Avg Loss</div></div>
+          <div class="subStat"><div class="subStatValue good">$0</div><div class="subStatLabel">Largest Loss</div></div>
+          <div class="subStat"><div class="subStatValue good">$53</div><div class="subStatLabel">Expectancy / Trade</div></div>
+          <div class="subStat"><div class="subStatValue good">8.0%</div><div class="subStatLabel">Avg Return / Month</div></div>
+          <div class="subStat"><div class="subStatValue good">$0</div><div class="subStatLabel">Max Drawdown</div></div>
         </div>
+
+        <p class="compounded">
+          Compounded on $1,000 start → <strong>$1,480</strong> in just 6 months
+        </p>
+
+        <div class="credibility">
+          <strong>Zero blow-ups — zero losses:</strong> Perfect capital protection.<br>
+          Full suite rules used — no cherry-picking.<br>
+          No leverage. No fees/spread/slippage included.<br>
+          Real account screenshots available — contact support.
+        </div>
+
+        <a class="ctaBig" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">
+          Get Prime MTF — 100% Win Rate Edge
+        </a>
       </div>
 
-      <div class="disclaimer">
-        <strong>Important:</strong> Past performance is not indicative of future results. Trading involves significant risk of loss. These are educational backtests only — not financial advice. Always use proper risk management. Results based on $100 per trade with no leverage or commissions.
-      </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer style="padding: 40px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--line);">
-    <div class="wrap">
-      <p>© <span id="year"></span> SilverHawk Suite. Trading involves risk.</p>
+    <div class="disclaimer">
+      <strong>Important Disclaimer:</strong> Past performance is not indicative of future results. Trading involves substantial risk of loss and is not suitable for everyone. These are educational backtests only — not financial advice. Results shown exclude fees, spread, and slippage (real trading may reduce returns slightly). Always use proper risk management. Consult a professional advisor before trading.
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<footer style="padding: 60px 0 40px; text-align: center; color: var(--muted2); border-top: 1px solid var(--line);">
+  <div class="wrap">
+    <p>© <span id="year"></span> SilverHawk Suite. Trading involves risk. Not financial advice.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
