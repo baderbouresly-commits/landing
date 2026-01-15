@@ -659,7 +659,6 @@
   <header class="topbar">
     <div class="wrap">
       <div class="topbarInner">
-        <!-- Logo now clickable to home -->
         <a href="https://silverhawksuite.com/" class="brand">
           <div class="logo" title="SilverHawk - Back to Home">
             <img src="logo.png" alt="SilverHawk logo" />
@@ -668,7 +667,6 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <!-- Home button added at the beginning -->
           <a href="https://silverhawksuite.com/">Home</a>
 
           <div class="dropdown" id="suitesDropdown">
@@ -795,8 +793,8 @@
         </div>
 
         <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-<a class="btn" href="#suites">See suites</a>
-<a class="btn btnPrimary" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">Get Started</a>
+          <a class="btn" href="#suites">See suites</a>
+          <a class="btn btnPrimary" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">Get Started</a>
         </div>
 
         <p style="margin-top: 32px; color: rgba(234,240,255,.55); font-size: 13px;">
@@ -963,8 +961,8 @@
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="thank-you-breakouts.html">Get Free</a>
-              <a class="btn" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Upgrade</a>
+              <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-suite/" target="_blank" rel="noopener noreferrer">Get Free</a>
+              <a class="btn" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">Upgrade</a>
             </div>
           </div>
         </div>
@@ -1002,8 +1000,8 @@
             </details>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="thank-you-liquidity.html">Get Free</a>
-              <a class="btn" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Upgrade</a>
+              <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-breakouts-copy/" target="_blank" rel="noopener noreferrer">Get Free</a>
+              <a class="btn" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">Upgrade</a>
             </div>
           </div>
         </div>
@@ -1037,7 +1035,7 @@
             </div>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Pro</a>
+              <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/" target="_blank" rel="noopener noreferrer">Get Pro</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
@@ -1072,7 +1070,7 @@
             </div>
 
             <div class="pricingFooter">
-              <a class="btn btnPrimary" href="http://shop.silverhawksuite.com/" target="_blank" rel="noopener noreferrer">Get Elite</a>
+              <a class="btn btnPrimary" href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/" target="_blank" rel="noopener noreferrer">Get Elite</a>
               <a class="btn" href="#faq">Questions?</a>
             </div>
           </div>
@@ -1141,7 +1139,18 @@
         <div>
           <div class="footColTitle">Links</div>
           <div class="footLinks">
-            <a href="#suites">Suites</a>
+            <a href="https://silverhawksuite.com/">Home</a>
+            <div class="dropdown" id="footerSuitesDropdown">
+              <button class="dropBtn">Suites <span class="chev">▾</span></button>
+              <div class="dropMenu">
+                <a href="https://whop.com/silverhawk">All Suites</a>
+                <div class="dropDivider"></div>
+                <a href="https://whop.com/silverhawk/silverhawk-breakouts-suite/">Breakouts Suite - Free</a>
+                <a href="https://whop.com/silverhawk/silverhawk-breakouts-copy/">Liquidity Lines Suite - Free</a>
+                <a href="https://whop.com/silverhawk/silverhawk-pro-suite-monthly/">Prime MTF Suite - Paid</a>
+                <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
+              </div>
+            </div>
             <a href="trade-alerts.html">Trade Alerts</a>
             <a href="https://silverhawksuite.com/results">Results</a>
             <a href="#proof">Reviews</a>
@@ -1284,29 +1293,6 @@
         if (e.key === "Escape") setOpen(false);
       });
     })();
-
-    // ================================
-    // SHOP destination (TEMP)
-    // ================================
-    const SHOP_URL = "http://shop.silverhawksuite.com/";
-
-    // Keep Shop links consistent
-    const navShop = document.getElementById("navShop");
-    const footShop = document.getElementById("footShop");
-    if (navShop) navShop.href = SHOP_URL;
-    if (footShop) footShop.href = SHOP_URL;
-
-    // All CTAs that should go to Shop
-    const LINK_IDS = [
-      "ctaPrimary",
-      "getFreeBreakouts","getFreeLiquidity",
-      "upgradeBreakouts","upgradeLiquidity",
-      "choosePlanPro","choosePlanElite"
-    ];
-    LINK_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.href = SHOP_URL;
-    });
 
     // ================================
     // Policies (Modal Popups)
