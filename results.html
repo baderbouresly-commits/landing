@@ -49,7 +49,7 @@
     }
     section{ scroll-margin-top: 92px; }
 
-    /* Header */
+    /* Header (unchanged from your last version) */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -115,7 +115,7 @@
       border-radius: 2px;
     }
 
-    /* Suites dropdown */
+    /* Suites dropdown (unchanged) */
     .dropdown{ position:relative; }
     .dropBtn{
       appearance:none;
@@ -356,7 +356,7 @@
       text-align:left;
     }
 
-    /* Results grid */
+    /* Results grid (unchanged) */
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -543,7 +543,7 @@
       text-align:center;
     }
 
-    /* Footer */
+    /* Footer (unchanged) */
     footer{
       position:relative;
       padding:40px 0 28px;
@@ -605,7 +605,7 @@
       color: rgba(234,240,255,.55);
     }
 
-    /* Social proof toast */
+    /* Toast & Modal styles (unchanged) */
     .toast-container{
       position:fixed; bottom:18px; left:18px; z-index:9999;
       display:flex; flex-direction:column; gap:10px; pointer-events:none;
@@ -640,7 +640,6 @@
       cursor:pointer; padding:0; font-size:14px; line-height:1;
     }
 
-    /* Policy Modal */
     .modal{ position:fixed; inset:0; z-index:10000; display:none; }
     .modal.show{ display:block; }
     .modalBackdrop{
@@ -709,7 +708,6 @@
   <header class="topbar">
     <div class="wrap">
       <div class="topbarInner">
-        <!-- Logo now clickable to home -->
         <a href="https://silverhawksuite.com/" class="brand">
           <div class="logo" title="SilverHawk - Back to Home">
             <img src="logo.png" alt="SilverHawk logo" />
@@ -718,7 +716,6 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <!-- Home button added at the beginning -->
           <a href="https://silverhawksuite.com/">Home</a>
 
           <div class="dropdown" id="suitesDropdown">
@@ -781,31 +778,33 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- SIMPLIFIED HERO -->
   <section class="hero" id="top">
     <div class="wrap">
       <div class="heroCard">
         <div class="heroInner">
-          <h1>Results that match a workflow — not a single indicator.</h1>
+          <h1>Real Suite Results — Not Just Indicator Hype</h1>
           <p class="sub">
-            These are manual backtests using the full SilverHawk suite rules (all tools stacked).
-            Results vary. Past performance is not indicative of future results.
+            Manual backtests using full SilverHawk workflows. Past performance ≠ future results.
           </p>
 
           <div class="heroCtas">
-            <a class="btn btnPrimary" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">Get Started</a>
+            <a class="btn btnPrimary" href="https://whop.com/silverhawk" target="_blank" rel="noopener noreferrer">
+              Get Started
+            </a>
             <a class="btn" href="#results">See the Numbers</a>
-            <a class="btn" href="https://silverhawksuite.com/#suites">Compare Plans</a>
           </div>
 
-          <div class="heroMeta">
-            Assumptions shown per suite. Fees/spread/slippage excluded (real trading may reduce returns).
+          <!-- Optional tiny note (can delete if you want even cleaner) -->
+          <div class="miniLine" style="margin-top: 20px; font-size: 13px; color: var(--muted2);">
+            Fees, spread & slippage excluded. Real trading may differ.
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- RESULTS GRID (unchanged) -->
   <section id="results">
     <div class="wrap">
       <div class="sectionHead">
@@ -1165,7 +1164,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // ================================
-    // Suites dropdown (click-to-toggle + close on outside/Escape)
+    // Suites dropdown
     // ================================
     (function initSuitesDropdown(){
       const dd = document.getElementById("suitesDropdown");
