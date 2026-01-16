@@ -58,7 +58,6 @@
     }
     .topbarInner {
       display: grid;
-      grid-template-columns: 240px 1fr 240px;
       align-items: center;
       gap: 14px;
       padding: 14px 0;
@@ -111,6 +110,34 @@
       height: 2px;
       background: var(--good);
       border-radius: 2px;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 36px;
+      height: 30px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 100;
+    }
+    .hamburger span {
+      width: 100%;
+      height: 4px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
     }
 
     /* Dropdown */
@@ -257,10 +284,37 @@
     }
 
     .mobileOnly { display: none; }
+
+    /* Mobile responsive + hamburger menu */
     @media (max-width: 980px) {
-      .topbarInner { grid-template-columns: 1fr auto; }
+      .topbarInner {
+        grid-template-columns: auto 1fr auto auto; /* Logo + spacer + hamburger + FAQ btn */
+        gap: 10px;
+      }
       .headerRight { display: none; }
-      .nav { display: none; }
+      .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(6,8,18,.98);
+        backdrop-filter: blur(14px);
+        flex-direction: column;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,.06);
+        box-shadow: 0 10px 30px rgba(0,0,0,.5);
+        z-index: 49;
+      }
+      .nav.show { display: flex; }
+      .nav a {
+        text-align: center;
+        padding: 16px 20px;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+      .nav a:last-child { border-bottom: none; }
+      .hamburger { display: flex; }
       .mobileOnly { display: inline-flex; }
     }
 
@@ -703,6 +757,13 @@
           <a href="https://silverhawksuite.com/#proof">Reviews</a>
           <a href="https://silverhawksuite.com/#faq">FAQ</a>
         </nav>
+
+        <!-- Hamburger button -->
+        <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         <div class="headerRight" aria-hidden="true">
           <div class="headerArt">
@@ -1160,17 +1221,158 @@
       });
     })();
 
-    // Policies modal logic (shortened for brevity - add your full POLICIES object here if needed)
+    // Policy modal logic
     const POLICY_LAST_UPDATED = "2026-01-09";
     const SUPPORT_EMAIL = "support@silverhawksuite.com";
     const LEGAL_ENTITY = "SilverHawk Suite";
     const JURISDICTION = "Kuwait";
     const POLICIES = {
-      terms: { title: "Terms of Service", html: `<p>Full terms content here...</p>` },
-      privacy: { title: "Privacy Policy", html: `<p>Full privacy content here...</p>` },
-      refunds: { title: "Refund Policy", html: `<p>Full refund content here...</p>` },
-      delivery: { title: "Delivery & Access", html: `<p>Full delivery content here...</p>` },
-      disclaimer: { title: "Disclaimer", html: `<p>Full disclaimer content here...</p>` }
+      terms: {
+        title: "Terms of Service",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> By using this website and purchasing/using our TradingView indicators and toolkits, you agree to these Terms.</p>
+            <p class="muted">Template text. Get legal review for your jurisdiction if you want maximum protection.</p>
+          </div>
+          <h3>1) Acceptance of Terms</h3>
+          <p>By accessing this website or purchasing any product from ${LEGAL_ENTITY}, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the site or purchase the products.</p>
+          <h3>2) Products and Access</h3>
+          <p>We sell digital products and subscriptions (e.g., TradingView indicators, toolkits, templates, documentation). Access is provided digitally and may require your TradingView username (see “Delivery &amp; Access”).</p>
+          <h3>3) Purchases, Billing, and Platform</h3>
+          <p>Payments and subscriptions are processed by a third-party platform (e.g., Gumroad). Your purchase may be subject to that platform’s terms and policies in addition to these Terms.</p>
+          <h3>4) License (No Resale / No Sharing)</h3>
+          <ul>
+            <li>You receive a <b>personal, non-exclusive, non-transferable</b> license to use the product for your own trading/education.</li>
+            <li>You may <b>not</b> resell, share, redistribute, leak, publish, or provide access to any indicator, source code, files, or materials.</li>
+            <li>You may <b>not</b> reverse engineer, decompile, or attempt to extract proprietary logic except where prohibited by law.</li>
+          </ul>
+          <h3>5) Prohibited Use</h3>
+          <ul>
+            <li>Attempting to bypass access controls or share private indicators.</li>
+            <li>Using the products to provide a competing product/service.</li>
+            <li>Abusive, fraudulent, or chargeback-based behavior.</li>
+          </ul>
+          <h3>6) Updates and Changes</h3>
+          <p>We may update products, features, pricing, and these Terms at any time. Continued use after changes means you accept the updated Terms.</p>
+          <h3>7) No Financial Advice</h3>
+          <p>All content and tools are for <b>educational and informational purposes</b> only. We are not providing financial, investment, or trading advice. You are responsible for your decisions.</p>
+          <h3>8) No Guarantees</h3>
+          <p>Trading involves risk. Results vary. Past performance is not indicative of future results. We do not guarantee profits or specific outcomes.</p>
+          <h3>9) Disclaimer of Warranties</h3>
+          <p>Products are provided “as is” and “as available.” We disclaim all warranties to the maximum extent permitted by law.</p>
+          <h3>10) Limitation of Liability</h3>
+          <p>To the maximum extent permitted by law, ${LEGAL_ENTITY} will not be liable for any indirect, incidental, special, consequential, or trading-related losses arising from use of the site or products.</p>
+          <h3>11) Termination</h3>
+          <p>We may suspend or terminate access if you breach these Terms (including sharing/leaking access). Upon termination, your license ends immediately.</p>
+          <h3>12) Governing Law</h3>
+          <p>These Terms are governed by the laws of <b>${JURISDICTION}</b>, without regard to conflict of law principles.</p>
+          <h3>13) Contact</h3>
+          <p>Questions: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p>
+        `
+      },
+      privacy: {
+        title: "Privacy Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> We collect only what we need to deliver access, support customers, and improve the site.</p>
+          </div>
+          <h3>1) What We Collect</h3>
+          <ul>
+            <li><b>Contact info:</b> name/email you provide or that comes with your purchase.</li>
+            <li><b>Order info:</b> product purchased, subscription status, timestamps (from the payment platform).</li>
+            <li><b>Delivery data:</b> your TradingView username (if required for private access).</li>
+            <li><b>Usage data:</b> basic analytics (page views, device/browser) and cookies where enabled.</li>
+          </ul>
+          <h3>2) What We Do NOT Store</h3>
+          <p>We do not store your full payment card details. Payments are processed by the payment platform (e.g., Gumroad).</p>
+          <h3>3) How We Use Data</h3>
+          <ul>
+            <li>To deliver access (e.g., invite to private TradingView indicators).</li>
+            <li>To provide support and handle account/access issues.</li>
+            <li>To prevent fraud/abuse and enforce licensing rules.</li>
+            <li>To improve site performance and user experience.</li>
+          </ul>
+          <h3>4) Sharing</h3>
+          <p>We share data only with service providers necessary to operate and deliver the service (e.g., payment processor/platform, email delivery, analytics, hosting/CDN). We do not sell personal data.</p>
+          <h3>5) Cookies and Analytics</h3>
+          <p>We may use cookies/analytics for site functionality and performance. You can restrict cookies in your browser settings, but parts of the site may not work as intended.</p>
+          <h3>6) Data Retention</h3>
+          <p>We retain customer/order/support data for as long as necessary to provide access, comply with legal obligations, resolve disputes, and enforce agreements.</p>
+          <h3>7) Your Rights</h3>
+          <p>Depending on your location, you may have rights to access, correct, or delete your data. Contact us at <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>
+          <h3>8) Security</h3>
+          <p>We use reasonable safeguards, but no method of transmission/storage is 100% secure.</p>
+          <h3>9) Changes</h3>
+          <p>We may update this Privacy Policy. The “Last updated” date will reflect changes.</p>
+        `
+      },
+      refunds: {
+        title: "Refund Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Digital products are generally non-refundable once access is delivered. We will fix delivery/access problems.</p>
+          </div>
+          <h3>1) Digital Products</h3>
+          <p>Because our products are digital and access can be granted instantly or manually, <b>all sales are final once access is delivered</b>, unless required otherwise by applicable law.</p>
+          <h3>2) Subscriptions</h3>
+          <ul>
+            <li>You can cancel future billing anytime via the purchase platform.</li>
+            <li>Cancellation stops future charges. You may retain access until the end of the current billing period (depending on platform rules).</li>
+          </ul>
+          <h3>3) Exceptions We Will Consider</h3>
+          <ul>
+            <li>Duplicate purchase (same product bought twice by mistake).</li>
+            <li>We failed to deliver access after you provided the required information and worked with support.</li>
+            <li>Platform billing error confirmed by the platform/provider.</li>
+          </ul>
+          <h3>4) Chargebacks</h3>
+          <p>Fraudulent chargebacks may result in immediate termination of access and permanent refusal of service. Always contact support first so we can resolve issues.</p>
+          <h3>5) How to Request Help</h3>
+          <p>Email <a href="mailto:${SUPPORT_EMAIL}?subject=Refund%20Request">${SUPPORT_EMAIL}</a> with your order email/receipt and the issue.</p>
+        `
+      },
+      delivery: {
+        title: "Delivery & Access Policy",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Access is delivered digitally. Some items require your TradingView username for private indicator access.</p>
+          </div>
+          <h3>1) How You Receive Indicators</h3>
+          <ul>
+            <li>Indicators may be delivered as <b>private TradingView indicators</b> (invite-only access).</li>
+            <li>To receive private access, you must provide the correct <b>TradingView username</b>.</li>
+          </ul>
+          <h3>2) Delivery Timeframe</h3>
+          <ul>
+            <li>Typical access time: <b>within 24 hours</b> after purchase once we have your TradingView username.</li>
+            <li>If you do not provide your username (or it is incorrect), delivery is delayed until corrected.</li>
+          </ul>
+          <h3>3) Support for Access Issues</h3>
+          <p>If you do not receive access within the stated timeframe, email <a href="mailto:${SUPPORT_EMAIL}?subject=Access%20Issue">${SUPPORT_EMAIL}</a> with your order email and TradingView username.</p>
+          <h3>4) Subscription Access</h3>
+          <p>If your product is subscription-based, access may be removed when the subscription ends or is cancelled, depending on platform rules and product type.</p>
+          <h3>5) Updates</h3>
+          <p>We may update indicators over time. Updates are included unless explicitly stated otherwise on the product page.</p>
+        `
+      },
+      disclaimer: {
+        title: "Disclaimer (No Financial Advice)",
+        html: `
+          <div class="box">
+            <p><b>Summary:</b> Educational tools only. Trading is risky. You are responsible for your decisions.</p>
+          </div>
+          <h3>1) Educational Use Only</h3>
+          <p>All content, indicators, alerts, templates, and materials provided by ${LEGAL_ENTITY} are for educational and informational purposes only and do not constitute financial, investment, tax, or legal advice.</p>
+          <h3>2) No Guarantees</h3>
+          <p>We do not guarantee any profit, result, or performance. Past performance is not indicative of future results.</p>
+          <h3>3) Risk Warning</h3>
+          <p>Trading involves substantial risk and may not be suitable for all investors. You can lose all or more than your initial capital depending on the instruments you trade.</p>
+          <h3>4) Personal Responsibility</h3>
+          <p>You are solely responsible for your trades, risk management, position sizing, and decisions.</p>
+          <h3>5) Platform / Data Limitations</h3>
+          <p>Indicators depend on data feeds and platform behavior (e.g., TradingView). Delays, outages, slippage, spreads, or data errors can occur.</p>
+        `
+      }
     };
 
     (function initPolicyModal(){
@@ -1189,12 +1391,14 @@
         title.textContent = p.title;
         body.innerHTML = p.html;
         modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
         closeBtn.focus();
       }
 
       function closePolicy(){
         modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
 
@@ -1208,7 +1412,8 @@
       closeBtn.addEventListener("click", closePolicy);
 
       modal.addEventListener("click", (e) => {
-        if (e.target === modal || e.target.getAttribute("data-close") === "1") closePolicy();
+        const target = e.target;
+        if (target && target.getAttribute("data-close") === "1") closePolicy();
       });
 
       document.addEventListener("keydown", (e) => {
@@ -1222,24 +1427,36 @@
     const notifications = [
       { name: "Amir K.", country: "UAE", city: "Dubai", action: "activated Elite monthly", when: "just now" },
       { name: "Lucia M.", country: "Spain", city: "Barcelona", action: "started Pro monthly", when: "moments ago" },
-      // ... your full array ...
+      { name: "Noah B.", country: "UK", city: "London", action: "took the Bundle (Pro + Elite)", when: "moments ago" },
+      { name: "Sara T.", country: "USA", city: "Austin", action: "is reviewing Pricing", when: "moments ago" },
+      { name: "Youssef A.", country: "Morocco", city: "Casablanca", action: "claimed the Free Breakouts suite", when: "1 min ago" },
+      { name: "Hiro K.", country: "Japan", city: "Osaka", action: "joined Pro monthly", when: "1 min ago" },
+      { name: "Marta R.", country: "Poland", city: "Kraków", action: "added Elite toolkit", when: "1 min ago" },
+      { name: "Daniel S.", country: "Germany", city: "Frankfurt", action: "reading Liquidity Lines details", when: "2 min ago" },
+      { name: "Lina P.", country: "Sweden", city: "Stockholm", action: "picked Pro + Elite bundle", when: "2 min ago" },
+      { name: "Omar H.", country: "Saudi Arabia", city: "Riyadh", action: "activated Pro monthly", when: "2 min ago" },
+      { name: "Isabella V.", country: "Brazil", city: "São Paulo", action: "checking Elite toolkit features", when: "3 min ago" },
+      { name: "Chen L.", country: "Singapore", city: "Singapore", action: "enabled Elite add-on", when: "3 min ago" },
+      { name: "Ethan J.", country: "Canada", city: "Toronto", action: "considering the Bundle", when: "4 min ago" },
+      { name: "Emily R.", country: "USA", city: "New York", action: "is comparing Suites", when: "5 min ago" },
+      { name: "Ahmed Z.", country: "UAE", city: "Abu Dhabi", action: "activated Pro + Elite", when: "6 min ago" }
     ];
 
-    function shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
+    function shuffle(arr){
+      for (let i = arr.length - 1; i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
     }
 
-    function nextDelay() {
+    function nextDelay(){
       const base = Math.random() * 7000 + 7000;
       const longGap = Math.random() < 0.2 ? 12000 : 0;
       return base + longGap;
     }
 
-    function createToast(note) {
+    function createToast(note){
       const toast = document.createElement("div");
       toast.className = "toast";
       toast.innerHTML = `
@@ -1255,7 +1472,7 @@
     }
 
     let showing = false;
-    function showToast(note) {
+    function showToast(note){
       if (showing) return;
       showing = true;
       const t = createToast(note);
@@ -1274,10 +1491,10 @@
       }, 5200);
     }
 
-    (function runToasts() {
+    (function runToasts(){
       const queue = shuffle([...notifications]).slice(0, MAX_TOASTS);
       let idx = 0;
-      function next() {
+      function next(){
         if (idx >= queue.length) return;
         const delay = nextDelay();
         setTimeout(() => {
@@ -1288,6 +1505,32 @@
       }
       next();
     })();
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.querySelector(".nav");
+
+    if (hamburger && nav) {
+      hamburger.addEventListener("click", () => {
+        const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+        hamburger.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
+        nav.classList.toggle("show");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+          hamburger.setAttribute("aria-expanded", "false");
+          nav.classList.remove("show");
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          hamburger.setAttribute("aria-expanded", "false");
+          nav.classList.remove("show");
+        }
+      });
+    }
   </script>
 </body>
 </html>
