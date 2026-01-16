@@ -7,6 +7,7 @@
   <meta name="description" content="Pick a suite. Get the exact indicators to execute it. Free suites plus Pro and Elite add-ons." />
 
   <style>
+    /* Your full <style> block – unchanged */
     :root{
       --bg0:#060812;
       --bg1:#081028;
@@ -91,8 +92,18 @@
       justify-content:center;
       justify-self:center;
     }
-    .nav a{ padding:8px 10px; border-radius:10px; position: relative; }
+    .nav a{ 
+      padding:8px 10px; 
+      border-radius:10px; 
+      position: relative; 
+      transition: all 0.2s;
+    }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .nav a.active {
+      background: rgba(47,228,167,0.12);
+      color: var(--good);
+      font-weight: 900;
+    }
     .nav a.active::after{
       content: '';
       position: absolute;
@@ -101,7 +112,7 @@
       transform: translateX(-50%);
       width: 60%;
       height: 2px;
-      background: var(--accent);
+      background: var(--good);
       border-radius: 2px;
     }
 
@@ -657,7 +668,7 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <a href="https://silverhawksuite.com/">Home</a>
+          <a href="https://silverhawksuite.com/" class="active">Home</a>
 
           <div class="dropdown" id="suitesDropdown">
             <button class="dropBtn" type="button" aria-haspopup="menu" aria-expanded="false">
@@ -853,7 +864,7 @@
                 <div class="tTag">Quality &gt; Quantity</div>
               </article>
 
-              <!-- duplicate set -->
+              <!-- duplicate set for marquee loop -->
               <article class="tCard">
                 <div class="tTop">
                   <div class="who">
@@ -1130,6 +1141,7 @@
           <div class="footColTitle">Links</div>
           <div class="footLinks">
             <a href="https://silverhawksuite.com/">Home</a>
+
             <div class="dropdown" id="footerSuitesDropdown">
               <button class="dropBtn">Suites <span class="chev">▾</span></button>
               <div class="dropMenu">
@@ -1141,6 +1153,7 @@
                 <a href="https://whop.com/silverhawk/silverhawk-elite-toolkit-month/">Elite Toolkit - Paid</a>
               </div>
             </div>
+
             <a href="trade-alerts.html">Trade Alerts</a>
             <a href="https://silverhawksuite.com/results">Results</a>
             <a href="#proof">Reviews</a>
