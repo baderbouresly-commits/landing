@@ -49,7 +49,7 @@
     }
     section{ scroll-margin-top: 92px; }
 
-    /* Header (unchanged from your last version) */
+    /* Header */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -115,7 +115,7 @@
       border-radius: 2px;
     }
 
-    /* Suites dropdown (unchanged) */
+    /* Suites dropdown */
     .dropdown{ position:relative; }
     .dropBtn{
       appearance:none;
@@ -356,7 +356,7 @@
       text-align:left;
     }
 
-    /* Results grid (unchanged) */
+    /* Results grid */
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -543,7 +543,7 @@
       text-align:center;
     }
 
-    /* Footer (unchanged) */
+    /* Footer */
     footer{
       position:relative;
       padding:40px 0 28px;
@@ -778,7 +778,7 @@
     </div>
   </header>
 
-  <!-- SIMPLIFIED HERO -->
+  <!-- Simplified Hero (unchanged from last version) -->
   <section class="hero" id="top">
     <div class="wrap">
       <div class="heroCard">
@@ -795,7 +795,6 @@
             <a class="btn" href="#results">See the Numbers</a>
           </div>
 
-          <!-- Optional tiny note (can delete if you want even cleaner) -->
           <div class="miniLine" style="margin-top: 20px; font-size: 13px; color: var(--muted2);">
             Fees, spread & slippage excluded. Real trading may differ.
           </div>
@@ -804,7 +803,7 @@
     </div>
   </section>
 
-  <!-- RESULTS GRID (unchanged) -->
+  <!-- RESULTS GRID – Prime MTF fixed -->
   <section id="results">
     <div class="wrap">
       <div class="sectionHead">
@@ -963,7 +962,7 @@
           </a>
         </article>
 
-        <!-- Prime MTF Suite -->
+        <!-- Prime MTF Suite – FIXED ALIGNMENT -->
         <article class="suiteCard" aria-label="Prime MTF Suite results">
           <div class="suiteTop">
             <div>
@@ -981,8 +980,8 @@
               <div class="statLbl">Win Rate</div>
             </div>
             <div class="stat">
-              <div class="statVal">N/A</div>
-              <div class="statLbl">Profit Factor (no losing trades in this sample)</div>
+              <div class="statVal">N/A (no losses)</div>
+              <div class="statLbl">Profit Factor</div>
             </div>
             <div class="stat">
               <div class="statVal good">4.8:1</div>
@@ -1400,7 +1399,7 @@
     })();
 
     // ================================
-    // Social-proof popups (one at a time, randomized)
+    // Social-proof popups
     // ================================
     const toastContainer = document.getElementById("toast-container");
     const MAX_TOASTS = 15;
